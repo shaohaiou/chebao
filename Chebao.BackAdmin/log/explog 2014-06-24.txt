@@ -1,0 +1,308 @@
+﻿2014/6/24 8:51:11        e:\work\projects\Chebao\Chebao.BackAdmin\product\products.aspx(66): error CS1502: The best overloaded method match for 'Chebao.Components.PageBase.GetString(string, bool)' has some invalid arguments
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 13056537
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00571
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 8:52:48        e:\work\projects\Chebao\Chebao.BackAdmin\product\products.aspx(67): error CS1501: No overload for method 'GetTypeQueryStr' takes 0 arguments
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 13056537
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00571
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 11:28:25        文件“/car/carquotation.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 11:28:33        文件“/car/carquotation.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 11:29:11        文件“/car/carquotation.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 14:39:10        未能加载类型“Chebao.BackAdmin.user.userchangepw”。
+Source:System.Web
+TargetSite:Void ParseString(System.String, System.Web.VirtualPath, System.Text.Encoding)
+
+---- Stack Trace ----
+   System.Web.UI.TemplateParser.ParseString(text As StringvirtualPath As VirtualPathfileEncoding As Encoding)
+       (unknown file): N 12534629
+   System.Web.UI.TemplateParser.ParseFile(physicalPath As StringvirtualPath As VirtualPath)
+       (unknown file): N 00335
+   System.Web.UI.TemplateParser.Parse()
+       (unknown file): N 12538502
+   System.Web.Compilation.BaseTemplateBuildProvider.get_CodeCompilerType()
+       (unknown file): N 00135
+   System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(buildProvider As BuildProvider)
+       (unknown file): N 00189
+   System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+       (unknown file): N 00265
+   System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+       (unknown file): N 00044
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 00580
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00571
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 14:41:52        文件“/products.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 14:42:06        文件“/products.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 14:59:45        e:\work\projects\Chebao\Chebao.BackAdmin\product\productview.aspx(29): error CS0103: The name 'Product' does not exist in the current context
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult PostProcessFoundBuildResult(System.Web.Compilation.BuildResult, Boolean, System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(result As BuildResultkeyFromVPP As BooleanvirtualPath As VirtualPath)
+       (unknown file): N 12634681
+   System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(cacheKey As StringkeyFromVPP As BooleanvirtualPath As VirtualPathhashCode As Int64ensureIsUpToDate As Boolean)
+       (unknown file): N 00162
+   System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(virtualPath As VirtualPathensureIsUpToDate As Boolean)
+       (unknown file): N 00132
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00091
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 17:03:34        为 /message/showmessage.aspx 执行子请求时出错。
+Source:System.Web
+TargetSite:Void ExecuteInternal(System.Web.IHttpHandler, System.IO.TextWriter, Boolean, Boolean, System.Web.VirtualPath, System.Web.VirtualPath, System.String, System.Exception, System.String)
+
+---- Stack Trace ----
+   System.Web.HttpServerUtility.ExecuteInternal(handler As IHttpHandlerwriter As TextWriterpreserveForm As BooleansetPreviousPage As Booleanpath As VirtualPathfilePath As VirtualPathphysPath As Stringerror As ExceptionqueryStringOverride As String)
+       (unknown file): N 02684
+   System.Web.HttpServerUtility.Execute(path As Stringwriter As TextWriterpreserveForm As Boolean)
+       (unknown file): N 01289
+   System.Web.HttpServerUtility.Transfer(path As String)
+       (unknown file): N 00146
+   Chebao.Components.PageBase.WriteMessage(showUrl As StringmessageTitle As Stringmessage As StringreturnTitle As StringreturnUrl As String)
+       PageBase.cs: line 0349, col 13, IL 0067
+   Chebao.Components.PageBase.WriteErrorMessage(messageTitle As Stringmessage As StringreturnTitle As StringreturnUrl As String)
+       PageBase.cs: line 0418, col 13, IL 0018
+   Chebao.Components.PageBase.WriteErrorMessage(messageTitle As Stringmessage As String)
+       PageBase.cs: line 0393, col 13, IL 0011
+   Chebao.BackAdmin.product.productview.LoadData()
+       productview.aspx.cs: line 0052, col 17, IL 0034
+   Chebao.BackAdmin.product.productview.Page_Load(sender As Objecte As EventArgs)
+       productview.aspx.cs: line 0044, col 17, IL 0018
+   System.Web.UI.Control.LoadRecursive()
+       (unknown file): N 00071
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productview_aspx.ProcessRequest(context As HttpContext)
+       App_Web_bbozqnf0.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/24 17:06:02        文件“/message/products.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/24 17:06:25        文件“/message/products.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================

@@ -1,0 +1,2274 @@
+﻿2014/6/23 15:34:02        从客户端(txtStandard="<table cellpadding="...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_iixyfswk.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:17        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:20        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:25        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:25        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:29        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:29        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:33        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:34        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:38        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:39        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:39        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:39        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:35:40        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_mgxkyzr0.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:37:26        从客户端(txtStandard="<table style="width:...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_gqb54wuq.2.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:29        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:31        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:31        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:31        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:31        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:31        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:31        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:32        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:32        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:32        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:32        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:38:41        从客户端(txtStandard="<p>sdffddd</p>
+")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:43        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:43        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:47        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:49        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:50        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:51        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:52        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:39:53        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:12        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:14        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:14        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:17        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:17        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:17        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:17        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:40:17        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:13        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:14        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:14        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:14        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:16        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:18        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:18        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:18        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:19        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:19        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 15:41:39        从客户端(txtIntroduce="<p>本产品特点</p>
+
+<p><im...")中检测到有潜在危险的 Request.Form 值。
+Source:System.Web
+TargetSite:Void ValidateString(System.String, System.String, System.Web.Util.RequestValidationSource)
+
+---- Stack Trace ----
+   System.Web.HttpRequest.ValidateString(value As StringcollectionKey As StringrequestCollection As RequestValidationSource)
+       (unknown file): N 12727473
+   System.Web.HttpRequest.ValidateHttpValueCollection(collection As HttpValueCollectionrequestCollection As RequestValidationSource)
+       (unknown file): N 00203
+   System.Web.HttpRequest.get_HasForm()
+       (unknown file): N 12730322
+   System.Web.UI.Page.GetCollectionBasedOnMethod(dontReturnNull As Boolean)
+       (unknown file): N 00146
+   System.Web.UI.Page.DeterminePostBackMode()
+       (unknown file): N 00129
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696535
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.product_productedit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_41i3cpuj.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/23 17:00:53        未能加载类型“Chebao.BackAdmin.product.products”。
+Source:System.Web
+TargetSite:Void ParseString(System.String, System.Web.VirtualPath, System.Text.Encoding)
+
+---- Stack Trace ----
+   System.Web.UI.TemplateParser.ParseString(text As StringvirtualPath As VirtualPathfileEncoding As Encoding)
+       (unknown file): N 12534629
+   System.Web.UI.TemplateParser.ParseFile(physicalPath As StringvirtualPath As VirtualPath)
+       (unknown file): N 00335
+   System.Web.UI.TemplateParser.Parse()
+       (unknown file): N 12538502
+   System.Web.Compilation.BaseTemplateBuildProvider.get_CodeCompilerType()
+       (unknown file): N 00135
+   System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(buildProvider As BuildProvider)
+       (unknown file): N 00189
+   System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+       (unknown file): N 00265
+   System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+       (unknown file): N 00044
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 00580
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00571
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================

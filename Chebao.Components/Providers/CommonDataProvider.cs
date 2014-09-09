@@ -1,0 +1,306 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Web;
+using System.IO;
+using Chebao.Components;
+using System.Data;
+using Chebao.Tools;
+
+namespace Chebao.Components
+{
+    public abstract class CommonDataProvider
+    {
+        private static CommonDataProvider _defaultprovider = null;
+        private static object _lock = new object();
+
+        #region 初始化
+        /// <summary>
+        /// 返回默认的数据提供者类
+        /// </summary>
+        /// <returns></returns>
+        public static CommonDataProvider Instance()
+        {
+            return Instance("MSSQLCommonDataProvider");
+        }
+
+        /// <summary>
+        /// 从配置文件加载数据库访问提供者类
+        /// </summary>
+        /// <param name="providerName">提供者名</param>
+        /// <returns>提供者</returns>
+        public static CommonDataProvider Instance(string providerName)
+        {
+            string cachekey = GlobalKey.PROVIDER + "_" + providerName;
+            CommonDataProvider objType = MangaCache.GetLocal(cachekey) as CommonDataProvider;//从缓存读取
+            if (objType == null)
+            {
+                CommConfig config = CommConfig.GetConfig();
+                Provider dataProvider = (Provider)config.Providers[providerName];
+                objType = DataProvider.Instance(dataProvider) as CommonDataProvider;
+                string path = null;
+                HttpContext context = HttpContext.Current;
+                if (context != null)
+                    path = context.Server.MapPath("~/config/common.config");
+                else
+                    path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"config\common.config");
+                MangaCache.MaxLocalWithFile(cachekey, objType, path);
+            }
+            return objType;
+        }
+
+        /// <summary>
+        ///从配置文件加载默认数据库访问提供者类
+        /// </summary>
+        private static void LoadDefaultProviders()
+        {
+            if (_defaultprovider == null)
+            {
+                lock (_lock)
+                {
+                    if (_defaultprovider == null)
+                    {
+                        CommConfig config = CommConfig.GetConfig();
+                        Provider dataProvider = (Provider)config.Providers[GlobalKey.DEFAULT_PROVDIER_COMMON];
+                        _defaultprovider = DataProvider.Instance(dataProvider) as CommonDataProvider;
+
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #region 后台管理员
+
+        /// <summary>
+        /// 通过管理员名获取管理员
+        /// </summary>
+        /// <param name="name">管理员名</param>
+        /// <returns></returns>
+        public abstract AdminInfo GetAdminByName(string id);
+
+        /// <summary>
+        /// 管理员是否已经存在
+        /// </summary>
+        /// <param name="name">管理员ID</param>
+        /// <returns></returns>
+        public abstract bool ExistsAdmin(int id);
+
+        /// <summary>
+        /// 添加管理员
+        /// </summary>
+        /// <param name="model">后台用户实体类</param>
+        /// <returns>添加成功返回ID</returns>
+        public abstract int AddAdmin(AdminInfo model);
+
+        /// <summary>
+        /// 更新管理员
+        /// </summary>
+        /// <param name="model">后台用户实体类</param>
+        /// <returns>修改是否成功</returns>
+        public abstract bool UpdateAdmin(AdminInfo model);
+
+        /// <summary>
+        /// 删除管理员
+        /// </summary>
+        /// <param name="AID"></param>
+        /// <returns></returns>
+        public abstract bool DeleteAdmin(int AID);
+
+        /// <summary>
+        /// 通过ID获取管理员
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>管理员实体信息</returns>
+        public abstract AdminInfo GetAdmin(int id);
+
+        /// <summary>
+        /// 验证用户登陆
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="password">密码</param>
+        /// <returns>用户ID</returns>
+        public abstract int ValiAdmin(string userName, string password);
+
+        /// <summary>
+        /// 返回所有用户
+        /// </summary>
+        /// <returns></returns>
+        public abstract List<AdminInfo> GetAllAdmins();
+
+        /// <summary>
+        /// 获取普通用户
+        /// </summary>
+        /// <returns></returns>
+        public abstract List<AdminInfo> GetUsers();
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="userID">管理员ID</param>
+        /// <param name="oldPassword">旧密码</param>
+        /// <param name="newPassword">新密码</param>
+        /// <returns></returns>
+        public abstract bool ChangeAdminPw(int userID, string oldPassword, string newPassword);
+
+        /// <summary>
+        /// 获取用于加密的值
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        public abstract string GetAdminKey(int userID);
+
+        /// <summary>
+        /// 填充后台用户实体类
+        /// </summary>
+        /// <param name="reader">记录集</param>
+        /// <returns>实体类</returns>
+        protected AdminInfo PopulateAdmin(IDataReader reader)
+        {
+            AdminInfo admin = new AdminInfo();
+            admin.ID = (int)reader["ID"];
+            admin.Administrator = DataConvert.SafeBool(reader["Administrator"]);
+            admin.LastLoginIP = reader["LastLoginIP"] as string;
+            admin.LastLoginTime = reader["LastLoginTime"] as DateTime?;
+            admin.Password = reader["Password"] as string;
+            admin.UserName = reader["UserName"] as string;
+            admin.UserRole = (UserRoleType)(int)reader["UserRole"];
+
+            SerializerData data = new SerializerData();
+            data.Keys = reader["PropertyNames"] as string;
+            data.Values = reader["PropertyValues"] as string;
+            admin.SetSerializerData(data);
+
+            return admin;
+        }
+
+        #endregion
+
+        #region 日志
+
+        public abstract void WriteEventLogEntry(EventLogEntry log);
+
+        public abstract void ClearEventLog(DateTime dt);
+
+        public abstract List<EventLogEntry> GetEventLogs(int pageindex, int pagesize, EventLogQuery query, out int total);
+
+
+        /// <summary>
+        /// 填充日志信息
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <returns></returns>
+        protected EventLogEntry PopulateEventLogEntry(IDataReader reader)
+        {
+            EventLogEntry eventlog = new EventLogEntry();
+            eventlog.EntryID = DataConvert.SafeInt(reader["ID"]);
+            eventlog.EventID = DataConvert.SafeInt(reader["EventID"]);
+            eventlog.EventType = (EventType)(byte)(reader["EventType"]);
+            eventlog.Message = reader["Message"] as string;
+            eventlog.Category = reader["Category"] as string;
+            eventlog.MachineName = reader["MachineName"] as string;
+            eventlog.ApplicationName = reader["ApplicationName"] as string;
+            eventlog.PCount = DataConvert.SafeInt(reader["PCount"]);
+            eventlog.AddTime = DataConvert.SafeDate(reader["AddTime"]);
+            eventlog.LastUpdateTime = reader["LastUpdateTime"] as DateTime?;
+            eventlog.ApplicationType = (ApplicationType)(byte)(reader["AppType"]);
+            eventlog.EntryID = DataConvert.SafeInt(reader["EntryID"]);
+            return eventlog;
+        }
+
+
+        #endregion
+
+        #region 车辆品牌
+
+        public abstract List<BrandInfo> GetBrandList();
+
+        public abstract  void DeleteBrands(string ids);
+
+        public abstract int AddBrand(BrandInfo entity);
+
+        public abstract void UpdateBrand(BrandInfo entity);
+
+        protected BrandInfo PopulateBrand(IDataReader reader)
+        {
+            BrandInfo entity = new BrandInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                BrandName = reader["BrandName"] as string,
+                NameIndex = reader["NameIndex"] as string
+            };
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 车型
+
+        public abstract List<CabmodelInfo> GetCabmodelList();
+
+        public abstract void DeleteCabmodels(string ids);
+
+        public abstract int AddCabmodel(CabmodelInfo entity);
+
+        public abstract void UpdateCabmodel(CabmodelInfo entity);
+
+        protected CabmodelInfo PopulateCabmodel(IDataReader reader)
+        {
+            CabmodelInfo entity = new CabmodelInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                CabmodelName = reader["CabmodelName"] as string,
+                NameIndex = reader["NameIndex"] as string,
+                BrandID = (int)reader["BrandID"],
+                Pailiang = reader["Pailiang"] as string,
+                Nianfen = reader["Nianfen"] as string,
+                BrandName = reader["BrandName"] as string,
+                Imgpath = reader["Imgpath"] == null ? string.Empty : reader["Imgpath"].ToString()
+            };
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 产品
+
+        public abstract List<ProductInfo> GetProductList();
+
+        public abstract void DeleteProducts(string ids);
+
+        public abstract int AddProduct(ProductInfo entity);
+
+        public abstract void UpdateProduct(ProductInfo entity);
+
+        protected ProductInfo PopulateProduct(IDataReader reader)
+        {
+            ProductInfo entity = new ProductInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                ProductType = (ProductType)(int)reader["ProductType"],
+                Cabmodels = reader["Cabmodels"] as string,
+                Introduce = reader["Introduce"] as string,
+                Pic = reader["Pic"] as string,
+                Pics = reader["Pics"] as string,
+            };
+            SerializerData data = new SerializerData();
+            data.Keys = reader["PropertyNames"] as string;
+            data.Values = reader["PropertyValues"] as string;
+            entity.SetSerializerData(data);
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 系统设置
+
+        public abstract void ExecuteSql(string sql);
+
+        #endregion
+    }
+}

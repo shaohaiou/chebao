@@ -1,0 +1,598 @@
+﻿2014/6/17 8:27:11        e:\work\projects\Chebao\Chebao.BackAdmin\product\productedit.aspx(19): error CS1061: 'ASP.product_productedit_aspx' does not contain a definition for 'btnAdd_Click' and no extension method 'btnAdd_Click' accepting a first argument of type 'ASP.product_productedit_aspx' could be found (are you missing a using directive or an assembly reference?)
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 13056537
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00571
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================
+2014/6/17 9:06:15        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_gbxwiglp.6.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:24:57        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_2iltbyic.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:28:55        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_ka1nixgl.3.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:32:26        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_otjednce.5.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:34:17        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_otjednce.5.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:35:05        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_kx00nonr.6.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:36:24        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_kx00nonr.6.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:37:04        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:37:06        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:37:07        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:37:08        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:38:30        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:46:18        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:46:38        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:47:29        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 9:47:46        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_adminlist_aspx.ProcessRequest(context As HttpContext)
+       App_Web_yp2kkzwy.0.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 10:13:39        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_s2xt1wtx.2.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 10:26:11        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_admins_aspx.ProcessRequest(context As HttpContext)
+       App_Web_gtmb15r3.4.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 10:39:39        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.login_aspx.ProcessRequest(context As HttpContext)
+       App_Web_3wjod5uf.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 10:40:58        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.login_aspx.ProcessRequest(context As HttpContext)
+       App_Web_3wjod5uf.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 10:42:45        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.login_aspx.ProcessRequest(context As HttpContext)
+       App_Web_3wjod5uf.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 12:22:34        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.login_aspx.ProcessRequest(context As HttpContext)
+       App_Web_3wjod5uf.1.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 15:51:06        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 12698575
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696523
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 12696045
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00119
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00099
+   ASP.user_useredit_aspx.ProcessRequest(context As HttpContext)
+       App_Web_zh0nq1za.7.cs: line 0000, col 00, IL 0008
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00913
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00165
+
+
+====================================
+2014/6/17 16:46:18        文件“/car/productmg.aspx”不存在。
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult GetVPathBuildResultInternal(System.Web.VirtualPath, Boolean, Boolean, Boolean, Boolean, Boolean)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 12716076
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00203
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00249
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00056
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00042
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00516
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00288
+
+
+====================================

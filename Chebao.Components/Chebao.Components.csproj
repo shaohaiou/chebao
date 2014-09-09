@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44AC9B2D-3C7F-40BA-95F7-B3B5845521E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Chebao.Components</RootNamespace>
+    <AssemblyName>Chebao.Components</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Chebao.Tools\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admins.cs" />
+    <Compile Include="BasePage\AdminPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BasePage\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cache\MangaCache.cs" />
+    <Compile Include="Cars.cs" />
+    <Compile Include="Config\CommConfig.cs" />
+    <Compile Include="DataProvider.cs" />
+    <Compile Include="Data\CommandInfo.cs" />
+    <Compile Include="Data\CommonPageSql.cs" />
+    <Compile Include="Data\CommonSelectSql.cs" />
+    <Compile Include="Data\SqlHelper.cs" />
+    <Compile Include="Data\SqlHelperParameterCache.cs" />
+    <Compile Include="Entity\AdminInfo.cs" />
+    <Compile Include="Entity\BrandInfo.cs" />
+    <Compile Include="Entity\CabmodelInfo.cs" />
+    <Compile Include="Entity\EventLogEntry.cs" />
+    <Compile Include="Entity\Job.cs" />
+    <Compile Include="Entity\ProductInfo.cs" />
+    <Compile Include="Entity\ShowUrl.cs" />
+    <Compile Include="Enumerations\ApplicationType.cs" />
+    <Compile Include="Enumerations\ProductType.cs" />
+    <Compile Include="Enumerations\UrlRuleType.cs" />
+    <Compile Include="Enumerations\UserRoleType.cs" />
+    <Compile Include="EventLogs.cs" />
+    <Compile Include="GlobalKey.cs" />
+    <Compile Include="HttpHandler\CheckAdminUserNameHandler.cs" />
+    <Compile Include="HttpHandler\CheckCodeHandler.cs" />
+    <Compile Include="HttpHandler\NewCutImageHandler.cs" />
+    <Compile Include="HttpHandler\RemoteConnection.cs" />
+    <Compile Include="Interface\IJob.cs" />
+    <Compile Include="Interface\IQuery.cs" />
+    <Compile Include="Jobs.cs" />
+    <Compile Include="Logs.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CommonDataProvider.cs" />
+    <Compile Include="Query\EventLogQuery.cs" />
+    <Compile Include="Web\ChebaoContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Chebao.Tools\Chebao.Tools.csproj">
+      <Project>{D9DB52E6-8541-47D9-8B4C-38F412D1FE65}</Project>
+      <Name>Chebao.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

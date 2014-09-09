@@ -1,0 +1,650 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Net;
+using Chebao.Tools;
+using System.Data.SqlClient;
+using System.Data;
+using Chebao.Components;
+using Chebao.Components.Data;
+using System.Data.OleDb;
+
+namespace Chebao.DALSQLServer
+{
+    public class CommonSqlDataProvider : CommonDataProvider
+    {
+        private string _con;
+        private string _dbowner;
+        private static object sync_helper = new object();
+
+        #region 初始化
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="constr">连接字符串</param>
+        /// <param name="owner">数据库所有者</param>
+        public CommonSqlDataProvider(string constr, string owner)
+        {
+            CommConfig config = CommConfig.GetConfig();
+            //_con = EncryptString.DESDecode(constr, config.AppSetting["key"]);
+            _con = constr;
+            _dbowner = owner;
+        }
+        #endregion
+
+        #region 后台管理员
+
+        /// <summary>
+        ///  获取用于加密的值
+        /// </summary>
+        /// <param name="userID">管理员ID</param>
+        /// <returns>用于加密的值</returns>
+        public override string GetAdminKey(int userID)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 CheckKey from Chebao_AdminUser ");
+            strSql.Append(" where [ID]=@ID ");
+            object o = SqlHelper.ExecuteScalar(_con, CommandType.Text, strSql.ToString(), new OleDbParameter("@ID", userID));
+            return o as string;
+        }
+
+        /// <summary>
+        /// 管理员是否已经存在
+        /// </summary>
+        /// <param name="name">管理员ID</param>
+        /// <returns>管理员是否存在</returns>
+        public override bool ExistsAdmin(int id)
+        {
+            string sql = "select count(1) from Chebao_AdminUser where [ID]=@ID";
+            int i = Convert.ToInt32(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, new OleDbParameter("@ID", id)));
+            if (i > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 通过用户名获得后台管理员信息
+        /// </summary>
+        /// <param name="UserName">用户名</param>
+        /// <returns>管理员实体信息</returns>
+        public override AdminInfo GetAdminByName(string UserName)
+        {
+            string sql = "select * from Chebao_AdminUser where [UserName]=@UserName";
+            AdminInfo admin = null;
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql, new OleDbParameter("@UserName", UserName)))
+            {
+                if (reader.Read())
+                {
+                    admin = PopulateAdmin(reader);
+                }
+            }
+            return admin;
+        }
+
+        /// <summary>
+        /// 添加管理员
+        /// </summary>
+        /// <param name="model">后台用户实体类</param>
+        /// <returns>添加成功返回ID</returns>
+        public override int AddAdmin(AdminInfo model)
+        {
+            SerializerData data = model.GetSerializerData();
+            string sql = @"
+            INSERT INTO Chebao_AdminUser(
+                [UserName]
+                ,[Password]
+                ,[Administrator]
+                ,[LastLoginIP]
+                ,[LastLoginTime]
+                ,[PropertyNames]
+                ,[PropertyValues]
+                ,[UserRole]
+                ) VALUES 
+                (@UserName
+                ,@Password
+                ,@Administrator
+                ,@LastLoginIP
+                ,@LastLoginTime
+                ,@PropertyNames
+                ,@PropertyValues
+                ,@UserRole)";
+
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@UserName",model.UserName),
+                new OleDbParameter("@Password",model.Password),
+                new OleDbParameter("@Administrator",model.Administrator),
+                new OleDbParameter("@LastLoginIP",model.LastLoginIP),
+                new OleDbParameter("@LastLoginTime",model.LastLoginTime.HasValue ? model.LastLoginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : null),
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values),
+                new OleDbParameter("@UserRole",(int)model.UserRole)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            sql = "SELECT @@IDENTITY";
+            model.ID = DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
+            return model.ID;
+        }
+
+        /// <summary>
+        /// 更新管理员
+        /// </summary>
+        /// <param name="model">后台用户实体类</param>
+        /// <returns>修改是否成功</returns>
+        public override bool UpdateAdmin(AdminInfo model)
+        {
+            SerializerData data = model.GetSerializerData();
+            string sql = @"UPDATE Chebao_AdminUser SET 
+                [UserName] = @UserName
+                ,[Password] = @Password
+                ,[Administrator] = @Administrator
+                ,[LastLoginIP] = @LastLoginIP
+                ,[LastLoginTime] = @LastLoginTime
+                ,[PropertyNames] = @PropertyNames
+                ,[PropertyValues] = @PropertyValues 
+                WHERE [ID] = @ID";
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@UserName",model.UserName),
+                new OleDbParameter("@Password",model.Password),
+                new OleDbParameter("@Administrator",model.Administrator),
+                new OleDbParameter("@LastLoginIP",model.LastLoginIP),
+                new OleDbParameter("@LastLoginTime",model.LastLoginTime.HasValue ? model.LastLoginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : null),
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values),
+                new OleDbParameter("@ID",model.ID)
+            };
+            int result = SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 删除管理员
+        /// </summary>
+        /// <param name="AID">管理员ID</param>
+        /// <returns>删除是否成功</returns>
+        public override bool DeleteAdmin(int id)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from Chebao_AdminUser ");
+            strSql.Append(" where [ID]=@ID ");
+            int result = SqlHelper.ExecuteNonQuery(_con, CommandType.Text, strSql.ToString(), new OleDbParameter("@ID", id));
+            if (result > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 通过ID获取管理员
+        /// </summary>
+        /// <param name="id">ID</param>
+        /// <returns>管理员实体信息</returns>
+        public override AdminInfo GetAdmin(int id)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 * from Chebao_AdminUser ");
+            strSql.Append(" where [ID]=@ID ");
+            AdminInfo admin = null;
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, strSql.ToString(), new OleDbParameter("@ID", id)))
+            {
+                if (reader.Read())
+                {
+                    admin = PopulateAdmin(reader);
+                }
+            }
+            return admin;
+        }
+
+        /// <summary>
+        /// 验证用户登陆
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="password">密码</param>
+        /// <returns>用户ID</returns>
+        public override int ValiAdmin(string userName, string password)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select ID from Chebao_AdminUser");
+            strSql.Append(" where [UserName]=@UserName and [Password]=@PassWord");
+
+            object obj = SqlHelper.ExecuteScalar(_con, CommandType.Text, strSql.ToString(), new OleDbParameter("@UserName", userName), new OleDbParameter("@PassWord", password));
+            if (obj == null)
+            {
+                return -2;
+            }
+            else
+            {
+                return Convert.ToInt32(obj);
+            }
+        }
+
+        /// <summary>
+        /// 返回所有用户
+        /// </summary>
+        /// <returns>返回所有用户</returns>
+        public override List<AdminInfo> GetAllAdmins()
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * from Chebao_AdminUser WHERE [UserRole] = " + (int)UserRoleType.管理员);
+
+
+            List<AdminInfo> admins = new List<AdminInfo>();
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, strSql.ToString()))
+            {
+                while (reader.Read())
+                {
+                    admins.Add(PopulateAdmin(reader));
+                }
+            }
+            return admins;
+        }
+
+        public override List<AdminInfo> GetUsers()
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * from Chebao_AdminUser WHERE [UserRole] <> " + (int)UserRoleType.管理员);
+
+
+            List<AdminInfo> admins = new List<AdminInfo>();
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, strSql.ToString()))
+            {
+                while (reader.Read())
+                {
+                    admins.Add(PopulateAdmin(reader));
+                }
+            }
+            return admins;
+        }
+
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="userID">管理员ID</param>
+        /// <param name="oldPassword">旧密码</param>
+        /// <param name="newPassword">新密码</param>
+        /// <returns>修改密码是否成功</returns>
+        public override bool ChangeAdminPw(int userID, string oldPassword, string newPassword)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("update Chebao_AdminUser set ");
+            strSql.Append("[Password]=@NewPassword");
+            strSql.Append(" where [ID]=@ID and [Password]=@Password ");
+            int result = SqlHelper.ExecuteNonQuery(_con, CommandType.Text, strSql.ToString(), new OleDbParameter("@NewPassword", newPassword), new OleDbParameter("@ID", userID), new OleDbParameter("@Password", oldPassword));
+            if (result < 1)
+                return false;
+            return true;
+        }
+
+        #endregion
+
+        #region 日志
+
+        /// <summary>
+        /// 写入日志信息
+        /// </summary>
+        /// <param name="log"></param>
+        public override void WriteEventLogEntry(EventLogEntry log)
+        {
+            try
+            {
+                string sql = "Chebao_AddEvent";
+                OleDbParameter[] parameters = 
+                    {
+                        new OleDbParameter("@Uniquekey", log.Uniquekey),
+                        new OleDbParameter("@EventType", log.EventType),
+                        new OleDbParameter("@EventID",log.EventID),
+                        new OleDbParameter("@Message",log.Message),
+                        new OleDbParameter("@Category",log.Category),
+                        new OleDbParameter("@MachineName",log.MachineName),
+                        new OleDbParameter("@ApplicationName",log.ApplicationName),
+                        new OleDbParameter("@ApplicationID",log.ApplicationID),
+                        new OleDbParameter("@AppType",log.ApplicationType),
+                        new OleDbParameter("@EntryID",log.EntryID),
+                        new OleDbParameter("@PCount",log.PCount),
+                        new OleDbParameter("@LastUpdateTime",log.LastUpdateTime)
+                    };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.StoredProcedure, sql, parameters);
+            }
+            catch { }
+        }
+
+        /// <summary>
+        /// 根据时间清除日志
+        /// </summary>
+        /// <param name="dt"></param>
+        public override void ClearEventLog(DateTime dt)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<EventLogEntry> GetEventLogs(int pageindex, int pagesize, EventLogQuery query, out int total)
+        {
+            List<EventLogEntry> eventlist = new List<EventLogEntry>();
+            OleDbParameter p;
+            if (pageindex != -1)
+            {
+                using (IDataReader reader = CommonPageSql.GetDataReaderByPager(_con, pageindex, pagesize, query, out p))
+                {
+                    while (reader.Read())
+                    {
+                        eventlist.Add(PopulateEventLogEntry(reader));
+                    }
+                }
+                total = int.Parse(p.Value.ToString());
+            }
+
+            else
+            {
+                using (IDataReader reader = CommonSelectSql.SelectGetReader(_con, pagesize, query))
+                {
+                    while (reader.Read())
+                    {
+                        eventlist.Add(PopulateEventLogEntry(reader));
+                    }
+                }
+                total = eventlist.Count();
+            }
+            return eventlist;
+        }
+        #endregion
+
+        #region 车辆品牌
+
+        public override List<BrandInfo> GetBrandList()
+        {
+            List<BrandInfo> list = new List<BrandInfo>();
+            string sql = "SELECT * FROM Chebao_Brand";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateBrand(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override void DeleteBrands(string ids)
+        {
+            string sql = string.Format("DELETE FROM Chebao_Brand WHERE [ID] IN ({0})", ids);
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
+        }
+
+        public override int AddBrand(BrandInfo entity)
+        {
+            int result = 0;
+            string sql = @"SELECT COUNT(0) FROM Chebao_Brand WHERE [BrandName] = @BrandName";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@BrandName",entity.BrandName)
+            };
+            if (DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, p)) == 0)
+            {
+                sql = @"
+                INSERT INTO Chebao_Brand(
+                    [BrandName]
+                    ,[NameIndex]
+                )VALUES(
+                    @BrandName
+                    ,@NameIndex
+                )";
+
+                p = new OleDbParameter[]
+                { 
+                    new OleDbParameter("@BrandName",entity.BrandName),
+                    new OleDbParameter("@NameIndex",entity.NameIndex)
+                };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+                sql = "SELECT MAX([ID]) FROM Chebao_Brand";
+                result = DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
+            }
+            return result;
+        }
+
+        public override void UpdateBrand(BrandInfo entity)
+        {
+            string sql = "SELECT COUNT(0) FROM Chebao_Brand WHERE [BrandName] = @BrandName AND [ID] <> @ID";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@BrandName",entity.BrandName),
+                new OleDbParameter("@ID",entity.ID)
+            };
+            if (DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, p)) == 0)
+            {
+                sql = @"
+                UPDATE Chebao_Brand SET
+                    [BrandName] = @BrandName
+                    ,[NameIndex] = @NameIndex
+                WHERE [ID] = @ID";
+                p = new OleDbParameter[]
+                { 
+                    new OleDbParameter("@BrandName",entity.BrandName),
+                    new OleDbParameter("@NameIndex",entity.NameIndex),
+                    new OleDbParameter("@ID",entity.ID)
+                };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            }
+        }
+
+        #endregion
+
+        #region 车型
+
+        public override List<CabmodelInfo> GetCabmodelList()
+        {
+            List<CabmodelInfo> list = new List<CabmodelInfo>();
+            string sql = "SELECT t1.*,t2.BrandName FROM Chebao_Cabmodel T1 LEFT OUTER JOIN Chebao_Brand T2 ON T1.BrandID = T2.ID";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateCabmodel(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override void DeleteCabmodels(string ids)
+        {
+            string sql = string.Format("DELETE FROM Chebao_Cabmodel WHERE [ID] IN ({0})", ids);
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
+        }
+
+        public override int AddCabmodel(CabmodelInfo entity)
+        {
+            int result = 0;
+            string sql = "SELECT COUNT(0) FROM Chebao_Cabmodel WHERE [CabmodelName] = @CabmodelName AND [BrandID] = @BrandID AND [Pailiang] = @Pailiang AND [Nianfen] = @Nianfen";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@CabmodelName",entity.CabmodelName),
+                new OleDbParameter("@BrandID",entity.BrandID),
+                new OleDbParameter("@Pailiang",entity.Pailiang),
+                new OleDbParameter("@Nianfen",entity.Nianfen)
+            };
+            if (DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, p)) == 0)
+            {
+                sql = @"
+                INSERT INTO Chebao_Cabmodel(
+                    [CabmodelName]
+                    ,[BrandID]
+                    ,[Pailiang]
+                    ,[Nianfen]
+                    ,[NameIndex]
+                    ,[Imgpath]
+                )VALUES(
+                    @CabmodelName
+                    ,@BrandID
+                    ,@Pailiang
+                    ,@Nianfen
+                    ,@NameIndex
+                    ,@Imgpath
+                )";
+
+                p = new OleDbParameter[]
+                { 
+                    new OleDbParameter("@CabmodelName",entity.CabmodelName),
+                    new OleDbParameter("@BrandID",entity.BrandID),
+                    new OleDbParameter("@Pailiang",entity.Pailiang),
+                    new OleDbParameter("@Nianfen",entity.Nianfen),
+                    new OleDbParameter("@NameIndex",entity.NameIndex),
+                    new OleDbParameter("@Imgpath",entity.Imgpath)
+                };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+                sql = "SELECT MAX([ID]) FROM Chebao_Cabmodel";
+                result = DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
+            }
+            return result;
+        }
+
+        public override void UpdateCabmodel(CabmodelInfo entity)
+        {
+            string sql = "SELECT COUNT(0) FROM Chebao_Cabmodel WHERE [CabmodelName] = @CabmodelName AND [BrandID] = @BrandID AND [Pailiang] = @Pailiang AND [Nianfen] = @Nianfen AND [ID] <> @ID";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@CabmodelName",entity.CabmodelName),
+                new OleDbParameter("@BrandID",entity.BrandID),
+                new OleDbParameter("@Pailiang",entity.Pailiang),
+                new OleDbParameter("@Nianfen",entity.Nianfen),
+                new OleDbParameter("@ID",entity.ID),
+            };
+            if (DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, p)) == 0)
+            {
+                sql = @"
+                UPDATE Chebao_Cabmodel SET
+                    [CabmodelName] = @CabmodelName
+                    ,[BrandID] = @BrandID
+                    ,[Pailiang] = @Pailiang
+                    ,[Nianfen] = @Nianfen
+                    ,[NameIndex] = @NameIndex
+                    ,[Imgpath] = @Imgpath
+                WHERE [ID] = @ID";
+                p = new OleDbParameter[]
+                { 
+                    new OleDbParameter("@CabmodelName",entity.CabmodelName),
+                    new OleDbParameter("@BrandID",entity.BrandID),
+                    new OleDbParameter("@Pailiang",entity.Pailiang),
+                    new OleDbParameter("@Nianfen",entity.Nianfen),
+                    new OleDbParameter("@NameIndex",entity.NameIndex),
+                    new OleDbParameter("@Imgpath",entity.Imgpath),
+                    new OleDbParameter("@ID",entity.ID)
+                };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            }
+        }
+
+        #endregion
+
+        #region 产品
+
+        public override List<ProductInfo> GetProductList()
+        {
+            List<ProductInfo> list = new List<ProductInfo>();
+            string sql = "SELECT * FROM Chebao_Product";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateProduct(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override void DeleteProducts(string ids)
+        {
+            string sql = string.Format("DELETE FROM Chebao_Product WHERE [ID] IN ({0})", ids);
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
+        }
+
+        public override int AddProduct(ProductInfo entity)
+        {
+            int result = 0;
+            string sql = @"
+                INSERT INTO Chebao_Product(
+                    [ProductType]
+                    ,[Cabmodels]
+                    ,[Introduce]
+                    ,[Pic]
+                    ,[Pics]
+                    ,[PropertyNames]
+                    ,[PropertyValues]
+                )VALUES(
+                    @ProductType
+                    ,@Cabmodels
+                    ,@Introduce
+                    ,@Pic
+                    ,@Pics
+                    ,@PropertyNames
+                    ,@PropertyValues
+                )";
+
+            SerializerData data = entity.GetSerializerData();
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@ProductType",(int)entity.ProductType),
+                new OleDbParameter("@Cabmodels",entity.Cabmodels),
+                new OleDbParameter("@Introduce",entity.Introduce),
+                new OleDbParameter("@Pic",entity.Pic),
+                new OleDbParameter("@Pics",entity.Pics),
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            sql = "SELECT MAX([ID]) FROM Chebao_Product";
+            result = DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
+            return result;
+        }
+
+        public override void UpdateProduct(ProductInfo entity)
+        {
+            string sql = @"
+                UPDATE Chebao_Product SET
+                    [ProductType] = @ProductType
+                    ,[Cabmodels] = @Cabmodels
+                    ,[Introduce] = @Introduce
+                    ,[Pic] = @Pic
+                    ,[Pics] = @Pics
+                    ,[PropertyNames] = @PropertyNames
+                    ,[PropertyValues] = @PropertyValues
+                WHERE [ID] = @ID";
+
+            SerializerData data = entity.GetSerializerData();
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@ProductType",(int)entity.ProductType),
+                new OleDbParameter("@Cabmodels",entity.Cabmodels),
+                new OleDbParameter("@Introduce",entity.Introduce),
+                new OleDbParameter("@Pic",entity.Pic),
+                new OleDbParameter("@Pics",entity.Pics),
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values),
+                new OleDbParameter("@ID",entity.ID)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+
+        }
+
+        #endregion
+
+
+        #region 系统设置
+
+        public override void ExecuteSql(string sql)
+        {
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
+        }
+
+        #endregion
+    }
+}
