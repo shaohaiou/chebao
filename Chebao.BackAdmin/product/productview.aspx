@@ -4,10 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>耐磨达产品查询系统</title>
-    <link href=../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet"
-        type="text/css" />
-    <link href=../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet"
-        type="text/css" />
+    <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
+    <link href="../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/head3.js" type="text/javascript"></script>
     <script src="../js/jquery.jqzoom.js" type="text/javascript"></script>
@@ -19,6 +19,94 @@
             $("#imgpic").click(function () {
                 var _this = $(this);
                 imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+            });
+
+            $(".tb-toolbar-item-hd").hover(function () {
+                $(".tb-toolbar-item-tip", $(this)).show();
+            }, function () {
+                $(".tb-toolbar-item-tip", $(this)).hide();
+            });
+            $(".J_TBToolbarCart").click(function () {
+                if ($(".tb-toolbar-mini-cart").is(":hidden")) {
+                    $(".tb-toolbar-mini-cart").show();
+                    $("#J_Toolbar").animate({ right: 330 }, 200);
+                    $(this).css({ color: "#0971B2!important" });
+                } else {
+                    $("#J_Toolbar").animate({ right: 0 }, 200, function () {
+                        $(".tb-toolbar-mini-cart").hide();
+                    })
+                }
+            });
+            $(".J_ShrinkMiniCartToolBar").click(function () {
+                $("#J_Toolbar").animate({ right: 0 }, 200, function () {
+                    $(".tb-toolbar-mini-cart").hide();
+                })
+            });
+            $(".J_DelItem").click(function () {
+                var ids = $(this).attr("data-cartid");
+                var item = $(this).parent().parent().parent();
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "deleteshoppingtrolley", ids: ids, d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if (data.Value == "success") {
+                            item.remove();
+                            var count = parseInt($.trim($(".J_ToolbarCartNum").html()))
+                            $(".J_ToolbarCartNum").html(count - 1);
+                        }
+                        else {
+                            alert(data.Msg);
+                        }
+                    }
+                });
+            });
+            $(window).resize(function () {
+                var windowheight = $(this).height();
+                if (windowheight > 200) {
+                    $(".mini-cart-items-list").height(141 + (parseInt((windowheight - 309) / 71)) * 71);
+                }
+            });
+            $("#btnGotop").click(function () {
+                $("body").animate({ scrollTop: 0 }, 300);
+            });
+            $(".mini-cart-items-list").height(141 + (parseInt(($(window).height() - 309) / 71)) * 71);
+
+            $(".J_Increase").click(function () {
+                var amount = parseInt($("#J_IptAmount").val());
+                $("#J_IptAmount").val(amount + 1);
+                CheckAmount();
+            });
+            $("#J_IptAmount").change(function () {
+                CheckAmount();
+            });
+            $("#J_IptAmount").keyup(function () {
+                CheckAmount();
+            });
+            $(".J_LinkAdd").click(function () {
+                var productid = $(this).attr("pid");
+                var amount = parseInt($("#J_IptAmount").val());
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "addshoppingtrolley", pid: productid, amount: amount, d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if (data.Value == "success") {
+                            location.href = "addproductsucceed.aspx";
+                        }
+                        else {
+                            alert(data.Msg);
+                        }
+                    }
+                });
             });
         });
         document.onkeydown = function () {
@@ -70,6 +158,35 @@
                 $(this).fadeOut("fast");
             });
         }
+        function CheckAmount() {
+            var amount = parseInt($("#J_IptAmount").val());
+            var stock = parseInt($("#J_SpanStock").text());
+            if (amount <= 0 || !amount) {
+                $("#J_IptAmount").val(1);
+            }
+            else if (stock <= amount) {
+                $("#J_IptAmount").val(stock);
+            }
+            else {
+                $("#J_IptAmount").val(amount);
+            }
+            if (parseInt($("#J_IptAmount").val()) == 1) {
+                if (!$(".J_Reduce").hasClass("tb-disable-reduce")) {
+                    $(".J_Reduce").addClass("tb-disable-reduce");
+                }
+                $(".J_Reduce").unbind("click");
+            } else if (parseInt($("#J_IptAmount").val()) > 1) {
+                $(".J_Reduce").unbind("click");
+                $(".J_Reduce").click(function () {
+                    var amount = parseInt($("#J_IptAmount").val());
+                    $("#J_IptAmount").val(amount - 1);
+                    CheckAmount();
+                });
+                if ($(".J_Reduce").hasClass("tb-disable-reduce")) {
+                    $(".J_Reduce").removeClass("tb-disable-reduce");
+                }
+            }
+        }
     </script>
     <style type="text/css">
 <!--
@@ -92,12 +209,13 @@
             <ul>
                 <li><a href="javascript:void(0);">首页</a></li><li class="navcurrent"><a href="/product/products.aspx">
                     产品查询</a></li><li><a href="javascript:void(0);">公司简介</a></li><li><a href="javascript:void(0);">
-                        联系我们</a></li><li><a href="javascript:void(0);">纠错反馈有奖</a></li>
+                        联系我们</a></li><li><a href="/message/messageboard.aspx">纠错反馈有奖</a></li>
             </ul>
             <div class="header_navinfo">
                 <span class="navinfo_user">
                     <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
-                        class="ml40" href="/user/userchangepw.aspx">修改密码</a></span>
+                        class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
+                            class="ml10">我的订单</a></span>
             </div>
         </div>
         <!--end-->
@@ -182,6 +300,41 @@
                         </li>
                     </ul>
                 </div>
+                <div>
+                    &nbsp;
+                </div>
+                <div id="J_SepLine" class="sep-line">
+                </div>
+                <%if (Stock > 0)
+                  { %>
+                <div id="J_isku" class="tb-key tb-key-sku">
+                    <div class="tb-skin">
+                        <dl class="tb-amount tb-clearfix">
+                            <dt class="tb-property-type">数量</dt>
+                            <dd>
+                                <span class="tb-stock" id="J_Stock"><a href="javascript:void(0);" class="tb-reduce J_Reduce tb-iconfont tb-disable-reduce">
+                                    ƛ</a><input id="J_IptAmount" type="text" class="tb-text" value="1" maxlength="8"
+                                        title="请输入购买量" /><a href="javascript:void(0);" class="tb-increase J_Increase tb-iconfont">ƚ</a>件
+                                </span><em>(库存<span id="J_SpanStock" class="tb-count"><%=Stock%></span>件)</em>
+                            </dd>
+                        </dl>
+                        <div id="J_juValid" class="tb-action tb-clearfix ">
+                            <div class="tb-btn-buy">
+                                <a href="javascript:void(0);" title="点击此按钮，到下一步确认购买信息" class="J_LinkBuy">立即购买</a></div>
+                            <div class="tb-btn-add">
+                                <a href="javascript:void(0);" title="加入购物车" class="J_LinkAdd" pid="<%=Product.ID %>">
+                                    <i class="tb-iconfont">ŭ</i>加入购物车</a></div>
+                            <div id="Div1" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%}
+                  else
+                  { %>
+                <div>
+                    该商品已经售罄</div>
+                <%} %>
                 <div id="gtips" style="display: none;">
                 </div>
             </div>
@@ -259,6 +412,84 @@
         <div id="innerdiv" style="position: absolute;">
             <img id="bigimg" style="border: 5px solid #fff;" src="" />
         </div>
+    </div>
+    <div class="tb-toolbar tb-toolbar-right" id="J_Toolbar" style="right: 0px;">
+        <div class="tb-toolbar-space" style="height: 25%;">
+        </div>
+        <ul class="tb-toolbar-list tb-toolbar-list-with-ww tb-toolbar-list-with-cart tb-toolbar-list-with-pk">
+            <li class="tb-toolbar-item tb-toolbar-item-cart"><a href="#" class="tb-toolbar-item-hd tb-toolbar-item-hd-cart J_TBToolbarCart tb-toolbar-item-hd-active">
+                <div class="tb-toolbar-item-icon tb-toolbar-item-icon-cart">
+                    </div>
+                <div class="tb-toolbar-item-label tb-toolbar-item-label-cart">
+                    购物车</div>
+                <div class="J_ToolbarCartNum tb-toolbar-item-badge-cart">
+                    <%=ShoppingTrolleyCount%></div>
+                <div class="tb-toolbar-item-tip">
+                    我的购物车<div class="tb-toolbar-item-arrow">
+                        ◆</div>
+                </div>
+            </a>
+                <div class="tb-toolbar-item-bd tb-toolbar-mini-cart">
+                    <div class="toolbar-main toolbar-mini-cart-main">
+                        <div class="toolbar-hd">
+                            <div class="toolbar-hd-title">
+                                购物车</div>
+                            <span class="toolbar-shrink J_ShrinkMiniCartToolBar">收起</span></div>
+                        <div class="toolbar-bd">
+                            <div class="mini-cart-list">
+                                <div class="mini-cart-list-hd">
+                                    <div class="mini-cart-list-title">
+                                        最新加入的宝贝</div>
+                                    <a href="shoppingtrolleymg.aspx" target="_blank">查看全部</a></div>
+                                <div class="mini-cart-list-bd">
+                                    <ul class="mini-cart-items-list" style="height: 212px;">
+                                        <asp:Repeater runat="server" ID="rptShoppingTrolley">
+                                            <ItemTemplate>
+                                                <li>
+                                                    <div class="mini-cart-item">
+                                                        <div class="mini-cart-item-pic">
+                                                            <a title="<%# Eval("Name")%>" href="productview.aspx?id=<%#Eval("ID") %>" target="_blank">
+                                                                <img src="<%#Eval("Pic") %>"></a></div>
+                                                        <div class="mini-cart-item-info">
+                                                            <div class="mini-cart-item-title">
+                                                                <a title="<%# Eval("Name")%>" href="productview.aspx?id=<%#Eval("ID") %>" target="_blank">
+                                                                    <%# Eval("Name")%></a>
+                                                            </div>
+                                                            <div class="mini-cart-item-price">
+                                                                ¥<em><%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%></em></div>
+                                                            <a class="J_DelItem mini-cart-item-del" href="#" data-cartid="<%#Eval("SID") %>">删除商品</a></div>
+                                                    </div>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
+                                </div>
+                                <a href="shoppingtrolleymg.aspx" class="mini-cart-submit" target="_blank"><i></i>去购物车结算</a></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="tb-toolbar-space" style="height: 7%;">
+        </div>
+        <ul class="tb-toolbar-list tb-toolbar-list-with-feedback tb-toolbar-list-with-gotop">
+            <li class="tb-toolbar-item"><a href="#" class="tb-toolbar-item-hd">
+                <div class="tb-toolbar-item-icon">
+                    </div>
+                <div class="tb-toolbar-item-tip">
+                    <span class="tb-toolbar-item-tip-text">纠错反馈有奖</span><div class="tb-toolbar-item-arrow">
+                        ◆</div>
+                </div>
+            </a></li>
+            <li class="tb-toolbar-item"><a id="btnGotop" href="javascrit:void(0);" class="tb-toolbar-item-hd">
+                <div class="tb-toolbar-item-icon">
+                    </div>
+                <div class="tb-toolbar-item-tip">
+                    <span class="tb-toolbar-item-tip-text">顶部</span><div class="tb-toolbar-item-arrow">
+                        ◆</div>
+                </div>
+            </a></li>
+        </ul>
     </div>
 </body>
 <noscript>

@@ -68,6 +68,10 @@ namespace Chebao.BackAdmin
                 Cars.Instance.ReloadBrandListCache();
                 Cars.Instance.ReloadCabmodelListCache();
                 Cars.Instance.ReloadProductListCache();
+                Cars.Instance.ReloadProvince();
+                Cars.Instance.ReloadCity();
+                Cars.Instance.ReloadDistrict();
+                
             }
             catch { }
         }

@@ -1,0 +1,108 @@
+﻿2015/2/28 14:16:06        e:\work\projects\Chebao\Chebao.BackAdmin\order\ordermg.aspx(87): error CS1061: 'ASP.order_ordermg_aspx' does not contain a definition for 'btnFilter_Click' and no extension method 'btnFilter_Click' accepting a first argument of type 'ASP.order_ordermg_aspx' could be found (are you missing a using directive or an assembly reference?)
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult PostProcessFoundBuildResult(System.Web.Compilation.BuildResult, Boolean, System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(result As BuildResultkeyFromVPP As BooleanvirtualPath As VirtualPath)
+       (unknown file): N 9747381
+   System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(cacheKey As StringkeyFromVPP As BooleanvirtualPath As VirtualPathhashCode As Int64ensureIsUpToDate As Boolean)
+       (unknown file): N 00107
+   System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(virtualPath As VirtualPathensureIsUpToDate As Boolean)
+       (unknown file): N 00051
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00053
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/28 14:22:25        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 00436
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 06695
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 00245
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00072
+   System.Web.UI.Page.ProcessRequestWithNoAssert(context As HttpContext)
+       (unknown file): N 00021
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00058
+   ASP.order_ordermg_aspx.ProcessRequest(context As HttpContext)
+       App_Web_ojxqxvno.0.cs: line 0000, col 00, IL 0001
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00341
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00069
+
+
+====================================
+2015/2/28 14:30:32        文件“/order/orderview.aspx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/28 16:01:11        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 00436
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 06695
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 00245
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00072
+   System.Web.UI.Page.ProcessRequestWithNoAssert(context As HttpContext)
+       (unknown file): N 00021
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00058
+   ASP.order_orderview_aspx.ProcessRequest(context As HttpContext)
+       App_Web_3mu4e0dc.1.cs: line 0000, col 00, IL 0001
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00341
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00069
+
+
+====================================

@@ -73,6 +73,34 @@ namespace Chebao.BackAdmin.product
             }
         }
 
+        public int Stock
+        {
+            get
+            {
+                int result = 0;
+
+                if(Product != null)
+                {
+                    result = product.Stock;
+                    List<OrderInfo> orderall = Cars.Instance.GetOrderList(true);
+                    if (orderall.Exists(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == Product.ID)))
+                    {
+                        int amount = 0;
+                        List<OrderInfo> orderlist = orderall.FindAll(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == Product.ID));
+                        orderlist.ForEach(delegate(OrderInfo o) 
+                        {
+                            amount += o.OrderProducts.FindAll(p => p.ProductID == Product.ID).Sum(p => p.Amount);
+                        });
+                        result -= amount;
+                        if (result < 0)
+                            result = 0;
+                    }
+                }
+
+                return result;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -97,6 +125,24 @@ namespace Chebao.BackAdmin.product
             string[] cabmodels = Product.Cabmodels.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
             rptCabmodels.DataSource = CabmodelList.FindAll(l => cabmodels.Contains(l.ID.ToString()));
             rptCabmodels.DataBind();
+
+            List<ShoppingTrolleyInfo> listShoppingTrolley = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
+            if (listShoppingTrolley.Count > 0)
+            {
+                List<ProductInfo> listAllProduct = Cars.Instance.GetProductList(true);
+                string[] pids = listShoppingTrolley.OrderByDescending(s => s.ID).Select(s => s.ProductID + "|" + s.ID).ToArray();
+                List<ProductInfo> listProdcutInShoppingTrolley = new List<ProductInfo>();
+                for (int i = 0; i < pids.Length; i++)
+                {
+                    int pid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]);
+                    int sid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[1]);
+                    ProductInfo entity = listAllProduct.Find(p => p.ID == pid);
+                    entity.SID = sid;
+                    listProdcutInShoppingTrolley.Add(entity);
+                }
+                rptShoppingTrolley.DataSource = listProdcutInShoppingTrolley;
+                rptShoppingTrolley.DataBind();
+            }
         }
 
         protected string GetFirstPic()
@@ -110,5 +156,22 @@ namespace Chebao.BackAdmin.product
             }
             return string.Empty;
         }
+        #region 购物车
+
+
+        public string ShoppingTrolleyCount
+        {
+            get
+            {
+                string result = string.Empty;
+
+                List<ShoppingTrolleyInfo> list = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
+                result = list.Count.ToString();
+
+                return result;
+            }
+        }
+
+        #endregion
     }
 }

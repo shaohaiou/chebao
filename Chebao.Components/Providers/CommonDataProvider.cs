@@ -14,6 +14,7 @@ namespace Chebao.Components
     {
         private static CommonDataProvider _defaultprovider = null;
         private static object _lock = new object();
+        private System.Web.Script.Serialization.JavaScriptSerializer json = new System.Web.Script.Serialization.JavaScriptSerializer();
 
         #region 初始化
         /// <summary>
@@ -286,11 +287,148 @@ namespace Chebao.Components
                 Introduce = reader["Introduce"] as string,
                 Pic = reader["Pic"] as string,
                 Pics = reader["Pics"] as string,
+                Stock = DataConvert.SafeInt(reader["Stock"]),
             };
             SerializerData data = new SerializerData();
             data.Keys = reader["PropertyNames"] as string;
             data.Values = reader["PropertyValues"] as string;
             entity.SetSerializerData(data);
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 购物车
+
+        public abstract List<ShoppingTrolleyInfo> GetShoppingTrolleyByUserID(int userid);
+
+        public abstract int AddShoppingTrolley(ShoppingTrolleyInfo entity);
+
+        public abstract int UpdateShoppingTrolley(ShoppingTrolleyInfo entity);
+
+        public abstract void DeleteShoppingTrolley(string ids,int userid);
+
+        protected ShoppingTrolleyInfo PopulateShoppingTrolley(IDataReader reader)
+        {
+            ShoppingTrolleyInfo entity = new ShoppingTrolleyInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                ProductID = DataConvert.SafeInt(reader["ProductID"]),
+                UserID = DataConvert.SafeInt(reader["UserID"]),
+                Amount = DataConvert.SafeInt(reader["Amount"])
+            };
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 订单管理
+
+        public abstract void AddOrder(OrderInfo entity);
+
+        public abstract List<OrderInfo> GetOrderList();
+
+        public abstract void UpdateOrderStatus(string ids, OrderStatus status);
+
+        protected OrderInfo PopulateOrder(IDataReader reader)
+        {
+            OrderInfo entity = new OrderInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                OrderNumber = reader["OrderNumber"] as string,
+                UserName = reader["UserName"] as string,
+                UserID = DataConvert.SafeInt(reader["UserID"]),
+                Address = reader["Address"] as string,
+                Province = reader["Province"] as string,
+                City = reader["City"] as string,
+                District = reader["District"] as string,
+                PostCode = reader["PostCode"] as string,
+                LinkName = reader["LinkName"] as string,
+                LinkMobile = reader["LinkMobile"] as string,
+                LinkTel = reader["LinkTel"] as string,
+                OrderProductJson = reader["OrderProductJson"] as string,
+                OrderStatus = (OrderStatus)(int)reader["OrderStatus"],
+                TotalFee = reader["TotalFee"] as string,
+                AddTime = reader["AddTime"] as string,
+                DeelTime = reader["DeelTime"] as string
+            };
+
+            entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 反馈有奖
+
+        public abstract void AddMessageBoard(MessageBoardInfo entity);
+
+        public abstract List<MessageBoardInfo> GetMessageBoardList();
+
+        public abstract MessageBoardInfo GetMessageBoard(int id);
+
+        protected MessageBoardInfo PopulateMessageBoard(IDataReader reader)
+        {
+            MessageBoardInfo entity = new MessageBoardInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                UserName = reader["UserName"] as string,
+                UserID = DataConvert.SafeInt(reader["UserID"]),
+                AddTime = reader["AddTime"] as string,
+                Title = reader["Title"] as string,
+                Content = reader["Content"] as string
+            };
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 地区
+
+        public abstract List<ProvinceInfo> GetProvinceList();
+
+        public abstract List<CityInfo> GetCityList();
+
+        public abstract List<DistrictInfo> GetDistrictList();
+
+        protected ProvinceInfo PopulateProvince(IDataReader reader)
+        {
+            ProvinceInfo entity = new ProvinceInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                Name = reader["Name"] as string,
+                Orderid = DataConvert.SafeInt(reader["orderid"])
+            };
+
+            return entity;
+        }
+
+        protected CityInfo PopulateCity(IDataReader reader)
+        {
+            CityInfo entity = new CityInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                Name = reader["Name"] as string,
+                ProvinceId = DataConvert.SafeInt(reader["ProvinceId"]),
+                AreaCode = reader["AreaCode"] as string
+            };
+
+            return entity;
+        }
+
+        protected DistrictInfo PopulateDistrict(IDataReader reader)
+        {
+            DistrictInfo entity = new DistrictInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                CityId = DataConvert.SafeInt(reader["CityId"]),
+                Name = reader["Name"] as string,
+                PostCode = reader["PostCode"] as string
+            };
 
             return entity;
         }

@@ -43,6 +43,9 @@ namespace Chebao.BackAdmin
                 case "ckeditorUpload":
                     result = CkeditorUpload();
                     break;
+                case "customerupload":
+                    result = CustomerUpLoadImage();
+                    break;
                 default:
                     result = "{msg:'上传出错！没有参数类型'}";
                     break;
@@ -174,6 +177,41 @@ namespace Chebao.BackAdmin
             else
             {
                 return "<font color=\"red\"size=\"2\">*文件格式不正确（必须为.jpg/.gif/.bmp/.png文件）</font>";
+            }
+        }
+
+        /// <summary>
+        /// 上传文件
+        /// </summary>
+        /// <returns></returns>
+        private string CustomerUpLoadImage()
+        {
+            try
+            {
+                HttpContext context = HttpContext.Current;
+                string strExtension = Path.GetExtension(context.Request.Files[0].FileName).ToLower();
+                ///处理上载的文件流信息。
+                byte[] b = new byte[context.Request.Files[0].ContentLength];
+                using (Stream fs = context.Request.Files[0].InputStream)
+                {
+                    fs.Read(b, 0, context.Request.Files[0].ContentLength);
+                }
+                object[] o = new object[2];
+                o[0] = b;
+                o[1] = context.Request.Files[0].FileName;
+                string result = DynamicWebServices.InvokeWebService(url + "/webservice/UploadServices.asmx", "CustomerUploadImage", o).ToString();
+                if (!string.IsNullOrEmpty(result))
+                {
+                    return "{msg:'success',src:'" + result + "'}";
+                }
+                else
+                {
+                    return "{msg:'error',errorcode:'2'}";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "{msg:'" + ex.StackTrace + "'}";
             }
         }
     }

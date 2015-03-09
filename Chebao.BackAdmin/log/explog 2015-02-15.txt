@@ -1,0 +1,408 @@
+﻿2015/2/15 11:04:05        e:\work\projects\Chebao\Chebao.BackAdmin\product\productview.aspx(375): error CS1061: 'ASP.product_productview_aspx' does not contain a definition for 'rptShoppingTrolley_ItemDataBound' and no extension method 'rptShoppingTrolley_ItemDataBound' accepting a first argument of type 'ASP.product_productview_aspx' could be found (are you missing a using directive or an assembly reference?)
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 11:26:25        e:\work\projects\Chebao\Chebao.BackAdmin\product\productview.aspx(261): error CS1061: 'Chebao.Components.ProductInfo' does not contain a definition for 'Stock' and no extension method 'Stock' accepting a first argument of type 'Chebao.Components.ProductInfo' could be found (are you missing a using directive or an assembly reference?)
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 11:27:00        引发类型为“System.Web.HttpUnhandledException”的异常。
+Source:System.Web
+TargetSite:Boolean HandleError(System.Exception)
+
+---- Stack Trace ----
+   System.Web.UI.Page.HandleError(e As Exception)
+       (unknown file): N 00436
+   System.Web.UI.Page.ProcessRequestMain(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 06695
+   System.Web.UI.Page.ProcessRequest(includeStagesBeforeAsyncPoint As BooleanincludeStagesAfterAsyncPoint As Boolean)
+       (unknown file): N 00245
+   System.Web.UI.Page.ProcessRequest()
+       (unknown file): N 00072
+   System.Web.UI.Page.ProcessRequestWithNoAssert(context As HttpContext)
+       (unknown file): N 00021
+   System.Web.UI.Page.ProcessRequest(context As HttpContext)
+       (unknown file): N 00058
+   ASP.product_productview_aspx.ProcessRequest(context As HttpContext)
+       App_Web_aazjkcmj.7.cs: line 0000, col 00, IL 0001
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00341
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00069
+
+
+====================================
+2015/2/15 16:26:39        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:27:31        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:28:02        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:28:09        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:28:18        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:30:09        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:30:15        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:43:10        语法错误 (操作符丢失) 在查询表达式 '[UserID] = 1 AND [ProductID] IN ()' 中。
+Source:Microsoft JET Database Engine
+TargetSite:Void ExecuteCommandTextErrorHandling(System.Data.OleDb.OleDbHResult)
+
+---- Stack Trace ----
+   System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(hr As OleDbHResult)
+       (unknown file): N 1102900
+   System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(dbParams As tagDBPARAMSexecuteResult As Object&)
+       (unknown file): N 00247
+   System.Data.OleDb.OleDbCommand.ExecuteCommandText(executeResult As Object&)
+       (unknown file): N 00189
+   System.Data.OleDb.OleDbCommand.ExecuteCommand(behavior As CommandBehaviorexecuteResult As Object&)
+       (unknown file): N 00058
+   System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(behavior As CommandBehaviormethod As String)
+       (unknown file): N 00162
+   System.Data.OleDb.OleDbCommand.ExecuteNonQuery()
+       (unknown file): N 00107
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connection As OleDbConnectioncommandType As CommandTypecommandText As StringcommandParameters As OleDbParameter[])
+       SqlHelper.cs: line 0257, col 13, IL 0047
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connectionString As StringcommandType As CommandTypecommandText As StringcommandParameters As OleDbParameter[])
+       SqlHelper.cs: line 0203, col 17, IL 0049
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connectionString As StringcommandType As CommandTypecommandText As String)
+       SqlHelper.cs: line 0186, col 13, IL 0001
+   Chebao.DALSQLServer.CommonSqlDataProvider.DeleteShoppingTrolley(ids As Stringuserid As Int32)
+       CommonSqlDataProvider.cs: line 0686, col 13, IL 0019
+   Chebao.Components.Cars.DeleteShoppingTrolley(pids As Stringuserid As Int32)
+       Cars.cs: line 0216, col 13, IL 0006
+   Chebao.BackAdmin.remoteaction.DeleteShoppingTrolley()
+       remoteaction.ashx.cs: line 0059, col 13, IL 0078
+   Chebao.BackAdmin.remoteaction.ProcessRequest(context As HttpContext)
+       remoteaction.ashx.cs: line 0037, col 21, IL 0069
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00341
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00069
+
+
+====================================
+2015/2/15 16:43:14        语法错误 (操作符丢失) 在查询表达式 '[UserID] = 1 AND [ProductID] IN ()' 中。
+Source:Microsoft JET Database Engine
+TargetSite:Void ExecuteCommandTextErrorHandling(System.Data.OleDb.OleDbHResult)
+
+---- Stack Trace ----
+   System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(hr As OleDbHResult)
+       (unknown file): N 1102900
+   System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(dbParams As tagDBPARAMSexecuteResult As Object&)
+       (unknown file): N 00247
+   System.Data.OleDb.OleDbCommand.ExecuteCommandText(executeResult As Object&)
+       (unknown file): N 00189
+   System.Data.OleDb.OleDbCommand.ExecuteCommand(behavior As CommandBehaviorexecuteResult As Object&)
+       (unknown file): N 00058
+   System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(behavior As CommandBehaviormethod As String)
+       (unknown file): N 00162
+   System.Data.OleDb.OleDbCommand.ExecuteNonQuery()
+       (unknown file): N 00107
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connection As OleDbConnectioncommandType As CommandTypecommandText As StringcommandParameters As OleDbParameter[])
+       SqlHelper.cs: line 0257, col 13, IL 0047
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connectionString As StringcommandType As CommandTypecommandText As StringcommandParameters As OleDbParameter[])
+       SqlHelper.cs: line 0203, col 17, IL 0049
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connectionString As StringcommandType As CommandTypecommandText As String)
+       SqlHelper.cs: line 0186, col 13, IL 0001
+   Chebao.DALSQLServer.CommonSqlDataProvider.DeleteShoppingTrolley(ids As Stringuserid As Int32)
+       CommonSqlDataProvider.cs: line 0686, col 13, IL 0019
+   Chebao.Components.Cars.DeleteShoppingTrolley(pids As Stringuserid As Int32)
+       Cars.cs: line 0216, col 13, IL 0006
+   Chebao.BackAdmin.remoteaction.DeleteShoppingTrolley()
+       remoteaction.ashx.cs: line 0059, col 13, IL 0078
+   Chebao.BackAdmin.remoteaction.ProcessRequest(context As HttpContext)
+       remoteaction.ashx.cs: line 0037, col 21, IL 0069
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00341
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00069
+
+
+====================================
+2015/2/15 16:43:23        语法错误 (操作符丢失) 在查询表达式 '[UserID] = 1 AND [ProductID] IN ()' 中。
+Source:Microsoft JET Database Engine
+TargetSite:Void ExecuteCommandTextErrorHandling(System.Data.OleDb.OleDbHResult)
+
+---- Stack Trace ----
+   System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(hr As OleDbHResult)
+       (unknown file): N 1102900
+   System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(dbParams As tagDBPARAMSexecuteResult As Object&)
+       (unknown file): N 00247
+   System.Data.OleDb.OleDbCommand.ExecuteCommandText(executeResult As Object&)
+       (unknown file): N 00189
+   System.Data.OleDb.OleDbCommand.ExecuteCommand(behavior As CommandBehaviorexecuteResult As Object&)
+       (unknown file): N 00058
+   System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(behavior As CommandBehaviormethod As String)
+       (unknown file): N 00162
+   System.Data.OleDb.OleDbCommand.ExecuteNonQuery()
+       (unknown file): N 00107
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connection As OleDbConnectioncommandType As CommandTypecommandText As StringcommandParameters As OleDbParameter[])
+       SqlHelper.cs: line 0257, col 13, IL 0047
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connectionString As StringcommandType As CommandTypecommandText As StringcommandParameters As OleDbParameter[])
+       SqlHelper.cs: line 0203, col 17, IL 0049
+   Chebao.Components.Data.SqlHelper.ExecuteNonQuery(connectionString As StringcommandType As CommandTypecommandText As String)
+       SqlHelper.cs: line 0186, col 13, IL 0001
+   Chebao.DALSQLServer.CommonSqlDataProvider.DeleteShoppingTrolley(ids As Stringuserid As Int32)
+       CommonSqlDataProvider.cs: line 0686, col 13, IL 0019
+   Chebao.Components.Cars.DeleteShoppingTrolley(pids As Stringuserid As Int32)
+       Cars.cs: line 0216, col 13, IL 0006
+   Chebao.BackAdmin.remoteaction.DeleteShoppingTrolley()
+       remoteaction.ashx.cs: line 0059, col 13, IL 0078
+   Chebao.BackAdmin.remoteaction.ProcessRequest(context As HttpContext)
+       remoteaction.ashx.cs: line 0037, col 21, IL 0069
+   System.Web.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00341
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00069
+
+
+====================================
+2015/2/15 16:54:30        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/15 16:54:37        文件“/product/remoteaction.ashx”不存在。
+Source:System.Web
+TargetSite:Void CheckVirtualFileExists(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.UI.Util.CheckVirtualFileExists(virtualPath As VirtualPath)
+       (unknown file): N 9889148
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00475
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVPathBuildResult(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00082
+   System.Web.UI.SimpleHandlerFactory.System.Web.IHttpHandlerFactory2.GetHandler(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00021
+   System.Web.UI.SimpleHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00038
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================

@@ -65,6 +65,76 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 联系电话
+        /// </summary>
+        [JsonIgnore]
+        public string TelPhone
+        {
+            get { return GetString("TelPhone", ""); }
+            set { SetExtendedAttribute("TelPhone", value); }
+        }
+
+        /// <summary>
+        /// 省份
+        /// </summary>
+        [JsonIgnore]
+        public string Province
+        {
+            get { return GetString("Province", ""); }
+            set { SetExtendedAttribute("Province", value); }
+        }
+
+        /// <summary>
+        /// 城市
+        /// </summary>
+        [JsonIgnore]
+        public string City
+        {
+            get { return GetString("City", ""); }
+            set { SetExtendedAttribute("City", value); }
+        }
+
+        /// <summary>
+        /// 县区
+        /// </summary>
+        [JsonIgnore]
+        public string District
+        {
+            get { return GetString("District", ""); }
+            set { SetExtendedAttribute("District", value); }
+        }
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [JsonIgnore]
+        public string Address
+        {
+            get { return GetString("Address", ""); }
+            set { SetExtendedAttribute("Address", value); }
+        }
+
+        /// <summary>
+        /// 邮政编码
+        /// </summary>
+        [JsonIgnore]
+        public string PostCode
+        {
+            get { return GetString("PostCode", ""); }
+            set { SetExtendedAttribute("PostCode", value); }
+        }
+
+        /// <summary>
+        /// 联系人姓名
+        /// </summary>
+        [JsonIgnore]
+        public string LinkName
+        {
+            get { return GetString("LinkName", ""); }
+            set { SetExtendedAttribute("LinkName", value); }
+        }
+
+        /// <summary>
         /// 到期日期
         /// </summary>
         [JsonIgnore]

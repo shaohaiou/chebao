@@ -5,10 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>耐磨达产品查询系统</title>
-    <link href=../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet"
-        type="text/css" />
-    <link href=../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet"
-        type="text/css" />
+    <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
+    <link href="../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/head3.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -32,6 +32,61 @@
                 var _this = $(this);
                 imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
             });
+            $(".tb-toolbar-item-hd").hover(function () {
+                $(".tb-toolbar-item-tip", $(this)).show();
+            }, function () {
+                $(".tb-toolbar-item-tip", $(this)).hide();
+            });
+            $(".J_TBToolbarCart").click(function () {
+                if ($(".tb-toolbar-mini-cart").is(":hidden")) {
+                    $(".tb-toolbar-mini-cart").show();
+                    $("#J_Toolbar").animate({ right: 330 }, 200);
+                    $(this).css({ color: "#0971B2!important" });
+                } else {
+                    $("#J_Toolbar").animate({ right: 0 }, 200, function () {
+                        $(".tb-toolbar-mini-cart").hide();
+                    })
+                }
+            });
+            $(".J_ShrinkMiniCartToolBar").click(function () {
+                $("#J_Toolbar").animate({ right: 0 }, 200, function () {
+                    $(".tb-toolbar-mini-cart").hide();
+                })
+            });
+            $(".J_DelItem").click(function () {
+                var ids = $(this).attr("data-cartid");
+                var item = $(this).parent().parent().parent();
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "deleteshoppingtrolley", ids: ids, d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if (data.Value == "success") {
+                            item.remove();
+                            var count = parseInt($.trim($(".J_ToolbarCartNum").html()))
+                            $(".J_ToolbarCartNum").html(count - 1);
+                        }
+                        else {
+                            alert(data.Msg);
+                        }
+                    }
+                });
+            });
+            $(window).resize(function () {
+                var windowheight = $(this).height();
+                if (windowheight > 200) {
+                    $(".mini-cart-items-list").height(141 + (parseInt((windowheight - 309) / 71)) * 71);
+                }
+            });
+            $("#btnGotop").click(function () {
+                $("body").animate({ scrollTop: 0 }, 300);
+            });
+
+            $(".mini-cart-items-list").height(141 + (parseInt(($(window).height() - 309) / 71)) * 71);
         });
         document.onkeydown = function () {
             if (event.ctrlKey && event.keyCode == 67) {
@@ -93,12 +148,12 @@
             <ul>
                 <li><a href="javascript:void(0);">首页</a></li><li class="navcurrent"><a href="/product/products.aspx">
                     产品查询</a></li><li><a href="javascript:void(0);">公司简介</a></li><li><a href="javascript:void(0);">
-                        联系我们</a></li><li><a href="javascript:void(0);">纠错反馈有奖</a></li>
+                        联系我们</a></li><li><a href="/message/messageboard.aspx">纠错反馈有奖</a></li>
             </ul>
             <div class="header_navinfo">
                 <span class="navinfo_user">
-                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
-                        class="ml40" href="/user/userchangepw.aspx">修改密码</a></span>
+                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a class="ml10"
+                        href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx" class="ml10">我的订单</a></span>
             </div>
         </div>
         <!--end-->
@@ -121,21 +176,21 @@
                                     <dd>
                                         <span id="carbrands">
                                             <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true"
-                                                OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
+                                                Style="width: 213px!important;" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </span>
                                     </dd>
                                     <dd>
                                         <span id="carmodels">
                                             <asp:DropDownList ID="ddlCabmodel" runat="server" CssClass="rideselect" AutoPostBack="true"
-                                                Enabled="false" OnSelectedIndexChanged="ddlCabmodel_SelectedIndexChanged">
+                                                Style="width: 160px!important;" Enabled="false" OnSelectedIndexChanged="ddlCabmodel_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </span>
                                     </dd>
                                     <dd>
                                         <span id="caroutputs">
                                             <asp:DropDownList ID="ddlPailiang" runat="server" CssClass="rideselect" AutoPostBack="true"
-                                                Enabled="false" OnSelectedIndexChanged="ddlPailiang_SelectedIndexChanged">
+                                                Style="width: 100px!important;" Enabled="false" OnSelectedIndexChanged="ddlPailiang_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </span>
                                     </dd>
@@ -149,8 +204,8 @@
                                 </dl>
                             </ContentTemplate>
                         </asp:UpdatePanel>
-                        <input type="text" runat="server" value="请输入lamda型号" class="f_c_search" style="color: Gray;"
-                            id="txtsearch" />
+                        <input type="text" runat="server" value="请输入lamda型号" class="f_c_search" style="color: Gray;
+                            width: 120px!important;" id="txtsearch" />
                         <input type="submit" class="f_c_btn" id="btnsearch" value="搜索" />
                         </form>
                     </div>
@@ -193,14 +248,15 @@
                                                 产品适用于：</h5>
                                             <img id="imgpic" src="<%= SearchCabmodel.Imgpath %>" alt="车型图片" /><span class="car_name">
                                                 <%= SearchCabmodel.CabmodelNameBind%></span></span>
-                                        <p class="g_picc" style="text-align: center;">
+                                        <p class="g_picc" style="text-align: center; display: none;">
                                             <img src="../images/picc.png" style="height: 30px; width: 77px;" /><br />
                                             <b>PICC</b>产品承保</p>
-                                        <div class="fwbz">
+                                        <div class="fwbz" style="margin: 50px 0 0 0;">
                                             <span>安全<br>
                                                 保障</span>
                                             <label>
-                                                本公司每一款刹车片均受<b>PICC</b>承保保险</label>
+                                                本公司每一款刹车片均受<b><img src="../images/picc.png" style="height: 14px; width: 30px; float: right;
+                                                    margin: 2px 0 0 0;" /></b>承保保险</label>
                                         </div>
                                     </div>
                                 </li>
@@ -263,6 +319,84 @@
         <div id="innerdiv" style="position: absolute;">
             <img id="bigimg" style="border: 5px solid #fff;" src="" />
         </div>
+    </div>
+    <div class="tb-toolbar tb-toolbar-right" id="J_Toolbar" style="right: 0px;">
+        <div class="tb-toolbar-space" style="height: 25%;">
+        </div>
+        <ul class="tb-toolbar-list tb-toolbar-list-with-ww tb-toolbar-list-with-cart tb-toolbar-list-with-pk">
+            <li class="tb-toolbar-item tb-toolbar-item-cart"><a href="#" class="tb-toolbar-item-hd tb-toolbar-item-hd-cart J_TBToolbarCart tb-toolbar-item-hd-active">
+                <div class="tb-toolbar-item-icon tb-toolbar-item-icon-cart">
+                    </div>
+                <div class="tb-toolbar-item-label tb-toolbar-item-label-cart">
+                    购物车</div>
+                <div class="J_ToolbarCartNum tb-toolbar-item-badge-cart">
+                    <%=ShoppingTrolleyCount%></div>
+                <div class="tb-toolbar-item-tip">
+                    我的购物车<div class="tb-toolbar-item-arrow">
+                        ◆</div>
+                </div>
+            </a>
+                <div class="tb-toolbar-item-bd tb-toolbar-mini-cart">
+                    <div class="toolbar-main toolbar-mini-cart-main">
+                        <div class="toolbar-hd">
+                            <div class="toolbar-hd-title">
+                                购物车</div>
+                            <span class="toolbar-shrink J_ShrinkMiniCartToolBar">收起</span></div>
+                        <div class="toolbar-bd">
+                            <div class="mini-cart-list">
+                                <div class="mini-cart-list-hd">
+                                    <div class="mini-cart-list-title">
+                                        最新加入的宝贝</div>
+                                    <a href="shoppingtrolleymg.aspx" target="_blank">查看全部</a></div>
+                                <div class="mini-cart-list-bd">
+                                    <ul class="mini-cart-items-list" style="height: 212px;">
+                                        <asp:Repeater runat="server" ID="rptShoppingTrolley">
+                                            <ItemTemplate>
+                                                <li>
+                                                    <div class="mini-cart-item">
+                                                        <div class="mini-cart-item-pic">
+                                                            <a title="<%# Eval("Name")%>" href="productview.aspx?id=<%#Eval("ID") %>" target="_blank">
+                                                                <img src="<%#Eval("Pic") %>"></a></div>
+                                                        <div class="mini-cart-item-info">
+                                                            <div class="mini-cart-item-title">
+                                                                <a title="<%# Eval("Name")%>" href="productview.aspx?id=<%#Eval("ID") %>" target="_blank">
+                                                                    <%# Eval("Name")%></a>
+                                                            </div>
+                                                            <div class="mini-cart-item-price">
+                                                                ¥<em><%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%></em></div>
+                                                            <a class="J_DelItem mini-cart-item-del" href="#" data-cartid="<%#Eval("SID") %>">删除商品</a></div>
+                                                    </div>
+                                                </li>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </ul>
+                                </div>
+                                <a href="shoppingtrolleymg.aspx" class="mini-cart-submit" target="_blank"><i></i>去购物车结算</a></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="tb-toolbar-space" style="height: 7%;">
+        </div>
+        <ul class="tb-toolbar-list tb-toolbar-list-with-feedback tb-toolbar-list-with-gotop">
+            <li class="tb-toolbar-item"><a href="#" class="tb-toolbar-item-hd">
+                <div class="tb-toolbar-item-icon">
+                    </div>
+                <div class="tb-toolbar-item-tip">
+                    <span class="tb-toolbar-item-tip-text">纠错反馈有奖</span><div class="tb-toolbar-item-arrow">
+                        ◆</div>
+                </div>
+            </a></li>
+            <li class="tb-toolbar-item"><a id="btnGotop" href="javascrit:void(0);" class="tb-toolbar-item-hd">
+                <div class="tb-toolbar-item-icon">
+                    </div>
+                <div class="tb-toolbar-item-tip">
+                    <span class="tb-toolbar-item-tip-text">顶部</span><div class="tb-toolbar-item-arrow">
+                        ◆</div>
+                </div>
+            </a></li>
+        </ul>
     </div>
 </body>
 <noscript>

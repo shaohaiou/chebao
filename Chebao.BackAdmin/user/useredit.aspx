@@ -116,6 +116,54 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="bg1">
+                        联系电话：
+                    </td>
+                    <td class="bg2">
+                        <asp:TextBox ID="txtTelPhone" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
+                        联系人姓名：
+                    </td>
+                    <td class="bg2">
+                        <asp:TextBox ID="txtLinkName" runat="server"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
+                        联系地址：
+                    </td>
+                    <td class="bg2">
+                        <asp:ScriptManager ID="smArea" runat="server">
+                        </asp:ScriptManager>
+                        <asp:UpdatePanel runat="server" ID="upl1">
+                            <ContentTemplate>
+                                <asp:DropDownList runat="server" ID="ddlProvince" AutoPostBack="true" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlCity" AutoPostBack="true" OnSelectedIndexChanged="ddlCity_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:DropDownList runat="server" ID="ddlDistrict" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:TextBox runat="server" ID="txtAddress" CssClass="w200"></asp:TextBox>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
+                        邮政编码：
+                    </td>
+                    <td class="bg2">
+                        <asp:UpdatePanel runat="server" ID="upl2">
+                            <ContentTemplate>
+                                <input type="text" runat="server" id="txtPostCode" class="w100" />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2" style="text-align: center">
                         <div style="text-align: center">
                             <asp:CustomValidator ID="cvmess" Display="Dynamic" runat="server" ErrorMessage=""></asp:CustomValidator></div>

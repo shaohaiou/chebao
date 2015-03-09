@@ -637,6 +637,268 @@ namespace Chebao.DALSQLServer
 
         #endregion
 
+        #region 购物车
+
+        public override List<ShoppingTrolleyInfo> GetShoppingTrolleyByUserID(int userid)
+        {
+            List<ShoppingTrolleyInfo> list = new List<ShoppingTrolleyInfo>();
+            string sql = "SELECT * FROM Chebao_ShoppingTrolley WHERE [UserID] = " + userid;
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateShoppingTrolley(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override int AddShoppingTrolley(ShoppingTrolleyInfo entity)
+        {
+            int result = 0;
+            string sql = @"
+                INSERT INTO Chebao_ShoppingTrolley(
+                    [ProductID]
+                    ,[UserID]
+                    ,[Amount]
+                )VALUES(
+                    @ProductID
+                    ,@UserID
+                    ,@Amount
+                )";
+
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@ProductID",entity.ProductID),
+                new OleDbParameter("@UserID",entity.UserID),
+                new OleDbParameter("@Amount",entity.Amount)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            sql = "SELECT MAX([ID]) FROM Chebao_ShoppingTrolley";
+            result = DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
+            return result;
+        }
+
+        public override int UpdateShoppingTrolley(ShoppingTrolleyInfo entity)
+        {
+            string sql = @"
+                UPDATE Chebao_ShoppingTrolley SET
+                    [Amount]=@Amount
+                WHERE [ID]=@ID";
+
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@Amount",entity.Amount),
+                new OleDbParameter("@ID",entity.ID)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            return entity.ID;
+        }
+
+        public override void DeleteShoppingTrolley(string ids,int userid)
+        {
+            string sql = string.Format("DELETE FROM Chebao_ShoppingTrolley WHERE [UserID] = {0} AND [ID] IN ({1})", userid, ids);
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
+        }
+
+        #endregion
+
+        #region 订单管理
+
+        public override void AddOrder(OrderInfo entity)
+        {
+            string sql = @"
+                INSERT INTO Chebao_Order(
+                    [OrderNumber]
+                    ,[UserName]
+                    ,[UserID]
+                    ,[Province]
+                    ,[City]
+                    ,[District]
+                    ,[PostCode]
+                    ,[LinkName]
+                    ,[Address]
+                    ,[LinkMobile]
+                    ,[LinkTel]
+                    ,[OrderProductJson]
+                    ,[OrderStatus]
+                    ,[TotalFee]
+                    ,[AddTime]
+                    ,[DeelTime]
+                )VALUES(
+                    @OrderNumber
+                    ,@UserName
+                    ,@UserID
+                    ,@Province
+                    ,@City
+                    ,@District
+                    ,@PostCode
+                    ,@LinkName
+                    ,@Address
+                    ,@LinkMobile
+                    ,@LinkTel
+                    ,@OrderProductJson
+                    ,@OrderStatus
+                    ,@TotalFee
+                    ,@AddTime
+                    ,@DeelTime
+                )";
+
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@OrderNumber",entity.OrderNumber),
+                new OleDbParameter("@UserName",entity.UserName),
+                new OleDbParameter("@UserID",entity.UserID),
+                new OleDbParameter("@Province",entity.Province),
+                new OleDbParameter("@City",entity.City),
+                new OleDbParameter("@District",entity.District),
+                new OleDbParameter("@PostCode",entity.PostCode),
+                new OleDbParameter("@LinkName",entity.LinkName),
+                new OleDbParameter("@Address",entity.Address),
+                new OleDbParameter("@LinkMobile",entity.LinkMobile),
+                new OleDbParameter("@LinkTel",entity.LinkTel),
+                new OleDbParameter("@OrderProductJson",entity.OrderProductJson),
+                new OleDbParameter("@OrderStatus",(int)entity.OrderStatus),
+                new OleDbParameter("@TotalFee",entity.TotalFee),
+                new OleDbParameter("@AddTime",entity.AddTime),
+                new OleDbParameter("@DeelTime",entity.DeelTime)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override List<OrderInfo> GetOrderList()
+        {
+            List<OrderInfo> list = new List<OrderInfo>();
+            string sql = "SELECT * FROM Chebao_Order";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateOrder(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override void UpdateOrderStatus(string ids, OrderStatus status)
+        {
+            string sql = "UPDATE Chebao_Order SET [OrderStatus] = @OrderStatus,[DeelTime]=@DeelTime WHERE ID IN(" + ids + ")";
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter[] { new OleDbParameter("@OrderStatus", (int)status), new OleDbParameter("@DeelTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")) });
+        }
+
+        #endregion
+
+        #region 反馈有奖
+
+        public override void AddMessageBoard(MessageBoardInfo entity)
+        {
+            string sql = @"
+                INSERT INTO Chebao_MessageBoard(
+                    [UserID]
+                    ,[UserName]
+                    ,[AddTime]
+                    ,[Title]
+                    ,[Content]
+                )VALUES(
+                    @UserID
+                    ,@UserName
+                    ,@AddTime
+                    ,@Title
+                    ,@Content
+                )";
+
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@UserID",entity.UserID),
+                new OleDbParameter("@UserName",entity.UserName),
+                new OleDbParameter("@AddTime",entity.AddTime),
+                new OleDbParameter("@Title",entity.Title),
+                new OleDbParameter("@Content",entity.Content)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override List<MessageBoardInfo> GetMessageBoardList()
+        {
+            List<MessageBoardInfo> list = new List<MessageBoardInfo>();
+            string sql = "SELECT * FROM Chebao_MessageBoard";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateMessageBoard(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override MessageBoardInfo GetMessageBoard(int id)
+        {
+            string sql = "select * from Chebao_MessageBoard where [ID]=@ID";
+            MessageBoardInfo entity = null;
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql, new OleDbParameter("@ID", id)))
+            {
+                if (reader.Read())
+                {
+                    entity = PopulateMessageBoard(reader);
+                }
+            }
+            return entity;
+        }
+
+        #endregion
+
+        #region 地区管理
+
+        public override List<ProvinceInfo> GetProvinceList()
+        {
+            List<ProvinceInfo> list = new List<ProvinceInfo>();
+            string sql = "SELECT * FROM Province";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateProvince(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override List<CityInfo> GetCityList()
+        {
+            List<CityInfo> list = new List<CityInfo>();
+            string sql = "SELECT * FROM City";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateCity(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override List<DistrictInfo> GetDistrictList()
+        {
+            List<DistrictInfo> list = new List<DistrictInfo>();
+            string sql = "SELECT * FROM District";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateDistrict(reader));
+                }
+            }
+
+            return list;
+        }
+
+        #endregion
 
         #region 系统设置
 

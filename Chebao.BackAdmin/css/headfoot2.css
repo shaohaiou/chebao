@@ -2,7 +2,8 @@
 
 /*基础*/
 body{margin:0 auto;font-size:12px;line-height:20px;position:relative;font-family: Arial, "宋体",Helvetica, sans-serif;color:#202020;position:relative;background:#5b5b5b;}
-html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,big,cite,code,del,em,font,img,ins,small,strong,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend{margin:0;padding:0}
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,address,big,cite,code,del,em,font,img,ins,small,strong,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,input{margin:0;padding:0}
+h3 {font-size: 14px;font-weight: 700;}
 li{margin:0;padding:0;font-size:12px;}
 li{list-style:none;}
 .of{overflow:hidden;clear:both;}
@@ -20,8 +21,18 @@ img{border:0;}
 .box_l{float:left;}
 .box_r{float:right;}
 .w100{width:100px;}
+.w200{width:200px;}
+.ml10{margin-left:10px;}
 .ml40{margin-left:40px;}
 .fll{float:left;}
+.red{color:Red;}
+.gray{color:Gray;}
+.pl10{padding-left:10px;}
+
+/*按钮样式*/
+.srk1{width:250px; height:18px; border: 1px solid; border-color: #707070 #CECECE #CECECE #ABABAB; background: #F9F9F9;}
+		.srk1:hover,.srk1:focus{border-color: #6FB1DF; color:#333; background-color:#f5f9fd;}
+.an3{border:0; background:url(../images/nt.jpg) no-repeat; font-size:12px; width:75px; height:22px; color:#fff; margin-bottom:5px;}
 /*宽度960px*/
 .header_02 .cb,.header_02 .main_area,.header_02 .top_hover{width:960px;}
 .header_02 .n_search{width:225px;}
@@ -46,7 +57,7 @@ img{border:0;}
 .iclose_bg{position:absolute;top:32px;right:-50px;width:500px;height:520px;background:none;z-index:-1;}
 .header_02 .my_garage_1 i{position:absolute;right:0;top:6px;_top:16px;}
 .header_02 .header_nav .navitems li a{padding:0 7px;}
-#main{width:1000px;margin:0 auto;background:#fff;}
+#main{width:1000px;margin:0 auto;background:#fff;min-height:500px;}
 #c_foot1 .cb{width:960px;}
 #c_foot1 .cb_help{margin-left:30px;}
 .footer{height:46px;background:#000;}

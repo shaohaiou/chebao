@@ -19,7 +19,17 @@ namespace Chebao.Components
 
         public static readonly string BRAND_LIST = "cache-brand";   //品牌缓存键值
         public static readonly string CABMODEL_LIST = "cache-cabmodel";   //车型缓存键值
-        public static readonly string PRODUCT_LIST = "cache-cabmodel";   //产品缓存键值
+        public static readonly string PRODUCT_LIST = "cache-product";   //产品缓存键值
+
+        public static readonly string SHOPPINGTROLLEY_LIST = "cache-shoppingtrolley";   //购物车缓存键值
+        public static readonly string SHOPPINGTROLLEYADD_KEY = "cache-shoppingtrolleyadd";   //添加到购物车缓存键值
+
+        public static readonly string ORDER_LIST = "cache-order";   //订单缓存键值
+        public static readonly string ORDERPRODUCT_LIST = "cache-orderproduct";   //订单产品缓存键值
+
+        public static readonly string PROVINCE_LIST = "cache-province";   //省份缓存键值
+        public static readonly string CITY_LIST = "cache-city";   //城市缓存键值
+        public static readonly string DISTRICT_LIST = "cache-district";   //地区缓存键值
 
         public static readonly string SEARCHCABMODELID = "cache-searchcabmodelid";   //产品搜索id
     }

@@ -1,0 +1,214 @@
+﻿2015/2/16 8:38:19        服务器标记的格式不正确。
+Source:System.Web
+TargetSite:Void ParseString(System.String, System.Web.VirtualPath, System.Text.Encoding)
+
+---- Stack Trace ----
+   System.Web.UI.TemplateParser.ParseString(text As StringvirtualPath As VirtualPathfileEncoding As Encoding)
+       (unknown file): N 00573
+   System.Web.UI.TemplateParser.ParseFile(physicalPath As StringvirtualPath As VirtualPath)
+       (unknown file): N 00268
+   System.Web.UI.TemplateParser.ParseInternal()
+       (unknown file): N 00084
+   System.Web.UI.TemplateParser.Parse()
+       (unknown file): N 00154
+   System.Web.Compilation.BaseTemplateBuildProvider.get_CodeCompilerType()
+       (unknown file): N 00110
+   System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(buildProvider As BuildProvider)
+       (unknown file): N 00059
+   System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+       (unknown file): N 00209
+   System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+       (unknown file): N 00030
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881909
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/16 8:43:54        e:\work\projects\Chebao\Chebao.BackAdmin\product\products.aspx(353): error CS1061: 'ASP.product_products_aspx' does not contain a definition for 'rptShoppingTrolley_ItemDataBound' and no extension method 'rptShoppingTrolley_ItemDataBound' accepting a first argument of type 'ASP.product_products_aspx' could be found (are you missing a using directive or an assembly reference?)
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/16 9:42:09        e:\work\projects\Chebao\Chebao.BackAdmin\product\shoppingtrolleymg.aspx(26): error CS0103: The name 'AdminName' does not exist in the current context
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/16 15:53:18        e:\work\projects\Chebao\Chebao.BackAdmin\product\shoppingtrolleymg.aspx(223): error CS0123: No overload for 'rptData_DataBinding' matches delegate 'System.EventHandler'
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/16 15:56:47        e:\work\projects\Chebao\Chebao.BackAdmin\product\shoppingtrolleymg.aspx(223): error CS0123: No overload for 'rptData_DataBinding' matches delegate 'System.EventHandler'
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/16 15:58:14        e:\work\projects\Chebao\Chebao.BackAdmin\product\shoppingtrolleymg.aspx(224): error CS0123: No overload for 'rptData_DataBinding' matches delegate 'System.EventHandler'
+Source:System.Web
+TargetSite:System.Web.Compilation.BuildResult CompileWebFile(System.Web.VirtualPath)
+
+---- Stack Trace ----
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881976
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================
+2015/2/16 16:42:18        服务器标记的格式不正确。
+Source:System.Web
+TargetSite:Void ParseString(System.String, System.Web.VirtualPath, System.Text.Encoding)
+
+---- Stack Trace ----
+   System.Web.UI.TemplateParser.ParseString(text As StringvirtualPath As VirtualPathfileEncoding As Encoding)
+       (unknown file): N 00573
+   System.Web.UI.TemplateParser.ParseFile(physicalPath As StringvirtualPath As VirtualPath)
+       (unknown file): N 00268
+   System.Web.UI.TemplateParser.ParseInternal()
+       (unknown file): N 00084
+   System.Web.UI.TemplateParser.Parse()
+       (unknown file): N 00154
+   System.Web.Compilation.BaseTemplateBuildProvider.get_CodeCompilerType()
+       (unknown file): N 00110
+   System.Web.Compilation.BuildProvider.GetCompilerTypeFromBuildProvider(buildProvider As BuildProvider)
+       (unknown file): N 00059
+   System.Web.Compilation.BuildProvidersCompiler.ProcessBuildProviders()
+       (unknown file): N 00209
+   System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+       (unknown file): N 00030
+   System.Web.Compilation.BuildManager.CompileWebFile(virtualPath As VirtualPath)
+       (unknown file): N 9881909
+   System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(virtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00299
+   System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(context As HttpContextvirtualPath As VirtualPathnoBuild As BooleanallowCrossApp As BooleanallowBuildInPrecompile As BooleanthrowIfNotFound As BooleanensureIsUpToDate As Boolean)
+       (unknown file): N 00103
+   System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(virtualPath As VirtualPathcontext As HttpContextallowCrossApp As BooleanthrowIfNotFound As Boolean)
+       (unknown file): N 00165
+   System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(virtualPath As VirtualPathrequiredBaseType As Typecontext As HttpContextallowCrossApp As Boolean)
+       (unknown file): N 00043
+   System.Web.UI.PageHandlerFactory.GetHandlerHelper(context As HttpContextrequestType As StringvirtualPath As VirtualPathphysicalPath As String)
+       (unknown file): N 00031
+   System.Web.UI.PageHandlerFactory.GetHandler(context As HttpContextrequestType As StringvirtualPath As Stringpath As String)
+       (unknown file): N 00037
+   System.Web.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+       (unknown file): N 00346
+   System.Web.HttpApplication.ExecuteStep(step As IExecutionStepcompletedSynchronously As Boolean&)
+       (unknown file): N 00155
+
+
+====================================

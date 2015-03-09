@@ -1689,5 +1689,23 @@ namespace Chebao.Tools
         }
 
         #endregion
+
+        #region 金额千分位格式
+
+        public static string FormatMoney(string num)
+        {
+            string newstr = string.Empty;
+            Regex r = new Regex(@"(-?\d+?)(\d{3})*(\.\d+|$)");
+            Match m = r.Match(num);
+            newstr += m.Groups[1].Value;
+            for (int i = 0; i < m.Groups[2].Captures.Count; i++)
+            {
+                newstr += "," + m.Groups[2].Captures[i].Value;
+            }
+            newstr += m.Groups[3].Value;
+            return newstr;
+        }
+
+        #endregion
     }
 }

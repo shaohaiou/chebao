@@ -58,6 +58,15 @@ namespace Chebao.BackAdmin {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor product_main;
         
         /// <summary>
+        /// order_main 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor order_main;
+        
+        /// <summary>
         /// global_main 控件。
         /// </summary>
         /// <remarks>
@@ -65,5 +74,14 @@ namespace Chebao.BackAdmin {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor global_main;
+        
+        /// <summary>
+        /// messageboard_main 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor messageboard_main;
     }
 }

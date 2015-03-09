@@ -20,9 +20,11 @@ namespace Chebao.BackAdmin
                 car_main.Visible = false;
                 car_main1.Visible = false;
                 global_main.Visible = false;
+                messageboard_main.Visible = false;
                 if (Admin.UserRole == Components.UserRoleType.管理员)
                 {
                     user_main.Visible = true;
+                    messageboard_main.Visible = true;
                 }
             }
         }

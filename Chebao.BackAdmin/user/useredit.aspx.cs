@@ -17,6 +17,7 @@ namespace Chebao.BackAdmin.user
         {
             if (!Page.IsPostBack)
             {
+                BindControler();
                 int id = GetInt("id");
                 if (id > 0)
                 {
@@ -42,6 +43,18 @@ namespace Chebao.BackAdmin.user
             }
         }
 
+        private void BindControler()
+        {
+            ddlProvince.DataSource = Cars.Instance.GetProvinceList(true);
+            ddlProvince.DataTextField = "Name";
+            ddlProvince.DataValueField = "ID";
+            ddlProvince.DataBind();
+            ddlProvince.Items.Insert(0, new ListItem("-省份-", "-1"));
+
+            ddlCity.Items.Insert(0, new ListItem("-城市-", "-1"));
+            ddlDistrict.Items.Insert(0, new ListItem("-县区-", "-1"));
+        }
+
         /// <summary>
         /// 绑定页面数据
         /// </summary>
@@ -51,8 +64,20 @@ namespace Chebao.BackAdmin.user
             hdid.Value = admin.ID.ToString();               //管理员ID
             txtUserName.Text = admin.UserName;//账户名
             txtMobile.Text = admin.Mobile;
-            txtValidDays.Text = admin.ValidDate == DateTime.MaxValue ? string.Empty : (admin.ValidDate.Subtract(DateTime.Today).Days > 0 ? admin.ValidDate.Subtract(DateTime.Today).Days.ToString() : "0");
-            lblValidDays.Text = string.Format("（有效期至：{0}）", admin.ValidDate == DateTime.MaxValue ? "无限制" : (admin.ValidDate.Subtract(DateTime.Today).Days > 0 ? admin.ValidDate.ToString("yyyy年MM月dd日") : "已过期"));
+            txtTelPhone.Text = admin.TelPhone;
+            txtAddress.Text = admin.Address;
+            txtLinkName.Text = admin.LinkName;
+            txtValidDays.Text = admin.ValidDate.ToString("yyyyMMdd") == DateTime.MaxValue.ToString("yyyyMMdd") ? string.Empty : (admin.ValidDate.Subtract(DateTime.Today).Days > 0 ? admin.ValidDate.Subtract(DateTime.Today).Days.ToString() : "0");
+            lblValidDays.Text = string.Format("（有效期至：{0}）", admin.ValidDate.ToString("yyyyMMdd") == DateTime.MaxValue.ToString("yyyyMMdd") ? "无限制" : (admin.ValidDate.Subtract(DateTime.Today).Days > 0 ? admin.ValidDate.ToString("yyyy年MM月dd日") : "已过期"));
+            if (!string.IsNullOrEmpty(admin.Province + admin.City + admin.District))
+            {
+                SetSelectedByText(ddlProvince, admin.Province);
+                ddlProvince_SelectedIndexChanged(null, null);
+                SetSelectedByText(ddlCity, admin.City);
+                ddlCity_SelectedIndexChanged(null,null);
+                SetSelectedByText(ddlDistrict, admin.District);
+            }
+            txtPostCode.Value = admin.PostCode;
         }
 
         /// <summary>
@@ -71,6 +96,16 @@ namespace Chebao.BackAdmin.user
             admin.Mobile = txtMobile.Text;
             admin.UserRole = UserRoleType.普通用户;
             admin.ValidDate = string.IsNullOrEmpty(txtValidDays.Text.Trim()) ? DateTime.MaxValue : DateTime.Today.AddDays(DataConvert.SafeDouble(txtValidDays.Text));
+            admin.TelPhone = txtTelPhone.Text;
+            admin.PostCode = txtPostCode.Value;
+            admin.Address = txtAddress.Text;
+            admin.LinkName = txtLinkName.Text;
+            if (ddlProvince.SelectedIndex > 0)
+                admin.Province = ddlProvince.SelectedItem.Text;
+            if (ddlCity.SelectedIndex > 0)
+                admin.City = ddlCity.SelectedItem.Text;
+            if (ddlDistrict.SelectedIndex > 0)
+                admin.District = ddlDistrict.SelectedItem.Text;
         }
 
         /// <summary>
@@ -114,6 +149,62 @@ namespace Chebao.BackAdmin.user
             }
 
             return;
+        }
+
+        protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlProvince.SelectedIndex == 0)
+            {
+                ddlCity.Items.Clear();
+                ddlDistrict.Items.Clear();
+                ddlCity.Items.Insert(0, new ListItem("-城市-", "-1"));
+                ddlDistrict.Items.Insert(0, new ListItem("-县区-", "-1"));
+                txtPostCode.Value = string.Empty;
+                return;
+            }
+            int pid = DataConvert.SafeInt(ddlProvince.SelectedValue);
+            List<CityInfo> citylist = Cars.Instance.GetCityList(true);
+            ddlCity.DataSource = citylist.FindAll(c => c.ProvinceId == pid);
+            ddlCity.DataTextField = "Name";
+            ddlCity.DataValueField = "ID";
+            ddlCity.DataBind();
+            ddlCity.Items.Insert(0, new ListItem("-城市-", "-1"));
+
+            ddlDistrict.Items.Clear();
+            ddlDistrict.Items.Insert(0, new ListItem("-县区-", "-1"));
+        }
+
+        protected void ddlCity_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlCity.SelectedIndex == 0)
+            {
+                ddlDistrict.Items.Clear();
+                ddlDistrict.Items.Insert(0, new ListItem("-县区-", "-1"));
+                txtPostCode.Value = string.Empty;
+                return;
+            }
+
+            int cid = DataConvert.SafeInt(ddlCity.SelectedValue);
+            List<DistrictInfo> districtlist = Cars.Instance.GetDistrictList(true);
+            ddlDistrict.DataSource = districtlist.FindAll(d => d.CityId == cid);
+            ddlDistrict.DataTextField = "Name";
+            ddlDistrict.DataValueField = "ID";
+            ddlDistrict.DataBind();
+            ddlDistrict.Items.Insert(0, new ListItem("-县区-", "-1"));
+        }
+
+        protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlDistrict.SelectedIndex == 0)
+            {
+                txtPostCode.Value = string.Empty;
+            }
+            else
+            {
+                int did = DataConvert.SafeInt(ddlDistrict.SelectedValue);
+                List<DistrictInfo> districtlist = Cars.Instance.GetDistrictList(true);
+                txtPostCode.Value = districtlist.Find(d => d.ID == did).PostCode;
+            }
         }
 
         protected override void Check()

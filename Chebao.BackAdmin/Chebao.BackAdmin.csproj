@@ -124,6 +124,76 @@
     <Compile Include="global\sqlexecute.aspx.designer.cs">
       <DependentUpon>sqlexecute.aspx</DependentUpon>
     </Compile>
+    <Compile Include="message\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="message\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="message\main_s.aspx.cs">
+      <DependentUpon>main_s.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="message\main_s.aspx.designer.cs">
+      <DependentUpon>main_s.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="message\messageboard.aspx.cs">
+      <DependentUpon>messageboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="message\messageboard.aspx.designer.cs">
+      <DependentUpon>messageboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="message\messageboardmg.aspx.cs">
+      <DependentUpon>messageboardmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="message\messageboardmg.aspx.designer.cs">
+      <DependentUpon>messageboardmg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="message\messageboardview.aspx.cs">
+      <DependentUpon>messageboardview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="message\messageboardview.aspx.designer.cs">
+      <DependentUpon>messageboardview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="order\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="order\main_s.aspx.cs">
+      <DependentUpon>main_s.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order\main_s.aspx.designer.cs">
+      <DependentUpon>main_s.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="order\ordermg.aspx.cs">
+      <DependentUpon>ordermg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order\ordermg.aspx.designer.cs">
+      <DependentUpon>ordermg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="order\orderview.aspx.cs">
+      <DependentUpon>orderview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order\orderview.aspx.designer.cs">
+      <DependentUpon>orderview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="product\addproductsucceed.aspx.cs">
+      <DependentUpon>addproductsucceed.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product\addproductsucceed.aspx.designer.cs">
+      <DependentUpon>addproductsucceed.aspx</DependentUpon>
+    </Compile>
     <Compile Include="product\import.aspx.cs">
       <DependentUpon>import.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -226,6 +296,34 @@
     <Compile Include="product\main_s.aspx.designer.cs">
       <DependentUpon>main_s.aspx</DependentUpon>
     </Compile>
+    <Compile Include="product\myordermore.aspx.cs">
+      <DependentUpon>myordermore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product\myordermore.aspx.designer.cs">
+      <DependentUpon>myordermore.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="product\myorders.aspx.cs">
+      <DependentUpon>myorders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product\myorders.aspx.designer.cs">
+      <DependentUpon>myorders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="product\placeorder.aspx.cs">
+      <DependentUpon>placeorder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product\placeorder.aspx.designer.cs">
+      <DependentUpon>placeorder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="product\placeordersuccess.aspx.cs">
+      <DependentUpon>placeordersuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product\placeordersuccess.aspx.designer.cs">
+      <DependentUpon>placeordersuccess.aspx</DependentUpon>
+    </Compile>
     <Compile Include="product\productedit.aspx.cs">
       <DependentUpon>productedit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -260,6 +358,13 @@
     </Compile>
     <Compile Include="product\productview.aspx.designer.cs">
       <DependentUpon>productview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="product\shoppingtrolleymg.aspx.cs">
+      <DependentUpon>shoppingtrolleymg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="product\shoppingtrolleymg.aspx.designer.cs">
+      <DependentUpon>shoppingtrolleymg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="test.aspx.cs">
@@ -343,6 +448,9 @@
       <DependentUpon>UploadServices.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="remoteaction.ashx.cs">
+      <DependentUpon>remoteaction.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Chebao.Components\Chebao.Components.csproj">
@@ -377,6 +485,9 @@
     <Content Include="car\cabmodelmg.aspx" />
     <Content Include="car\main1.aspx" />
     <Content Include="car\main1_s.aspx" />
+    <Content Include="css\font_1404888168_2057645.svg" />
+    <Content Include="css\font_1418875995_7687602.svg" />
+    <Content Include="css\font_1421302883_443168.svg" />
     <Content Include="favicon.ico" />
     <Content Include="global\dealdata.aspx" />
     <Content Include="global\sqlexecute.aspx" />
@@ -406,10 +517,22 @@
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\picc.png" />
+    <Content Include="images\T1ikEKFGpaXXax3mjl-190-25.png" />
+    <Content Include="images\TB10.6vHXXXXXbNXVXX_TVrUVXX-280-850.png" />
     <Content Include="images\userh1.gif" />
     <Content Include="images\userh1.jpg" />
     <Content Include="images\waiting.gif" />
     <Content Include="js\jquery.magnifier.js" />
+    <Content Include="message\main.aspx" />
+    <Content Include="message\main_s.aspx" />
+    <Content Include="message\messageboard.aspx" />
+    <Content Include="message\messageboardmg.aspx" />
+    <Content Include="message\messageboardview.aspx" />
+    <Content Include="order\main.aspx" />
+    <Content Include="order\main_s.aspx" />
+    <Content Include="order\ordermg.aspx" />
+    <Content Include="order\orderview.aspx" />
+    <Content Include="product\addproductsucceed.aspx" />
     <Content Include="product\import.aspx" />
     <Content Include="car\main.aspx" />
     <Content Include="car\main_s.aspx" />
@@ -620,11 +743,16 @@
     <Content Include="js\jquery.jqzoom.js" />
     <Content Include="product\main.aspx" />
     <Content Include="product\main_s.aspx" />
+    <Content Include="product\myordermore.aspx" />
+    <Content Include="product\myorders.aspx" />
+    <Content Include="product\placeorder.aspx" />
+    <Content Include="product\placeordersuccess.aspx" />
     <Content Include="product\productedit.aspx" />
     <Content Include="product\productprint.aspx" />
     <Content Include="product\products.aspx" />
     <Content Include="product\productmg.aspx" />
     <Content Include="product\productview.aspx" />
+    <Content Include="product\shoppingtrolleymg.aspx" />
     <Content Include="user\userchangepw.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -718,12 +846,22 @@
     <Content Include="checkcode.ashx" />
     <Content Include="checkadmin.ashx" />
     <Content Include="cutimage.ashx" />
+    <None Include="css\font_1404888168_2057645.eot" />
+    <None Include="css\font_1404888168_2057645.ttf" />
+    <None Include="css\font_1404888168_2057645.woff" />
+    <None Include="css\font_1418875995_7687602.eot" />
+    <None Include="css\font_1418875995_7687602.ttf" />
+    <None Include="css\font_1418875995_7687602.woff" />
+    <None Include="css\font_1421302883_443168.eot" />
+    <None Include="css\font_1421302883_443168.ttf" />
+    <None Include="css\font_1421302883_443168.woff" />
     <None Include="js\ckeditor\plugins\scayt\LICENSE.md" />
     <None Include="js\ckeditor\plugins\scayt\README.md" />
     <None Include="js\ckeditor\plugins\wsc\LICENSE.md" />
     <None Include="js\ckeditor\plugins\wsc\README.md" />
     <None Include="js\ckeditor\README.md" />
     <None Include="js\ckeditor\skins\moono\readme.md" />
+    <Content Include="remoteaction.ashx" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

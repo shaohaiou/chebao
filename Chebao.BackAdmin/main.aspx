@@ -6,6 +6,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
     <link href="css/admin.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            $(".J_Quick a").click(function () {
+                self.parent.leftFrame.SetNavStyle($(this).html());
+            });
+        });
+    </script>
 </head>
 <body style="background: url(images/xdd.gif) repeat-x;">
     <div class="right_nav">
@@ -23,9 +31,9 @@
             用户名：<%= AdminName %></div>
         <div class="bt2">
             快捷访问</div>
-        <div class="bt2x lan5">
-            <a href="/product/main.aspx">产品管理</a>
-            <a href="/product/products.aspx" target="_blank">用户界面</a>
+        <div class="bt2x lan5 J_Quick">
+            <a href="/product/main.aspx">产品管理</a> <a href="/order/main.aspx">订单管理</a> <a href="/product/products.aspx"
+                target="_blank">用户界面</a>
         </div>
     </div>
 </body>

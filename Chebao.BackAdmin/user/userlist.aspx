@@ -19,38 +19,50 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="690" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
+        <table width="920" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
             <tr>
                 <td class="w40 bold">
                     查询：
                 </td>
                 <td>
                     用户名：<asp:TextBox ID="txtUserName" runat="server" CssClass="srk6"></asp:TextBox>
+                    联系人：<asp:TextBox ID="txtLinkName" runat="server" CssClass="srk6"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td>
                 </td>
                 <td>
+                    <asp:Button runat="server" ID="btnExportExcel" CssClass="an1 fll mr10" Text=" 导出Excel "
+                        OnClick="btnExportExcel_Click" />
                     <asp:Button runat="server" ID="btnFilter" CssClass="an1" Text="确定" OnClick="btnFilter_Click" />
                 </td>
             </tr>
         </table>
-        <table width="600" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
+        <table width="920" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
             <asp:Repeater ID="rpadmin" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
                         <td class="w100">
                             用户名
                         </td>
+                        <td class="w60">
+                            联系人
+                        </td>
+                        <td class="w100">
+                            联系方式
+                        </td>
+                        <td class="w200">
+                            联系地址
+                        </td>
+                        <td class="w60">
+                            邮政编码
+                        </td>
                         <td class="w100">
                             有效期至
                         </td>
-                        <td class="w120">
-                            最后登录时间
-                        </td>
-                        <td class="w120">
-                            最后登录IP
+                        <td class="w160">
+                            最后登录信息
                         </td>
                         <td>
                             操作
@@ -63,13 +75,25 @@
                             <%#Eval("UserName")%>
                         </td>
                         <td>
-                            <%# (DateTime)Eval("ValidDate") == DateTime.MaxValue ? "无限制" : ((DateTime)Eval("ValidDate") > DateTime.Today ? Eval("ValidDate","{0:yyyy年MM月dd日}") : "已过期")%>
+                            <%#Eval("LinkName")%>
                         </td>
                         <td>
-                            <%#Eval("LastLoginTime", "{0:yyyy-MM-dd HH:mm}")%>
+                            手机：<%#Eval("Mobile")%><br />
+                            电话：<%#Eval("TelPhone")%>
                         </td>
                         <td>
-                            <%#Eval("LastLoginIP")%>
+                            <%#Eval("Province")%> <%#Eval("City")%> <%#Eval("District")%><br />
+                            <%#Eval("Address")%>
+                        </td>
+                        <td>
+                            <%#Eval("PostCode")%>
+                        </td>
+                        <td>
+                            <%# ((DateTime)Eval("ValidDate")).ToString("yyyyMMdd") == DateTime.MaxValue.ToString("yyyyMMdd") ? "无限制" : ((DateTime)Eval("ValidDate") > DateTime.Today ? Eval("ValidDate", "{0:yyyy年MM月dd日}") : "已过期")%>
+                        </td>
+                        <td>
+                            时间：<%#Eval("LastLoginTime", "{0:yyyy-MM-dd HH:mm}")%><br />
+                            IP:<%#Eval("LastLoginIP")%>
                         </td>
                         <td class="lan5x">
                             <a class="btndel" href="userlist.aspx?id=<%#Eval("ID") %>&action=del&from=<%=UrlEncode(CurrentUrl) %>">

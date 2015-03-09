@@ -17,6 +17,15 @@ body{background:url(images/ldi.gif) repeat-y;}
             return true;
         });
     });
+
+    function SetNavStyle(text) {
+        $(".left_nav a").each(function () {
+            if ($(this).html() == text) {
+                $(".left_nav a").removeClass("current");
+                $(this).addClass("current");
+            }
+        });
+    }
 </script>
 </head>
 
@@ -29,7 +38,9 @@ body{background:url(images/ldi.gif) repeat-y;}
 	<a href="car/main1.aspx" target="mainFrame" runat="server" id="car_main1">品牌管理</a>
 	<a href="car/main.aspx" target="mainFrame" runat="server" id="car_main">车型管理</a>
 	<a href="product/main.aspx" target="mainFrame" runat="server" id="product_main">产品管理</a>
+	<a href="order/main.aspx" target="mainFrame" runat="server" id="order_main">订单管理</a>
 	<a href="global/main.aspx" target="mainFrame" runat="server" id="global_main">系统设置</a>
+	<a href="message/main.aspx" target="mainFrame" runat="server" id="messageboard_main">反馈有奖</a>
 </div>
 </body>
 </html>

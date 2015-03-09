@@ -10,6 +10,30 @@ namespace Chebao.Components
     [Serializable]
     public class ProductInfo : ExtendedAttributes
     {
+        public ProductInfo Clone()
+        {
+            ProductInfo entity = new ProductInfo() 
+            { 
+                ID = ID,
+                ProductType = ProductType,
+                Cabmodels = Cabmodels,
+                Introduce = Introduce,
+                Stock = Stock,
+                Pic = Pic,
+                Pics = Pics,
+                Name = Name,
+                NameIndex = NameIndex,
+                Price = Price,
+                ModelNumber = ModelNumber,
+                OEModelNumber = OEModelNumber,
+                Area = Area,
+                Material = Material,
+                Replacement = Replacement,
+                Standard = Standard
+            };
+            return entity;
+        }
+
         [JsonProperty("id")]
         public int ID { get; set; }
 
@@ -31,11 +55,22 @@ namespace Chebao.Components
         [JsonProperty("introduce")]
         public string Introduce { get; set; }
 
+        /// <summary>
+        /// 库存
+        /// </summary>
+        [JsonProperty("stock")]
+        public int Stock { get; set; }
+
+        /// <summary>
+        /// 购物车ID
+        /// </summary>
+        public int SID { get; set; }
+
         private string pic;
         /// <summary>
         /// 产品图片（列表）
         /// </summary>
-        [JsonProperty("introduce")]
+        [JsonProperty("pic")]
         public string Pic
         {
             get
@@ -51,7 +86,7 @@ namespace Chebao.Components
         /// <summary>
         /// 产品图片（详细页）
         /// </summary>
-        [JsonProperty("introduce")]
+        [JsonProperty("pics")]
         public string Pics { get; set; }
 
         public string NameOrder

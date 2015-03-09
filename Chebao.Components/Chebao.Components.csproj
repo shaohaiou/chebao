@@ -38,6 +38,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,11 +65,19 @@
     <Compile Include="Entity\AdminInfo.cs" />
     <Compile Include="Entity\BrandInfo.cs" />
     <Compile Include="Entity\CabmodelInfo.cs" />
+    <Compile Include="Entity\CityInfo.cs" />
+    <Compile Include="Entity\DistrictInfo.cs" />
     <Compile Include="Entity\EventLogEntry.cs" />
     <Compile Include="Entity\Job.cs" />
+    <Compile Include="Entity\MessageBoardInfo.cs" />
+    <Compile Include="Entity\OrderInfo.cs" />
+    <Compile Include="Entity\OrderProductInfo.cs" />
     <Compile Include="Entity\ProductInfo.cs" />
+    <Compile Include="Entity\ProvinceInfo.cs" />
+    <Compile Include="Entity\ShoppingTrolleyInfo.cs" />
     <Compile Include="Entity\ShowUrl.cs" />
     <Compile Include="Enumerations\ApplicationType.cs" />
+    <Compile Include="Enumerations\OrderStatus.cs" />
     <Compile Include="Enumerations\ProductType.cs" />
     <Compile Include="Enumerations\UrlRuleType.cs" />
     <Compile Include="Enumerations\UserRoleType.cs" />
