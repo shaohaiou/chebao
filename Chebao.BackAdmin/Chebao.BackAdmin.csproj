@@ -461,6 +461,10 @@
       <Project>{9BC2823A-3A68-445E-BED6-1CA7F79BC27F}</Project>
       <Name>Chebao.DALSQLServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Chebao.TaskAndJob\Chebao.TaskAndJob.csproj">
+      <Project>{BCE17E7C-5C87-45AE-B969-FF7696F3746B}</Project>
+      <Name>Chebao.TaskAndJob</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Chebao.Tools\Chebao.Tools.csproj">
       <Project>{D9DB52E6-8541-47D9-8B4C-38F412D1FE65}</Project>
       <Name>Chebao.Tools</Name>
@@ -491,6 +495,7 @@
     <Content Include="favicon.ico" />
     <Content Include="global\dealdata.aspx" />
     <Content Include="global\sqlexecute.aspx" />
+    <Content Include="images\back.png" />
     <Content Include="images\footphonemail.jpg" />
     <Content Include="images\goods_ico.png" />
     <Content Include="images\headbg.jpg" />
@@ -517,8 +522,13 @@
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\picc.png" />
+    <Content Include="images\T1b1m3XkVpXXXXXXXX-32-32.gif" />
     <Content Include="images\T1ikEKFGpaXXax3mjl-190-25.png" />
+    <Content Include="images\T1Ll1iXfNXXXXXXXXX-950-1.png" />
     <Content Include="images\TB10.6vHXXXXXbNXVXX_TVrUVXX-280-850.png" />
+    <Content Include="images\TB11ctfGVXXXXcmXFXXzEiYRXXX-271-453.png" />
+    <Content Include="images\TB12iyqHXXXXXbsXpXXnzuJ_VXX-800-600.png" />
+    <Content Include="images\TB1IY1mHXXXXXXFXVXXnzuJ_VXX-800-600.png" />
     <Content Include="images\userh1.gif" />
     <Content Include="images\userh1.jpg" />
     <Content Include="images\waiting.gif" />

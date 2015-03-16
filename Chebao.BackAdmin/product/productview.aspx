@@ -108,6 +108,27 @@
                     }
                 });
             });
+            $(".J_LinkBuy").click(function () {
+                var productid = $(this).attr("pid");
+                var amount = parseInt($("#J_IptAmount").val());
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "buyproduct", pid: productid, amount: amount, d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if (data.Value == "success") {
+                            location.href = "placeorder.aspx";
+                        }
+                        else {
+                            alert(data.Msg);
+                        }
+                    }
+                });
+            });
         });
         document.onkeydown = function () {
             if (event.ctrlKey && event.keyCode == 67) {
@@ -320,7 +341,7 @@
                         </dl>
                         <div id="J_juValid" class="tb-action tb-clearfix ">
                             <div class="tb-btn-buy">
-                                <a href="javascript:void(0);" title="点击此按钮，到下一步确认购买信息" class="J_LinkBuy">立即购买</a></div>
+                                <a href="javascript:void(0);" title="点击此按钮，到下一步确认购买信息" class="J_LinkBuy" pid="<%=Product.ID %>">立即购买</a></div>
                             <div class="tb-btn-add">
                                 <a href="javascript:void(0);" title="加入购物车" class="J_LinkAdd" pid="<%=Product.ID %>">
                                     <i class="tb-iconfont">ŭ</i>加入购物车</a></div>

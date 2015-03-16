@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Chebao.Tools;
 
 namespace Chebao.Components
 {
@@ -28,6 +29,8 @@ namespace Chebao.Components
         }
 
         #endregion
+
+        System.Web.Script.Serialization.JavaScriptSerializer json = new System.Web.Script.Serialization.JavaScriptSerializer();
 
         #region 品牌管理
 
@@ -180,6 +183,54 @@ namespace Chebao.Components
             GetProductList(true);
         }
 
+        /// <summary>
+        /// 更新产品库存
+        /// </summary>
+        public void RefreshProductStock()
+        {
+            List<ProductInfo> plist = GetProductList(true);
+            string url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg";
+            if (!plist.Exists(p => p.Stock > 0))
+            {
+                url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg&t=all";
+            }
+            string strRemoteProducts = Http.GetPage(url);
+            if (!string.IsNullOrEmpty(strRemoteProducts))
+            {
+                try
+                {
+                    List<RemoteProductInfo> rplist = new List<RemoteProductInfo>();
+                    foreach (string strp in strRemoteProducts.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        string[] ps = strp.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                        rplist.Add(new RemoteProductInfo()
+                        {
+                            ModelNumber = ps[0],
+                            Stock = DataConvert.SafeInt(ps[1])
+                        });
+                    }
+
+                    foreach (RemoteProductInfo rp in rplist)
+                    {
+                        if (plist.Exists(p => p.ModelNumber == rp.ModelNumber))
+                        {
+                            ProductInfo pinfo = plist.Find(p => p.ModelNumber == rp.ModelNumber);
+                            pinfo.Stock = DataConvert.SafeInt(rp.Stock);
+                            UpdateProduct(pinfo);
+                        }
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private class RemoteProductInfo
+        {
+            public string ModelNumber { get; set; }
+
+            public int Stock { get; set; }
+        }
+
         #endregion
 
         #region 购物车管理
@@ -269,7 +320,7 @@ namespace Chebao.Components
                 ReloadOrder();
                 if (entity.OrderProducts.Exists(p => p.SID > 0))
                 {
-                    DeleteShoppingTrolley(string.Join(",",entity.OrderProducts.FindAll(p => p.SID > 0).ToList().Select(p => p.SID.ToString()).ToList()),entity.UserID);
+                    DeleteShoppingTrolley(string.Join(",", entity.OrderProducts.FindAll(p => p.SID > 0).ToList().Select(p => p.SID.ToString()).ToList()), entity.UserID);
                     ReloadShoppingTrolley(entity.UserID);
                 }
 
@@ -277,10 +328,10 @@ namespace Chebao.Components
             }
         }
 
-        public OrderInfo GetOrder(int id,bool fromCache = false)
+        public OrderInfo GetOrder(int id, bool fromCache = false)
         {
             List<OrderInfo> list = GetOrderList(fromCache);
-            return list.Find(l=>l.ID == id);
+            return list.Find(l => l.ID == id);
         }
 
         public List<OrderInfo> GetOrderList(bool fromCache = false)
