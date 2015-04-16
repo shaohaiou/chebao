@@ -29,7 +29,8 @@ namespace Chebao.Components
                 Area = Area,
                 Material = Material,
                 Replacement = Replacement,
-                Standard = Standard
+                Standard = Standard,
+                ProductMixStr = ProductMixStr
             };
             return entity;
         }
@@ -65,6 +66,11 @@ namespace Chebao.Components
         /// 购物车ID
         /// </summary>
         public int SID { get; set; }
+
+        /// <summary>
+        /// 搜索信息
+        /// </summary>
+        public string CabmodelStr { get; set; }
 
         private string pic;
         /// <summary>
@@ -185,6 +191,47 @@ namespace Chebao.Components
         {
             get { return GetString("Standard", ""); }
             set { SetExtendedAttribute("Standard", value); }
+        }
+
+        /// <summary>
+        /// 库存最后更新时间
+        /// </summary>
+        [JsonIgnore]
+        public string StockLastUpdateTime
+        {
+            get { return GetString("StockLastUpdateTime", ""); }
+            set { SetExtendedAttribute("StockLastUpdateTime", value); }
+        }
+
+        /// <summary>
+        /// 产品组合承载字符串
+        /// </summary>
+        [JsonIgnore]
+        public string ProductMixStr
+        {
+            get { return GetString("ProductMix", ""); }
+            set { SetExtendedAttribute("ProductMix", value); }
+        }
+
+        /// <summary>
+        /// 产品组合
+        /// </summary>
+        public List<KeyValuePair<string, int>> ProductMix
+        {
+            get
+            {
+                List<KeyValuePair<string, int>> result = new List<KeyValuePair<string, int>>();
+
+                if (!string.IsNullOrEmpty(ProductMixStr))
+                {
+                    foreach (string pmstr in ProductMixStr.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
+                    }
+                }
+
+                return result;
+            }
         }
     }
 }

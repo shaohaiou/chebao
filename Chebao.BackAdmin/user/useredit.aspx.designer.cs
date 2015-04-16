@@ -211,6 +211,60 @@ namespace Chebao.BackAdmin.user {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtPostCode;
         
         /// <summary>
+        /// txtDiscountM 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountM;
+        
+        /// <summary>
+        /// txtDiscountY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountY;
+        
+        /// <summary>
+        /// txtDiscountH 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountH;
+        
+        /// <summary>
+        /// txtAdditemW 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdditemW;
+        
+        /// <summary>
+        /// txtAdditemF 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdditemF;
+        
+        /// <summary>
+        /// cbxSizeView 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbxSizeView;
+        
+        /// <summary>
         /// cvmess 控件。
         /// </summary>
         /// <remarks>

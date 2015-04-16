@@ -73,7 +73,8 @@
                 <span class="navinfo_user">
                     <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
                         class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
-                            class="ml10">我的订单</a></span>
+                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
+                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
             </div>
         </div>
     </div>
@@ -138,7 +139,7 @@
                     <span class="buy-th-title">商品</span> <span class="buy-th-price">单价(元)</span> <span
                         class="buy-th-quantity">数量</span> <span class="buy-th-total">小计(元)</span>
                 </div>
-                <asp:Repeater runat="server" ID="rptData">
+                <asp:Repeater runat="server" ID="rptData" OnItemDataBound="rptData_ItemDataBound">
                     <ItemTemplate>
                         <input type="hidden" runat="server" id="hdnSID" value='<%#Eval("SID") %>' />
                         <div id="jigsaw28" class="order">
@@ -148,27 +149,30 @@
                                         class="itemInfo-link J_MakePoint"><span class="item-pic"><span>
                                             <img class="itemInfo-pic" src="<%#Eval("ProductPic") %>" alt="">
                                         </span></span><span class="itemInfo-title J_MakePoint">
-                                            <%# Eval("ProductName")%></span> </a>
-                                    <div class="itemInfo-sku">
-                                        <span></span>
-                                    </div>
-                                    <p class="c2c-extraInfo-container promo-extraInfo">
-                                    </p>
-                                </div>
-                                <div class="item-price">
-                                    <span id="jigsaw18" class="itemInfo price"><em class="style-normal-small-black J_ItemPrice">
-                                        <%# Math.Round(decimal.Parse(Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()),2)%></em>
-                                    </span>
-                                </div>
-                                <div id="jigsaw19" class="quantity item-quantity">
-                                    <p>
-                                        <%#Eval("Amount")%></p>
-                                </div>
-                                <div id="jigsaw21" class="itemPay item-total">
-                                    <p class="itemPay-price price">
-                                        <em class="style-normal-bold-red J_ItemTotal">
-                                            <%#Eval("Sum") %></em>
-                                    </p>
+                                            <%# Eval("ProductName")%></span><span class="gray">
+                                                <%#Eval("CabmodelStr")%></span> </a>
+                                    <asp:Repeater runat="server" ID="rptProductMix">
+                                        <ItemTemplate>
+                                            <div>
+                                                <div class="itemInfo-title" style="display: table-cell; padding: 5px 0;">
+                                                    <%#Eval("Name") %></div>
+                                                <div class="item-price">
+                                                    <span id="jigsaw18" class="itemInfo price"><em class="style-normal-small-black J_ItemPrice">
+                                                        <%# Eval("Price")%></em> </span>
+                                                </div>
+                                                <div id="jigsaw19" class="quantity item-quantity">
+                                                    <p>
+                                                        <%#Eval("Amount")%></p>
+                                                </div>
+                                                <div id="jigsaw21" class="itemPay item-total">
+                                                    <p class="itemPay-price price">
+                                                        <em class="style-normal-bold-red J_ItemTotal">
+                                                            <%#Eval("Sum") %></em>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </div>
                                 <div class="item-form-desc blue-line clearfix">
                                     <div class="item-form-eticketDesc">

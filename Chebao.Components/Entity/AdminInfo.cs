@@ -144,6 +144,76 @@ namespace Chebao.Components
             set { SetExtendedAttribute("ValidDate", value.ToShortDateString()); }
         }
 
+        /// <summary>
+        /// 登录次数
+        /// </summary>
+        [JsonIgnore]
+        public int LoginTimes
+        {
+            get { return GetInt("LoginTimes", 0); }
+            set { SetExtendedAttribute("LoginTimes", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣m
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountM
+        {
+            get { return GetDecimal("DiscountM", 10); }
+            set { SetExtendedAttribute("DiscountM", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣y
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountY
+        {
+            get { return GetDecimal("DiscountY", 10); }
+            set { SetExtendedAttribute("DiscountY", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣h
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountH
+        {
+            get { return GetDecimal("DiscountH", 10); }
+            set { SetExtendedAttribute("DiscountH", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加项W
+        /// </summary>
+        [JsonIgnore]
+        public decimal AdditemW
+        {
+            get { return GetDecimal("AdditemW", 0); }
+            set { SetExtendedAttribute("AdditemW", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加项F
+        /// </summary>
+        [JsonIgnore]
+        public decimal AdditemF
+        {
+            get { return GetDecimal("AdditemF", 0); }
+            set { SetExtendedAttribute("AdditemF", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 尺寸查询权限
+        /// </summary>
+        [JsonIgnore]
+        public int SizeView
+        {
+            get { return GetInt("SizeView", 0); }
+            set { SetExtendedAttribute("SizeView", value.ToString()); }
+        }
+
         #endregion Model
     }
 }

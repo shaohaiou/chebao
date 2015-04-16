@@ -12,7 +12,7 @@
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
-            $(".cart-checkbox label").click(function () {
+            $(".cartmix-checkbox label").click(function () {
                 $(this).parent().toggleClass("cart-checkbox-checked");
                 if ($(this).parent().hasClass("cart-checkbox-checked")) {
                     $(this).prev().attr("checked", true);
@@ -21,18 +21,37 @@
                 }
                 Account();
 
-                var notcheckedcount = $(".cart-checkbox input[type='checkbox']", $(".item-content")).not($(".cart-checkbox input[type='checkbox']:checked", $(".item-content"))).length;
+                var notcheckedcount = $(".cartmix-checkbox input[type='checkbox']", $("#iteminfo" + $(this).prev().attr("sid"))).not(".cartmix-checkbox input[type='checkbox']:checked", $("#iteminfo" + $(this).prev().attr("sid"))).length;
                 if (notcheckedcount == 0) {
-                    $("#J_SelectAll1 .cart-checkbox,#J_SelectAll2 .cart-checkbox").each(function () {
-                        if (!$(this).hasClass("cart-checkbox-checked"))
-                            $(this).addClass("cart-checkbox-checked")
+                    $(".cartproduct-checkbox label", $("#iteminfo" + $(this).prev().attr("sid"))).each(function () {
+                        if (!$(this).parent().hasClass("cart-checkbox-checked"))
+                            $(this).parent().addClass("cart-checkbox-checked")
                     });
                 } else {
-                    $("#J_SelectAll1 .cart-checkbox,#J_SelectAll2 .cart-checkbox").each(function () {
-                        if ($(this).hasClass("cart-checkbox-checked"))
-                            $(this).removeClass("cart-checkbox-checked")
+                    $(".cartproduct-checkbox label", $("#iteminfo" + $(this).prev().attr("sid"))).each(function () {
+                        if ($(this).parent().hasClass("cart-checkbox-checked"))
+                            $(this).parent().removeClass("cart-checkbox-checked")
                     });
                 }
+            });
+            $(".cartproduct-checkbox label").click(function () {
+                $(this).parent().toggleClass("cart-checkbox-checked");
+                if ($(this).parent().hasClass("cart-checkbox-checked")) {
+                    $(this).prev().attr("checked", true);
+                } else {
+                    $(this).prev().attr("checked", false);
+                }
+                var haschecked = $(this).prev().attr("checked");
+                $(".cartmix-checkbox", $("#iteminfo" + $(this).prev().val())).each(function () {
+                    if (!$(this).hasClass("cart-checkbox-checked") && haschecked) {
+                        $(this).addClass("cart-checkbox-checked")
+                        $("input[type='checkbox']", $(this)).attr("checked", true);
+                    } else if (!haschecked && $(this).hasClass("cart-checkbox-checked")) {
+                        $(this).removeClass("cart-checkbox-checked")
+                        $("input[type='checkbox']", $(this)).attr("checked", false);
+                    }
+                });
+                Account();
             });
 
             $(".J_SelectAll").click(function () {
@@ -94,7 +113,7 @@
                 $("#txtsum" + $(this).attr("data-id")).html(sum.toFixed(2));
             });
             $("#J_Go").click(function () {
-                if ($(".cart-checkbox input[type='checkbox']:checked", $(".item-content")).length == 0) {
+                if ($(".cartmix-checkbox input[type='checkbox']:checked", $(".item-content")).length == 0) {
                     alert("请选择要结算的宝贝");
                     return;
                 }
@@ -110,10 +129,10 @@
             var amount = parseInt($(b).val());
             var stock = parseInt($(b).attr("data-max"));
             var price = $("#txtprice" + $(b).attr("data-id")).html();
-            if (amount <= 0 || !amount) {
-                $(b).val(1);
+            if (amount < 0 || !amount || stock == 0) {
+                $(b).val(0);
             }
-            else if (stock < amount) {
+            else if (stock < amount && stock > 0) {
                 $(b).val(stock);
                 $(b).parent().next().html("<em class=\"error-msg\">最多只可购买" + stock + "件</em>");
                 setTimeout(function () {
@@ -123,8 +142,8 @@
             else {
                 $(b).val(amount);
             }
-            if (stock == 0)
-                $(b).val(0);
+            //            if (stock == 0)
+            //                $(b).val(0);
             var sum = parseFloat(price) * parseInt($(b).val());
             $("#txtsum" + $(b).attr("data-id")).html(sum.toFixed(2));
             if (parseInt($(b).val()) == 1) {
@@ -176,9 +195,9 @@
         }
 
         function Account() {
-            $("#J_SelectedItemsCount").html($(".cart-checkbox input[type='checkbox']:checked", $(".item-content")).length);
+            $("#J_SelectedItemsCount").html($(".cartmix-checkbox input[type='checkbox']:checked", $(".item-content")).length);
             var account = 0.00;
-            $(".cart-checkbox input[type='checkbox']:checked", $(".item-content")).each(function () {
+            $(".cartmix-checkbox input[type='checkbox']:checked", $(".item-content")).each(function () {
                 var id = $(this).val();
                 account += parseFloat($("#txtsum" + id).html());
             });
@@ -201,7 +220,8 @@
                 <span class="navinfo_user">
                     <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
                         class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
-                            class="ml10">我的订单</a></span>
+                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
+                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
             </div>
         </div>
     </div>
@@ -253,10 +273,10 @@
                                             <ItemTemplate>
                                                 <div id="J_ItemHolder_104672630049">
                                                     <div id="J_Item_104672630049" class="J_ItemBody item-body clearfix item-normal  first-item  last-item    selected item-selected ">
-                                                        <ul class="item-content clearfix">
+                                                        <ul class="item-content clearfix" id="iteminfo<%#Eval("SID") %>">
                                                             <li class="td td-chk">
                                                                 <div class="td-inner">
-                                                                    <div class="cart-checkbox">
+                                                                    <div class="cart-checkbox cartproduct-checkbox">
                                                                         <input class="J_CheckBoxItem" id="cbxSelect" runat="server" type="checkbox" value='<%#Eval("SID") %>' /><label>勾选商品</label></div>
                                                                 </div>
                                                                 <input type="hidden" runat="server" id="hdnModelNumber" value='<%#Eval("ModelNumber") %>' />
@@ -267,6 +287,8 @@
                                                                 <input type="hidden" runat="server" id="hdnPic" value='<%#Eval("Pic") %>' />
                                                                 <input type="hidden" runat="server" id="hdnSID" value='<%#Eval("SID") %>' />
                                                                 <input type="hidden" runat="server" id="hdnID" value='<%#Eval("ID") %>' />
+                                                                <input type="hidden" runat="server" id="hdnCabmodelStr" value='<%#Eval("CabmodelStr") %>' />
+                                                                <input type="hidden" runat="server" id="hdnProductType" value='<%#(int)(Chebao.Components.ProductType)Eval("ProductType") %>' />
                                                             </li>
                                                             <li class="td td-item">
                                                                 <div class="td-inner">
@@ -278,46 +300,62 @@
                                                                         <div class="item-basic-info">
                                                                             <a href="productview.aspx?id=<%#Eval("ID") %>" target="_blank" title="<%# Eval("Name")%>"
                                                                                 class="item-title J_MakePoint">
-                                                                                <%# Eval("Name")%></a>
+                                                                                <%# Eval("Name")%></a> <span class="gray">
+                                                                                    <%#Eval("CabmodelStr")%></span>
+                                                                        </div>
+                                                                        <div class="itemtype-info">
+                                                                            <asp:Repeater runat="server" ID="rptProductMix" OnItemDataBound="rptProductMix_ItemDataBound">
+                                                                                <ItemTemplate>
+                                                                                    <input type="hidden" runat="server" id="hdnPMName" value='<%#Eval("Name") %>' />
+                                                                                    <input type="hidden" runat="server" id="hdnPMPrice" value='<%#Eval("Price") %>' />
+                                                                                    <ul>
+                                                                                        <li class="th" style="width: 304px;">
+                                                                                            <div class="cart-checkbox cartmix-checkbox">
+                                                                                                <input class="J_CheckBoxItem" id="cbxSelect" runat="server" type="checkbox" sid='<%# Eval("SID") %>'
+                                                                                                    value='<%# Eval("SID").ToString() + "_" + Container.ItemIndex.ToString()%>' /><label
+                                                                                                        style="top: 2px;">勾选商品</label>
+                                                                                            </div>
+                                                                                            <%#Eval("Name") %>
+                                                                                            <span class="gray">(库存<%#Eval("Stock") %>)</span> </li>
+                                                                                        <li class="th th-price">
+                                                                                            <div class="td-inner">
+                                                                                                <div class="item-price price-promo-promo">
+                                                                                                    <div class="price-content">
+                                                                                                        <div class="price-line">
+                                                                                                            <em class="J_Price price-now" id="txtprice<%# Eval("SID") %>_<%#Container.ItemIndex %>">
+                                                                                                                <%# Eval("Price") %></em></div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                        <li class="th th-amount">
+                                                                                            <div class="td-inner">
+                                                                                                <div class="amount-wrapper ">
+                                                                                                    <div class="item-amount ">
+                                                                                                        <a href="javascript:void(0);" class="J_Minus minus">-</a><input type="text" value=""
+                                                                                                            id="txtAmount" runat="server" class="text text-amount J_ItemAmount" data-max=""
+                                                                                                            data-id="" /><a href="javascript:void(0);" class="J_Plus plus">+</a></div>
+                                                                                                    <div class="amount-msg J_AmountMsg">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                        <li class="th th-sum">
+                                                                                            <div class="td-inner">
+                                                                                                <em class="J_ItemSum number" id="txtsum<%# Eval("SID") %>_<%#Container.ItemIndex %>">
+                                                                                                    &nbsp; </em>
+                                                                                                <div class="J_ItemLottery">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </ItemTemplate>
+                                                                            </asp:Repeater>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            <li class="td td-info">
-                                                                <div class="item-props ">
-                                                                </div>
-                                                            </li>
-                                                            <li class="td td-price">
-                                                                <div class="td-inner">
-                                                                    <div class="item-price price-promo-promo">
-                                                                        <div class="price-content">
-                                                                            <div class="price-line">
-                                                                                <em class="J_Price price-now" id="txtprice<%# Eval("SID") %>">
-                                                                                    <%# Math.Round(decimal.Parse(Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()),2)%></em></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="td td-amount">
-                                                                <div class="td-inner">
-                                                                    <div class="amount-wrapper ">
-                                                                        <div class="item-amount ">
-                                                                            <a href="javascript:void(0);" class="J_Minus minus">-</a><input type="text" value=""
-                                                                                id="txtAmount" runat="server" class="text text-amount J_ItemAmount" data-max=""
-                                                                                data-id="" /><a href="javascript:void(0);" class="J_Plus plus">+</a></div>
-                                                                        <div class="amount-msg J_AmountMsg">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="td td-sum">
-                                                                <div class="td-inner">
-                                                                    <em class="J_ItemSum number" id="txtsum<%# Eval("SID") %>"></em>
-                                                                    <div class="J_ItemLottery">
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li class="td td-op">
+                                                            <li class="th th-op">
                                                                 <div class="td-inner">
                                                                     <a href="javascript:void(0);" val="<%#Eval("SID") %>" class="J_Del J_MakePoint">删除</a></div>
                                                             </li>

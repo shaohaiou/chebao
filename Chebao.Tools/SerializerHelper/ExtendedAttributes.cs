@@ -142,6 +142,21 @@ namespace Chebao.Tools
             return Int32.Parse(i);
         }
 
+        /// <summary>
+        /// 获取扩展信息中的值并且转化为decimal
+        /// </summary>
+        /// <param name="name">扩展的属性名</param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns>扩展的属性值</returns>
+        public decimal GetDecimal(string name, decimal defaultValue)
+        {
+            string i = GetExtendedAttribute(name);
+            if (i == null || i.Trim().Length == 0)
+                return defaultValue;
+
+            return Decimal.Parse(i);
+        }
+
 
         /// <summary>
         /// 获取扩展信息中的值并且转化为DateTime

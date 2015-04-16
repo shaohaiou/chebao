@@ -1,5 +1,7 @@
 ﻿@charset "utf-8";
 
+.hide{display:none;}
+
 /*车型特卖*/
 .hover_b{border:1px #b10000 solid;}
 
@@ -964,6 +966,8 @@ address, cite, dfn, em, var{font-style: normal;}
 .tb-key .tb-action .tb-btn-add a:hover{border-color: #1625b8;background: #1625b8;}
 .tb-action .tb-btn-add i{vertical-align: bottom;font-size: 18px;font-weight: 400;font-style: normal;margin-right: 10px;}
 .tb-iconfont{font-family: tb-iconfont!important;font-size: 12px;font-style: normal;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscaleFont type;-moz-user-select: none;-webkit-user-select: none;-ms-user-select: none;}
+.tb-iconfont-list{font-size:16px;color:#0971B2;}
+.tb-iconfont-list:hover{cursor:pointer;color:#1625b8;}
 
 .result-main {margin-bottom: 30px;padding: 20px;}
 .result-main .item-info {float: left;position: relative;padding: 0 0 0 150px;min-height: 80px;_height: 80px;max-width: 400px;_width: 400px;}
@@ -1006,17 +1010,18 @@ address, cite, dfn, em, var{font-style: normal;}
 .cart-checkbox label{background: transparent url(../images/TB12iyqHXXXXXbsXpXXnzuJ_VXX-800-600.png) no-repeat -9999px -9999px;background-image: -webkit-image-set(url(../images/TB12iyqHXXXXXbsXpXXnzuJ_VXX-800-600.png) 1x,url(../images/TB1IY1mHXXXXXXFXVXXnzuJ_VXX-800-600.png) 2x);}
 .cart-checkbox label {position: relative;z-index: 1;float: left;width: 15px;height: 15px;background-position: 0 0;line-height: 200em;overflow: hidden;cursor: pointer;}
 .cart-checkbox-checked label {background-position: 0 -20px;}
-.td-item, .th-item {width: 302px;}
-.td-item .item-info {margin: -3px 0 0 91px;padding-right: 25px;}
+.td-item{width: 740px;}
+.th-item{width:203px;}
+.td-item .item-info {margin: -3px 0 0 91px;}
 .td-item .item-basic-info {height: 40px;}
 .td-chk, .th-chk {width: 45px;}
 .td-chk .cart-checkbox, .td-chk .s-checkbox {margin: 0 10px 0 0;float: right;}
 .td-info, .th-info {width: 172px;padding-right: 20px;}
-.td-inner {padding-top: 20px;_zoom: 1;}
+.td-inner {padding: 10px 0;_zoom: 1;}
 .th-price {width: 120px;}
 .td-amount, .td-price, .th-amount, .th-price {width: 120px;}
 .td-sum, .th-sum {width: 105px;}
-.td-op, .th-op {width: 84px;padding: 0 0 0 15px;}
+.td-op, .th-op {width: 84px;padding: 0 0 0 15px;float:left;}
 
 .order-body {margin-bottom: 15px;}
 .order-content {border: 1px solid #ccc;}
@@ -1028,7 +1033,7 @@ address, cite, dfn, em, var{font-style: normal;}
 .item-content .item-pic {width: 80px;height: 80px;border: 1px solid #eee;float: left;overflow: hidden;background: #fff url(../images/T1b1m3XkVpXXXXXXXX-32-32.gif) no-repeat 50% 50%;}
 .item-content .item-pic a {display: table-cell;width: 80px;height: 80px;vertical-align: middle;text-align: center;}
 .item-content .item-pic img {max-height: 80px;max-width: 80px;vertical-align: middle;}
-.item-content .item-title {font-size: 12px;display: block;max-height: 36px;overflow: hidden;text-overflow: ellipsis;_height: expression(this.scrollHeight > 36 ? "36px" : "auto");}
+.item-content .item-title {font-size: 12px;max-height: 36px;overflow: hidden;text-overflow: ellipsis;_height: expression(this.scrollHeight > 36 ? "36px" : "auto");}
 .item-content .td-info {_zoom: 1;}
 .item-content .item-props {padding: 16px 0;min-height: 84px;_height: 84px;border: 1px dashed transparent;position: relative;_border-color: #EEF6FF;}
 .item-content .td-price {color: #9c9c9c;}
@@ -1094,12 +1099,12 @@ fieldset, img {border: 0;}
 .orderInfo {height: 30px;line-height: 30px;margin-top: 25px;}
 .blue-line {background-image: url(../images/T1Ll1iXfNXXXXXXXXX-950-1.png);background-repeat: repeat-x;background-position: 0 bottom;}
 .order .item .item-title {text-align: left;padding-left: 70px;height: 70px;}
-.item .item-title {width: 470px;_width: 400px;}
+.item .item-title {width: 870px;_width: 800px;}
 .item .item-title, .item .item-price, .item .item-quantity, .item .item-promo, .item .item-total {display: table-cell;vertical-align: middle;text-align: center;overflow: hidden;padding-top: 5px;padding-bottom: 5px;}
 .item .item-pic {border: 1px solid #ccc;float: left;margin-left: -60px;margin-top: 5px;}
 .item .item-pic span {display: table-cell;height: 50px;text-align: center;vertical-align: middle;width: 50px;}
 .item .item-title .itemInfo-pic {vertical-align: middle;max-width: 50px;max-height: 50px;}
-.item .item-title .itemInfo-title {display: block;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 470px;word-break: break-all;cursor: pointer;}
+.item .item-title .itemInfo-title {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 470px;word-break: break-all;cursor: pointer;}
 .item .item-title .itemInfo-sku {color: gray;}
 .item .item-title .itemInfo-sku span {margin-right: 5px;}
 .item .item-title .c2c-extraInfo-container {padding-top: 5px;}
@@ -1145,6 +1150,8 @@ fieldset, img {border: 0;}
 .c2c-text-default {border: 1px solid #8AB6DD;padding:0;font: 12px/1.5 tahoma,arial,'Hiragino Sans GB',\5b8b\4f53,sans-serif;font-size:100%;}
 .c2c-text-focus,.c2c-text-hover{border:1px solid #ffad33;}
 
+
+.itemtype-info ul li{float:left;padding:5px 0;}
 
 
 @font-face{font-family:tb-toolbar-iconfont;src:url(../css/font_1418875995_7687602.eot);src:url(../css/font_1418875995_7687602.eot?#iefix) format('embedded-opentype'),url(../css/font_1418875995_7687602.woff) format('woff'),url(../css/font_1418875995_7687602.ttf) format('truetype'),url(../css/font_1418875995_7687602.svg#iconfont) format('svg')}

@@ -293,5 +293,25 @@ namespace Chebao.BackAdmin.global
         }
 
         #endregion
+
+        #region btnProductModelUpdate_Click
+
+        public void btnProductModelUpdate_Click(object sender, EventArgs e)
+        {
+            List<ProductInfo> productlist = Cars.Instance.GetProductList(false);
+
+            foreach (ProductInfo p in productlist)
+            {
+                if (p.ModelNumber.StartsWith("A") && DataConvert.SafeInt(p.ModelNumber.Replace("A",string.Empty)) > 0)
+                {
+                    p.ModelNumber = "A" + DataConvert.SafeInt(p.ModelNumber.Replace("A", string.Empty)).ToString("0000");
+
+                    Cars.Instance.UpdateProduct(p);
+                }
+            }
+            Cars.Instance.ReloadProductListCache();
+        }
+
+        #endregion
     }
 }

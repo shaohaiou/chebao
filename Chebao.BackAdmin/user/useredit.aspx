@@ -164,6 +164,33 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="bg1">
+                        折扣设置：
+                    </td>
+                    <td class="bg2">
+                         M：<asp:TextBox ID="txtDiscountM" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         Y：<asp:TextBox ID="txtDiscountY" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         H：<asp:TextBox ID="txtDiscountH" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
+                        附加项设置：
+                    </td>
+                    <td class="bg2">
+                         W：<asp:TextBox ID="txtAdditemW" runat="server" CssClass="srk4 mr10"></asp:TextBox>元
+                         F：<asp:TextBox ID="txtAdditemF" runat="server" CssClass="srk4 mr10"></asp:TextBox>元
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
+                        尺寸查询权限：
+                    </td>
+                    <td class="bg2">
+                        <asp:CheckBox runat="server" ID="cbxSizeView" />
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2" style="text-align: center">
                         <div style="text-align: center">
                             <asp:CustomValidator ID="cvmess" Display="Dynamic" runat="server" ErrorMessage=""></asp:CustomValidator></div>

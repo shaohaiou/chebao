@@ -14,5 +14,7 @@ namespace Chebao.Components
         public int UserID { get; set; }
 
         public int Amount { get; set; }
+
+        public string CabmodelStr { get; set; }
     }
 }

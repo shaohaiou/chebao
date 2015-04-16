@@ -37,6 +37,28 @@
             }, function () {
                 $(".tb-toolbar-item-tip", $(this)).hide();
             });
+            $(".J_LinkAdd").click(function () {
+                var productid = $(this).attr("pid");
+                var amount = 1;
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "addshoppingtrolley", pid: productid, amount: amount, d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if (data.Value == "success") {
+                            alert("已成功加入购物车！");
+                            location.href = location.href.replace("#", "");
+                        }
+                        else {
+                            alert(data.Msg);
+                        }
+                    }
+                });
+            });
             $(".J_TBToolbarCart").click(function () {
                 if ($(".tb-toolbar-mini-cart").is(":hidden")) {
                     $(".tb-toolbar-mini-cart").show();
@@ -152,8 +174,10 @@
             </ul>
             <div class="header_navinfo">
                 <span class="navinfo_user">
-                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a class="ml10"
-                        href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx" class="ml10">我的订单</a></span>
+                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
+                        class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
+                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
+                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
             </div>
         </div>
         <!--end-->
@@ -274,8 +298,10 @@
                                         target="_blank">
                                         <img src="<%#Eval("Pic") %>" title="<%# Eval("Name")%>" width="192" height="144"
                                             alt="<%# Eval("Name")%>"></a>
-                                    <p class="s_t1">
-                                        ￥<%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%></p>
+                                    <p class="s_t1 tb-btn-add">
+                                        ￥<%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%>
+                                        <i class="tb-iconfont tb-iconfont-list J_LinkAdd" pid="<%#Eval("ID") %>" title="加入购物车">ŭ</i>
+                                    </p>
                                     <p class="s_t2">
                                         <a href="productview.aspx?id=<%#Eval("ID") %>" title="<%# Eval("Name")%>" target="_blank">
                                             <%# Eval("Name")%></a></p>

@@ -7,9 +7,9 @@ namespace Chebao.Components
 {
     public enum OrderStatus
     {
-        待付款,
-        已付款,
-        未处理,
-        已处理
+        未收款,
+        已收款,
+        已发货,
+        已取消
     }
 }

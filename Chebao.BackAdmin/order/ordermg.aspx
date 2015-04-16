@@ -7,6 +7,7 @@
     <title>订单列表</title>
     <link href="../css/admin.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="../js/WdatePicker.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("#cbxAll").click(function () {
@@ -16,13 +17,18 @@
             $(".cbxSub").click(function () {
                 setSeldata();
             });
-            $("#btnComplete").click(function () {
-                if (!CheckForm()) return;
-                if (confirm("确定这些订单已经处理完成吗？"))
-                    window.location.href = "?ids=" + $("#hdnIds").val() + "&action=complete&from=<%=UrlEncode(CurrentUrl)%>";
+            $(".btngather").click(function () {
+                return confirm("确定该订单已收款吗？");
             });
-            $(".btncomplete").click(function () {
-                return confirm("确定该订单已经处理完成吗？");
+            $(".btnconsignment").click(function () {
+                return confirm("确定该订单已发货吗？");
+            });
+            $(".btncancel").click(function () {
+                return confirm("确定要取消该订单吗？");
+            });
+
+            $(".txtDate").click(function () {
+                WdatePicker({ 'readOnly': 'true', dateFmt: 'yyyy-MM-dd', maxDate: '<%=DateTime.Today.ToString("yyyy-MM-dd") %>' });
             });
 
             $("#btnFilter").click(function () {
@@ -35,11 +41,27 @@
                     query[query.length] = "linkname=" + $.trim($("#txtLinkName").val());
                 if ($.trim($("#ddlOrderStatus").val()) != "-1")
                     query[query.length] = "orderstatus=" + $.trim($("#ddlOrderStatus").val());
+                if ($.trim($("#txtDateB").val()) != "")
+                    query[query.length] = "timeb=" + $.trim($("#txtDateB").val());
+                if ($.trim($("#txtDateE").val()) != "")
+                    query[query.length] = "timee=" + $.trim($("#txtDateE").val());
                 location = "?" + (query.length > 0 ? $(query).map(function () {
                     return this;
                 }).get().join("&") : "");
 
                 return false;
+            });
+
+            $("#btnExportExcel").click(function () {
+                if ($(".cbxSub:checked").length == 0) {
+                    alert("请选择一条需要导出的订单");
+                    return false;
+                }
+                if ($(".cbxSub:checked").length > 1) {
+                    alert("只能选择一条记录导出");
+                    return false;
+                }
+                return true;
             });
         });
 
@@ -74,10 +96,15 @@
                 </td>
                 <td>
                     订单号：<asp:TextBox runat="server" ID="txtOrderNumber" CssClass="srk6"></asp:TextBox>
-                    用户名：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6 w60"></asp:TextBox>
-                    联系人姓名：<asp:TextBox runat="server" ID="txtLinkName" CssClass="srk6 w60"></asp:TextBox>
-                    订单状态：<asp:DropDownList runat="server" ID="ddlOrderStatus">
-                    </asp:DropDownList>
+                    下单时间：<asp:TextBox runat="server" ID="txtDateB" CssClass="srk6 txtDate"></asp:TextBox>
+                    -
+                    <asp:TextBox runat="server" ID="txtDateE" CssClass="srk6 txtDate"></asp:TextBox>
+                    <div class="pt5">
+                        用户名：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6 w60"></asp:TextBox>
+                        联系人姓名：<asp:TextBox runat="server" ID="txtLinkName" CssClass="srk6 w60"></asp:TextBox>
+                        订单状态：<asp:DropDownList runat="server" ID="ddlOrderStatus">
+                        </asp:DropDownList>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -156,14 +183,17 @@
                             <%# Chebao.Tools.StrHelper.FormatMoney(Eval("TotalFee").ToString())%>
                         </td>
                         <td>
-                            <span class="<%#Eval("OrderStatus").ToString() == "未处理" ? "red" : "green" %>">
+                            <span class="<%#GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus"))%>">
                                 <%# Eval("OrderStatus").ToString()%></span>
-                            <%#Eval("OrderStatus").ToString() == "已处理" ? ("<br />" + Eval("DeelTime")) : string.Empty%>
                         </td>
                         <td>
-                            <a href="?action=complete&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
-                                class="btncomplete <%#Eval("OrderStatus").ToString() == "未处理" ? "" : "hide" %>">
-                                完成处理</a>
+                            <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
+                                class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
+                                收款</a><a href="?action=consignment&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
+                                    class="btnconsignment green pt5 <%#Eval("OrderStatus").ToString() == "已收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
+                                    发货</a><a href="?action=cancel&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
+                                        class="btncancel red pt5 <%#Eval("OrderStatus").ToString() == "已取消" ? "hide" : "block" %>">
+                                        取消</a>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -176,7 +206,6 @@
         </webdiyer:AspNetPager>
         <div class="lan5x">
             <input id="hdnIds" runat="server" type="hidden" />
-            <input type="button" value="完成处理" id="btnComplete" class="an1" />
             <span id="spMsg" class="red"></span>
         </div>
     </div>

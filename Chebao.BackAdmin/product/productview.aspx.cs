@@ -73,33 +73,33 @@ namespace Chebao.BackAdmin.product
             }
         }
 
-        public int Stock
-        {
-            get
-            {
-                int result = 0;
+        //public int Stock
+        //{
+        //    get
+        //    {
+        //        int result = 0;
 
-                if(Product != null)
-                {
-                    result = product.Stock;
-                    List<OrderInfo> orderall = Cars.Instance.GetOrderList(true);
-                    if (orderall.Exists(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == Product.ID)))
-                    {
-                        int amount = 0;
-                        List<OrderInfo> orderlist = orderall.FindAll(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == Product.ID));
-                        orderlist.ForEach(delegate(OrderInfo o) 
-                        {
-                            amount += o.OrderProducts.FindAll(p => p.ProductID == Product.ID).Sum(p => p.Amount);
-                        });
-                        result -= amount;
-                        if (result < 0)
-                            result = 0;
-                    }
-                }
+        //        if(Product != null)
+        //        {
+        //            result = product.Stock;
+        //            List<OrderInfo> orderall = Cars.Instance.GetOrderList(true);
+        //            if (orderall.Exists(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == Product.ID)))
+        //            {
+        //                int amount = 0;
+        //                List<OrderInfo> orderlist = orderall.FindAll(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == Product.ID));
+        //                orderlist.ForEach(delegate(OrderInfo o) 
+        //                {
+        //                    amount += o.OrderProducts.FindAll(p => p.ProductID == Product.ID).Sum(p => p.Amount);
+        //                });
+        //                result -= amount;
+        //                if (result < 0)
+        //                    result = 0;
+        //            }
+        //        }
 
-                return result;
-            }
-        }
+        //        return result;
+        //    }
+        //}
 
         protected void Page_Load(object sender, EventArgs e)
         {

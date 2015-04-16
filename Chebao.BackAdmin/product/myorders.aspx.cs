@@ -25,6 +25,18 @@ namespace Chebao.BackAdmin.product
         {
             if (!IsPostBack)
             {
+                if (GetString("action") == "cancel" && GetInt("id") > 0)
+                {
+                    int id = GetInt("id");
+                    List<OrderInfo> orderlist = Cars.Instance.GetOrderList(true);
+                    if (orderlist.Exists(o => o.ID == id && o.UserID == AdminID))
+                    {
+                        Cars.Instance.UpdateOrderStatus(id.ToString(), OrderStatus.已收款);
+                        Cars.Instance.ReloadOrder();
+                        Response.Redirect("~/product/myorders.aspx");
+                        Response.End();
+                    }
+                }
                 LoadData();
             }
         }
@@ -50,6 +62,17 @@ namespace Chebao.BackAdmin.product
                 Repeater rptOrderProduct = (Repeater)e.Item.FindControl("rptOrderProduct");
                 rptOrderProduct.DataSource = entity.OrderProducts;
                 rptOrderProduct.DataBind();
+            }
+        }
+
+        protected void rptOrderProduct_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                OrderProductInfo order = (OrderProductInfo)e.Item.DataItem;
+                Repeater rptProductMix = (Repeater)e.Item.FindControl("rptProductMix");
+                rptProductMix.DataSource = order.ProductMixList;
+                rptProductMix.DataBind();
             }
         }
     }

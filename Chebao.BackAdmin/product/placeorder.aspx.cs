@@ -76,6 +76,17 @@ namespace Chebao.BackAdmin.product
             txtPostCode.Value = Admin.PostCode;
         }
 
+        protected void rptData_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                OrderProductInfo order = (OrderProductInfo)e.Item.DataItem;
+                Repeater rptProductMix = (Repeater)e.Item.FindControl("rptProductMix");
+                rptProductMix.DataSource = order.ProductMixList;
+                rptProductMix.DataBind();
+            }
+        }
+
         protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ddlProvince.SelectedIndex == 0)
@@ -167,10 +178,11 @@ namespace Chebao.BackAdmin.product
                         listOrderProduct.Find(l => l.SID.ToString() == hdnSID.Value).Remark = txtRemark.Value;
                     }
                 }
-
+                List<OrderInfo> orderlist = Cars.Instance.GetOrderList(true);
+                int ordercount = orderlist.Exists(o=>o.UserID == AdminID) ? orderlist.FindAll(o=>o.UserID == AdminID).Count : 0;
                 OrderInfo entity = new OrderInfo()
                 {
-                    OrderNumber = DateTime.Now.ToString("yyyyMMddHHmmss") + DateTime.Now.Millisecond.ToString("000") + AdminID.ToString("0000"),
+                    OrderNumber = string.Format("{0}-{1}-{2}",AdminName,ordercount + 1,DateTime.Now.ToString("yyyyMMdd")),
                     Province = ddlProvince.SelectedItem.Text,
                     City = ddlCity.SelectedItem.Text,
                     District = ddlDistrict.SelectedItem.Text,
@@ -181,7 +193,7 @@ namespace Chebao.BackAdmin.product
                     LinkName = txtLinkName.Value,
                     LinkMobile = txtLinkMobile.Value,
                     LinkTel = txtLinkTel.Value,
-                    OrderStatus = OrderStatus.未处理,
+                    OrderStatus = OrderStatus.未收款,
                     OrderProducts = listOrderProduct,
                     AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                     DeelTime = string.Empty

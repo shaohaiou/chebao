@@ -12,6 +12,7 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.IO.Compression;
+using Chebao.Components;
 
 namespace Chebao.BackAdmin
 {
@@ -24,6 +25,7 @@ namespace Chebao.BackAdmin
             //string s = string.Empty;
             //s.GetHashCode();
             //Response.Write(FormatNum(""));
+            Cars.Instance.RefreshProductStock();
 
             GetPage("http://www.chebao360.com/goods/index.php?cate=23&brands=103&models=1168&outputs=3195&isnews=0&years=2007");
             Response.Write(Post("oper=comments_and_car_detail&id=1446&comb_goods_id=0", "http://www.chebao360.com/ajax_return.php"));

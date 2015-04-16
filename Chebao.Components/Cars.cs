@@ -190,12 +190,13 @@ namespace Chebao.Components
         {
             List<ProductInfo> plist = GetProductList(true);
             string url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg";
-            if (!plist.Exists(p => p.Stock > 0))
+            if (plist.Exists(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)))
             {
-                url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg&t=all";
+                DateTime lastupdatetime = plist.FindAll(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)).Max(p => DataConvert.SafeDate(p.StockLastUpdateTime));
+                url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg&t=" + lastupdatetime.ToString("yyyy-MM-dd HH:mm:ss");
             }
-            string strRemoteProducts = Http.GetPage(url);
-            if (!string.IsNullOrEmpty(strRemoteProducts))
+            string strRemoteProducts = Http.GetPage(url, true, "gb2312");
+            if (!string.IsNullOrEmpty(strRemoteProducts) && strRemoteProducts.ToLower() != "no")
             {
                 try
                 {
@@ -203,19 +204,42 @@ namespace Chebao.Components
                     foreach (string strp in strRemoteProducts.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries))
                     {
                         string[] ps = strp.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                        rplist.Add(new RemoteProductInfo()
+                        try
                         {
-                            ModelNumber = ps[0],
-                            Stock = DataConvert.SafeInt(ps[1])
-                        });
+                            rplist.Add(new RemoteProductInfo()
+                            {
+                                ModelNumber = ps[0],
+                                Stock = DataConvert.SafeInt(ps[1])
+                            });
+                        }
+                        catch { }
                     }
 
+                    List<string> deelModelNumber = new List<string>();
                     foreach (RemoteProductInfo rp in rplist)
                     {
-                        if (plist.Exists(p => p.ModelNumber == rp.ModelNumber))
+                        if (deelModelNumber.Contains(rp.ModelNumber)) continue;
+                        if (plist.Exists(p =>rp.ModelNumber.StartsWith(p.ModelNumber)))
                         {
-                            ProductInfo pinfo = plist.Find(p => p.ModelNumber == rp.ModelNumber);
-                            pinfo.Stock = DataConvert.SafeInt(rp.Stock);
+                            ProductInfo pinfo = plist.Find(p => rp.ModelNumber.StartsWith(p.ModelNumber));
+                            deelModelNumber.AddRange(rplist.FindAll(p=>p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p=>p.ModelNumber));
+                            if (string.IsNullOrEmpty(pinfo.ProductMixStr))
+                                pinfo.ProductMixStr = string.Join("|", rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber + "," + p.Stock));
+                            else
+                            {
+                                List<KeyValuePair<string, int>> pm = new List<KeyValuePair<string,int>>();
+                                pm.AddRange(pinfo.ProductMix);
+                                foreach (RemoteProductInfo rpi in rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)))
+                                {
+                                    if (pm.Exists(p => p.Key == rpi.ModelNumber))
+                                        pm[pm.FindIndex(p => p.Key == rpi.ModelNumber)] = new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock);
+                                    else
+                                        pm.Add(new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock));
+                                }
+
+                                pinfo.ProductMixStr = string.Join("|",pm.Select(p=>p.Key + "," + p.Value));
+                            }
+                            pinfo.StockLastUpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                             UpdateProduct(pinfo);
                         }
                     }
@@ -287,35 +311,6 @@ namespace Chebao.Components
         {
             lock (sync_order)
             {
-                string checkstock = string.Empty;
-                List<OrderInfo> orderall = GetOrderList(true);
-                foreach (OrderProductInfo op in entity.OrderProducts)
-                {
-                    ProductInfo pinfo = GetProduct(op.ProductID, true);
-                    int stock = pinfo.Stock;
-                    if (orderall.Exists(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == entity.ID)))
-                    {
-                        int amount = 0;
-                        List<OrderInfo> orderlist = orderall.FindAll(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == pinfo.ID));
-                        orderlist.ForEach(delegate(OrderInfo o)
-                        {
-                            amount += o.OrderProducts.FindAll(p => p.ProductID == pinfo.ID).Sum(p => p.Amount);
-                        });
-                        stock -= amount;
-                        if (stock < 0)
-                            stock = 0;
-                    }
-                    if (stock < op.Amount)
-                    {
-                        checkstock = "宝贝 " + op.ProductName + " 的库存只有" + stock + "，请改数量后在下单。";
-                        break;
-                    }
-                }
-                if (!string.IsNullOrEmpty(checkstock))
-                {
-                    return checkstock;
-                }
-
                 CommonDataProvider.Instance().AddOrder(entity);
                 ReloadOrder();
                 if (entity.OrderProducts.Exists(p => p.SID > 0))

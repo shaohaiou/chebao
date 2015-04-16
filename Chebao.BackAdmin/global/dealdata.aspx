@@ -131,6 +131,14 @@
                     <asp:Button ID="btnRenameImage" runat="server" msg="确定要对车型图片重命名吗？" Text="执行" CssClass="an1 btn" OnClick="btnRenameImage_Click" />
                 </td>
             </tr>
+            <tr>
+                <td class="bg1">
+                    产品型号升阶：
+                </td>
+                <td>
+                    <asp:Button ID="btnProductModelUpdate" runat="server" msg="确定要进行产品型号升阶吗？" Text="执行" CssClass="an1 btn" OnClick="btnProductModelUpdate_Click" />
+                </td>
+            </tr>
         </tbody>
     </table>
     </form>

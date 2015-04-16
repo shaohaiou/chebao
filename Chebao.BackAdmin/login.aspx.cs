@@ -56,6 +56,7 @@ namespace Chebao.BackAdmin
                             {
                                 admin.LastLoginIP = WebHelper.GetClientsIP();
                                 admin.LastLoginTime = DateTime.Now;
+                                admin.LoginTimes++;
                                 Admins.Instance.UpdateAdmin(admin);
                                 Session[GlobalKey.SESSION_ADMIN] = admin;
                                 ManageCookies.CreateCookie(GlobalKey.SESSION_ADMIN, id.ToString(), true, DateTime.Today.AddDays(1), ChebaoContext.Current.CookieDomain);

@@ -47,6 +47,16 @@
                 });
             });
 
+            $("#btnAddToMessage").click(function () {
+                $("#txtMessageContent").html($("#txtMessageContent").html()
+                + "<br />" + $("#ddlNianfen").val() + " "
+                + $("#ddlBrand").val() + " "
+                + $("#ddlCabmodel").val() + " "
+                + $("#ddlPailiang").val() + " "
+                + $("#ddlProductType option:checked").html() + " "
+                + $("#ddlProducts").val());
+            });
+
             $("#btnSubmit").click(function () {
                 $("#hdnMessageContent").val($("#txtMessageContent").html());
                 if ($.trim($("#txtMessageTitle").val()) == "") {
@@ -76,7 +86,8 @@
                 <span class="navinfo_user">
                     <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
                         class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
-                            class="ml10">我的订单</a></span>
+                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
+                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
             </div>
         </div>
     </div>
@@ -84,10 +95,51 @@
         <form runat="server" id="form1">
         <div class="address-bar" style="padding-top: 20px;">
             <ul>
-                <li style="margin-bottom:10px;"><span><em class="red">*</em>简述：</span>
+                <li style="margin-bottom: 10px;"><span><em class="red">*</em>简述：</span>
                     <div>
                         <asp:TextBox runat="server" ID="txtMessageTitle" CssClass="srk1"></asp:TextBox>
                     </div>
+                </li>
+                <li style="margin-bottom: 10px;"><span>产品类型：</span>
+                    <div>
+                        <asp:DropDownList ID="ddlProductType" runat="server">
+                        </asp:DropDownList>
+                    </div>
+                </li>
+                <li style="margin-bottom: 10px;"><span>车型：</span>
+                    <div>
+                        <asp:ScriptManager runat="server" ID="smCabmodels">
+                        </asp:ScriptManager>
+                        <asp:UpdatePanel runat="server" ID="upnCabmodels">
+                            <ContentTemplate>
+                                <asp:DropDownList runat="server" ID="ddlBrand" AutoPostBack="true" Style="width: 213px!important;"
+                                    OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlCabmodel" runat="server" AutoPostBack="true" Style="width: 160px!important;"
+                                    Enabled="false" OnSelectedIndexChanged="ddlCabmodel_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlPailiang" runat="server" AutoPostBack="true" Style="width: 100px!important;"
+                                    Enabled="false" OnSelectedIndexChanged="ddlPailiang_SelectedIndexChanged">
+                                </asp:DropDownList>
+                                <asp:DropDownList ID="ddlNianfen" runat="server" Enabled="false" AutoPostBack="true"
+                                    OnSelectedIndexChanged="ddlNianfen_SelectedIndexChanged">
+                                </asp:DropDownList>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </li>
+                <li style="margin-bottom: 10px;"><span>产品：</span>
+                    <div>
+                        <asp:UpdatePanel runat="server" ID="upnProducts">
+                            <ContentTemplate>
+                                <asp:DropDownList ID="ddlProducts" runat="server" Enabled="false">
+                                </asp:DropDownList>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
+                </li>
+                <li style="margin-bottom: 10px;">
+                    <input type="button" id="btnAddToMessage" value="添加到详细描述" />
                 </li>
                 <li><span><em class="red">*</em>详细描述：</span>
                     <div>

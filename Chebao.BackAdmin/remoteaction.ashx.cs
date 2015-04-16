@@ -23,12 +23,28 @@ namespace Chebao.BackAdmin
         }
         private HttpResponse Response;
         private HttpRequest Request;
+        private HttpSessionState Session;
         private string result = "{{\"Value\":\"{0}\",\"Msg\":\"{1}\"}}";
+        public CabmodelInfo SearchCabmodel
+        {
+            get
+            {
+                if (Session[GlobalKey.SEARCHCABMODELID] != null)
+                {
+                    int cabid = DataConvert.SafeInt(Session[GlobalKey.SEARCHCABMODELID]);
+                    if (cabid > 0)
+                    {
+                        return Cars.Instance.GetCabmodelList(true).Find(c => c.ID == cabid);
+                    }
+                }
+                return null;
+            }
+        }
         public void ProcessRequest(HttpContext context)
         {
             Response = context.Response;
             Request = context.Request;
-
+            Session = context.Session;
             //如果通过验证
             string methodName = WebHelper.GetString("action");//获取请求类型
             switch (methodName)
@@ -77,7 +93,8 @@ namespace Chebao.BackAdmin
             {
                 Amount = amount,
                 ProductID = pid,
-                UserID = ChebaoContext.Current.AdminUserID
+                UserID = ChebaoContext.Current.AdminUserID,
+                CabmodelStr = SearchCabmodel == null ? string.Empty : SearchCabmodel.CabmodelNameBind
             };
             if (Cars.Instance.AddShoppingTrolley(entity) > 0)
             {

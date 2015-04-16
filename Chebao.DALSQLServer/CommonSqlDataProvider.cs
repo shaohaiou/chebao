@@ -662,17 +662,20 @@ namespace Chebao.DALSQLServer
                     [ProductID]
                     ,[UserID]
                     ,[Amount]
+                    ,[CabmodelStr]
                 )VALUES(
                     @ProductID
                     ,@UserID
                     ,@Amount
+                    ,@CabmodelStr
                 )";
 
             OleDbParameter[] p = 
             { 
                 new OleDbParameter("@ProductID",entity.ProductID),
                 new OleDbParameter("@UserID",entity.UserID),
-                new OleDbParameter("@Amount",entity.Amount)
+                new OleDbParameter("@Amount",entity.Amount),
+                new OleDbParameter("@CabmodelStr",entity.CabmodelStr)
             };
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
             sql = "SELECT MAX([ID]) FROM Chebao_ShoppingTrolley";

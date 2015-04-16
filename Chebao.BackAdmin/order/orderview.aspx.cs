@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Chebao.Components;
+using Chebao.Tools;
 
 namespace Chebao.BackAdmin.order
 {
@@ -39,6 +40,8 @@ namespace Chebao.BackAdmin.order
             }
         }
 
+        protected OrderProductInfo CurrentProductInfo { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -65,6 +68,24 @@ namespace Chebao.BackAdmin.order
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect(FromUrl);
+        }
+
+        protected void rptData_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            {
+                OrderProductInfo p = (OrderProductInfo)e.Item.DataItem;
+                CurrentProductInfo = p;
+
+                Repeater rptProductMix = (Repeater)e.Item.FindControl("rptProductMix");
+                rptProductMix.DataSource = p.ProductMixList;
+                rptProductMix.DataBind();
+            }
+        }
+
+        protected string GetOriginalPrice()
+        {
+            return Math.Round(CurrentProductInfo.Price,2).ToString();
         }
     }
 }

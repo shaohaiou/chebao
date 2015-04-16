@@ -316,7 +316,8 @@ namespace Chebao.Components
                 ID = DataConvert.SafeInt(reader["ID"]),
                 ProductID = DataConvert.SafeInt(reader["ProductID"]),
                 UserID = DataConvert.SafeInt(reader["UserID"]),
-                Amount = DataConvert.SafeInt(reader["Amount"])
+                Amount = DataConvert.SafeInt(reader["Amount"]),
+                CabmodelStr = reader["CabmodelStr"] as string
             };
 
             return entity;

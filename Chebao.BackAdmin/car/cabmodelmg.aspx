@@ -143,7 +143,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="590" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
+        <table width="750" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
             <tr>
                 <td class="w40 bold">
                     查询：
@@ -177,7 +177,7 @@
                 </td>
             </tr>
         </table>
-        <table width="590" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblCabmodel">
+        <table width="750" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblCabmodel">
             <asp:Repeater ID="rptCabmodel" runat="server" OnItemDataBound="rptCabmodel_ItemDataBound">
                 <HeaderTemplate>
                     <tr class="bgbt">

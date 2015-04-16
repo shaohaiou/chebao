@@ -19,7 +19,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="920" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
+        <table width="940" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
             <tr>
                 <td class="w40 bold">
                     查询：
@@ -39,7 +39,7 @@
                 </td>
             </tr>
         </table>
-        <table width="920" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
+        <table width="940" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
             <asp:Repeater ID="rpadmin" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
@@ -49,7 +49,7 @@
                         <td class="w60">
                             联系人
                         </td>
-                        <td class="w100">
+                        <td class="w120">
                             联系方式
                         </td>
                         <td class="w200">
@@ -93,7 +93,8 @@
                         </td>
                         <td>
                             时间：<%#Eval("LastLoginTime", "{0:yyyy-MM-dd HH:mm}")%><br />
-                            IP:<%#Eval("LastLoginIP")%>
+                            IP:<%#Eval("LastLoginIP")%><br />
+                            次数：<%#Eval("LoginTimes") %>
                         </td>
                         <td class="lan5x">
                             <a class="btndel" href="userlist.aspx?id=<%#Eval("ID") %>&action=del&from=<%=UrlEncode(CurrentUrl) %>">

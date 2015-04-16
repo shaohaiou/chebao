@@ -46,8 +46,9 @@ img{border:0;}
 .header_nav li:hover{background:url(../images/headnavcur.png) no-repeat bottom center;}
 .navcurrent{background:url(../images/headnavcur.png) no-repeat bottom center;}
 .header_navinfo{position:absolute;width:240px;height:88px;right:0px;bottom:-4px;color:White;background:url(../images/headnavinfobg.jpg) no-repeat;}
-.navinfo_user,.navinfo_opt{width:240px;display:block;height:44px;line-height: 44px;text-align: center;}
+.navinfo_user,.navinfo_opt{width:240px;display:block;height:44px;line-height: 44px;text-align: center;position:relative;}
 .navinfo_opt a{color:White;}
+.cccx{position: absolute;top: -5px; left: 154px; margin: 0; line-height: 14px;}
 .my_garage_1{padding-right:10px;position:relative;}
 .my_garage .my_garage_1,.my_garage a:hover{color:#fff;text-decoration:none;}
 .my_garage .my_garage_1{}

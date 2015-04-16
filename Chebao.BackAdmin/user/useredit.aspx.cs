@@ -74,10 +74,16 @@ namespace Chebao.BackAdmin.user
                 SetSelectedByText(ddlProvince, admin.Province);
                 ddlProvince_SelectedIndexChanged(null, null);
                 SetSelectedByText(ddlCity, admin.City);
-                ddlCity_SelectedIndexChanged(null,null);
+                ddlCity_SelectedIndexChanged(null, null);
                 SetSelectedByText(ddlDistrict, admin.District);
             }
             txtPostCode.Value = admin.PostCode;
+            txtDiscountM.Text = admin.DiscountM.ToString();
+            txtDiscountY.Text = admin.DiscountY.ToString();
+            txtDiscountH.Text = admin.DiscountH.ToString();
+            txtAdditemW.Text = admin.AdditemW.ToString();
+            txtAdditemF.Text = admin.AdditemF.ToString();
+            cbxSizeView.Checked = admin.SizeView > 0;
         }
 
         /// <summary>
@@ -105,7 +111,13 @@ namespace Chebao.BackAdmin.user
             if (ddlCity.SelectedIndex > 0)
                 admin.City = ddlCity.SelectedItem.Text;
             if (ddlDistrict.SelectedIndex > 0)
-                admin.District = ddlDistrict.SelectedItem.Text;
+                ddlDistrict.SelectedItem.Text = admin.District;
+            admin.DiscountM = DataConvert.SafeDecimal(txtDiscountM.Text);
+            admin.DiscountY = DataConvert.SafeDecimal(txtDiscountY.Text);
+            admin.DiscountH = DataConvert.SafeDecimal(txtDiscountH.Text);
+            admin.AdditemW = DataConvert.SafeDecimal(txtAdditemW.Text);
+            admin.AdditemF = DataConvert.SafeDecimal(txtAdditemF.Text);
+            admin.SizeView = cbxSizeView.Checked ? 1 : 0;
         }
 
         /// <summary>

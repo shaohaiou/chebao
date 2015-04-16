@@ -76,25 +76,37 @@
                     订单信息：
                 </td>
                 <td>
-                    <asp:Repeater runat="server" ID="rptData">
+                    <asp:Repeater runat="server" ID="rptData" OnItemDataBound="rptData_ItemDataBound">
                         <HeaderTemplate>
-                            <ul style="width:900px;background-color:#deeffb;font-weight:bold;height:16px;padding:2px 0 0 2px">
-                                <li class="fll w200">产品名称</li>
-                                <li class="fll w100">Lamda型号</li>
-                                <li class="fll w60">规格</li>
+                            <ul style="width: 940px; background-color: #9BD1F7; font-weight: bold; height: 16px;
+                                padding: 2px 0 0 2px">
+                                <li class="fll w300">产品名称/型号</li>
                                 <li class="fll w40">数量</li>
                                 <li class="fll w100">单价</li>
-                                <li class="fll" style="width:400px">留言</li>
+                                <li class="fll w100">折扣/组合单价</li>
+                                <li class="fll" style="width: 400px">留言</li>
                             </ul>
                         </HeaderTemplate>
                         <ItemTemplate>
-                            <ul style="width:900px;height:16px;">
-                                <li class="fll w200" style="height:16px;"><%# Eval("ProductName")%></li>
-                                <li class="fll w100" style="height:16px;"><%# Eval("ModelNumber")%></li>
-                                <li class="fll w60" style="height:16px;"><%# Eval("Standard")%></li>
-                                <li class="fll w40 tc" style="height:16px;"><%# Eval("Amount")%></li>
-                                <li class="fll w100" style="height:16px;"><%# Chebao.Tools.StrHelper.FormatMoney(Eval("Price").ToString())%></li>
-                                <li class="fll" style="width:400px"><%#Eval("Remark") %></li>
+                            <ul style="width: 942px; height: 16px;">
+                                <li class="fll">
+                                    <div style="background-color: #D2EBFC;width:540px;">
+                                        <%# Eval("ProductName")%><span class="gray">
+                                            <%#Eval("CabmodelStr")%></span></div>
+                                    <asp:Repeater runat="server" ID="rptProductMix">
+                                        <ItemTemplate>
+                                            <div class="pl10">
+                                                <span style="width: 290px; display: table-cell;">
+                                                    <%#Eval("Name") %></span> <span class="w40" style="display: table-cell;">
+                                                        <%#Eval("Amount") %></span> <span class="w100" style="display: table-cell;">
+                                                            <%= GetOriginalPrice()%></span> <span class="w100" style="display: table-cell;">
+                                                                <%#Eval("Price")%></span>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </li>
+                                <li class="fll" style="width: 400px">
+                                    <%#Eval("Remark") %>&nbsp;</li>
                             </ul>
                         </ItemTemplate>
                     </asp:Repeater>

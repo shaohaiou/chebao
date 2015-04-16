@@ -25,7 +25,8 @@
                 <span class="navinfo_user">
                     <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
                         class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
-                            class="ml10">我的订单</a></span>
+                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
+                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
             </div>
         </div>
     </div>

@@ -73,6 +73,7 @@
     <Compile Include="Entity\OrderInfo.cs" />
     <Compile Include="Entity\OrderProductInfo.cs" />
     <Compile Include="Entity\ProductInfo.cs" />
+    <Compile Include="Entity\ProductMixInfo.cs" />
     <Compile Include="Entity\ProvinceInfo.cs" />
     <Compile Include="Entity\ShoppingTrolleyInfo.cs" />
     <Compile Include="Entity\ShowUrl.cs" />
