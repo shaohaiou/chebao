@@ -97,7 +97,7 @@ namespace Chebao.Components
                 string from = GetString("from");
                 if (!string.IsNullOrEmpty(from))
                 {
-                    return System.Web.HttpUtility.UrlDecode(from);
+                    return UrlDecode(from);
                 }
                 return string.Empty;
             }

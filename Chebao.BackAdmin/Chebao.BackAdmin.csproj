@@ -856,6 +856,7 @@
     <Content Include="checkcode.ashx" />
     <Content Include="checkadmin.ashx" />
     <Content Include="cutimage.ashx" />
+    <None Include="App_Data\订单模板.xls" />
     <None Include="css\font_1404888168_2057645.eot" />
     <None Include="css\font_1404888168_2057645.ttf" />
     <None Include="css\font_1404888168_2057645.woff" />

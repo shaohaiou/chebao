@@ -100,7 +100,6 @@
                     },
                     success: function (data) {
                         if (data.Value == "success") {
-                            alert("已成功加入购物车！");
                             location.href = location.href.replace("#", "");
 //                            location.href = "addproductsucceed.aspx";
                         }

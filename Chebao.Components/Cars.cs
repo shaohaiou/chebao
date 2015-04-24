@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Chebao.Tools;
+using System.Collections.Specialized;
 
 namespace Chebao.Components
 {
@@ -219,15 +220,15 @@ namespace Chebao.Components
                     foreach (RemoteProductInfo rp in rplist)
                     {
                         if (deelModelNumber.Contains(rp.ModelNumber)) continue;
-                        if (plist.Exists(p =>rp.ModelNumber.StartsWith(p.ModelNumber)))
+                        if (plist.Exists(p => rp.ModelNumber.StartsWith(p.ModelNumber)))
                         {
                             ProductInfo pinfo = plist.Find(p => rp.ModelNumber.StartsWith(p.ModelNumber));
-                            deelModelNumber.AddRange(rplist.FindAll(p=>p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p=>p.ModelNumber));
+                            deelModelNumber.AddRange(rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber));
                             if (string.IsNullOrEmpty(pinfo.ProductMixStr))
                                 pinfo.ProductMixStr = string.Join("|", rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber + "," + p.Stock));
                             else
                             {
-                                List<KeyValuePair<string, int>> pm = new List<KeyValuePair<string,int>>();
+                                List<KeyValuePair<string, int>> pm = new List<KeyValuePair<string, int>>();
                                 pm.AddRange(pinfo.ProductMix);
                                 foreach (RemoteProductInfo rpi in rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)))
                                 {
@@ -237,7 +238,7 @@ namespace Chebao.Components
                                         pm.Add(new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock));
                                 }
 
-                                pinfo.ProductMixStr = string.Join("|",pm.Select(p=>p.Key + "," + p.Value));
+                                pinfo.ProductMixStr = string.Join("|", pm.Select(p => p.Key + "," + p.Value));
                             }
                             pinfo.StockLastUpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                             UpdateProduct(pinfo);
@@ -351,9 +352,41 @@ namespace Chebao.Components
             GetOrderList(true);
         }
 
-        public void UpdateOrderStatus(string ids, OrderStatus status)
+        public string UpdateOrderStatus(string ids, OrderStatus status)
         {
+            StringBuilder strResult = new StringBuilder();
+            OrderInfo order = GetOrder(DataConvert.SafeInt(ids), true);
+            if (order != null)
+            {
+                string url = "http://yd.lamda.us/admin/ck.asp";
+                if (status == OrderStatus.已发货 || (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货))
+                {
+                    string t = "c";
+                    if (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货)
+                        t = "r";
+                    foreach (OrderProductInfo p in order.OrderProducts)
+                    {
+                        foreach (ProductMixInfo pm in p.ProductMixList)
+                        {
+                            List<string> query = new List<string>();
+                            query.Add("ld=" + pm.Name);
+                            query.Add("sl=" + pm.Amount.ToString());
+                            query.Add("kf=" + order.UserName);
+                            query.Add("t=" + t);
+                            query.Add("id=fdskjgbdsfjbg56514zfhg");
+                            if (!Http.GetPage(url + "?" + string.Join("&",query),0))
+                            {
+                                if (string.IsNullOrEmpty(strResult.ToString())) strResult.AppendLine("产品");
+                                strResult.AppendLine(pm.Name);
+                            }
+                        }
+                    }
+                    if(!string.IsNullOrEmpty(strResult.ToString()))
+                        strResult.AppendLine("库存同步失败，请手动同步库存。");
+                }
+            }
             CommonDataProvider.Instance().UpdateOrderStatus(ids, status);
+            return strResult.ToString();
         }
 
         #endregion

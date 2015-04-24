@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.IO;
+using System.Collections.Specialized;
 
 namespace Chebao.Tools
 {
@@ -33,8 +34,46 @@ namespace Chebao.Tools
                 }
                 myHttpWebResponse1.Close();
             }
-            catch { }
+            catch 
+            {
+
+            }
             return (content);
+
+        }
+        public static bool GetPage(string url, int trytimes)
+        {
+            bool result = true;
+            try
+            {
+                string content = string.Empty;
+                HttpWebRequest myHttpWebRequest1 = (HttpWebRequest)WebRequest.Create(url);
+                myHttpWebRequest1.KeepAlive = false;
+                HttpWebResponse myHttpWebResponse1;
+
+                myHttpWebResponse1 = (HttpWebResponse)myHttpWebRequest1.GetResponse();
+                System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
+                Stream streamResponse = myHttpWebResponse1.GetResponseStream();
+                StreamReader streamRead = new StreamReader(streamResponse, utf8);
+                Char[] readBuff = new Char[256];
+                int count = streamRead.Read(readBuff, 0, 256);
+                while (count > 0)
+                {
+                    String outputData = new String(readBuff, 0, count);
+                    content += outputData;
+                    count = streamRead.Read(readBuff, 0, 256);
+                }
+                myHttpWebResponse1.Close();
+            }
+            catch
+            {
+                if (trytimes < 3)
+                {
+                    trytimes++;
+                    result = GetPage(url, trytimes);
+                }
+            }
+            return result;
 
         }
 
@@ -301,6 +340,28 @@ namespace Chebao.Tools
         public static string Post(string postData, string xhttpUrl, string encoding)
         {
             return Post(postData, xhttpUrl, false, encoding);
+        }
+
+        public static bool PostData(NameValueCollection postVars, string url, int trytimes = 0)
+        {
+            bool result = true;
+            try
+            {
+                WebClient wc = new WebClient();
+                wc.UploadValues(url, "POST", postVars);
+                wc.Dispose();
+            }
+            catch
+            {
+                if (trytimes < 3)
+                {
+                    trytimes++;
+                    result = PostData(postVars, url, trytimes);
+                }
+                else
+                    result = false;
+            }
+            return result;
         }
 
         #endregion

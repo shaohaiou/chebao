@@ -59,13 +59,43 @@ namespace Chebao.BackAdmin.order
                             status = OrderStatus.未收款;
                             break;
                     }
-                    Cars.Instance.UpdateOrderStatus(GetString("ids"), status);
+                    string syncResult = Cars.Instance.UpdateOrderStatus(GetString("ids"), status);
                     Cars.Instance.ReloadOrder();
+                    if (!string.IsNullOrEmpty(syncResult))
+                        Session["syncResult"] = syncResult;
                     Response.Redirect(FromUrl);
                     Response.End();
                 }
                 BindControler();
                 LoadData();
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(hdnAction.Value) && !string.IsNullOrEmpty(hdnId.Value))
+                {
+                    OrderStatus status = OrderStatus.未收款;
+                    switch (hdnAction.Value)
+                    {
+                        case "gather":
+                            status = OrderStatus.已收款;
+                            break;
+                        case "consignment":
+                            status = OrderStatus.已发货;
+                            break;
+                        case "cancel":
+                            status = OrderStatus.已取消;
+                            break;
+                        default:
+                            status = OrderStatus.未收款;
+                            break;
+                    }
+                    string syncResult = Cars.Instance.UpdateOrderStatus(hdnId.Value, status);
+                    Cars.Instance.ReloadOrder();
+                    if (!string.IsNullOrEmpty(syncResult))
+                        Session["syncResult"] = syncResult;
+                    Response.Redirect(UrlDecode(hdnFrom.Value));
+                    Response.End();
+                }
             }
         }
 
@@ -154,6 +184,14 @@ namespace Chebao.BackAdmin.order
             if (!string.IsNullOrEmpty(GetString("timee")))
             {
                 txtDateE.Text = GetString("timee");
+            }
+
+            hdnFrom.Value = UrlEncode(CurrentUrl);
+
+            if (Session["syncResult"] != null && !string.IsNullOrEmpty(Session["syncResult"].ToString()))
+            {
+                hdnSyncresult.Value = Session["syncResult"].ToString();
+                Session.Remove("syncResult");
             }
         }
 
@@ -249,62 +287,63 @@ namespace Chebao.BackAdmin.order
 
                 int index = 6;
                 Regex r = new Regex(@"([mhywf]+)");
-                foreach (OrderProductInfo p in order.OrderProducts)
+                List<OrderProductInfo> plist = order.OrderProducts.OrderBy(p => p.ProductName).ToList();
+                foreach (OrderProductInfo p in plist)
                 {
-                    bool firstmix = true;
-                    if (p.ProductMixList.Count > 0)
+                    try
                     {
-                        sheet.AddMergedRegion(new NPOI.SS.Util.CellRangeAddress(index, index + p.ProductMixList.Count - 1, 15, 15));
-                    }
-                    foreach (ProductMixInfo pi in p.ProductMixList)
-                    {
-                        string ptname = string.Empty;
-                        if (pi.Name.ToLower().IndexOf("m") > 0) ptname = "盘式刹车片";
-                        else if (pi.Name.ToLower().IndexOf("y") > 0) ptname = "高端陶瓷刹车片";
-                        else if (pi.Name.ToLower().IndexOf("h") > 0) ptname = "高端陶瓷（ＯＥ配置）";
-                        string[] cabmodel = p.CabmodelStr.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                        sheet.GetRow(index).Cells[0].SetCellValue(p.ProductName);
-                        sheet.GetRow(index).Cells[1].SetCellValue(ptname);
-                        sheet.GetRow(index).Cells[2].SetCellValue(p.ModelNumber);
-                        sheet.GetRow(index).Cells[3].SetCellValue(pi.Name);
-                        if (cabmodel.Length > 0)
+                        List<ProductMixInfo> pmlist = p.ProductMixList.OrderBy(m => m.Name).ToList();
+                        foreach (ProductMixInfo pi in pmlist)
                         {
-                            string brand = string.Empty;
-                            if (cabmodel.Length == 5)
-                                brand = cabmodel[2];
-                            else if (cabmodel.Length > 5)
+                            HSSFRow row = (HSSFRow)sheet.CreateRow(index);
+                            string ptname = string.Empty;
+                            if (pi.Name.ToLower().IndexOf("m") > 0) ptname = "盘式刹车片";
+                            else if (pi.Name.ToLower().IndexOf("y") > 0) ptname = "高端陶瓷刹车片";
+                            else if (pi.Name.ToLower().IndexOf("h") > 0) ptname = "高端陶瓷（ＯＥ配置）";
+                            string[] cabmodel = p.CabmodelStr.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                            row.CreateCell(0).SetCellValue(p.ProductName);
+                            row.CreateCell(1).SetCellValue(ptname);
+                            row.CreateCell(2).SetCellValue(pi.Name);
+                            row.CreateCell(3).SetCellValue(p.ModelNumber);
+                            if (cabmodel.Length > 0)
                             {
-                                for (int i = 2; i < cabmodel.Length - 2; i++)
+                                string brand = string.Empty;
+                                if (cabmodel.Length == 5)
+                                    brand = cabmodel[2];
+                                else if (cabmodel.Length > 5)
                                 {
-                                    brand = brand + cabmodel[i];
+                                    for (int i = 2; i < cabmodel.Length - 2; i++)
+                                    {
+                                        brand = brand + cabmodel[i];
+                                    }
                                 }
+                                row.CreateCell(4).SetCellValue(brand);
+                                row.CreateCell(5).SetCellValue(cabmodel[cabmodel.Length - 2]);
+                                row.CreateCell(6).SetCellValue(cabmodel[cabmodel.Length - 1]);
+                                row.CreateCell(7).SetCellValue(cabmodel[1]);
                             }
-                            sheet.GetRow(index).Cells[4].SetCellValue(brand);
-                            sheet.GetRow(index).Cells[5].SetCellValue(cabmodel[cabmodel.Length - 2]);
-                            sheet.GetRow(index).Cells[6].SetCellValue(cabmodel[cabmodel.Length - 1]);
-                            sheet.GetRow(index).Cells[7].SetCellValue(cabmodel[1]);
-                        }
-                        sheet.GetRow(index).Cells[8].SetCellValue(order.UserName);
-                        sheet.GetRow(index).Cells[9].SetCellValue(p.ProductType == ProductType.前刹车片 ? "前" : (p.ProductType == ProductType.后刹车片 ? "后" : string.Empty));
-                        try
-                        {
-                            sheet.GetRow(index).Cells[10].SetCellValue(DateTime.Parse(order.AddTime).ToString("yyyy-M-d"));
-                        }
-                        catch { }
-                        sheet.GetRow(index).Cells[11].SetCellValue(!r.IsMatch(pi.Name.ToLower()) ? string.Empty : r.Match(pi.Name.ToLower()).Groups[1].Value.ToUpper());
-                        sheet.GetRow(index).Cells[12].SetCellValue(pi.Price);
-                        sheet.GetRow(index).Cells[13].SetCellValue(pi.Amount);
-                        sheet.GetRow(index).Cells[14].SetCellValue(pi.Sum);
-                        if (firstmix)
-                        {
-                            sheet.GetRow(index).Cells[15].SetCellValue(p.Remark);
-                            firstmix = false;
-                        }
-                        if (pi.Amount == 0)
-                        {
+                            else
+                            {
+                                row.CreateCell(4).SetCellValue(string.Empty);
+                                row.CreateCell(5).SetCellValue(string.Empty);
+                                row.CreateCell(6).SetCellValue(string.Empty);
+                                row.CreateCell(7).SetCellValue(string.Empty);
+                            }
+                            row.CreateCell(8).SetCellValue(order.UserName);
+                            row.CreateCell(9).SetCellValue(p.ProductType == ProductType.前刹车片 ? "前" : (p.ProductType == ProductType.后刹车片 ? "后" : string.Empty));
+                            try
+                            {
+                                row.CreateCell(10).SetCellValue(DateTime.Parse(order.AddTime).ToString("yyyy-M-d"));
+                            }
+                            catch { }
+                            row.CreateCell(11).SetCellValue(!r.IsMatch(pi.Name.ToLower()) ? string.Empty : r.Match(pi.Name.ToLower()).Groups[1].Value.ToUpper());
+                            row.CreateCell(12).SetCellValue(pi.Price);
+                            row.CreateCell(13).SetCellValue(pi.Amount);
+                            row.CreateCell(14).SetCellValue(pi.Sum);
+                            row.CreateCell(15).SetCellValue(string.Empty);
                             ICellStyle cellStyle = workbook.CreateCellStyle();
                             IFont font = workbook.CreateFont();
-                            font.Color = HSSFColor.Red.Index;
+                            font.Color = pi.Amount == 0 ? HSSFColor.Red.Index : HSSFColor.Black.Index;
                             cellStyle.SetFont(font);
                             cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
                             cellStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
@@ -318,9 +357,32 @@ namespace Chebao.BackAdmin.order
                             {
                                 sheet.GetRow(index).Cells[i].CellStyle = cellStyle;
                             }
+                            cellStyle = workbook.CreateCellStyle();
+                            font = workbook.CreateFont();
+                            font.Color = HSSFColor.Black.Index;
+                            cellStyle.SetFont(font);
+                            cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
+                            cellStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
+                            cellStyle.BorderBottom = NPOI.SS.UserModel.BorderStyle.Thin;
+                            cellStyle.BorderLeft = NPOI.SS.UserModel.BorderStyle.Thin;
+                            cellStyle.TopBorderColor = HSSFColor.Black.Index;
+                            cellStyle.RightBorderColor = HSSFColor.Black.Index;
+                            cellStyle.BottomBorderColor = HSSFColor.Black.Index;
+                            cellStyle.LeftBorderColor = HSSFColor.Black.Index;
+                            sheet.GetRow(index).Cells[15].CellStyle = cellStyle;
+                            index++;
                         }
-                        index++;
+                        if (p.ProductMixList.Count > 1)
+                        {
+                            sheet.AddMergedRegion(new NPOI.SS.Util.CellRangeAddress(index - p.ProductMixList.Count, index - 1, 15, 15));
+                        }
+                        sheet.GetRow(index - p.ProductMixList.Count).Cells[15].SetCellValue(p.Remark);
                     }
+                    catch
+                    {
+                        break;
+                    }
+
                 }
 
                 sheet.ForceFormulaRecalculation = true;

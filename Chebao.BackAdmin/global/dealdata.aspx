@@ -148,6 +148,5 @@
         <div class="loadingWord">
             <img src="/images/waiting.gif">正在处理，请稍候...</div>
     </div>
-    </form>
 </body>
 </html>
