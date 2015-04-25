@@ -8,7 +8,7 @@
 </head>
 <frameset rows="58,*" frameborder="no" border="0" framespacing="0">
   <frame src="main_s.aspx" name="sk" scrolling="No" noresize="noresize" id="sk" title="sk" />
-  <frame src="sqlexecute.aspx" name="ztk" id="ztk" title="ztk" />
+  <frame src="sitesetting.aspx" name="ztk" id="ztk" title="ztk" />
 </frameset>
 <noframes>
     <body>

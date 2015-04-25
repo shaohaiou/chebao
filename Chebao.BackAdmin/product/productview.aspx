@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="productview.aspx.cs" Inherits="Chebao.BackAdmin.product.productview" %>
-
+<%@ Register src="../uc/header.ascx" tagname="header" tagprefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,6 +9,7 @@
     <link href="../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
         rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.marquee.js" type="text/javascript"></script>
     <script src="../js/head3.js" type="text/javascript"></script>
     <script src="../js/jquery.jqzoom.js" type="text/javascript"></script>
     <script src="../js/base2.js" type="text/javascript"></script>
@@ -101,7 +102,7 @@
                     success: function (data) {
                         if (data.Value == "success") {
                             location.href = location.href.replace("#", "");
-//                            location.href = "addproductsucceed.aspx";
+                            //                            location.href = "addproductsucceed.aspx";
                         }
                         else {
                             alert(data.Msg);
@@ -223,26 +224,7 @@
 --></style>
 </head>
 <body>
-    <div class="header" id="head_01">
-        <div class="header_logo">
-            <img src="../images/headlogo.jpg" />
-        </div>
-        <div class="header_nav">
-            <ul>
-                <li><a href="javascript:void(0);">首页</a></li><li class="navcurrent"><a href="/product/products.aspx">
-                    产品查询</a></li><li><a href="javascript:void(0);">公司简介</a></li><li><a href="javascript:void(0);">
-                        联系我们</a></li><li><a href="/message/messageboard.aspx">纠错反馈有奖</a></li>
-            </ul>
-            <div class="header_navinfo">
-                <span class="navinfo_user">
-                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
-                        class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
-                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
-                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
-            </div>
-        </div>
-        <!--end-->
-    </div>
+    <uc1:header ID="header1" runat="server" CurrentTag="产品查询" />
     <div id="main">
         <div class="n_nav">
             当前位置：<a href="/product/products.aspx">首页</a> &gt;<a href="products.aspx?t=<%= (int)Product.ProductType %>"><%=Product.ProductType.ToString()%></a>
@@ -341,7 +323,8 @@
                         </dl>--%>
                         <div id="J_juValid" class="tb-action tb-clearfix ">
                             <div class="tb-btn-buy hide">
-                                <a href="javascript:void(0);" title="点击此按钮，到下一步确认购买信息" class="J_LinkBuy" pid="<%=Product.ID %>">立即购买</a></div>
+                                <a href="javascript:void(0);" title="点击此按钮，到下一步确认购买信息" class="J_LinkBuy" pid="<%=Product.ID %>">
+                                    立即购买</a></div>
                             <div class="tb-btn-add">
                                 <a href="javascript:void(0);" title="加入购物车" class="J_LinkAdd" pid="<%=Product.ID %>">
                                     <i class="tb-iconfont">ŭ</i>加入购物车</a></div>

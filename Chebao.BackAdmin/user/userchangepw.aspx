@@ -1,34 +1,21 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="userchangepw.aspx.cs" Inherits="Chebao.BackAdmin.user.userchangepw" %>
-
+<%@ Register src="../uc/header.ascx" tagname="header" tagprefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>修改密码</title>
-    <link href=../css/style2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet" type="text/css" />
-    <link href=../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet" type="text/css" />
-    <link href=../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %> rel="stylesheet"
-        type="text/css" />
+    <link href="../css/style2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
+    <link href="../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
+    <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+        rel="stylesheet" type="text/css" />
+    <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.marquee.js" type="text/javascript"></script>
 </head>
 <body>
-    <div class="header" id="head_01">
-        <div class="header_logo">
-            <img src="../images/headlogo.jpg" />
-        </div>
-        <div class="header_nav">
-            <ul>
-                <li><a href="javascript:void(0);">首页</a></li><li><a href="/product/products.aspx">产品查询</a></li><li>
-                    <a href="javascript:void(0);">公司简介</a></li><li><a href="javascript:void(0);">联系我们</a></li><li>
-                        <a href="javascript:void(0);">纠错反馈有奖</a></li>
-            </ul>
-            <div class="header_navinfo">
-                <span class="navinfo_user">
-                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
-                        class="ml40" href="/user/userchangepw.aspx">修改密码</a></span>
-            </div>
-        </div>
-        <!--end-->
-    </div>
+    <uc1:header id="header1" runat="server" />
     <div id="main">
         <div id="member">
             <div class="list">
@@ -49,7 +36,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="text-align: right;width: 130px;">
+                                <td style="text-align: right; width: 130px;">
                                     新密码：
                                 </td>
                                 <td>
@@ -59,7 +46,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="text-align: right;width: 130px;">
+                                <td style="text-align: right; width: 130px;">
                                     重复新密码：
                                 </td>
                                 <td style="text-align: left;">
@@ -71,7 +58,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td style="text-align: right;width: 130px;">
+                                <td style="text-align: right; width: 130px;">
                                     <asp:Literal ID="lerrorMes" runat="server"></asp:Literal>
                                 </td>
                                 <td style="text-align: left;">

@@ -32,5 +32,7 @@ namespace Chebao.Components
         public static readonly string DISTRICT_LIST = "cache-district";   //地区缓存键值
 
         public static readonly string SEARCHCABMODELID = "cache-searchcabmodelid";   //产品搜索id
+
+        public static readonly string SITESETTING_KEY = "cache-sitesetting";   //站点设置缓存键值
     }
 }

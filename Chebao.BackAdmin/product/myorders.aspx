@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myorders.aspx.cs" Inherits="Chebao.BackAdmin.product.myorders" %>
-
+<%@ Register src="../uc/header.ascx" tagname="header" tagprefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -9,6 +9,7 @@
     <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
         rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.marquee.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         var pageindex = 1;
         var pagecount = <%=PageCount %>;
@@ -58,25 +59,7 @@
     </script>
 </head>
 <body>
-    <div class="header" id="head_01">
-        <div class="header_logo">
-            <img src="../images/headlogo.jpg" />
-        </div>
-        <div class="header_nav">
-            <ul>
-                <li><a href="javascript:void(0);">首页</a></li><li><a href="/product/products.aspx">产品查询</a></li><li>
-                    <a href="javascript:void(0);">公司简介</a></li><li><a href="javascript:void(0);">联系我们</a></li><li>
-                        <a href="/message/messageboard.aspx">纠错反馈有奖</a></li>
-            </ul>
-            <div class="header_navinfo">
-                <span class="navinfo_user">
-                    <%= AdminName %>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
-                        class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
-                            class="ml10">我的订单</a><%if (Admin.SizeView > 0)
-                                                   { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
-            </div>
-        </div>
-    </div>
+    <uc1:header ID="header1" runat="server" />
     <div id="main">
         <div class="buy-content">
             <div class="buy-order-field" data-spm="3" id="J_Order">
@@ -86,8 +69,10 @@
                     <ItemTemplate>
                         <div style="padding-left: 10px; color: #3d3d3d; margin-top: 10px;">
                             <span style="font-weight: bold;">
-                                <%#Eval("AddTime") %></span>&nbsp; 订单号：<%#Eval("OrderNumber") %>&nbsp; 订单状态：<%#Eval("OrderStatus").ToString() == "未收款" ? "未付款" : Eval("OrderStatus").ToString()%><a href="?action=cancel&id=<%#Eval("ID") %>" class="pl10 cancel <%#Eval("OrderStatus").ToString() == "未收款" ? "" : "hide" %>" style="color:Blue;">取消订单</a><span style="float: right;
-                                    padding-right: 20px;">订单金额：<em style="color: #F50"><%#Eval("TotalFee") %></em></span></div>
+                                <%#Eval("AddTime") %></span>&nbsp; 订单号：<%#Eval("OrderNumber") %>&nbsp; 订单状态：<%#Eval("OrderStatus").ToString() == "未收款" ? "未付款" : Eval("OrderStatus").ToString()%><a
+                                    href="?action=cancel&id=<%#Eval("ID") %>" class="pl10 cancel <%#Eval("OrderStatus").ToString() == "未收款" ? "" : "hide" %>"
+                                    style="color: Blue;">取消订单</a><span style="float: right; padding-right: 20px;">订单金额：<em
+                                        style="color: #F50"><%#Eval("TotalFee") %></em></span></div>
                         <div style="padding-left: 20px;">
                             <div class="buy-th-line clearfix" style="margin-top: 0;">
                                 <span class="buy-th-title">商品</span> <span class="buy-th-price">单价(元)</span> <span

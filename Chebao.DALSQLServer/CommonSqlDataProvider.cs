@@ -911,5 +911,74 @@ namespace Chebao.DALSQLServer
         }
 
         #endregion
+
+        #region 站点设置
+
+        public override void AddSitesetting(SitesettingInfo entity)
+        {
+            string sql = @"
+                INSERT INTO Chebao_SiteSetting(
+                    [Notice]
+                    ,[CorpIntroduce]
+                    ,[Contact]
+                    ,[PropertyNames]
+                    ,[PropertyValues]
+                )VALUES(
+                    @Notice
+                    ,@CorpIntroduce
+                    ,@Contact
+                    ,@PropertyNames
+                    ,@PropertyValues
+                )";
+
+            SerializerData data = entity.GetSerializerData();
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@Notice",entity.Notice),
+                new OleDbParameter("@CorpIntroduce",entity.CorpIntroduce),
+                new OleDbParameter("@Contact",entity.Contact),
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override void UpdateSitesetting(SitesettingInfo entity)
+        {
+            string sql = @"
+                UPDATE Chebao_SiteSetting SET
+                    [Notice] = @Notice
+                    ,[CorpIntroduce] = @CorpIntroduce
+                    ,[Contact] = @Contact
+                    ,[PropertyNames] = @PropertyNames
+                    ,[PropertyValues] = @PropertyValues";
+
+            SerializerData data = entity.GetSerializerData();
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@Notice",entity.Notice),
+                new OleDbParameter("@CorpIntroduce",entity.CorpIntroduce),
+                new OleDbParameter("@Contact",entity.Contact),
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override SitesettingInfo GetSitesetting()
+        {
+            string sql = "select * from Chebao_SiteSetting";
+            SitesettingInfo setting = null;
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                if (reader.Read())
+                {
+                    setting = PopulateSitesetting(reader);
+                }
+            }
+            return setting;
+        }
+
+        #endregion
     }
 }

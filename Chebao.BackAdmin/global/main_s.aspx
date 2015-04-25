@@ -15,12 +15,13 @@
 
 <body style="background:url(../images/xdd.gif) repeat-x;">
 <div class="right_nav">
-     <a href="sqlexecute.aspx" target="ztk" id="sqlexecute" runat="server" class="current">执行sql</a>
+     <a href="sitesetting.aspx" target="ztk" id="sitesetting" runat="server" class="current">站点设置</a>
+     <a href="sqlexecute.aspx" target="ztk" id="sqlexecute" runat="server">执行sql</a>
      <a href="dealdata.aspx" target="ztk" id="dealdata" runat="server">数据处理</a>
 </div>
 
 <div class="r_sy" id="daohan">
-	当前位置：系统设置 &gt;&gt; <span id="daohan_sp">执行sql </span>
+	当前位置：系统设置 &gt;&gt; <span id="daohan_sp">站点设置 </span>
 </div>
 </body>
 <script language="javascript" type="text/javascript">

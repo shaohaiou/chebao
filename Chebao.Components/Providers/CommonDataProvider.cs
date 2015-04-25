@@ -441,5 +441,33 @@ namespace Chebao.Components
         public abstract void ExecuteSql(string sql);
 
         #endregion
+
+        #region 站点设置
+
+
+        public abstract void AddSitesetting(SitesettingInfo entity);
+
+        public abstract void UpdateSitesetting(SitesettingInfo entity);
+
+        public abstract SitesettingInfo GetSitesetting();
+
+        protected SitesettingInfo PopulateSitesetting(IDataReader reader)
+        {
+            SitesettingInfo entity = new SitesettingInfo
+            {
+                Notice = reader["Notice"] as string,
+                CorpIntroduce = reader["CorpIntroduce"] as string,
+                Contact = reader["Contact"] as string
+            };
+
+            SerializerData data = new SerializerData();
+            data.Keys = reader["PropertyNames"] as string;
+            data.Values = reader["PropertyValues"] as string;
+            entity.SetSerializerData(data);
+
+            return entity;
+        }
+
+        #endregion
     }
 }

@@ -75,7 +75,7 @@ img{border:0;}
     filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#ddd');
 }
 /*head_css*/
-#head_01{background:url(../images/headbg.jpg) repeat-x;height:230px;width:100%;}
+#head_01{background:url(../images/headbg.jpg) repeat-x;height:240px;width:100%;background-color: black;}
 .headTop{background:#f0f0f0;width:100%;height:28px;line-height:28px;}
 #head_user_info{position:relative;z-index:301;}
 .top_hover{width:1190px;margin:0 auto;height:0;line-height:28px;position:relative;z-index:302;}
