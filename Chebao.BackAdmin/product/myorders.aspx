@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myorders.aspx.cs" Inherits="Chebao.BackAdmin.product.myorders" %>
-<%@ Register src="../uc/header.ascx" tagname="header" tagprefix="uc1" %>
+
+<%@ Register Src="../uc/header.ascx" TagName="header" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -10,6 +11,7 @@
         rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
+    <script src="../js/ajaxupload.js" type="text/javascript"></script>
     <script language="javascript" type="text/javascript">
         var pageindex = 1;
         var pagecount = <%=PageCount %>;
@@ -22,6 +24,64 @@
             $(".cancel").click(function(){
                 return confirm("确定要取消此订单吗？");
             });
+
+            $(".uploadbtpics").each(function () {
+                var imgpath_pics;
+                var button1 = $(this), interval1;
+                new AjaxUpload(button1, {
+                    action: '/cutimage.ashx',
+                    name: 'picfile',
+                    responseType: 'json',
+                    data: { action: 'customerupload' },
+                    onSubmit: function (file, ext) {
+                        if (!(ext && /^(jpg|png|jpeg|gif)$/i.test(ext))) {
+                            alert('只能上传图片！');
+                            return false;
+                        }
+                        button1.val('上传中');
+                        this.disable();
+                        interval1 = window.setInterval(function () {
+                            var text = button1.val();
+                            if (text.length < 13) {
+                                button1.val(text + '.');
+                            } else {
+                                button1.val('上传中');
+                            }
+                        }, 200);
+                    },
+                    onComplete: function (file, response) {
+                        button1.val('修改图片');
+                        window.clearInterval(interval1);
+                        this.enable();
+
+                        var img = button1.parent().prev().find("img");
+                        var id = button1.prev().val();
+                        $.ajax({
+                            url: "/remoteaction.ashx",
+                            data: { action: "updateorderpic",col:"remittanceadvice", id: id, src: response.src, d: new Date() },
+                            type: 'GET',
+                            dataType: "json",
+                            error: function (msg) {
+                                alert("发生错误");
+                            },
+                            success: function (data) {
+                                img.attr("src",response.src);
+                            }
+                        });
+                    }
+                });
+            });
+            $(".img").click(function(){
+                if($(this).attr("src") != "../images/nopic.png"){
+                    $("#flay img").attr("src",$(this).attr("src"));
+                    $("#flay").fadeIn();
+                    $("#flay img").css("margin-top",parseInt(($(window).height() - $("#flay img").height()) / 2) + "px");
+                }
+            });
+            $("#flay img").click(function(){
+                $("#flay").fadeOut();
+            });
+            $("#flay").width($(document).width()).height($(window).height());
         })
 
         function GetMore() { 
@@ -129,6 +189,24 @@
                                 </ItemTemplate>
                             </asp:Repeater>
                         </div>
+                        <div class="blue-line order-pic">
+                            <ul>
+                                <li><a href="javascript:void(0);" class="order-pic-info">
+                                    <img class="img" src="<%#string.IsNullOrEmpty(Eval("PicRemittanceAdvice") as string) ? "../images/nopic.png" : Eval("PicRemittanceAdvice").ToString() %>"
+                                        alt="汇款单" />汇款单</a> <span class="order-pic-opt"><input type="hidden" value="<%#Eval("ID") %>" />
+                                            <input type="button" value="<%#string.IsNullOrEmpty(Eval("PicRemittanceAdvice") as string) ? "上传图片" : "修改图片" %>"
+                                                class="an3<%# Eval("OrderStatus").ToString() == "未收款" ? string.Empty : " hide" %> uploadbtpics" /></span></li>
+                                <li><a href="javascript:void(0);" class="order-pic-info">
+                                    <img class="img" src="<%#string.IsNullOrEmpty(Eval("PicInvoice") as string) ? "../images/nopic.png" : Eval("PicInvoice").ToString() %>"
+                                        alt="发货单" />发货单</a> <span class="order-pic-opt">&nbsp;</span></li>
+                                <li><a href="javascript:void(0);" class="order-pic-info">
+                                    <img class="img" src="<%#string.IsNullOrEmpty(Eval("PicListItem") as string) ? "../images/nopic.png" : Eval("PicListItem").ToString() %>"
+                                        alt="清单" />清单</a> <span class="order-pic-opt">&nbsp;</span></li>
+                                <li><a href="javascript:void(0);" class="order-pic-info">
+                                    <img class="img" src="<%#string.IsNullOrEmpty(Eval("PicBookingnote") as string) ? "../images/nopic.png" : Eval("PicBookingnote").ToString() %>"
+                                        alt="托运单" />托运单</a> <span class="order-pic-opt">&nbsp;</span></li>
+                            </ul>
+                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
                 <%if (PageCount > 1)
@@ -145,4 +223,7 @@
         </div>
     </div>
 </body>
+    <div id="flay" style="display:none;position:fixed;top:0;left:0;z-index:999;text-align:center;">
+        <img src=""/>
+    </div>
 </html>

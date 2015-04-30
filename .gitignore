@@ -30,3 +30,4 @@ $tf*/
 *.bak
 *.del
 */log/*
+*/customerupload/*

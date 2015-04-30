@@ -729,6 +729,10 @@ namespace Chebao.DALSQLServer
                     ,[TotalFee]
                     ,[AddTime]
                     ,[DeelTime]
+                    ,[PicRemittanceAdvice]
+                    ,[PicInvoice]
+                    ,[PicListItem]
+                    ,[PicBookingnote]
                 )VALUES(
                     @OrderNumber
                     ,@UserName
@@ -746,6 +750,10 @@ namespace Chebao.DALSQLServer
                     ,@TotalFee
                     ,@AddTime
                     ,@DeelTime
+                    ,@PicRemittanceAdvice
+                    ,@PicInvoice
+                    ,@PicListItem
+                    ,@PicBookingnote
                 )";
 
             OleDbParameter[] p = 
@@ -765,7 +773,11 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@OrderStatus",(int)entity.OrderStatus),
                 new OleDbParameter("@TotalFee",entity.TotalFee),
                 new OleDbParameter("@AddTime",entity.AddTime),
-                new OleDbParameter("@DeelTime",entity.DeelTime)
+                new OleDbParameter("@DeelTime",entity.DeelTime),
+                new OleDbParameter("@PicRemittanceAdvice",entity.PicRemittanceAdvice),
+                new OleDbParameter("@PicInvoice",entity.PicInvoice),
+                new OleDbParameter("@PicListItem",entity.PicListItem),
+                new OleDbParameter("@PicBookingnote",entity.PicBookingnote)
             };
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
         }
@@ -789,6 +801,30 @@ namespace Chebao.DALSQLServer
         {
             string sql = "UPDATE Chebao_Order SET [OrderStatus] = @OrderStatus,[DeelTime]=@DeelTime WHERE ID IN(" + ids + ")";
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter[] { new OleDbParameter("@OrderStatus", (int)status), new OleDbParameter("@DeelTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")) });
+        }
+
+        public override void UpdateOrderPic(int id, string src,string action)
+        {
+            string column = string.Empty;
+            switch (action)
+            {
+                case "remittanceadvice":
+                    column = "[PicRemittanceAdvice]";
+                    break;
+                case "invoice":
+                    column = "[PicInvoice]";
+                    break;
+                case "listitem":
+                    column = "[PicListItem]";
+                    break;
+                case "bookingnote":
+                    column = "[PicBookingnote]";
+                    break;
+                default:
+                    break;
+            }
+            string sql = "UPDATE Chebao_Order SET " + column + " = @Src WHERE ID =" + id;
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter("@Src", src));
         }
 
         #endregion

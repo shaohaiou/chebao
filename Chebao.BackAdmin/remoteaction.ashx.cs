@@ -58,6 +58,9 @@ namespace Chebao.BackAdmin
                 case "buyproduct":
                     BuyProduct();
                     break;
+                case "updateorderpic":
+                    UpdateOrderPic();
+                    break;
                 default:
                     result = string.Format(result, "fail", "非法操作");
                     break;
@@ -154,6 +157,28 @@ namespace Chebao.BackAdmin
             else
             {
                 result = string.Format(result, "fail", "执行失败，请刷新页面重新提交");
+            }
+        }
+
+        private void UpdateOrderPic()
+        {
+            if (ChebaoContext.Current.AdminUser == null)
+            {
+                result = string.Format(result, "fail", "非法用户");
+                return;
+            }
+            int id = WebHelper.GetInt("id");
+            string src= WebHelper.GetString("src");
+            string col = WebHelper.GetString("col");
+            if (id > 0 && !string.IsNullOrEmpty(src) && !string.IsNullOrEmpty(col))
+            {
+                Cars.Instance.UpdateOrderPic(id, src, col);
+                Cars.Instance.ReloadOrder();
+                result = string.Format(result, "success", "");
+            }
+            else
+            {
+                result = string.Format(result, "fail", "参数错误");
             }
         }
     }

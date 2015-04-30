@@ -131,6 +131,13 @@
     <Compile Include="global\dealdata.aspx.designer.cs">
       <DependentUpon>dealdata.aspx</DependentUpon>
     </Compile>
+    <Compile Include="global\notice.aspx.cs">
+      <DependentUpon>notice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="global\notice.aspx.designer.cs">
+      <DependentUpon>notice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="global\sitesetting.aspx.cs">
       <DependentUpon>sitesetting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -524,6 +531,7 @@
     <Content Include="global\contact.aspx" />
     <Content Include="global\corpintroduce.aspx" />
     <Content Include="global\dealdata.aspx" />
+    <Content Include="global\notice.aspx" />
     <Content Include="global\sitesetting.aspx" />
     <Content Include="global\sqlexecute.aspx" />
     <Content Include="images\back.png" />
@@ -552,6 +560,7 @@
     <Content Include="images\login\zmbg.png" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
+    <Content Include="images\nopic.png" />
     <Content Include="images\picc.png" />
     <Content Include="images\T1b1m3XkVpXXXXXXXX-32-32.gif" />
     <Content Include="images\T1ikEKFGpaXXax3mjl-190-25.png" />

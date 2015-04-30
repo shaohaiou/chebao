@@ -18,7 +18,7 @@
     </div>
     <div class="header_nav">
         <ul>
-            <li<%= CurrentTag == "首页" ? " class=\"navcurrent\"" : string.Empty %>><a href="javascript:void(0);">首页</a></li>
+            <li<%= CurrentTag == "公告" ? " class=\"navcurrent\"" : string.Empty %>><a href="/global/notice.aspx">公告</a></li>
             <li<%= CurrentTag == "产品查询" ? " class=\"navcurrent\"" : string.Empty %>><a href="/product/products.aspx">产品查询</a></li>
             <li<%= CurrentTag == "公司简介" ? " class=\"navcurrent\"" : string.Empty %>><a href="/global/corpintroduce.aspx">公司简介</a></li>
             <li<%= CurrentTag == "联系我们" ? " class=\"navcurrent\"" : string.Empty %>><a href="/global/contact.aspx">联系我们</a></li>
@@ -38,7 +38,7 @@
           { %>
         <span style="float: left;">公告：</span>
         <div style="margin-left: 36px; width: 725px; overflow: hidden;">
-            <marquee style="display: block; height: 30px;" scrollamount="2"><span id="noticecontent"><%= Sitesetting.Notice%></span></marquee>
+            <marquee style="display: block; height: 30px;" scrollamount="2"><span id="noticecontent"><a href="/global/notice.aspx" style="color:White;"><%= Sitesetting.Notice%></a></span></marquee>
         </div>
         <%} %>
     </div>

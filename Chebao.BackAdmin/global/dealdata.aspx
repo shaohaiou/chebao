@@ -139,6 +139,14 @@
                     <asp:Button ID="btnProductModelUpdate" runat="server" msg="确定要进行产品型号升阶吗？" Text="执行" CssClass="an1 btn" OnClick="btnProductModelUpdate_Click" />
                 </td>
             </tr>
+            <tr>
+                <td class="bg1">
+                    同步所有产品数据：
+                </td>
+                <td>
+                    <asp:Button ID="btnSyncProduct" runat="server" msg="确定要同步所有产品数据吗？" Text="执行" CssClass="an1 btn" OnClick="btnSyncProduct_Click" />
+                </td>
+            </tr>
         </tbody>
     </table>
     </form>

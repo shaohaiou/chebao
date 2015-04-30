@@ -348,6 +348,7 @@ namespace Chebao.BackAdmin.product
                 product = new ProductInfo();
                 FillData(product);
                 Cars.Instance.AddProduct(product);
+                Cars.Instance.RefreshProductStock(true);
             }
 
             Cars.Instance.ReloadProductListCache();

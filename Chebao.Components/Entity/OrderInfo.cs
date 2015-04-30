@@ -49,5 +49,25 @@ namespace Chebao.Components
         /// 处理时间
         /// </summary>
         public string DeelTime { get; set; }
+
+        /// <summary>
+        /// 汇款单图片
+        /// </summary>
+        public string PicRemittanceAdvice { get; set; }
+
+        /// <summary>
+        /// 发货单图片
+        /// </summary>
+        public string PicInvoice { get; set; }
+
+        /// <summary>
+        /// 清单图片
+        /// </summary>
+        public string PicListItem { get; set; }
+
+        /// <summary>
+        /// 托运单
+        /// </summary>
+        public string PicBookingnote { get; set; }
     }
 }

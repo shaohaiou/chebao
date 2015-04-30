@@ -12,6 +12,7 @@
         $(function () {
             CKEDITOR.replace('txtCorpIntroduce', { toolbar: 'Basic', height: 480 });
             CKEDITOR.replace('txtContact', { toolbar: 'Basic', height: 480 });
+            CKEDITOR.replace('txtNoticeDetail', { toolbar: 'Basic', height: 480 });
         });
     </script>
 </head>
@@ -23,10 +24,18 @@
         <tbody>
             <tr>
                 <td class="bg1">
-                    网站公告：
+                    公告标题：
                 </td>
                 <td>
                     <asp:TextBox runat="server" ID="txtNotice" CssClass="srk1"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td class="bg1">
+                    公告详细：
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="txtNoticeDetail" TextMode="MultiLine" CssClass="ckeditor"></asp:TextBox>
                 </td>
             </tr>
             <tr>

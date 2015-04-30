@@ -26,6 +26,7 @@ namespace Chebao.BackAdmin.global
                 txtNotice.Text = setting.Notice;
                 txtContact.Text = setting.Contact;
                 txtCorpIntroduce.Text = setting.CorpIntroduce;
+                txtNoticeDetail.Text = setting.NoticeDetail;
             }
         }
 
@@ -34,6 +35,7 @@ namespace Chebao.BackAdmin.global
             setting.Notice = txtNotice.Text;
             setting.Contact = txtContact.Text;
             setting.CorpIntroduce = txtCorpIntroduce.Text;
+            setting.NoticeDetail = txtNoticeDetail.Text;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

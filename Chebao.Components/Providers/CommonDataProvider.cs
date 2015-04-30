@@ -333,6 +333,8 @@ namespace Chebao.Components
 
         public abstract void UpdateOrderStatus(string ids, OrderStatus status);
 
+        public abstract void UpdateOrderPic(int id, string src,string action);
+
         protected OrderInfo PopulateOrder(IDataReader reader)
         {
             OrderInfo entity = new OrderInfo
@@ -353,7 +355,11 @@ namespace Chebao.Components
                 OrderStatus = (OrderStatus)(int)reader["OrderStatus"],
                 TotalFee = reader["TotalFee"] as string,
                 AddTime = reader["AddTime"] as string,
-                DeelTime = reader["DeelTime"] as string
+                DeelTime = reader["DeelTime"] as string,
+                PicRemittanceAdvice = reader["PicRemittanceAdvice"] as string,
+                PicInvoice = reader["PicInvoice"] as string,
+                PicListItem = reader["PicListItem"] as string,
+                PicBookingnote = reader["PicBookingnote"] as string,
             };
 
             entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);

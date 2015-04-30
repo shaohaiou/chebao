@@ -294,7 +294,7 @@ namespace Chebao.BackAdmin.global
 
         #endregion
 
-        #region btnProductModelUpdate_Click
+        #region 产品型号升阶
 
         public void btnProductModelUpdate_Click(object sender, EventArgs e)
         {
@@ -310,6 +310,16 @@ namespace Chebao.BackAdmin.global
                 }
             }
             Cars.Instance.ReloadProductListCache();
+        }
+
+        #endregion
+
+        #region 同步所有产品数据
+
+
+        protected void btnSyncProduct_Click(object sender, EventArgs e)
+        {
+            Cars.Instance.RefreshProductStock(true);
         }
 
         #endregion

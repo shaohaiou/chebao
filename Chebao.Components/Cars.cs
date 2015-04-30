@@ -187,11 +187,11 @@ namespace Chebao.Components
         /// <summary>
         /// 更新产品库存
         /// </summary>
-        public void RefreshProductStock()
+        public void RefreshProductStock(bool isall =false)
         {
             List<ProductInfo> plist = GetProductList(true);
             string url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg";
-            if (plist.Exists(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)))
+            if (!isall && plist.Exists(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)))
             {
                 DateTime lastupdatetime = plist.FindAll(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)).Max(p => DataConvert.SafeDate(p.StockLastUpdateTime));
                 url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg&t=" + lastupdatetime.ToString("yyyy-MM-dd HH:mm:ss");
@@ -387,6 +387,11 @@ namespace Chebao.Components
             }
             CommonDataProvider.Instance().UpdateOrderStatus(ids, status);
             return strResult.ToString();
+        }
+
+        public void UpdateOrderPic(int id, string src,string action)
+        {
+            CommonDataProvider.Instance().UpdateOrderPic(id, src, action);
         }
 
         #endregion

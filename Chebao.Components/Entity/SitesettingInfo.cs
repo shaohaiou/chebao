@@ -17,13 +17,13 @@ namespace Chebao.Components
         public string Contact { get; set; }
 
         /// <summary>
-        /// 联系电话
+        /// 公告内容
         /// </summary>
         [JsonIgnore]
-        public string Ext
+        public string NoticeDetail
         {
-            get { return GetString("Ext", ""); }
-            set { SetExtendedAttribute("Ext", value); }
+            get { return GetString("NoticeDetail", ""); }
+            set { SetExtendedAttribute("NoticeDetail", value); }
         }
     }
 }

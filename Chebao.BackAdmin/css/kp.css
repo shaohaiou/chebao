@@ -1141,6 +1141,12 @@ fieldset, img {border: 0;}
 .submitOrder {position: relative;}
 .submitOrder .btn-go {padding: 0 26px;height: 36px;position: absolute;right: -4px;top: 4px;font: 400 18px/36px arial;font-size: 18px;font-family: '\65b9\6b63\6b63\9ed1\7b80\4f53','\5fae\8f6f\96c5\9ed1','\9ed1\4f53';background-color: #f50;color: #fff;text-align: center;cursor: pointer;outline: 0;}
 .order-go .address-confirm .return-cart {position: absolute;padding-left: 16px;background: url(../images/back.png) no-repeat 0 3px;right: 150px;bottom: -28px;width: 67px;}
+.order-pic{height:140px;}
+.order-pic li{float:left;width:240px;text-align:center;}
+.order-pic-info{display:block;text-align:center;}
+.order-pic-info img{width: 160px;height:72px;;display: block;margin:5px auto;padding: 1px;border: 1px solid #CFCFCF;}
+
+
 .memo {margin-left: 10px;border-right: 1px solid #fff;text-align: left;margin-top: 10px;line-height: 24px;}
 .memo label, .memo textarea {vertical-align: top;}
 .memo .memo-input {height: 45px;width: 394px;resize: none;margin-bottom: 5px;}
