@@ -10,7 +10,7 @@
     <script type="text/javascript">
 
         $(function () {
-            CKEDITOR.replace('txtCorpIntroduce', { toolbar: 'Basic', height: 480 });
+            CKEDITOR.replace('txtCorpIntroduce', { toolbar: 'Basic', height: 380 });
             CKEDITOR.replace('txtContact', { toolbar: 'Basic', height: 480 });
             CKEDITOR.replace('txtNoticeDetail', { toolbar: 'Basic', height: 480 });
         });
@@ -18,7 +18,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="biaoge3">
+    <table width="100%" border="0" cellspaci    ng="0" cellpadding="0" class="biaoge3">
         <caption class="bt2">
             反馈详情</caption>
         <tbody>

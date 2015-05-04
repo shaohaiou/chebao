@@ -49,5 +49,16 @@ namespace Chebao.BackAdmin.product
                 rptOrderProduct.DataBind();
             }
         }
+
+        protected void rptOrderProduct_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                OrderProductInfo order = (OrderProductInfo)e.Item.DataItem;
+                Repeater rptProductMix = (Repeater)e.Item.FindControl("rptProductMix");
+                rptProductMix.DataSource = order.ProductMixList;
+                rptProductMix.DataBind();
+            }
+        }
     }
 }

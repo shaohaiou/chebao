@@ -83,6 +83,12 @@ namespace Chebao.BackAdmin.user
             txtDiscountH.Text = admin.DiscountH.ToString();
             txtAdditemW.Text = admin.AdditemW.ToString();
             txtAdditemF.Text = admin.AdditemF.ToString();
+            txtDiscountLS.Text = admin.DiscountLS.ToString();
+            txtDiscountXSP.Text = admin.DiscountXSP.ToString();
+            txtDiscountB.Text = admin.DiscountB.ToString();
+            txtDiscountS.Text = admin.DiscountS.ToString();
+            txtDiscountK.Text = admin.DiscountK.ToString();
+            txtDiscountP.Text = admin.DiscountP.ToString();
             cbxSizeView.Checked = admin.SizeView > 0;
         }
 
@@ -117,6 +123,12 @@ namespace Chebao.BackAdmin.user
             admin.DiscountH = DataConvert.SafeDecimal(txtDiscountH.Text);
             admin.AdditemW = DataConvert.SafeDecimal(txtAdditemW.Text);
             admin.AdditemF = DataConvert.SafeDecimal(txtAdditemF.Text);
+            admin.DiscountLS = DataConvert.SafeDecimal(txtDiscountLS.Text);
+            admin.DiscountXSP = DataConvert.SafeDecimal(txtDiscountXSP.Text);
+            admin.DiscountB = DataConvert.SafeDecimal(txtDiscountB.Text);
+            admin.DiscountS = DataConvert.SafeDecimal(txtDiscountS.Text);
+            admin.DiscountK = DataConvert.SafeDecimal(txtDiscountK.Text);
+            admin.DiscountP = DataConvert.SafeDecimal(txtDiscountP.Text);
             admin.SizeView = cbxSizeView.Checked ? 1 : 0;
         }
 

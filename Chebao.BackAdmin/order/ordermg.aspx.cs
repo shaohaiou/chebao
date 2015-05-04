@@ -270,7 +270,7 @@ namespace Chebao.BackAdmin.order
                 IWorkbook workbook = null;
                 ISheet sheet = null;
                 string fileName = Utils.GetMapPath(string.Format(@"\App_Data\订单模板.xls"));
-                string newfile = "客户订单.xls";
+                string newfile = order.OrderNumber + ".xls";
                 using (FileStream file = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
                 {
                     workbook = new HSSFWorkbook(file);

@@ -190,7 +190,7 @@ namespace Chebao.Components
         [JsonIgnore]
         public decimal AdditemW
         {
-            get { return GetDecimal("AdditemW", 0); }
+            get { return GetDecimal("AdditemW", 10); }
             set { SetExtendedAttribute("AdditemW", value.ToString()); }
         }
 
@@ -200,8 +200,68 @@ namespace Chebao.Components
         [JsonIgnore]
         public decimal AdditemF
         {
-            get { return GetDecimal("AdditemF", 0); }
+            get { return GetDecimal("AdditemF", 10); }
             set { SetExtendedAttribute("AdditemF", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣ls
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountLS
+        {
+            get { return GetDecimal("DiscountLS", 10); }
+            set { SetExtendedAttribute("DiscountLS", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣xsp
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountXSP
+        {
+            get { return GetDecimal("DiscountXSP", 10); }
+            set { SetExtendedAttribute("DiscountXSP", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣b
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountB
+        {
+            get { return GetDecimal("DiscountB", 10); }
+            set { SetExtendedAttribute("DiscountB", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣s
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountS
+        {
+            get { return GetDecimal("DiscountS", 10); }
+            set { SetExtendedAttribute("DiscountS", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣k
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountK
+        {
+            get { return GetDecimal("DiscountK", 10); }
+            set { SetExtendedAttribute("DiscountK", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣p
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountP
+        {
+            get { return GetDecimal("DiscountP", 10); }
+            set { SetExtendedAttribute("DiscountP", value.ToString()); }
         }
 
         /// <summary>

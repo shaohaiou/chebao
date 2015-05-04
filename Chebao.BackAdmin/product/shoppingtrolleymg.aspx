@@ -147,7 +147,7 @@
             //                $(b).val(0);
             var sum = parseFloat(price) * parseInt($(b).val());
             $("#txtsum" + $(b).attr("data-id")).html(sum.toFixed(2));
-            if (parseInt($(b).val()) == 1) {
+            if (parseInt($(b).val()) <= 1) {
                 if (!$(b).prev().hasClass("no-minus")) {
                     $(b).prev().addClass("no-minus");
                 }
@@ -155,7 +155,8 @@
                     $(b).prev().removeClass("minus");
                 }
                 $(b).prev().unbind("click");
-            } else if (parseInt($(b).val()) == stock) {
+            } 
+            if (parseInt($(b).val()) == stock) {
                 if (!$(b).next().hasClass("no-plus")) {
                     $(b).next().addClass("no-plus");
                 }
@@ -299,7 +300,7 @@
                                                                                                         style="top: 2px;">勾选商品</label>
                                                                                             </div>
                                                                                             <%#Eval("Name") %>
-                                                                                            <span class="gray">(库存<%#Eval("Stock") %>)</span> </li>
+                                                                                            <span class="gray">(库存<a id="spStock" runat="server" href="javascript:void(0);"></a>)</span> </li>
                                                                                         <li class="th th-price">
                                                                                             <div class="td-inner">
                                                                                                 <div class="item-price price-promo-promo">

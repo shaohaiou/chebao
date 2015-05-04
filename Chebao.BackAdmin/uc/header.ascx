@@ -29,7 +29,7 @@
                 <%= Admin.UserName%>，您好！</span> <span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
                     class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
                         class="ml10">我的订单</a><%if (Admin.SizeView > 0)
-                                               { %><a href="/product/myorders.aspx" class="cccx">尺寸查询</a><%} %></span>
+                                               { %><a href="http://yd.lamda.us/admin/MJ.asp?id=fdskjgbdsfjbg56514zfhg" class="cccx">尺寸查询</a><%} %></span>
         </div>
     </div>
     <div id="notice" style="color: White; width: 1000px; margin: 0 auto; height: 30px;

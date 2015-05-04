@@ -107,24 +107,28 @@ namespace Chebao.BackAdmin.product
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 HtmlInputText txtAmount = (HtmlInputText)e.Item.FindControl("txtAmount");
+                HtmlAnchor spStock = (HtmlAnchor)e.Item.FindControl("spStock");
                 if (txtAmount != null)
                 {
                     txtAmount.Attributes["data-id"] = ((ProductMixInfo)e.Item.DataItem).SID.ToString() + "_" + e.Item.ItemIndex;
                     txtAmount.Value = "1";
-                    int stock = ((ProductMixInfo)e.Item.DataItem).Stock;
-                    //if (OrderAll.Exists(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == entity.ID)))
-                    //{
-                    //    int amount = 0;
-                    //    List<OrderInfo> orderlist = OrderAll.FindAll(o => o.OrderStatus == OrderStatus.未处理 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductID == entity.ID));
-                    //    orderlist.ForEach(delegate(OrderInfo o)
-                    //    {
-                    //        amount += o.OrderProducts.FindAll(p => p.ProductID == entity.ID).Sum(p => p.Amount);
-                    //    });
-                    //    stock -= amount;
-                    //    if (stock < 0)
-                    //        stock = 0;
-                    //}
+                    ProductMixInfo entity = ((ProductMixInfo)e.Item.DataItem);
+                    int stock = entity.Stock;
+                    if (OrderAll.Exists(o => o.OrderStatus == OrderStatus.未收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                    {
+                        int amount = 0;
+                        List<OrderInfo> orderlist = OrderAll.FindAll(o => o.OrderStatus == OrderStatus.未收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
+                        orderlist.ForEach(delegate(OrderInfo o)
+                        {
+                            amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
+                        });
+                        stock -= amount;
+                    }
+                    if (stock < 0)
+                        stock = 0;
+                    entity.Stock = stock;
                     txtAmount.Attributes["data-max"] = stock.ToString();
+                    spStock.InnerHtml = stock.ToString();
                 }
             }
         }
@@ -132,16 +136,28 @@ namespace Chebao.BackAdmin.product
         private string GetProductMixPrice(string pricestr, string mn)
         {
             decimal price = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
-            if (mn.ToLower().IndexOf("m") >= 0)
+            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("m"))
                 price = price * Admin.DiscountM / 10;
-            else if (mn.ToLower().IndexOf("y") >= 0)
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("y"))
                 price = price * Admin.DiscountY / 10;
-            else if (mn.ToLower().IndexOf("h") >= 0)
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("h"))
                 price = price * Admin.DiscountH / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
+                price = price * Admin.DiscountS / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))
+                price = price * Admin.DiscountK / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("p"))
+                price = price * Admin.DiscountP / 10;
+            else if (mn.ToLower().StartsWith("ls"))
+                price = price * Admin.DiscountLS / 10;
+            else if (mn.ToLower().StartsWith("xsp"))
+                price = price * Admin.DiscountXSP / 10;
+            else if (mn.ToLower().StartsWith("b"))
+                price = price * Admin.DiscountB / 10;
             if (mn.ToLower().IndexOf("w") >= 0)
-                price = price + Admin.AdditemW;
+                price = price + price * Admin.AdditemW / 10;
             if (mn.ToLower().IndexOf("f") >= 0)
-                price = price + Admin.AdditemF;
+                price = price + price * Admin.AdditemF / 10;
 
             return Math.Round(price, 2).ToString();
         }
