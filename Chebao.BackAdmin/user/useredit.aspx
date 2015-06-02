@@ -167,16 +167,18 @@
                     <td class="bg1">
                         折扣设置：
                     </td>
-                    <td class="bg2">
+                    <td class="bg2">A产品分类：
                          M：<asp:TextBox ID="txtDiscountM" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          Y：<asp:TextBox ID="txtDiscountY" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          H：<asp:TextBox ID="txtDiscountH" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
-                         LS：<asp:TextBox ID="txtDiscountLS" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
-                         XSP：<asp:TextBox ID="txtDiscountXSP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
-                         B：<asp:TextBox ID="txtDiscountB" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         XSP：<asp:TextBox ID="txtDiscountXSP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折<br />
+                         C产品分类：
                          S：<asp:TextBox ID="txtDiscountS" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          K：<asp:TextBox ID="txtDiscountK" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
-                         P：<asp:TextBox ID="txtDiscountP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         P：<asp:TextBox ID="txtDiscountP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折<br />
+                         其他产品：
+                         LS：<asp:TextBox ID="txtDiscountLS" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         B：<asp:TextBox ID="txtDiscountB" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                     </td>
                 </tr>
                 <tr>
@@ -184,6 +186,7 @@
                         附加项设置：
                     </td>
                     <td class="bg2">
+                        A产品附件：
                          W：<asp:TextBox ID="txtAdditemW" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          F：<asp:TextBox ID="txtAdditemF" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                     </td>

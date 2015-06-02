@@ -166,7 +166,8 @@ namespace Chebao.BackAdmin.product
                 string result = string.Empty;
 
                 List<ShoppingTrolleyInfo> list = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
-                result = list.Count.ToString();
+                List<ProductInfo> productlist = Cars.Instance.GetProductList(true);
+                result = list.FindAll(l => productlist.Exists(p => p.ID == l.ProductID)).Count.ToString();
 
                 return result;
             }

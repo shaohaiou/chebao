@@ -158,18 +158,22 @@ namespace Chebao.BackAdmin.product
             search_fy1.PageSize = pagesize;
 
             List<ShoppingTrolleyInfo> listShoppingTrolley = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
+            List<ProductInfo> listAllProduct = Cars.Instance.GetProductList(true);
+            listShoppingTrolley = listShoppingTrolley.FindAll(l => listAllProduct.Exists(p => p.ID == l.ProductID));
             if (listShoppingTrolley.Count > 0)
             {
-                List<ProductInfo> listAllProduct = Cars.Instance.GetProductList(true);
-                string[] pids = listShoppingTrolley.OrderByDescending(s=>s.ID).Select(s => s.ProductID + "|"+ s.ID).ToArray();
+                string[] pids = listShoppingTrolley.OrderByDescending(s => s.ID).Select(s => s.ProductID + "|" + s.ID).ToArray();
                 List<ProductInfo> listProdcutInShoppingTrolley = new List<ProductInfo>();
                 for (int i = 0; i < pids.Length; i++)
                 {
                     int pid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]);
                     int sid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[1]);
                     ProductInfo entity = listAllProduct.Find(p => p.ID == pid);
-                    entity.SID = sid;
-                    listProdcutInShoppingTrolley.Add(entity);
+                    if (entity != null)
+                    {
+                        entity.SID = sid;
+                        listProdcutInShoppingTrolley.Add(entity);
+                    }
                 }
                 rptShoppingTrolley.DataSource = listProdcutInShoppingTrolley;
                 rptShoppingTrolley.DataBind();
@@ -304,7 +308,8 @@ namespace Chebao.BackAdmin.product
                 string result = string.Empty;
 
                 List<ShoppingTrolleyInfo> list = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
-                    result = list.Count.ToString();
+                List<ProductInfo> productlist = Cars.Instance.GetProductList(true);
+                result = list.FindAll(l=>productlist.Exists(p=>p.ID == l.ProductID)).Count.ToString();
 
                 return result;
             }

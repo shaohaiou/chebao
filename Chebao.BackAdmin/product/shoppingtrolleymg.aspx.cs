@@ -70,9 +70,10 @@ namespace Chebao.BackAdmin.product
         private void LoadData()
         {
             List<ShoppingTrolleyInfo> listShoppingTrolley = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
+            List<ProductInfo> listAllProduct = Cars.Instance.GetProductList(true);
+            listShoppingTrolley = listShoppingTrolley.FindAll(l => listAllProduct.Exists(p => p.ID == l.ProductID));
             if (listShoppingTrolley.Count > 0)
             {
-                List<ProductInfo> listAllProduct = Cars.Instance.GetProductList(true);
                 string[] pids = listShoppingTrolley.OrderByDescending(s => s.ID).Select(s => s.ProductID + "|" + s.ID).ToArray();
                 List<ProductInfo> listProdcutInShoppingTrolley = new List<ProductInfo>();
                 for (int i = 0; i < pids.Length; i++)
@@ -135,29 +136,31 @@ namespace Chebao.BackAdmin.product
 
         private string GetProductMixPrice(string pricestr, string mn)
         {
-            decimal price = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
+            decimal price = 0;
+            decimal price_s = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
+            price = price_s;
             if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("m"))
-                price = price * Admin.DiscountM / 10;
+                price = price_s * Admin.DiscountM / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("y"))
-                price = price * Admin.DiscountY / 10;
+                price = price_s * Admin.DiscountY / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("h"))
-                price = price * Admin.DiscountH / 10;
+                price = price_s * Admin.DiscountH / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
+                price = price_s * Admin.DiscountXSP / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
-                price = price * Admin.DiscountS / 10;
+                price = price_s * Admin.DiscountS / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))
-                price = price * Admin.DiscountK / 10;
+                price = price_s * Admin.DiscountK / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("p"))
-                price = price * Admin.DiscountP / 10;
+                price = price_s * Admin.DiscountP / 10;
             else if (mn.ToLower().StartsWith("ls"))
-                price = price * Admin.DiscountLS / 10;
-            else if (mn.ToLower().StartsWith("xsp"))
-                price = price * Admin.DiscountXSP / 10;
+                price = price_s * Admin.DiscountLS / 10;
             else if (mn.ToLower().StartsWith("b"))
-                price = price * Admin.DiscountB / 10;
+                price = price_s * Admin.DiscountB / 10;
             if (mn.ToLower().IndexOf("w") >= 0)
-                price = price + price * Admin.AdditemW / 10;
+                price = price + price_s * Admin.AdditemW / 10;
             if (mn.ToLower().IndexOf("f") >= 0)
-                price = price + price * Admin.AdditemF / 10;
+                price = price + price_s * Admin.AdditemF / 10;
 
             return Math.Round(price, 2).ToString();
         }
