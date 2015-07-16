@@ -10,8 +10,11 @@
     <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
         rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
     <script type="text/javascript">
+        var selectedsidcookiename = "<%=Chebao.Components.GlobalKey.SELECTEDSID_COOKIENAME %>";
+        var selectedsidnumbercookiename = "<%=Chebao.Components.GlobalKey.SELECTEDSIDNUMBER_COOKIENAME %>";
         $(function () {
             $(".cartmix-checkbox label").click(function () {
                 $(this).parent().toggleClass("cart-checkbox-checked");
@@ -34,6 +37,8 @@
                             $(this).parent().removeClass("cart-checkbox-checked")
                     });
                 }
+
+                SetSelectedSIDCookie();
             });
             $(".cartproduct-checkbox label").click(function () {
                 $(this).parent().toggleClass("cart-checkbox-checked");
@@ -91,18 +96,22 @@
             $(".J_Plus").click(function () {
                 var amount = parseInt($(this).prev().val());
                 $(this).prev().val(amount + 1);
+                SetSelectedSIDCookie();
                 CheckAmount($(this).prev());
             });
             $(".J_Minus").click(function () {
                 var amount = parseInt($(this).next().val());
                 $(this).next().val(amount - 1);
+                SetSelectedSIDCookie();
                 CheckAmount($(this).next());
             });
             $(".J_ItemAmount").change(function () {
                 CheckAmount(this);
+                SetSelectedSIDCookie();
             });
             $(".J_ItemAmount").keyup(function () {
                 CheckAmount(this);
+                SetSelectedSIDCookie();
             });
 
             $(".J_ItemAmount").each(function () {
@@ -170,6 +179,7 @@
                 $(b).prev().click(function () {
                     var amount = parseInt($(b).val());
                     $(b).val(amount - 1);
+                    SetSelectedSIDCookie();
                     CheckAmount(b);
                 });
                 if ($(b).prev().hasClass("no-minus")) {
@@ -184,6 +194,7 @@
                 $(b).next().click(function () {
                     var amount = parseInt($(b).val());
                     $(b).val(amount + 1);
+                    SetSelectedSIDCookie();
                     CheckAmount(b);
                 });
                 if ($(b).next().hasClass("no-plus")) {
@@ -205,6 +216,25 @@
             });
             $("#J_Total").html(account.toFixed(2));
         }
+
+        function SetSelectedSIDCookie() {
+            var selectedsids = $(".cartmix-checkbox input[type='checkbox']:checked", $(".item-content")).map(function () {
+                return $(this).attr("sid") + "-" + $(this).attr("tname") + "-" + $(this).parent().parent().parent().find(".J_ItemAmount").val();
+            }).get().join("_");
+            if (selectedsids.length < 4000) {
+                $.cookie(selectedsidnumbercookiename, 1, { path: "/" });
+                $.cookie(selectedsidcookiename + "_1", selectedsids, { path: "/" });
+            } else {
+                var num = Math.ceil(selectedsids / 4000);
+                $.cookie(selectedsids, num, { path: "/" });
+                for (var i = 0; i < num; i++) {
+                    if(i < num - 1)
+                        $.cookie(selectedsidcookiename + "_" + (i + 1),selectedsids.substring(i * 4000,4000),{ path: "/" });
+                    else
+                        $.cookie(selectedsidcookiename + "_" + (i + 1), selectedsids.substring(i * 4000), { path: "/" });
+                }
+            }
+        }
     </script>
 </head>
 <body>
@@ -222,6 +252,7 @@
                                 &nbsp;&nbsp;全选</div>
                         </div>
                         <div class="th th-item">
+                            <div class="th-item-count">(<%=ItemCount%>)</div>
                             <div class="td-inner">
                                 商品信息</div>
                         </div>
@@ -263,6 +294,7 @@
                                                                     <div class="cart-checkbox cartproduct-checkbox">
                                                                         <input class="J_CheckBoxItem" id="cbxSelect" runat="server" type="checkbox" value='<%#Eval("SID") %>' /><label>勾选商品</label></div>
                                                                 </div>
+                                                                <div class="td-inner-index"><%# Container.ItemIndex + 1 %></div>
                                                                 <input type="hidden" runat="server" id="hdnModelNumber" value='<%#Eval("ModelNumber") %>' />
                                                                 <input type="hidden" runat="server" id="hdnOEModelNumber" value='<%#Eval("OEModelNumber") %>' />
                                                                 <input type="hidden" runat="server" id="hdnStandard" value='<%#Eval("Standard") %>' />
@@ -294,8 +326,8 @@
                                                                                     <input type="hidden" runat="server" id="hdnPMPrice" value='<%#Eval("Price") %>' />
                                                                                     <ul>
                                                                                         <li class="th" style="width: 304px;">
-                                                                                            <div class="cart-checkbox cartmix-checkbox">
-                                                                                                <input class="J_CheckBoxItem" id="cbxSelect" runat="server" type="checkbox" sid='<%# Eval("SID") %>'
+                                                                                            <div class="cartmix-checkbox cart-checkbox<%# SetPMSelected(Eval("SID").ToString(),Eval("Name").ToString()) %>">
+                                                                                                <input class="J_CheckBoxItem" id="cbxSelect" runat="server" type="checkbox" sid='<%# Eval("SID") %>' tname='<%#Eval("Name") %>'
                                                                                                     value='<%# Eval("SID").ToString() + "_" + Container.ItemIndex.ToString()%>' /><label
                                                                                                         style="top: 2px;">勾选商品</label>
                                                                                             </div>

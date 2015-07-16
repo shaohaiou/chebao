@@ -90,6 +90,14 @@ namespace Chebao.Components
             }
         }
 
+        protected AdminInfo ParentAdmin
+        {
+            get
+            {
+                return ChebaoContext.Current.ParentAdmin;
+            }
+        }
+
         protected virtual string FromUrl
         {
             get

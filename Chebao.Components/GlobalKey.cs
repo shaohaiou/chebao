@@ -23,6 +23,8 @@ namespace Chebao.Components
 
         public static readonly string SHOPPINGTROLLEY_LIST = "cache-shoppingtrolley";   //购物车缓存键值
         public static readonly string SHOPPINGTROLLEYADD_KEY = "cache-shoppingtrolleyadd";   //添加到购物车缓存键值
+        public static readonly string SELECTEDSIDNUMBER_COOKIENAME = "cookie-selectedsidnumber";   //购物车选择状态cookie数量
+        public static readonly string SELECTEDSID_COOKIENAME = "cookie-selectedsid";   //购物车选择状态
 
         public static readonly string ORDER_LIST = "cache-order";   //订单缓存键值
         public static readonly string ORDERPRODUCT_LIST = "cache-orderproduct";   //订单产品缓存键值

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Chebao.Components;
+using Chebao.Tools;
 
 namespace Chebao.BackAdmin.uc
 {
@@ -26,6 +27,14 @@ namespace Chebao.BackAdmin.uc
             get
             {
                 return ChebaoContext.Current.AdminUser;
+            }
+        }
+
+        public AdminInfo ParentAdmin
+        {
+            get
+            {
+                return ChebaoContext.Current.ParentAdmin;
             }
         }
 

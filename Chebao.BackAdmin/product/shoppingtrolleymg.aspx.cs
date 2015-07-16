@@ -48,6 +48,38 @@ namespace Chebao.BackAdmin.product
             }
         }
 
+        private List<string[]> listSelectedsid = null;
+        public List<string[]> SelectedSID
+        {
+            get
+            {
+                if (listSelectedsid == null)
+                {
+                    listSelectedsid = new List<string[]>();
+                    string strcnumber = ManageCookies.GetCookieValue(GlobalKey.SELECTEDSIDNUMBER_COOKIENAME);
+                    if (!string.IsNullOrEmpty(strcnumber) && !string.IsNullOrEmpty(ManageCookies.GetCookieValue(GlobalKey.SELECTEDSID_COOKIENAME + "_1")))
+                    {
+                        int cnumber = DataConvert.SafeInt(strcnumber);
+                        string allsids = string.Empty;
+                        for (int i = 1; i <= cnumber; i++)
+                        {
+                            allsids += ManageCookies.GetCookieValue(GlobalKey.SELECTEDSID_COOKIENAME + "_" + i);
+                        }
+                        foreach (string s in allsids.Split(new char[] { '_' }, StringSplitOptions.RemoveEmptyEntries))
+                        { 
+                            if(s.Split(new char[]{'-'},StringSplitOptions.RemoveEmptyEntries).Length == 3)
+                            {
+                                listSelectedsid.Add(s.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries));
+                            }
+                        }
+                    }
+                }
+                return listSelectedsid;
+            }
+        }
+
+        public int ItemCount { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -85,6 +117,7 @@ namespace Chebao.BackAdmin.product
                     entity.CabmodelStr = listShoppingTrolley.FindAll(s => s.ID == sid).Select(s => string.IsNullOrEmpty(s.CabmodelStr) ? string.Empty : (" - " + s.CabmodelStr)).First();
                     listProdcutInShoppingTrolley.Add(entity);
                 }
+                ItemCount = listProdcutInShoppingTrolley.Count;
                 rptData.DataSource = listProdcutInShoppingTrolley;
                 rptData.DataBind();
             }
@@ -108,7 +141,9 @@ namespace Chebao.BackAdmin.product
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 HtmlInputText txtAmount = (HtmlInputText)e.Item.FindControl("txtAmount");
+                HtmlInputCheckBox cbxSelect = (HtmlInputCheckBox)e.Item.FindControl("cbxSelect");
                 HtmlAnchor spStock = (HtmlAnchor)e.Item.FindControl("spStock");
+                ProductMixInfo pminfo = (ProductMixInfo)e.Item.DataItem;
                 if (txtAmount != null)
                 {
                     txtAmount.Attributes["data-id"] = ((ProductMixInfo)e.Item.DataItem).SID.ToString() + "_" + e.Item.ItemIndex;
@@ -131,37 +166,60 @@ namespace Chebao.BackAdmin.product
                     txtAmount.Attributes["data-max"] = stock.ToString();
                     spStock.InnerHtml = stock.ToString();
                 }
+                if (SelectedSID.Exists(s => s[0] == pminfo.SID.ToString() && s[1] == pminfo.Name))
+                {
+                    cbxSelect.Checked = true;
+                    if (txtAmount != null)
+                    {
+                        txtAmount.Value = SelectedSID.Find(s => s[0] == pminfo.SID.ToString() && s[1] == pminfo.Name)[2];
+                    }
+                }
             }
+        }
+
+        protected string SetPMSelected(string sid,string name)
+        {
+            string result = string.Empty;
+
+            if (SelectedSID.Exists(s=>s[0] == sid && s[1] == name))
+                result = " cart-checkbox-checked";
+            else
+                result = "";
+
+            return result;
         }
 
         private string GetProductMixPrice(string pricestr, string mn)
         {
             decimal price = 0;
             decimal price_s = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
+            AdminInfo validAdmin = ParentAdmin == null ? Admin : ParentAdmin;
             price = price_s;
             if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("m"))
-                price = price_s * Admin.DiscountM / 10;
+                price = price_s * validAdmin.DiscountM / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("y"))
-                price = price_s * Admin.DiscountY / 10;
+                price = price_s * validAdmin.DiscountY / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("h"))
-                price = price_s * Admin.DiscountH / 10;
+                price = price_s * validAdmin.DiscountH / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
-                price = price_s * Admin.DiscountXSP / 10;
+                price = price_s * validAdmin.DiscountXSP / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
-                price = price_s * Admin.DiscountS / 10;
+                price = price_s * validAdmin.DiscountS / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))
-                price = price_s * Admin.DiscountK / 10;
+                price = price_s * validAdmin.DiscountK / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("p"))
-                price = price_s * Admin.DiscountP / 10;
+                price = price_s * validAdmin.DiscountP / 10;
             else if (mn.ToLower().StartsWith("ls"))
-                price = price_s * Admin.DiscountLS / 10;
+                price = price_s * validAdmin.DiscountLS / 10;
             else if (mn.ToLower().StartsWith("b"))
-                price = price_s * Admin.DiscountB / 10;
+                price = price_s * validAdmin.DiscountB / 10;
             if (mn.ToLower().IndexOf("w") >= 0)
-                price = price + price_s * Admin.AdditemW / 10;
+                price = price + price_s * validAdmin.AdditemW / 10;
             if (mn.ToLower().IndexOf("f") >= 0)
-                price = price + price_s * Admin.AdditemF / 10;
+                price = price + price_s * validAdmin.AdditemF / 10;
 
+            if (Admin.ParentAccountID > 0)
+                price = price + price * Admin.SubDiscount / 100;
             return Math.Round(price, 2).ToString();
         }
 
@@ -184,6 +242,7 @@ namespace Chebao.BackAdmin.product
                 Repeater rptProductMix = (Repeater)item.FindControl("rptProductMix");
                 if (rptProductMix != null)
                 {
+                    AdminInfo validAdmin = ParentAdmin == null ? Admin : ParentAdmin;
                     OrderProductInfo oinfo = new OrderProductInfo()
                     {
                         SID = DataConvert.SafeInt(hdnSID.Value),
@@ -197,11 +256,11 @@ namespace Chebao.BackAdmin.product
                         Introduce = string.Format("Lamda型号：{0} 规格：{1}", hdnModelNumber.Value, hdnStandard.Value),
                         Price = DataConvert.SafeDecimal(hdnPrice.Value),
                         Remark = string.Empty,
-                        DiscountM = Admin.DiscountM,
-                        DiscountY = Admin.DiscountY,
-                        DiscountH = Admin.DiscountH,
-                        AdditemW = Admin.AdditemW,
-                        AdditemF = Admin.AdditemF,
+                        DiscountM = validAdmin.DiscountM,
+                        DiscountY = validAdmin.DiscountY,
+                        DiscountH = validAdmin.DiscountH,
+                        AdditemW = validAdmin.AdditemW,
+                        AdditemF = validAdmin.AdditemF,
                         CabmodelStr = hdnCabmodelStr.Value
                     };
                     List<ProductMixInfo> ProductMixList = new List<ProductMixInfo>();
@@ -233,5 +292,7 @@ namespace Chebao.BackAdmin.product
 
             Response.Redirect("placeorder.aspx");
         }
+
+
     }
 }

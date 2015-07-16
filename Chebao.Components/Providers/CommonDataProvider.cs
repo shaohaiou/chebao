@@ -218,7 +218,7 @@ namespace Chebao.Components
 
         public abstract List<BrandInfo> GetBrandList();
 
-        public abstract  void DeleteBrands(string ids);
+        public abstract void DeleteBrands(string ids);
 
         public abstract int AddBrand(BrandInfo entity);
 
@@ -307,7 +307,7 @@ namespace Chebao.Components
 
         public abstract int UpdateShoppingTrolley(ShoppingTrolleyInfo entity);
 
-        public abstract void DeleteShoppingTrolley(string ids,int userid);
+        public abstract void DeleteShoppingTrolley(string ids, int userid);
 
         protected ShoppingTrolleyInfo PopulateShoppingTrolley(IDataReader reader)
         {
@@ -333,7 +333,7 @@ namespace Chebao.Components
 
         public abstract void UpdateOrderStatus(string ids, OrderStatus status);
 
-        public abstract void UpdateOrderPic(int id, string src,string action);
+        public abstract void UpdateOrderPic(int id, string src, string action);
 
         protected OrderInfo PopulateOrder(IDataReader reader)
         {
@@ -352,6 +352,13 @@ namespace Chebao.Components
                 LinkMobile = reader["LinkMobile"] as string,
                 LinkTel = reader["LinkTel"] as string,
                 OrderProductJson = reader["OrderProductJson"] as string,
+                OrderProductJson1 = reader["OrderProductJson1"] as string,
+                OrderProductJson2 = reader["OrderProductJson2"] as string,
+                OrderProductJson3 = reader["OrderProductJson3"] as string,
+                OrderProductJson4 = reader["OrderProductJson4"] as string,
+                OrderProductJson5 = reader["OrderProductJson5"] as string,
+                OrderProductJson6 = reader["OrderProductJson6"] as string,
+                OrderProductJson7 = reader["OrderProductJson7"] as string,
                 OrderStatus = (OrderStatus)(int)reader["OrderStatus"],
                 TotalFee = reader["TotalFee"] as string,
                 AddTime = reader["AddTime"] as string,
@@ -361,8 +368,43 @@ namespace Chebao.Components
                 PicListItem = reader["PicListItem"] as string,
                 PicBookingnote = reader["PicBookingnote"] as string,
             };
+            if (string.IsNullOrEmpty(entity.OrderProductJson))
+                entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(
+                    entity.OrderProductJson1
+                    + entity.OrderProductJson2
+                    + entity.OrderProductJson3
+                    + entity.OrderProductJson4
+                    + entity.OrderProductJson5
+                    + entity.OrderProductJson6
+                    + entity.OrderProductJson7);
+            else
+                entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);
 
-            entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);
+            return entity;
+        }
+
+        #endregion
+
+        #region 同步失败记录
+
+        public abstract void AddSyncfailed(SyncfailedInfo entity);
+
+        public abstract List<SyncfailedInfo> GetSyncfailedList();
+
+        public abstract void UpdateSyncfailedStatus(string ids);
+
+        protected SyncfailedInfo PopulateSyncfailed(IDataReader reader)
+        {
+            SyncfailedInfo entity = new SyncfailedInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                Name = reader["Name"] as string,
+                Amount = reader["Amount"] as string,
+                UserName = reader["UserName"] as string,
+                AType = reader["AType"] as string,
+                AddTime = reader["AddTime"] as string,
+                Status = DataConvert.SafeInt(reader["Status"]),
+            };
 
             return entity;
         }

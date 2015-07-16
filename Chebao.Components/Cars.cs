@@ -374,10 +374,23 @@ namespace Chebao.Components
                             query.Add("kf=" + order.UserName);
                             query.Add("t=" + t);
                             query.Add("id=fdskjgbdsfjbg56514zfhg");
-                            if (!Http.GetPage(url + "?" + string.Join("&",query),0))
+                            string syncresult = Http.GetPage(url + "?" + string.Join("&",query),0);
+                            if (syncresult != "ok")
                             {
                                 if (string.IsNullOrEmpty(strResult.ToString())) strResult.AppendLine("产品");
                                 strResult.AppendLine(pm.Name);
+
+                                SyncfailedInfo finfo = new SyncfailedInfo()
+                                {
+                                    Name = pm.Name,
+                                    Amount = pm.Amount.ToString(),
+                                    UserName = order.UserName,
+                                    AType = t,
+                                    AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                    Status = 0
+                                };
+
+                                AddSyncfailed(finfo);
                             }
                         }
                     }
@@ -392,6 +405,49 @@ namespace Chebao.Components
         public void UpdateOrderPic(int id, string src,string action)
         {
             CommonDataProvider.Instance().UpdateOrderPic(id, src, action);
+        }
+
+        #endregion
+
+        #region 同步失败记录
+
+        public void AddSyncfailed(SyncfailedInfo entity)
+        {
+            CommonDataProvider.Instance().AddSyncfailed(entity);
+        }
+
+        public List<SyncfailedInfo> GetSyncfailedList()
+        {
+            return CommonDataProvider.Instance().GetSyncfailedList();
+        }
+
+        public void UpdateSyncfailedStatus(string ids)
+        {
+            CommonDataProvider.Instance().UpdateSyncfailedStatus(ids);
+        }
+
+        public void Resync(string ids)
+        {
+            List<SyncfailedInfo> list = GetSyncfailedList();
+            string url = "http://yd.lamda.us/admin/ck.asp";
+
+            foreach (string id in ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (list.Exists(l => l.ID.ToString() == id))
+                {
+                    SyncfailedInfo info = list.Find(l => l.ID.ToString() == id);
+                    List<string> query = new List<string>();
+                    query.Add("ld=" + info.Name);
+                    query.Add("sl=" + info.Amount);
+                    query.Add("kf=" + info.UserName);
+                    query.Add("t=" + info.AType);
+                    query.Add("id=fdskjgbdsfjbg56514zfhg");
+                    if (!string.IsNullOrEmpty(Http.GetPage(url + "?" + string.Join("&", query), 0)))
+                    {
+                        UpdateSyncfailedStatus(id);
+                    }
+                }
+            }
         }
 
         #endregion

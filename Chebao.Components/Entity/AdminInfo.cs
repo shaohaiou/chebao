@@ -274,6 +274,45 @@ namespace Chebao.Components
             set { SetExtendedAttribute("SizeView", value.ToString()); }
         }
 
+        /// <summary>
+        /// 是否子账户
+        /// </summary>
+        [JsonIgnore]
+        public int IsSubAccount
+        {
+            get { return GetInt("IsSubAccount", 0); }
+            set { SetExtendedAttribute("IsSubAccount", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 父账户ID
+        /// </summary>
+        [JsonIgnore]
+        public int ParentAccountID
+        {
+            get { return GetInt("ParentAccountID", 0); }
+            set { SetExtendedAttribute("ParentAccountID", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 溢价比例
+        /// </summary>
+        public decimal SubDiscount
+        {
+            get { return GetInt("SubDiscount", 0); }
+            set { SetExtendedAttribute("SubDiscount", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 用户明文密码
+        /// </summary>
+        [JsonProperty("PasswordText")]
+        public string PasswordText
+        {
+            get { return GetString("PasswordText", ""); }
+            set { SetExtendedAttribute("PasswordText", value); }
+        }
+
         #endregion Model
     }
 }

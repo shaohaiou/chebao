@@ -20,7 +20,10 @@ img{border:0;}
 .cb{margin:0 auto ;width:986px;position:relative;}
 .box_l{float:left;}
 .box_r{float:right;}
+.w60{width:60px;}
+.w80{width:80px;}
 .w100{width:100px;}
+.w120{width:120px;}
 .w200{width:200px;}
 .ml10{margin-left:10px;}
 .ml40{margin-left:40px;}
@@ -32,6 +35,9 @@ img{border:0;}
 /*按钮样式*/
 .srk1{width:250px; height:18px; border: 1px solid; border-color: #707070 #CECECE #CECECE #ABABAB; background: #F9F9F9;}
 		.srk1:hover,.srk1:focus{border-color: #6FB1DF; color:#333; background-color:#f5f9fd;}
+.srk4{width:25px; height:18px; border: 1px solid; border-color: #707070 #CECECE #CECECE #ABABAB; background: #F9F9F9; text-align:center;}
+		.srk4:hover,.srk4:focus{border-color: #6FB1DF; color:#333; background-color:#f5f9fd;}
+.an1{border:0; background:url(../images/and.gif) repeat-x; text-align:center; font-size:12px; height:24px; font-weight:700; text-align:center; color:#fff;padding:1px 6px;}
 .an3{border:0; background:url(../images/nt.jpg) no-repeat; font-size:12px; width:75px; height:22px; color:#fff; margin-bottom:5px;}
 /*宽度960px*/
 .header_02 .cb,.header_02 .main_area,.header_02 .top_hover{width:960px;}
@@ -47,8 +53,9 @@ img{border:0;}
 .navcurrent{background:url(../images/headnavcur.png) no-repeat bottom center;}
 .header_navinfo{position:absolute;width:240px;height:88px;right:0px;bottom:-4px;color:White;background:url(../images/headnavinfobg.jpg) no-repeat;}
 .navinfo_user,.navinfo_opt{width:240px;display:block;height:44px;line-height: 44px;text-align: center;position:relative;}
-.navinfo_opt a{color:White;}
+.navinfo_user a,.navinfo_opt a{color:White;}
 .cccx{position: absolute;top: -5px; left: 154px; margin: 0; line-height: 14px;}
+.zyhgl{position: absolute;top: -5px; left: 37px; margin: 0; line-height: 14px;}
 .my_garage_1{padding-right:10px;position:relative;}
 .my_garage .my_garage_1,.my_garage a:hover{color:#fff;text-decoration:none;}
 .my_garage .my_garage_1{}
@@ -527,3 +534,11 @@ border-bottom: 2px #b10000 solid;width: 1190px;position: relative;color:#b10000;
     width: 19px;
 	z-index:199;
 }
+
+/*输入框提示*/
+
+.msgflay{position:absolute;display:none;}
+    .msgflayl{float:left;width:30px;height:38px;background:url(../images/msgl.png) no-repeat;}
+    .msgflayb{float:left;height:38px;background:url(../images/msgb.png) repeat-x;}
+        .msgflayb span{height:20px;line-height:20px;display:block;margin: 11px 5px 0 5px;}
+    .msgflayr{float:left;width:3px;height:38px;background:url(../images/msgr.png) no-repeat;}

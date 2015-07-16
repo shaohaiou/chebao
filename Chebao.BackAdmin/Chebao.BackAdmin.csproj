@@ -187,6 +187,13 @@
     <Compile Include="message\messageboardview.aspx.designer.cs">
       <DependentUpon>messageboardview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="message\showclientmessage.aspx.cs">
+      <DependentUpon>showclientmessage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="message\showclientmessage.aspx.designer.cs">
+      <DependentUpon>showclientmessage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="order\main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,6 +221,13 @@
     </Compile>
     <Compile Include="order\orderview.aspx.designer.cs">
       <DependentUpon>orderview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="order\syncfailedmg.aspx.cs">
+      <DependentUpon>syncfailedmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order\syncfailedmg.aspx.designer.cs">
+      <DependentUpon>syncfailedmg.aspx</DependentUpon>
     </Compile>
     <Compile Include="product\addproductsucceed.aspx.cs">
       <DependentUpon>addproductsucceed.aspx</DependentUpon>
@@ -458,6 +472,27 @@
     <Compile Include="user\main_s.aspx.designer.cs">
       <DependentUpon>main_s.aspx</DependentUpon>
     </Compile>
+    <Compile Include="user\subaccountadd.aspx.cs">
+      <DependentUpon>subaccountadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\subaccountadd.aspx.designer.cs">
+      <DependentUpon>subaccountadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user\subaccountlist.aspx.cs">
+      <DependentUpon>subaccountlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\subaccountlist.aspx.designer.cs">
+      <DependentUpon>subaccountlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user\subaccountmg.aspx.cs">
+      <DependentUpon>subaccountmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\subaccountmg.aspx.designer.cs">
+      <DependentUpon>subaccountmg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user\userchangepw.aspx.cs">
       <DependentUpon>userchangepw.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -572,6 +607,7 @@
     <Content Include="images\userh1.gif" />
     <Content Include="images\userh1.jpg" />
     <Content Include="images\waiting.gif" />
+    <Content Include="js\jquery.cookie.js" />
     <Content Include="js\jquery.magnifier.js" />
     <Content Include="js\jquery.marquee.js" />
     <Content Include="message\main.aspx" />
@@ -579,10 +615,12 @@
     <Content Include="message\messageboard.aspx" />
     <Content Include="message\messageboardmg.aspx" />
     <Content Include="message\messageboardview.aspx" />
+    <Content Include="message\showclientmessage.aspx" />
     <Content Include="order\main.aspx" />
     <Content Include="order\main_s.aspx" />
     <Content Include="order\ordermg.aspx" />
     <Content Include="order\orderview.aspx" />
+    <Content Include="order\syncfailedmg.aspx" />
     <Content Include="product\addproductsucceed.aspx" />
     <Content Include="product\import.aspx" />
     <Content Include="car\main.aspx" />
@@ -805,6 +843,9 @@
     <Content Include="product\productview.aspx" />
     <Content Include="product\shoppingtrolleymg.aspx" />
     <Content Include="uc\header.ascx" />
+    <Content Include="user\subaccountadd.aspx" />
+    <Content Include="user\subaccountlist.aspx" />
+    <Content Include="user\subaccountmg.aspx" />
     <Content Include="user\userchangepw.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

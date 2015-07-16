@@ -39,7 +39,7 @@
                 </td>
             </tr>
         </table>
-        <table width="940" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
+        <table border="0" cellspacing="0" cellpadding="0" class="biaoge2">
             <asp:Repeater ID="rpadmin" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
@@ -64,7 +64,10 @@
                         <td class="w160">
                             最后登录信息
                         </td>
-                        <td>
+                        <td class="w80">
+                            尺寸查询
+                        </td>
+                        <td class="w160">
                             操作
                         </td>
                     </tr>
@@ -82,7 +85,9 @@
                             电话：<%#Eval("TelPhone")%>
                         </td>
                         <td>
-                            <%#Eval("Province")%> <%#Eval("City")%> <%#Eval("District")%><br />
+                            <%#Eval("Province")%>
+                            <%#Eval("City")%>
+                            <%#Eval("District")%><br />
                             <%#Eval("Address")%>
                         </td>
                         <td>
@@ -96,9 +101,13 @@
                             IP:<%#Eval("LastLoginIP")%><br />
                             次数：<%#Eval("LoginTimes") %>
                         </td>
+                        <td>
+                            <%# Eval("SizeView").ToString() == "0" ? "否" : "是"%>
+                        </td>
                         <td class="lan5x">
                             <a class="btndel" href="userlist.aspx?id=<%#Eval("ID") %>&action=del&from=<%=UrlEncode(CurrentUrl) %>">
                                 删除</a><a href="useredit.aspx?id=<%#Eval("ID") %>&action=update&from=<%=UrlEncode(CurrentUrl) %>">编辑</a>
+                            <%# GetSubAccount(Eval("ID")) %>
                         </td>
                     </tr>
                 </ItemTemplate>

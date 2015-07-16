@@ -52,7 +52,8 @@ namespace Chebao.BackAdmin
                         if (id > 0)
                         {
                             AdminInfo admin = Admins.Instance.GetAdmin(id);
-                            if (admin.ValidDate > DateTime.Today)
+                            AdminInfo parentadmin = admin.ParentAccountID > 0 ? Admins.Instance.GetAdmin(admin.ParentAccountID) : null;
+                            if (admin.ValidDate > DateTime.Today && (parentadmin == null || parentadmin.ValidDate > DateTime.Today))
                             {
                                 admin.LastLoginIP = WebHelper.GetClientsIP();
                                 admin.LastLoginTime = DateTime.Now;
@@ -67,7 +68,7 @@ namespace Chebao.BackAdmin
                             }
                             else
                             {
-                                lbMsgUser.Text = "您的帐号已过期，请联系管理员！";
+                                lbMsgUser.Text = "您的帐号已过期！";
                                 lbMsgUser.Visible = true;
                             }
                         }

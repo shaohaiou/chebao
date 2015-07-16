@@ -76,6 +76,7 @@ namespace Chebao.BackAdmin.user
                 SetSelectedByText(ddlCity, admin.City);
                 ddlCity_SelectedIndexChanged(null, null);
                 SetSelectedByText(ddlDistrict, admin.District);
+                ddlDistrict_SelectedIndexChanged(null, null);
             }
             txtPostCode.Value = admin.PostCode;
             txtDiscountM.Text = admin.DiscountM.ToString();
@@ -117,7 +118,7 @@ namespace Chebao.BackAdmin.user
             if (ddlCity.SelectedIndex > 0)
                 admin.City = ddlCity.SelectedItem.Text;
             if (ddlDistrict.SelectedIndex > 0)
-                ddlDistrict.SelectedItem.Text = admin.District;
+                admin.District = ddlDistrict.SelectedItem.Text;
             admin.DiscountM = DataConvert.SafeDecimal(txtDiscountM.Text);
             admin.DiscountY = DataConvert.SafeDecimal(txtDiscountY.Text);
             admin.DiscountH = DataConvert.SafeDecimal(txtDiscountH.Text);

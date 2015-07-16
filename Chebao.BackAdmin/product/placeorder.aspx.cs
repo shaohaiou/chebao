@@ -152,76 +152,118 @@ namespace Chebao.BackAdmin.product
 
         private void SubmitOrder()
         {
-            string checkresult = CheckForm();
-            if (!string.IsNullOrEmpty(checkresult))
+            try
             {
-                ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"" + checkresult + "\");", true);
-                return;
-            }
-            string key = GlobalKey.ORDERPRODUCT_LIST + "_" + AdminID;
-            List<OrderProductInfo> listOrderProduct = MangaCache.Get(key) as List<OrderProductInfo>;
-
-            if (listOrderProduct == null)
-            {
-                ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"订单产品错误\");location.href=\"shoppingtrolleymg.aspx\"", true);
-                return;
-            }
-            else
-            {
-                foreach (RepeaterItem item in rptData.Items)
+                string checkresult = CheckForm();
+                if (!string.IsNullOrEmpty(checkresult))
                 {
-                    HtmlInputHidden hdnSID = (HtmlInputHidden)item.FindControl("hdnSID");
-                    HtmlTextArea txtRemark = (HtmlTextArea)item.FindControl("txtRemark");
-
-                    if (listOrderProduct.Exists(l => l.SID.ToString() == hdnSID.Value))
-                    {
-                        listOrderProduct.Find(l => l.SID.ToString() == hdnSID.Value).Remark = txtRemark.Value;
-                    }
+                    ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"" + checkresult + "\");", true);
+                    return;
                 }
-                List<OrderInfo> orderlist = Cars.Instance.GetOrderList(true);
-                int ordercount = orderlist.Exists(o=>o.UserID == AdminID) ? orderlist.FindAll(o=>o.UserID == AdminID).Count : 0;
-                OrderInfo entity = new OrderInfo()
-                {
-                    OrderNumber = string.Format("{0}-{1}-{2}",AdminName,ordercount + 1,DateTime.Now.ToString("yyyyMMdd")),
-                    Province = ddlProvince.SelectedItem.Text,
-                    City = ddlCity.SelectedItem.Text,
-                    District = ddlDistrict.SelectedItem.Text,
-                    UserID = AdminID,
-                    UserName = AdminName,
-                    Address = txtAddress.Text,
-                    PostCode = txtPostCode.Value,
-                    LinkName = txtLinkName.Value,
-                    LinkMobile = txtLinkMobile.Value,
-                    LinkTel = txtLinkTel.Value,
-                    OrderStatus = OrderStatus.未收款,
-                    OrderProducts = listOrderProduct,
-                    AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                    DeelTime = string.Empty
-                };
-                entity.TotalFee = Math.Round(listOrderProduct.Sum(p => DataConvert.SafeDecimal(p.Sum)), 2).ToString();
-                entity.OrderProductJson = json.Serialize(listOrderProduct);
+                string key = GlobalKey.ORDERPRODUCT_LIST + "_" + AdminID;
+                List<OrderProductInfo> listOrderProduct = MangaCache.Get(key) as List<OrderProductInfo>;
 
-                string addresult = Cars.Instance.AddOrder(entity);
-                if (!string.IsNullOrEmpty(addresult))
+                if (listOrderProduct == null)
                 {
-                    ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"抱歉!" + addresult + "\");location.href=\"shoppingtrolleymg.aspx\"", true);
+                    ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"订单产品错误\");location.href=\"shoppingtrolleymg.aspx\"", true);
                     return;
                 }
                 else
                 {
-                    Admin.LinkName = txtLinkName.Value;
-                    Admin.Mobile = txtLinkMobile.Value;
-                    Admin.TelPhone = txtLinkTel.Value;
-                    Admin.Province = ddlProvince.SelectedItem.Text;
-                    Admin.City = ddlCity.SelectedItem.Text;
-                    Admin.District = ddlDistrict.SelectedItem.Text;
-                    Admin.Address = txtAddress.Text;
-                    Admin.PostCode = txtPostCode.Value;
+                    foreach (RepeaterItem item in rptData.Items)
+                    {
+                        HtmlInputHidden hdnSID = (HtmlInputHidden)item.FindControl("hdnSID");
+                        HtmlTextArea txtRemark = (HtmlTextArea)item.FindControl("txtRemark");
 
-                    Admins.Instance.UpdateAdmin(Admin);
-                    Response.Redirect("placeordersuccess.aspx");
-                    Response.End();
+                        if (listOrderProduct.Exists(l => l.SID.ToString() == hdnSID.Value))
+                        {
+                            listOrderProduct.Find(l => l.SID.ToString() == hdnSID.Value).Remark = txtRemark.Value;
+                        }
+                    }
+                    List<OrderInfo> orderlist = Cars.Instance.GetOrderList(true);
+                    int ordercount = orderlist.Exists(o => o.UserID == AdminID) ? orderlist.FindAll(o => o.UserID == AdminID).Count : 0;
+                    OrderInfo entity = new OrderInfo()
+                    {
+                        OrderNumber = string.Format("{0}-{1}-{2}", AdminName, ordercount + 1, DateTime.Now.ToString("yyyyMMdd")),
+                        Province = ddlProvince.SelectedItem.Text,
+                        City = ddlCity.SelectedItem.Text,
+                        District = ddlDistrict.SelectedItem.Text,
+                        UserID = AdminID,
+                        UserName = AdminName,
+                        Address = txtAddress.Text,
+                        PostCode = txtPostCode.Value,
+                        LinkName = txtLinkName.Value,
+                        LinkMobile = txtLinkMobile.Value,
+                        LinkTel = txtLinkTel.Value,
+                        OrderStatus = OrderStatus.未收款,
+                        OrderProducts = listOrderProduct,
+                        AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                        DeelTime = string.Empty
+                    };
+                    entity.TotalFee = Math.Round(listOrderProduct.Sum(p => DataConvert.SafeDecimal(p.Sum)), 2).ToString();
+                    entity.OrderProductJson = json.Serialize(listOrderProduct);
+                    if (entity.OrderProductJson.Length > 65500)
+                        entity.OrderProductJson1 = entity.OrderProductJson.Substring(0, 65500);
+                    else
+                        entity.OrderProductJson1 = entity.OrderProductJson;
+
+                    if (entity.OrderProductJson.Length > 65500 * 2)
+                        entity.OrderProductJson2 = entity.OrderProductJson.Substring(65500, 65500);
+                    else
+                        entity.OrderProductJson2 = entity.OrderProductJson.Length > 65500 ? entity.OrderProductJson.Substring(65500) : string.Empty;
+
+                    if (entity.OrderProductJson.Length > 65500 * 3)
+                        entity.OrderProductJson3 = entity.OrderProductJson.Substring(65500 * 2, 65500);
+                    else
+                        entity.OrderProductJson3 = entity.OrderProductJson.Length > 65500 * 2 ? entity.OrderProductJson.Substring(65500 * 2) : string.Empty;
+
+                    if (entity.OrderProductJson.Length > 65500 * 4)
+                        entity.OrderProductJson4 = entity.OrderProductJson.Substring(65500 * 3, 65500);
+                    else
+                        entity.OrderProductJson4 = entity.OrderProductJson.Length > 65500 * 3 ? entity.OrderProductJson.Substring(65500 * 3) : string.Empty;
+
+                    if (entity.OrderProductJson.Length > 65500 * 5)
+                        entity.OrderProductJson5 = entity.OrderProductJson.Substring(65500 * 4, 65500);
+                    else
+                        entity.OrderProductJson5 = entity.OrderProductJson.Length > 65500 * 4 ? entity.OrderProductJson.Substring(65500 * 4) : string.Empty;
+
+                    if (entity.OrderProductJson.Length > 65500 * 6)
+                        entity.OrderProductJson6 = entity.OrderProductJson.Substring(65500 * 5, 65500);
+                    else
+                        entity.OrderProductJson6 = entity.OrderProductJson.Length > 65500 * 5 ? entity.OrderProductJson.Substring(65500 * 5) : string.Empty;
+
+                    if (entity.OrderProductJson.Length > 65500 * 7)
+                        entity.OrderProductJson7 = entity.OrderProductJson.Substring(65500 * 6, 65500);
+                    else
+                        entity.OrderProductJson7 = entity.OrderProductJson.Length > 65500 * 6 ? entity.OrderProductJson.Substring(65500 * 6) : string.Empty;
+
+
+                    string addresult = Cars.Instance.AddOrder(entity);
+                    if (!string.IsNullOrEmpty(addresult))
+                    {
+                        ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"抱歉!" + addresult + "\");location.href=\"shoppingtrolleymg.aspx\"", true);
+                        return;
+                    }
+                    else
+                    {
+                        Admin.LinkName = txtLinkName.Value;
+                        Admin.Mobile = txtLinkMobile.Value;
+                        Admin.TelPhone = txtLinkTel.Value;
+                        Admin.Province = ddlProvince.SelectedItem.Text;
+                        Admin.City = ddlCity.SelectedItem.Text;
+                        Admin.District = ddlDistrict.SelectedItem.Text;
+                        Admin.Address = txtAddress.Text;
+                        Admin.PostCode = txtPostCode.Value;
+
+                        Admins.Instance.UpdateAdmin(Admin);
+                        Response.Redirect("placeordersuccess.aspx");
+                        Response.End();
+                    }
                 }
+            }
+            catch
+            { 
+                
             }
         }
 

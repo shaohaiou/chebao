@@ -30,6 +30,17 @@ namespace Chebao.BackAdmin.user
             }
         }
 
+        private List<AdminInfo> _userlist = null;
+        public List<AdminInfo> UserList 
+        { 
+            get 
+            {
+                if (_userlist == null)
+                    _userlist = Admins.Instance.GetUsers();
+                return _userlist;
+            } 
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -48,11 +59,11 @@ namespace Chebao.BackAdmin.user
                     }
                     int pagesize = GetInt("pagesize", 10);
                     int total = 0;
-                    List<AdminInfo> adminlist = Admins.Instance.GetUsers();
+                    List<AdminInfo> adminlist = UserList.FindAll(a=>a.IsSubAccount == 0);
                     if (!string.IsNullOrEmpty(GetString("username")))
-                        adminlist = adminlist.FindAll(l => l.UserName.IndexOf(GetString("username")) >= 0);
+                        adminlist = adminlist.FindAll(l => l.UserName.ToLower().IndexOf(GetString("username").ToLower()) >= 0);
                     if(!string.IsNullOrEmpty(GetString("linkname")))
-                        adminlist = adminlist.FindAll(l => l.LinkName.IndexOf(GetString("linkname")) >= 0);
+                        adminlist = adminlist.FindAll(l => l.LinkName.ToLower().IndexOf(GetString("linkname").ToLower()) >= 0);
 
                     total = adminlist.Count();
                     adminlist = adminlist.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList<AdminInfo>();
@@ -72,6 +83,17 @@ namespace Chebao.BackAdmin.user
         protected void btnFilter_Click(object sender, EventArgs e)
         {
             Response.Redirect("userlist.aspx?username=" + txtUserName.Text + "&linkname=" + txtLinkName.Text);
+        }
+
+        protected string GetSubAccount(object o)
+        {
+            string result = string.Empty;
+            int id = DataConvert.SafeInt(o);
+
+            if (id > 0 && UserList.Exists(l => l.ParentAccountID == id))
+                result = "<a class=\"subaccount\" href=\"subaccountmg.aspx?id=" + id + "&from=" + UrlEncode(CurrentUrl) +"\">子用户</a>（" + UserList.FindAll(l => l.ParentAccountID == id).Count + "）";
+
+            return result;
         }
 
         #region 导出Excel

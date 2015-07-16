@@ -1,5 +1,7 @@
 ﻿@charset "utf-8";
 
+h3 {border-bottom: 2px solid #f1f1f1;margin-bottom: 20px;}
+h3 a{font-size:12px;color:#249BE4!important;}
 .hide{display:none;}
 
 /*车型特卖*/
@@ -934,7 +936,7 @@ address, cite, dfn, em, var{font-style: normal;}
 .tb-toolbar-item-arrow{position: absolute;right: -6px;top: 0;color: #0971B2;}
 .tb-toolbar-item-label{text-align: center;font-size: 12px;line-height: 14px;margin: 2px 0;}
 .tb-toolbar-item-label-cart{width: 20px;height: 50px;line-height: 16px;padding: 0;margin: 0 auto;color: #666;}
-.tb-toolbar-item-badge-cart{border-radius: 10px;background-color: #c40000;color: #fff;width: 18px;height: 18px;line-height: 18px;text-align: center;margin: 0 auto;}
+.tb-toolbar-item-badge-cart{border-radius: 10px;background-color: #c40000;color: #fff;width: 28px;height: 18px;line-height: 18px;text-align: center;margin: 0 auto;}
 .tb-toolbar .J_WangWang, .tb-toolbar .ww-light{display: none!important;}
 .tb-toolbar-item-hd-cart{height: auto;padding-bottom: 5px;}
 .tb-toolbar-item-hd-active, .tb-toolbar-item-hd:hover{color: #0971B2;background-color: #fff;}
@@ -1012,6 +1014,7 @@ address, cite, dfn, em, var{font-style: normal;}
 .cart-checkbox-checked label {background-position: 0 -20px;}
 .td-item{width: 740px;}
 .th-item{width:203px;}
+.th-item-count{float: left;padding-left: 20px;color: gray;}
 .td-item .item-info {margin: -3px 0 0 91px;}
 .td-item .item-basic-info {height: 40px;}
 .td-chk, .th-chk {width: 45px;}
@@ -1022,6 +1025,7 @@ address, cite, dfn, em, var{font-style: normal;}
 .td-amount, .td-price, .th-amount, .th-price {width: 120px;}
 .td-sum, .th-sum {width: 105px;}
 .td-op, .th-op {width: 84px;padding: 0 0 0 15px;float:left;}
+.td-inner-index{height: 60px;line-height: 60px;padding-left: 10px;padding-top: 10px;color: gray;text-align:center;}
 
 .order-body {margin-bottom: 15px;}
 .order-content {border: 1px solid #ccc;}
@@ -1091,7 +1095,7 @@ fieldset, img {border: 0;}
 .address-bar ul li span{width:100px;display:block;text-align:right;position:absolute;left:0;}
 .buy-th-line {width: 100%;margin-top: 20px;font-size: 0;}
 .buy-th-line .buy-th-title {width: 540px;margin-left: 0;}
-.buy-th-line span {display: inline-block;height: 24px;line-height: 24px;text-align: center;border-bottom: 3px solid #b2d1ff;font-size: 12px;margin-left: 2px;float: left;}
+.usermg-th-line span,.usermg-tc-line span,.buy-th-line span {display: inline-block;height: 24px;line-height: 24px;text-align: center;border-bottom: 3px solid #b2d1ff;font-size: 12px;margin-left: 2px;float: left;}
 .buy-th-line .buy-th-price {width: 147px;}
 .buy-th-line .buy-th-quantity {width: 117px;}
 .buy-th-line .buy-th-promo {width: 190px;}
@@ -1159,6 +1163,17 @@ fieldset, img {border: 0;}
 
 .itemtype-info ul li{float:left;padding:5px 0;}
 
+
+.usermg-content{padding:10px;}
+.usermg-th-line{width: 900px;font-size: 0;}
+.usermg-tc-line{border-bottom:1px dashed #67B5F7;width: 900px; }
+.usermg-tc-line:hover{background: #CEE4FA; }
+.usermg-tc-line span{border-bottom:0px;height:auto;}
+.usermg-add-title{width: 460px;background: #eee;padding: 10px 20px;font-weight: bold;}
+.usermg-add-title span{line-height: 26px;border-bottom: 1px solid #aaa;width: 100%;display: block;}
+.usermg-add-ul{width:500px;}
+.usermg-add-ul li{float:left;width:400px;padding-left:100px;position:relative;height:28px;line-height:28px;background: #eee;}
+.usermg-add-ul .tl{position:absolute;left:0;width:100px;text-align:right;}
 
 @font-face{font-family:tb-toolbar-iconfont;src:url(../css/font_1418875995_7687602.eot);src:url(../css/font_1418875995_7687602.eot?#iefix) format('embedded-opentype'),url(../css/font_1418875995_7687602.woff) format('woff'),url(../css/font_1418875995_7687602.ttf) format('truetype'),url(../css/font_1418875995_7687602.svg#iconfont) format('svg')}
 @font-face{font-family:global-iconfont;src:url(../css/font_1404888168_2057645.eot);src:url(../css/font_1404888168_2057645.eot?#iefix) format("embedded-opentype"),url(../css/font_1404888168_2057645.woff) format("woff"),url(../css/font_1404888168_2057645.ttf) format("truetype"),url(../css/font_1404888168_2057645.svg#uxiconfont) format("svg")}

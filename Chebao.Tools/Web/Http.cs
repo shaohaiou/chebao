@@ -41,12 +41,11 @@ namespace Chebao.Tools
             return (content);
 
         }
-        public static bool GetPage(string url, int trytimes)
+        public static string GetPage(string url, int trytimes)
         {
-            bool result = true;
+            string result = string.Empty;
             try
             {
-                string content = string.Empty;
                 HttpWebRequest myHttpWebRequest1 = (HttpWebRequest)WebRequest.Create(url);
                 myHttpWebRequest1.KeepAlive = false;
                 HttpWebResponse myHttpWebResponse1;
@@ -60,7 +59,7 @@ namespace Chebao.Tools
                 while (count > 0)
                 {
                     String outputData = new String(readBuff, 0, count);
-                    content += outputData;
+                    result += outputData;
                     count = streamRead.Read(readBuff, 0, 256);
                 }
                 myHttpWebResponse1.Close();

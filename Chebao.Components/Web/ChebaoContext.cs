@@ -243,6 +243,23 @@ namespace Chebao.Components
             }
         }
 
+        private AdminInfo parentadmin = null;
+
+        /// <summary>
+        /// 父帐号
+        /// </summary>
+        [JsonIgnore]
+        public AdminInfo ParentAdmin
+        {
+            get
+            {
+                if (AdminUser.ParentAccountID == 0) return null;
+                if (parentadmin == null)
+                    parentadmin = Admins.Instance.GetAdmin(AdminUser.ParentAccountID);
+                return parentadmin;
+            }
+        }
+
         private bool HostInSetting(string host, string sets)
         {
             if (string.IsNullOrEmpty(host) || string.IsNullOrEmpty(sets))

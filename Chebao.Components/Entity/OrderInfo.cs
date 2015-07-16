@@ -36,6 +36,48 @@ namespace Chebao.Components
 
         public List<OrderProductInfo> OrderProducts { get; set; }
 
+        public string OrderProductJson1
+        {
+            set;
+            get;
+        }
+
+        public string OrderProductJson2
+        {
+            set;
+            get;
+        }
+
+        public string OrderProductJson3
+        {
+            set;
+            get;
+        }
+
+        public string OrderProductJson4
+        {
+            set;
+            get;
+        }
+
+        public string OrderProductJson5
+        {
+            set;
+            get;
+        }
+
+        public string OrderProductJson6
+        {
+            set;
+            get;
+        }
+
+        public string OrderProductJson7
+        {
+            set;
+            get;
+        }
+
         public OrderStatus OrderStatus { get; set; }
 
         public string TotalFee { get; set; }

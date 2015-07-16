@@ -724,7 +724,13 @@ namespace Chebao.DALSQLServer
                     ,[Address]
                     ,[LinkMobile]
                     ,[LinkTel]
-                    ,[OrderProductJson]
+                    ,[OrderProductJson1]
+                    ,[OrderProductJson2]
+                    ,[OrderProductJson3]
+                    ,[OrderProductJson4]
+                    ,[OrderProductJson5]
+                    ,[OrderProductJson6]
+                    ,[OrderProductJson7]
                     ,[OrderStatus]
                     ,[TotalFee]
                     ,[AddTime]
@@ -745,7 +751,13 @@ namespace Chebao.DALSQLServer
                     ,@Address
                     ,@LinkMobile
                     ,@LinkTel
-                    ,@OrderProductJson
+                    ,@OrderProductJson1
+                    ,@OrderProductJson2
+                    ,@OrderProductJson3
+                    ,@OrderProductJson4
+                    ,@OrderProductJson5
+                    ,@OrderProductJson6
+                    ,@OrderProductJson7
                     ,@OrderStatus
                     ,@TotalFee
                     ,@AddTime
@@ -769,7 +781,13 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@Address",entity.Address),
                 new OleDbParameter("@LinkMobile",entity.LinkMobile),
                 new OleDbParameter("@LinkTel",entity.LinkTel),
-                new OleDbParameter("@OrderProductJson",entity.OrderProductJson),
+                new OleDbParameter("@OrderProductJson1",entity.OrderProductJson1),
+                new OleDbParameter("@OrderProductJson2",entity.OrderProductJson2),
+                new OleDbParameter("@OrderProductJson3",entity.OrderProductJson3),
+                new OleDbParameter("@OrderProductJson4",entity.OrderProductJson4),
+                new OleDbParameter("@OrderProductJson5",entity.OrderProductJson5),
+                new OleDbParameter("@OrderProductJson6",entity.OrderProductJson6),
+                new OleDbParameter("@OrderProductJson7",entity.OrderProductJson7),
                 new OleDbParameter("@OrderStatus",(int)entity.OrderStatus),
                 new OleDbParameter("@TotalFee",entity.TotalFee),
                 new OleDbParameter("@AddTime",entity.AddTime),
@@ -825,6 +843,62 @@ namespace Chebao.DALSQLServer
             }
             string sql = "UPDATE Chebao_Order SET " + column + " = @Src WHERE ID =" + id;
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter("@Src", src));
+        }
+
+        #endregion
+
+        #region 同步失败记录
+
+        public override void AddSyncfailed(SyncfailedInfo entity)
+        {
+            string sql = @"
+                INSERT INTO Chebao_Syncfailed(
+                [Name]
+                ,[Amount]
+                ,[UserName]
+                ,[AType]
+                ,[AddTime]
+                ,[Status]
+                )VALUES(
+                @Name
+                ,@Amount
+                ,@UserName
+                ,@AType
+                ,@AddTime
+                ,@Status
+                )
+            ";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@OrderNumber",entity.Name),
+                new OleDbParameter("@OrderNumber",entity.Amount),
+                new OleDbParameter("@UserName",entity.UserName),
+                new OleDbParameter("@UserName",entity.AType),
+                new OleDbParameter("@AddTime",entity.AddTime),
+                new OleDbParameter("@AddTime",entity.Status)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override List<SyncfailedInfo> GetSyncfailedList()
+        {
+            List<SyncfailedInfo> list = new List<SyncfailedInfo>();
+            string sql = "SELECT * FROM Chebao_Syncfailed WHERE [Status] = 0";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateSyncfailed(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override void UpdateSyncfailedStatus(string ids)
+        {
+            string sql = "UPDATE Chebao_Syncfailed SET [Status] = 1 WHERE [ID] IN(" + ids + ")";
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
         }
 
         #endregion
