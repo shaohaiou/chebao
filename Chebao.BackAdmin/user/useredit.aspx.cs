@@ -91,6 +91,7 @@ namespace Chebao.BackAdmin.user
             txtDiscountK.Text = admin.DiscountK.ToString();
             txtDiscountP.Text = admin.DiscountP.ToString();
             cbxSizeView.Checked = admin.SizeView > 0;
+            cbxIsAddAccount.Checked = admin.IsAddAccount > 0;
         }
 
         /// <summary>
@@ -131,6 +132,7 @@ namespace Chebao.BackAdmin.user
             admin.DiscountK = DataConvert.SafeDecimal(txtDiscountK.Text);
             admin.DiscountP = DataConvert.SafeDecimal(txtDiscountP.Text);
             admin.SizeView = cbxSizeView.Checked ? 1 : 0;
+            admin.IsAddAccount = cbxIsAddAccount.Checked ? 1 : 0;
         }
 
         /// <summary>

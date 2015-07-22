@@ -17,6 +17,11 @@ namespace Chebao.BackAdmin.user
                 Response.Redirect("~/Login.aspx");
                 return;
             }
+            if (Admin.ParentAccountID > 0 || Admin.IsAddAccount == 0)
+            {
+                WriteErrorMessage("操作出错！", "您没有子用户操作权限！", "~/product/products.aspx");
+                return;
+            }
         }
 
         private List<AdminInfo> _userlist = null;

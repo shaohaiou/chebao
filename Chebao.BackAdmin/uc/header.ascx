@@ -31,7 +31,7 @@
                     class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
                         class="ml10">我的订单</a><%if (Admin.SizeView > 0 && (ParentAdmin == null || ParentAdmin.SizeView > 0))
                                                { %><a href="http://yd.lamda.us/admin/MJ.asp?id=fdskjgbdsfjbg56514zfhg" class="cccx">尺寸查询</a><%} %>
-                    <%if (Admin.ParentAccountID == 0)
+                    <%if (Admin.ParentAccountID == 0 && Admin.IsAddAccount > 0)
                       { %><a class="zyhgl" href="/user/subaccountlist.aspx">管理子用户</a><%} %></span>
         </div>
     </div>

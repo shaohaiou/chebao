@@ -313,6 +313,16 @@ namespace Chebao.Components
             set { SetExtendedAttribute("PasswordText", value); }
         }
 
+        /// <summary>
+        /// 是否可以添加子账户
+        /// </summary>
+        [JsonIgnore]
+        public int IsAddAccount
+        {
+            get { return GetInt("IsAddAccount", 0); }
+            set { SetExtendedAttribute("IsAddAccount", value.ToString()); }
+        }
+
         #endregion Model
     }
 }

@@ -99,6 +99,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="bg1">
+                        子用户权限：
+                    </td>
+                    <td class="bg2">
+                        <asp:CheckBox runat="server" ID="cbxIsAddAccount" />
+                    </td>
+                </tr>
+                <tr>
                     <td class="tr">
                         有效天数：
                     </td>

@@ -20,6 +20,11 @@ namespace Chebao.BackAdmin.user
                 Response.Redirect("~/Login.aspx");
                 return;
             }
+            if (Admin.ParentAccountID > 0 || Admin.IsAddAccount == 0)
+            {
+                WriteErrorMessage("操作出错！", "您没有子用户操作权限！", "~/product/products.aspx");
+                return;
+            }
         }
 
         private List<AdminInfo> _userlist = null;
@@ -43,18 +48,16 @@ namespace Chebao.BackAdmin.user
                 {
                     admin = Admins.Instance.GetAdmin(id);
 
-                    if (admin != null)
-                    {
+                    if (admin != null && admin.ParentAccountID == Admin.ID)
                         BindData(admin);
-                    }
+                    else if(admin != null && admin.ParentAccountID != Admin.ID)
+                        WriteErrorMessage("操作出错！", "您没有对该用户的操作权限！", "~/user/subaccountlist.aspx");
                     else
-                    {
                         WriteErrorMessage("操作出错！", "该用户不存在，可能已经被删除！", "~/user/subaccountlist.aspx");
-                    }
                 }
                 else
                 {
-                    txtUserName.Text = AdminName + "-" + (!UserList.Exists(l => l.ParentAccountID == AdminID) ? 1 : UserList.FindAll(l => l.ParentAccountID == AdminID).Select(l=>DataConvert.SafeInt(l.UserName.Replace(AdminName + "-",string.Empty)) + 1).Max());
+                    txtUserName.Text = AdminName + "-" + (!UserList.Exists(l => l.ParentAccountID == AdminID) ? 1 : UserList.FindAll(l => l.UserName.StartsWith(AdminName) && l.ID != AdminID).Select(l => DataConvert.SafeInt(l.UserName.Replace(AdminName + "-", string.Empty)) + 1).Max());
                     if (Admin.ValidDate.ToString("yyyyMMdd") != DateTime.MaxValue.ToString("yyyyMMdd"))
                     {
                         txtValidDays.Attributes["max-data"] = Admin.ValidDate.Subtract(DateTime.Today).Days.ToString();

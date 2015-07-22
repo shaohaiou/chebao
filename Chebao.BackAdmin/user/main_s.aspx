@@ -15,8 +15,8 @@
 </head>
 <body style="background: url(../images/xdd.gif) repeat-x;">
     <div class="right_nav">
-        <a href="adminlist.aspx" target="ztk" id="adminlist" runat="server" class="current">管理员管理</a> <a
-            href="userlist.aspx" target="ztk" id="userlist" runat="server">用户管理</a>
+        <a href="userlist.aspx" target="ztk" id="userlist" runat="server" class="current">用户管理</a>
+        <a href="adminlist.aspx" target="ztk" id="adminlist" runat="server">管理员管理</a>
     </div>
     <div class="r_sy" id="daohan">
         当前位置：用户管理 &gt;&gt; <span id="daohan_sp">
