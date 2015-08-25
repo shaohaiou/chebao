@@ -277,18 +277,27 @@
                                     <p class="s_h">
                                         <%#Eval("ProductType").ToString()%></p>
                                     <!--商品标签-->
-                                    <a class="sp_img" href="productview.aspx?id=<%#Eval("ID") %>" title="<%# Eval("Name")%>"
+                                    <a class="sp_img" href="productview.aspx?id=<%#Eval("ID") %>" <%if (IsShowCabmodel)
+                                          { %> title="<%# Eval("Name")%>"<%} %>
                                         target="_blank">
-                                        <img src="<%#Eval("Pic") %>" title="<%# Eval("Name")%>" width="192" height="144"
-                                            alt="<%# Eval("Name")%>"></a>
+                                        <img src="<%#Eval("Pic") %>" <%if (IsShowCabmodel)
+                                          { %>title="<%# Eval("Name")%>" <%} %>width="192" height="144"
+                                            <%if (IsShowCabmodel)
+                                          { %>alt="<%# Eval("Name")%>"<%} %>></a>
+                                    <% if (IsShowPrice)
+                                       { %>
                                     <p class="s_t1 tb-btn-add">
                                         ￥<%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%>
                                         <i class="tb-iconfont tb-iconfont-list J_LinkAdd" pid="<%#Eval("ID") %>" title="加入购物车">
                                             ŭ</i>
                                     </p>
+                                    <%} %>
                                     <p class="s_t2">
+                                        <%if (IsShowCabmodel)
+                                          { %>
                                         <a href="productview.aspx?id=<%#Eval("ID") %>" title="<%# Eval("Name")%>" target="_blank">
-                                            <%# Eval("Name")%></a></p>
+                                            <%# Eval("Name")%></a>
+                                            <%} %></p>
                                     <p class="s_t3">
                                         型号：<%# Eval("ModelNumber")%>
                                     </p>
@@ -330,6 +339,7 @@
             <img id="bigimg" style="border: 5px solid #fff;" src="" />
         </div>
     </div>
+    <%if (IsShowPrice){ %>
     <div class="tb-toolbar tb-toolbar-right" id="J_Toolbar" style="right: 0px;">
         <div class="tb-toolbar-space" style="height: 25%;">
         </div>
@@ -408,6 +418,7 @@
             </a></li>
         </ul>
     </div>
+    <%} %>
 </body>
 <noscript>
     <iframe src="*.htm"></iframe>

@@ -230,8 +230,9 @@
             当前位置：<a href="/product/products.aspx">首页</a> &gt;<a href="products.aspx?t=<%= (int)Product.ProductType %>"><%=Product.ProductType.ToString()%></a>
             <%if (SearchCabmodel != null)
               { %>&gt;<a href="products.aspx?id=<%=SearchCabmodel.ID %>"><%=SearchCabmodel.CabmodelNameBind%></a><%} %>
+            <%if (IsShowCabmodel){ %>
             &gt;
-            <%= Product.Name %></div>
+            <%= Product.Name %><%} %></div>
         <div class="goods_p_r1">
             <!--产品参数开始-->
             <div class="goods_r_a">
@@ -263,7 +264,7 @@
             <div class="goods_r_b">
                 <div class="name">
                     <h1 id="dsp_goods_name7076">
-                        <%=Product.Name %></h1>
+                        <%if (IsShowCabmodel){ %><%=Product.Name %><%}else{ %>&nbsp;<%} %></h1>
                     <!--<strong>适用于：</strong>-->
                 </div>
                 <div class="gprice">
@@ -271,7 +272,9 @@
                         <li>
                             <div class="gp_r1">
                                 价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</div>
-                            <span class="m_price_1" style="width: 450px;">¥<%=Product.Price.StartsWith("¥") ? Product.Price.Substring(1) : Product.Price%></span></li>
+                                <%if (IsShowPrice){ %>
+                            <span class="m_price_1" style="width: 450px;">¥<%=Product.Price.StartsWith("¥") ? Product.Price.Substring(1) : Product.Price%></span>
+                            <%} %></li>
                         <li>
                             <div class="gp_r1">
                                 型&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</div>
@@ -325,9 +328,11 @@
                             <div class="tb-btn-buy hide">
                                 <a href="javascript:void(0);" title="点击此按钮，到下一步确认购买信息" class="J_LinkBuy" pid="<%=Product.ID %>">
                                     立即购买</a></div>
+                                    <%if(IsShowPrice){ %>
                             <div class="tb-btn-add">
                                 <a href="javascript:void(0);" title="加入购物车" class="J_LinkAdd" pid="<%=Product.ID %>">
                                     <i class="tb-iconfont">ŭ</i>加入购物车</a></div>
+                                    <%} %>
                             <div id="Div1" style="display: none;">
                             </div>
                         </div>
@@ -337,6 +342,8 @@
                 </div>
             </div>
         </div>
+        <%if (IsShowCabmodel)
+          { %>
         <div class="goods_p_r1_1">
             <div class="carstatus">
                 <%if (SearchCabmodel != null && !string.IsNullOrEmpty(SearchCabmodel.Imgpath))
@@ -359,6 +366,7 @@
                 </div>
             </div>
         </div>
+        <%} %>
         <div class="goods_p_r2">
             <!--随心配-->
             <span id="comb_goods_id"></span>
@@ -366,7 +374,7 @@
             <div class="g_detail" id="comment">
                 <ul class="tab clearfix1">
                     <li onclick="tabs('#comment',0)" class="curr">产品描述<strong></strong><span></span></li>
-                    <li onclick="tabs('#comment',1)">适用车型<span></span></li>
+                    <%if (IsShowCabmodel){ %><li onclick="tabs('#comment',1)">适用车型<span></span></li><%} %>
                 </ul>
                 <div class="mc tabcon hide" style="display: block;">
                     <div class="norecode">
@@ -411,6 +419,8 @@
             <img id="bigimg" style="border: 5px solid #fff;" src="" />
         </div>
     </div>
+    <%if (IsShowPrice)
+      { %>
     <div class="tb-toolbar tb-toolbar-right" id="J_Toolbar" style="right: 0px;">
         <div class="tb-toolbar-space" style="height: 25%;">
         </div>
@@ -489,6 +499,7 @@
             </a></li>
         </ul>
     </div>
+    <%}  %>
 </body>
 <noscript>
     <iframe src="*.htm"></iframe>

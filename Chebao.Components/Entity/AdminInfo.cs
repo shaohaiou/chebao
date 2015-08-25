@@ -323,6 +323,26 @@ namespace Chebao.Components
             set { SetExtendedAttribute("IsAddAccount", value.ToString()); }
         }
 
+        /// <summary>
+        /// 是否显示适用车型
+        /// </summary>
+        [JsonIgnore]
+        public int IsShowCabmodel
+        {
+            get { return GetInt("IsShowCabmodel", 0); }
+            set { SetExtendedAttribute("IsShowCabmodel", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 是否显示价格
+        /// </summary>
+        [JsonIgnore]
+        public int IsShowPrice
+        {
+            get { return GetInt("IsShowPrice", 0); }
+            set { SetExtendedAttribute("IsShowPrice", value.ToString()); }
+        }
+
         #endregion Model
     }
 }

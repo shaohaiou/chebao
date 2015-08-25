@@ -208,6 +208,22 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="bg1">
+                        显示适用车型：
+                    </td>
+                    <td class="bg2">
+                        <asp:CheckBox runat="server" ID="cbxIsShowCabmodel" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
+                        显示价格：
+                    </td>
+                    <td class="bg2">
+                        <asp:CheckBox runat="server" ID="cbxIsShowPrice" />
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="2" style="text-align: center">
                         <div style="text-align: center">
                             <asp:CustomValidator ID="cvmess" Display="Dynamic" runat="server" ErrorMessage=""></asp:CustomValidator></div>

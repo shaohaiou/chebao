@@ -38,7 +38,7 @@ namespace Chebao.BackAdmin.user
                 if (_userlist == null)
                     _userlist = Admins.Instance.GetUsers();
                 return _userlist;
-            } 
+            }   
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -59,7 +59,7 @@ namespace Chebao.BackAdmin.user
                     }
                     int pagesize = GetInt("pagesize", 10);
                     int total = 0;
-                    List<AdminInfo> adminlist = UserList.FindAll(a=>a.IsSubAccount == 0);
+                    List<AdminInfo> adminlist = UserList.FindAll(a=>a.ParentAccountID == 0);
                     if (!string.IsNullOrEmpty(GetString("username")))
                         adminlist = adminlist.FindAll(l => l.UserName.ToLower().IndexOf(GetString("username").ToLower()) >= 0);
                     if(!string.IsNullOrEmpty(GetString("linkname")))

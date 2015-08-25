@@ -25,7 +25,7 @@
                     <asp:Repeater runat="server" ID="rptSubAccount">
                         <HeaderTemplate>
                             <div class="usermg-th-line clearfix">
-                                <span class="w100">用户名</span> <span class="w60">联系人</span>
+                                <span class="w100">用户名/密码</span> <span class="w60">联系人</span>
                                 <span class="w120">联系方式</span> <span class="w200">联系地址</span>
                                 <span class="w60">邮政编码</span> <span class="w100">有效期至</span>
                                 <span class="w80">溢价比例</span> <span class="w80">尺寸查询</span>
@@ -35,7 +35,8 @@
                         <ItemTemplate>
                             <div class="usermg-tc-line clearfix">
                                 <span class="w100">
-                                    <%#Eval("UserName")%></span> <span class="w60">
+                                    <%#Eval("UserName")%><br />
+                                    <%#Eval("PasswordText")%></span> <span class="w60">
                                         <%#Eval("LinkName")%></span> <span class="w120">手机：<%#Eval("Mobile")%><br />
                                             电话：<%#Eval("TelPhone")%></span> <span class="w200">
                                                 <%#Eval("Province")%>

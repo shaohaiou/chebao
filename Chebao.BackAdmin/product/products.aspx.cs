@@ -41,6 +41,32 @@ namespace Chebao.BackAdmin.product
             }
         }
 
+        private bool? isshowprice;
+        public bool IsShowPrice
+        {
+            get
+            {
+                if (!isshowprice.HasValue)
+                {
+                    if (Admin.ParentAccountID > 0)
+                        isshowprice = ParentAdmin.IsShowPrice > 0;
+                    else
+                        isshowprice = Admin.IsShowPrice > 0;
+                }
+                return isshowprice.Value;
+            }
+        }
+
+        public bool IsShowCabmodel
+        {
+            get
+            {
+                if (Admin.ParentAccountID > 0)
+                    return ParentAdmin.IsShowCabmodel > 0;
+                return Admin.IsShowCabmodel > 0;
+            }
+        }
+
         protected bool HasProduct = false;
 
         protected override void Check()
@@ -309,7 +335,7 @@ namespace Chebao.BackAdmin.product
 
                 List<ShoppingTrolleyInfo> list = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
                 List<ProductInfo> productlist = Cars.Instance.GetProductList(true);
-                result = list.FindAll(l=>productlist.Exists(p=>p.ID == l.ProductID)).Count.ToString();
+                result = list.FindAll(l => productlist.Exists(p => p.ID == l.ProductID)).Count.ToString();
 
                 return result;
             }

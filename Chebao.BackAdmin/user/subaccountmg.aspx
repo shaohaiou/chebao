@@ -31,7 +31,7 @@
                 <HeaderTemplate>
                     <tr class="bgbt">
                         <td class="w100">
-                            用户名
+                            用户名/密码
                         </td>
                         <td class="w60">
                             联系人
@@ -65,7 +65,8 @@
                 <ItemTemplate>
                     <tr>
                         <td>
-                            <%#Eval("UserName")%>
+                            用户名：<%#Eval("UserName")%><br />
+                            密码：<%#Eval("PasswordText")%>
                         </td>
                         <td>
                             <%#Eval("LinkName")%>

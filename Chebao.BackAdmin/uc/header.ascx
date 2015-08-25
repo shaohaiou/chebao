@@ -28,7 +28,7 @@
         <div class="header_navinfo">
             <span class="navinfo_user">
                 <%= Admin.UserName%>，您好！ </span><span class="navinfo_opt"><a href="/logout.aspx">安全退出</a><a
-                    class="ml10" href="/user/userchangepw.aspx">修改密码</a><a href="/product/myorders.aspx"
+                    class="ml10" href="/user/userchangepw.aspx"> 修改密码</a><a href="/product/myorders.aspx"
                         class="ml10">我的订单</a><%if (Admin.SizeView > 0 && (ParentAdmin == null || ParentAdmin.SizeView > 0))
                                                { %><a href="http://yd.lamda.us/admin/MJ.asp?id=fdskjgbdsfjbg56514zfhg" class="cccx">尺寸查询</a><%} %>
                     <%if (Admin.ParentAccountID == 0 && Admin.IsAddAccount > 0)

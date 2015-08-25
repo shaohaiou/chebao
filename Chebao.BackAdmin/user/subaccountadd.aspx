@@ -105,7 +105,7 @@
                         </li>
                         <li class="<%= Admin.SizeView > 0 ? string.Empty : "hide" %>"><span class="tl">尺寸查询权限：</span>
                             <asp:CheckBox runat="server" ID="cbxSizeView" /></li>
-                        <li><span class="tl">溢价比例：</span><asp:TextBox runat="server" ID="txtSubDiscountt"
+                        <li><span class="tl">溢价比例：</span><asp:TextBox runat="server" ID="txtSubDiscountt" Text="90"
                             CssClass="srk4 mr10"></asp:TextBox>
                             %<span class="gray pl10">子用户的购买价格 = 主用户购买价格 × （1 + 溢价比例）</span></li>
                         <li>

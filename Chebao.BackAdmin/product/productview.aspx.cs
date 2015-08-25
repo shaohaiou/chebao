@@ -73,6 +73,32 @@ namespace Chebao.BackAdmin.product
             }
         }
 
+        public bool IsShowCabmodel
+        {
+            get
+            {
+                if (Admin.ParentAccountID > 0)
+                    return ParentAdmin.IsShowCabmodel > 0;
+                return Admin.IsShowCabmodel > 0;
+            }
+        }
+
+        private bool? isshowprice;
+        public bool IsShowPrice
+        {
+            get
+            {
+                if (!isshowprice.HasValue)
+                {
+                    if (Admin.ParentAccountID > 0)
+                        isshowprice = ParentAdmin.IsShowPrice > 0;
+                    else
+                        isshowprice = Admin.IsShowPrice > 0;
+                }
+                return isshowprice.Value;
+            }
+        }
+
         //public int Stock
         //{
         //    get
