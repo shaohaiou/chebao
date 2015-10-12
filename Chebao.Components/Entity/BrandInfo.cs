@@ -13,6 +13,8 @@ namespace Chebao.Components
 
         public string NameIndex { get; set; }
 
+        public string Imgpath { get; set; }
+
         public string BrandNameBind 
         { 
             get 

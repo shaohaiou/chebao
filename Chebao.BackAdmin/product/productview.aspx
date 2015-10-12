@@ -251,7 +251,8 @@
                             <asp:Repeater runat="server" ID="rptPics">
                                 <ItemTemplate>
                                     <li>
-                                        <img alt="<%= Product.Name %>" title="<%= Product.Name %>" bimg="<%# Eval("Value") %>"
+                                        <img <%if (IsShowCabmodel)
+                                          { %> alt="<%= Product.Name %>" title="<%= Product.Name %>" <%} %> bimg="<%# Eval("Value") %>"
                                             src="<%# Eval("Key") %>" onmousemove="preview(this);"></li>
                                 </ItemTemplate>
                             </asp:Repeater>

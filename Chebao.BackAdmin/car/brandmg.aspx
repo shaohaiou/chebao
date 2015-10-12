@@ -7,6 +7,7 @@
     <title>品牌管理</title>
     <link href="../css/admin.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.3.2.min.js" type="text/javascript"></script>
+    <script src="../js/ajaxupload.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $(".btnDel").click(function () {
@@ -16,10 +17,17 @@
             $("#btnAdd").click(function () {
                 $("#hdnAddCount").val(parseInt($("#hdnAddCount").val()) + 1);
                 $("#tblBrand").append("<tr><td><input type=\"text\" id=\"txtBrandName" + $("#hdnAddCount").val() + "\" name=\"txtBrandName" + $("#hdnAddCount").val() + "\" class=\"srk1 w120\" value=\"\" /></td><td></td>"
+                 + "<td><a href=\"javascript:void(0);\" id=\"btnUploadImg" + $("#hdnAddCount").val() + "\" class=\"uploadbtpics\">上传</a><br /><img src=\"../images/fm.jpg\" alt=\"品牌图片\" class=\"imgpics\" id=\"imgpics" + $("#hdnAddCount").val() + "\" style=\"width: 22px;height: 22px;\" /><input type=\"hidden\" id=\"hdnImgpath" + $("#hdnAddCount").val() + "\" name=\"hdnImgpath" + $("#hdnAddCount").val() + "\" class=\"hdnImgpath\" /></td>"
                  + "<td><a href=\"javascript:void(0);\" class=\"btnDel\" val=\"0\">删除</a> </td></tr>");
                 $(".btnDel").unbind("click").click(function () {
                     DelRow(this);
                 });
+
+                UploadImg($("#btnUploadImg" + $("#hdnAddCount").val())[0]);
+            });
+
+            $(".uploadbtpics").each(function () {
+                UploadImg(this);
             });
         });
 
@@ -29,12 +37,46 @@
             }
             $(obj).parent().parent().remove();
         }
+
+        function UploadImg(btn) {
+            var imgpath_pics;
+            var button1 = $(btn), interval1;
+            new AjaxUpload(button1, {
+                action: '/cutimage.ashx',
+                name: 'picfile',
+                responseType: 'json',
+                data: { action: 'upload' },
+                onSubmit: function (file, ext) {
+                    if (!(ext && /^(jpg|png|jpeg|gif)$/i.test(ext))) {
+                        alert('只能上传图片！');
+                        return false;
+                    }
+                    button1.html("上传中");
+                    this.disable();
+                    interval1 = window.setInterval(function () {
+                        var text = button1.html();
+                        if (text.length < 13) {
+                            button1.html(text + '.');
+                        } else {
+                            button1.html("上传中");
+                        }
+                    }, 200);
+                },
+                onComplete: function (file, response) {
+                    button1.html('修改');
+                    window.clearInterval(interval1);
+                    this.enable();
+                    $("img", button1.parent()).attr("src", response.src).attr("val", response.src);
+                    $(".hdnImgpath", button1.parent()).val(response.src);
+                }
+            });
+        }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="240" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblBrand">
+        <table width="320" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblBrand">
             <asp:Repeater ID="rptBrand" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
@@ -43,6 +85,9 @@
                         </td>
                         <td class="w40">
                             首字母
+                        </td>
+                        <td class="w80">
+                            图片
                         </td>
                         <td>
                             操作
@@ -57,6 +102,13 @@
                         </td>
                         <td>
                             <input type="text" runat="server" id="txtNameIndex" class="srk1 w40" value='<%#Eval("NameIndex") %>' />
+                        </td>
+                        <td class="lan5x">
+                            <a href="javascript:void(0);" class="uploadbtpics">上传</a><br />
+                            <img src="<%# string.IsNullOrEmpty(Eval("Imgpath") as string) ? "../images/fm.jpg" : Eval("Imgpath").ToString() %>"
+                                alt="品牌图片" class="imgpics" style="width: 22px; height: 22px;" />
+                            <input type="hidden" value='<%# Eval("Imgpath") %>' runat="server" id="hdnImgpath"
+                                class="hdnImgpath" />
                         </td>
                         <td class="lan5x">
                             <a href="javascript:void(0);" class="btnDel pl10" val="<%#Eval("ID") %>">删除</a>

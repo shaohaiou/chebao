@@ -57,12 +57,14 @@ namespace Chebao.BackAdmin.car
                 for (int i = 1; i <= addCount; i++)
                 {
                     string brandname = Request["txtBrandName" + i];
+                    string imgpath = Request["hdnImgpath" + i];
                     if (!string.IsNullOrEmpty(brandname))
                     {
                         BrandInfo entity = new BrandInfo
                         {
                              BrandName = brandname,
-                             NameIndex = StrHelper.ConvertE(brandname).Substring(0, 1).ToUpper()
+                             NameIndex = StrHelper.ConvertE(brandname).Substring(0, 1).ToUpper(),
+                             Imgpath = imgpath
                         };
                         Cars.Instance.AddBrand(entity);
                     }
@@ -75,6 +77,7 @@ namespace Chebao.BackAdmin.car
                 {
                     System.Web.UI.HtmlControls.HtmlInputText txtBrandName = (System.Web.UI.HtmlControls.HtmlInputText)item.FindControl("txtBrandName");
                     System.Web.UI.HtmlControls.HtmlInputText txtNameIndex = (System.Web.UI.HtmlControls.HtmlInputText)item.FindControl("txtNameIndex");
+                    System.Web.UI.HtmlControls.HtmlInputHidden hdnImgpath = (System.Web.UI.HtmlControls.HtmlInputHidden)item.FindControl("hdnImgpath");
                     System.Web.UI.HtmlControls.HtmlInputHidden hdnID = (System.Web.UI.HtmlControls.HtmlInputHidden)item.FindControl("hdnID");
                     if (hdnID != null)
                     {
@@ -86,6 +89,7 @@ namespace Chebao.BackAdmin.car
                             {
                                 entity.BrandName = txtBrandName.Value;
                                 entity.NameIndex = txtNameIndex.Value.ToString().ToUpper();
+                                entity.Imgpath = hdnImgpath.Value;
                                 Cars.Instance.UpdateBrand(entity);
                             }
                         }

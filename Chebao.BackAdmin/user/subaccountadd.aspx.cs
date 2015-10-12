@@ -57,7 +57,7 @@ namespace Chebao.BackAdmin.user
                 }
                 else
                 {
-                    txtUserName.Text = AdminName + "-" + (!UserList.Exists(l => l.ParentAccountID == AdminID) ? 1 : UserList.FindAll(l => l.UserName.StartsWith(AdminName) && l.ID != AdminID).Select(l => DataConvert.SafeInt(l.UserName.Replace(AdminName + "-", string.Empty)) + 1).Max());
+                    txtUserName.Text = AdminName + "-" + (!UserList.Exists(l => l.UserName.StartsWith(AdminName) && l.ID != AdminID) ? 1 : UserList.FindAll(l => l.UserName.StartsWith(AdminName) && l.ID != AdminID).Select(l => DataConvert.SafeInt(l.UserName.Replace(AdminName + "-", string.Empty)) + 1).Max());
                     if (Admin.ValidDate.ToString("yyyyMMdd") != DateTime.MaxValue.ToString("yyyyMMdd"))
                     {
                         txtValidDays.Attributes["max-data"] = Admin.ValidDate.Subtract(DateTime.Today).Days.ToString();

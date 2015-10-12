@@ -163,8 +163,11 @@ namespace Chebao.BackAdmin.product
                     int pid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]);
                     int sid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[1]);
                     ProductInfo entity = listAllProduct.Find(p => p.ID == pid);
-                    entity.SID = sid;
-                    listProdcutInShoppingTrolley.Add(entity);
+                    if (entity != null)
+                    {
+                        entity.SID = sid;
+                        listProdcutInShoppingTrolley.Add(entity);
+                    }
                 }
                 rptShoppingTrolley.DataSource = listProdcutInShoppingTrolley;
                 rptShoppingTrolley.DataBind();

@@ -230,7 +230,8 @@ namespace Chebao.Components
             {
                 ID = DataConvert.SafeInt(reader["ID"]),
                 BrandName = reader["BrandName"] as string,
-                NameIndex = reader["NameIndex"] as string
+                NameIndex = reader["NameIndex"] as string,
+                Imgpath = reader["Imgpath"] as string
             };
 
             return entity;

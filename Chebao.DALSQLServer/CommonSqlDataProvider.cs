@@ -393,15 +393,18 @@ namespace Chebao.DALSQLServer
                 INSERT INTO Chebao_Brand(
                     [BrandName]
                     ,[NameIndex]
+                    ,[Imgpath]
                 )VALUES(
                     @BrandName
                     ,@NameIndex
+                    ,@Imgpath
                 )";
 
                 p = new OleDbParameter[]
                 { 
                     new OleDbParameter("@BrandName",entity.BrandName),
-                    new OleDbParameter("@NameIndex",entity.NameIndex)
+                    new OleDbParameter("@NameIndex",entity.NameIndex),
+                    new OleDbParameter("@Imgpath",entity.Imgpath)
                 };
                 SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
                 sql = "SELECT MAX([ID]) FROM Chebao_Brand";
@@ -424,11 +427,13 @@ namespace Chebao.DALSQLServer
                 UPDATE Chebao_Brand SET
                     [BrandName] = @BrandName
                     ,[NameIndex] = @NameIndex
+                    ,[Imgpath] = @Imgpath
                 WHERE [ID] = @ID";
                 p = new OleDbParameter[]
                 { 
                     new OleDbParameter("@BrandName",entity.BrandName),
                     new OleDbParameter("@NameIndex",entity.NameIndex),
+                    new OleDbParameter("@Imgpath",entity.Imgpath),
                     new OleDbParameter("@ID",entity.ID)
                 };
                 SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);

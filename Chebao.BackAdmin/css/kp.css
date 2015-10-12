@@ -434,7 +434,7 @@ border: 1px #d7d7d7 solid;line-height:22px;text-align: center;}
 .filter_car dt{position:absolute;left:0;top:0;width:90px;text-align:right;font-weight:bold;line-height:20px;color:#fff;line-height:28px;height:28px;}
 .filter_car dd{float:left;margin-right:12px;}
 .f_c_btn{position:absolute;display:block;height:28px;line-height:28px;width:98px;text-align:center;right:12px;top:9px;background:#f0f0f0;font-family:"宋体";border:0px;}
-.f_c_search{border: 0px;padding-left: 4px;position: absolute;display: block;height: 26px;line-height: 24px;width: 168px;text-align: left;right: 120px;top: 9px;background: #f0f0f0;font-family: "宋体";}
+.f_c_search{border: 0px;padding-left: 4px;position: absolute;display: block;height: 26px;line-height: 24px;width: 120px;text-align: left;right: 120px;top: 9px;background: #f0f0f0;font-family: "宋体";}
 .subcate .cur_goods_sort{background:#b10000;color:#fff;}
 
 .carphotos{position:absolute;top:46px;right:-1px;margin:0 auto;z-index:1300;width:398px;height:175px;background:white;border:1px lightGrey solid;border-top:0;_top:44px;}
@@ -1174,6 +1174,31 @@ fieldset, img {border: 0;}
 .usermg-add-ul{width:500px;}
 .usermg-add-ul li{float:left;width:400px;padding-left:100px;position:relative;height:28px;line-height:28px;background: #eee;}
 .usermg-add-ul .tl{position:absolute;left:0;width:100px;text-align:right;}
+
+
+.brandLayer { font-size: 12px; }
+.brandLayer .title td {
+  background : url(../images/title_layer.gif);
+  height: 34px;
+  color: #ffffff;
+  vertical-align: top;
+}
+.orange{color: #FF7400; font-size:14px;text-decoration:underline;}
+.brandLayer .title img , .brandLayer .title span { float: left; margin: 7px 0px 0px 0px; }
+.brandLayer .title .ccType { float: right; margin: 7px 20px; }
+.brandLayer .title .ccType span { float: none; margin: 0px; }
+.brandLayer .bigOrange { color: #ff7400 ; font-size: 14px ; font-weight: bold ; }
+.brandLayer .gray { background-color: #f7f7f7; }
+.brandLayer .blackBold { color: #000000; font-weight: bold; vertical-align: top; padding-top: 3px; }
+.brandLayer .cityOrange { color: #FF7400; font-weight: bold;font-size:14px; vertical-align: top; padding-top: 3px; }
+.brandLayer .cityBlue { color: #1046f7; font-weight: bold;font-size:14px; vertical-align: top; padding-top: 3px; }
+
+.brandLayer .jlSeprator { height: 5px; background: url(http://img01.51jobcdn.com/im/2009/search/bgclear_bot.gif) }
+.brandLayer td { padding-left: 3px; height: 20px;}
+.brandLayer .bottomLine { background-color: #1046f7; }
+.brandLayer .bottomLine td { height: 4px; }
+.subLayer { border:1px solid #ff7b00; background-color: #feffef; }
+.brandLayer .bgGray { background-color: #f6f6f6; }
 
 @font-face{font-family:tb-toolbar-iconfont;src:url(../css/font_1418875995_7687602.eot);src:url(../css/font_1418875995_7687602.eot?#iefix) format('embedded-opentype'),url(../css/font_1418875995_7687602.woff) format('woff'),url(../css/font_1418875995_7687602.ttf) format('truetype'),url(../css/font_1418875995_7687602.svg#iconfont) format('svg')}
 @font-face{font-family:global-iconfont;src:url(../css/font_1404888168_2057645.eot);src:url(../css/font_1404888168_2057645.eot?#iefix) format("embedded-opentype"),url(../css/font_1404888168_2057645.woff) format("woff"),url(../css/font_1404888168_2057645.ttf) format("truetype"),url(../css/font_1404888168_2057645.svg#uxiconfont) format("svg")}

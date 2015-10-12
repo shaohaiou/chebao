@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Chebao.Components;
 using Chebao.Tools;
 using System.Web.UI.HtmlControls;
+using System.Text;
 
 namespace Chebao.BackAdmin.product
 {
@@ -89,7 +90,9 @@ namespace Chebao.BackAdmin.product
 
         private void BindControler()
         {
-            ddlBrand.DataSource = Cars.Instance.GetBrandList(true);
+            List<BrandInfo> brandlist = Cars.Instance.GetBrandList(true);
+            brandlist = brandlist.OrderBy(l => l.NameIndex).ToList();
+            ddlBrand.DataSource = brandlist;
             ddlBrand.DataTextField = "BrandNameBind";
             ddlBrand.DataValueField = "ID";
             ddlBrand.DataBind();
@@ -346,6 +349,42 @@ namespace Chebao.BackAdmin.product
         protected string GetTypeQueryStr()
         {
             return string.Join("&", Request.QueryString.AllKeys.ToList().FindAll(k => k != "t").Select(k => k + "=" + Request.QueryString[k]));
+        }
+
+        protected string GetBrandSelHtml()
+        {
+            StringBuilder strB = new StringBuilder();
+            string letters = "abcdefghijklmnopqrstuvwxyz";
+            List<BrandInfo> brandlist = Cars.Instance.GetBrandList(true);
+            for (int i = 0; i < letters.Length; i++)
+            {
+                string letter = letters[i].ToString();
+                if (brandlist.Exists(b => b.NameIndex.ToLower() == letter))
+                {
+                    List<BrandInfo> list = brandlist.FindAll(b => b.NameIndex.ToLower() == letter);
+                    int rows = list.Count / 4 + (list.Count % 4 > 0 ? 1 : 0);
+                    for (int j = 0; j < rows; j++)
+                    { 
+                        strB.AppendLine("<tr>");
+                        strB.AppendFormat("<td class=\"cityBlue\">{0}</td>", j == 0 ? letter.ToUpper() : string.Empty);
+                        for (int k = 0; k < 4; k++)
+                        {
+                            if (list.Count > (j * 4 + k))
+                            {
+                                BrandInfo brand = list[j * 4 + k];
+                                strB.AppendLine("<td class=\"zz_51Lower brandsel\" style=\"cursor: pointer; width: 185px;padding-left: 1px;\" val=\"" + brand.ID + "\">" + (string.IsNullOrEmpty(brand.Imgpath) ? string.Empty : ("<img src=\"" + brand.Imgpath +"\" style=\"width: 22px; height: 22px;float:left;margin-right:2px\">")) + brand.BrandName + "</td>");
+                            }
+                            else
+                                strB.AppendLine("<td></td>");
+
+                        }
+
+                        strB.AppendLine("<tr>");
+                    }
+                }
+            }
+
+            return strB.ToString();
         }
     }
 }

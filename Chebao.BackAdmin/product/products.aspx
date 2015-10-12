@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="products.aspx.cs" Inherits="Chebao.BackAdmin.product.products" %>
 
 <%@ Register Assembly="AspNetPager" Namespace="Wuqi.Webdiyer" TagPrefix="webdiyer" %>
-<%@ Register src="../uc/header.ascx" tagname="header" tagprefix="uc1" %>
+<%@ Register Src="../uc/header.ascx" TagName="header" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -111,6 +111,28 @@
             });
 
             $(".mini-cart-items-list").height(141 + (parseInt(($(window).height() - 309) / 71)) * 71);
+
+            var layertop = ($(window).height() - $(".brandLayer").height()) / 2;
+            var layerleft = ($(window).width() - $(".brandLayer").width()) / 2;
+            $(".brandLayer").css({ "left": layerleft + "px", "top": layertop + "px" });
+            
+            $("#btnlayerclose").click(function () {
+                $("#ddlBrand").show();
+
+                $("#framflay").css({ "visibility": "hidden" });
+                $("#divflay").css({ "visibility": "hidden" });
+                $(".brandLayer").css({ "visibility": "hidden" });
+            });
+
+            $(".brandsel").click(function () {
+                $("#ddlBrand").show();
+                $("#ddlBrand").val($(this).attr("val"));
+                setTimeout('__doPostBack(\'ddlBrand\',\'\')', 0);
+
+                $("#framflay").css({ "visibility": "hidden" });
+                $("#divflay").css({ "visibility": "hidden" });
+                $(".brandLayer").css({ "visibility": "hidden" });
+            });
         });
         document.onkeydown = function () {
             if (event.ctrlKey && event.keyCode == 67) {
@@ -161,6 +183,14 @@
                 $(this).fadeOut("fast");
             });
         }
+
+        function showbrands() {
+            $("#ddlBrand").hide();
+
+            $("#framflay").css({ "visibility": "visible" });
+            $("#divflay").css({ "visibility": "visible" });
+            $(".brandLayer").css({ "visibility": "visible" });
+        }
     </script>
 </head>
 <body>
@@ -182,7 +212,7 @@
                                     <dt>请选择车型：</dt>
                                     <dd>
                                         <span id="carbrands">
-                                            <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true"
+                                            <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true" onmousedown="javascript:showbrands();"
                                                 Style="width: 213px!important;" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </span>
@@ -211,8 +241,8 @@
                                 </dl>
                             </ContentTemplate>
                         </asp:UpdatePanel>
-                        <input type="text" runat="server" value="请输入lamda型号" class="f_c_search" style="color: Gray;
-                            width: 120px!important;" id="txtsearch" />
+                        <input type="text" runat="server" value="请输入lamda型号" class="f_c_search" style="color: Gray;"
+                            id="txtsearch" />
                         <input type="submit" class="f_c_btn" id="btnsearch" value="搜索" />
                         </form>
                     </div>
@@ -278,12 +308,10 @@
                                         <%#Eval("ProductType").ToString()%></p>
                                     <!--商品标签-->
                                     <a class="sp_img" href="productview.aspx?id=<%#Eval("ID") %>" <%if (IsShowCabmodel)
-                                          { %> title="<%# Eval("Name")%>"<%} %>
-                                        target="_blank">
+                                          { %> title="<%# Eval("Name")%>" <%} %> target="_blank">
                                         <img src="<%#Eval("Pic") %>" <%if (IsShowCabmodel)
-                                          { %>title="<%# Eval("Name")%>" <%} %>width="192" height="144"
-                                            <%if (IsShowCabmodel)
-                                          { %>alt="<%# Eval("Name")%>"<%} %>></a>
+                                          { %>title="<%# Eval("Name")%>" <%} %>width="192" height="144" <%if (IsShowCabmodel)
+                                          { %>alt="<%# Eval("Name")%>" <%} %>></a>
                                     <% if (IsShowPrice)
                                        { %>
                                     <p class="s_t1 tb-btn-add">
@@ -297,7 +325,7 @@
                                           { %>
                                         <a href="productview.aspx?id=<%#Eval("ID") %>" title="<%# Eval("Name")%>" target="_blank">
                                             <%# Eval("Name")%></a>
-                                            <%} %></p>
+                                        <%} %></p>
                                     <p class="s_t3">
                                         型号：<%# Eval("ModelNumber")%>
                                     </p>
@@ -339,7 +367,8 @@
             <img id="bigimg" style="border: 5px solid #fff;" src="" />
         </div>
     </div>
-    <%if (IsShowPrice){ %>
+    <%if (IsShowPrice)
+      { %>
     <div class="tb-toolbar tb-toolbar-right" id="J_Toolbar" style="right: 0px;">
         <div class="tb-toolbar-space" style="height: 25%;">
         </div>
@@ -419,6 +448,41 @@
         </ul>
     </div>
     <%} %>
+    <div id="divflay" style="border: 0px; z-index: 1109; opacity: 0.7; position: absolute;
+        visibility: hidden; display: block; top: 0px; left: 0px; width: 100%; height: 100%;
+        background-color: rgb(0, 0, 0);">
+    </div>
+    <iframe id="framflay" style="border: 0px; opacity: 0; position: absolute; visibility: hidden;
+        display: block; z-index: 1108; top: 0px; left: 0px; width: 100%; height: 100%;
+        background-color: rgb(255, 255, 255);"></iframe>
+    <div class="brandLayer" style="border: 0px; z-index: 1111; position: absolute; visibility: hidden;
+        display: block; background-color: rgb(255, 255, 255);">
+        <table border="0" cellpadding="0" cellspacing="0" style="font-size: 12px;">
+            <tbody>
+                <tr class="title">
+                    <td>
+                        <span style="line-height: 14px;">&nbsp;请选择车辆品牌</span><span class="ccType"><span id="btnlayerclose" cctype="close"
+                            style="cursor: pointer; line-height: 14px;">[关闭]</span><span></span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="max-height:500px;overflow-y:scroll;">
+                        <table style="width: 780px;">
+                            <tbody>
+                                <%= GetBrandSelHtml() %>
+                            </tbody>
+                        </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="bottomLine">
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 <noscript>
     <iframe src="*.htm"></iframe>
