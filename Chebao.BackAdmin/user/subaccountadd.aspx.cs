@@ -95,6 +95,7 @@ namespace Chebao.BackAdmin.user
         /// <param name="item"></param>
         protected void BindData(AdminInfo admin)
         {
+            lblLastLoginTime.Text = admin.LastLoginTime.HasValue ? admin.LastLoginTime.Value.ToString("yyyy-MM-dd HH:mm") : string.Empty;
             hdid.Value = admin.ID.ToString();               //管理员ID
             txtUserName.Text = admin.UserName;//账户名
             txtPassword.Text = admin.PasswordText;

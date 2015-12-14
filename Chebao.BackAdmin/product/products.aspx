@@ -212,7 +212,7 @@
                                     <dt>请选择车型：</dt>
                                     <dd>
                                         <span id="carbrands">
-                                            <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true" onmousedown="javascript:showbrands();"
+                                            <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true" 
                                                 Style="width: 213px!important;" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </span>
@@ -398,7 +398,7 @@
                                         最新加入的宝贝</div>
                                     <a href="shoppingtrolleymg.aspx" target="_blank">查看全部</a></div>
                                 <div class="mini-cart-list-bd">
-                                    <ul class="mini-cart-items-list" style="height: 212px;">
+                                    <ul class="mini-cart-items-list" style="height: 212px;overflow-y:auto;">
                                         <asp:Repeater runat="server" ID="rptShoppingTrolley">
                                             <ItemTemplate>
                                                 <li>
@@ -448,11 +448,11 @@
         </ul>
     </div>
     <%} %>
-    <div id="divflay" style="border: 0px; z-index: 1109; opacity: 0.7; position: absolute;
+    <%--<div id="divflay" style="border: 0px; z-index: 1109; opacity: 0.7; position: absolute;
         visibility: hidden; display: block; top: 0px; left: 0px; width: 100%; height: 100%;
         background-color: rgb(0, 0, 0);">
-    </div>
-    <iframe id="framflay" style="border: 0px; opacity: 0; position: absolute; visibility: hidden;
+    </div>--%>
+   <%-- <iframe id="framflay" style="border: 0px; opacity: 0; position: absolute; visibility: hidden;
         display: block; z-index: 1108; top: 0px; left: 0px; width: 100%; height: 100%;
         background-color: rgb(255, 255, 255);"></iframe>
     <div class="brandLayer" style="border: 0px; z-index: 1111; position: absolute; visibility: hidden;
@@ -482,7 +482,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div>--%>
 </body>
 <noscript>
     <iframe src="*.htm"></iframe>

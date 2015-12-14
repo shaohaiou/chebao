@@ -147,6 +147,14 @@
                     <asp:Button ID="btnSyncProduct" runat="server" msg="确定要同步所有产品数据吗？" Text="执行" CssClass="an1 btn" OnClick="btnSyncProduct_Click" />
                 </td>
             </tr>
+            <tr>
+                <td class="bg1">
+                    产品价格去符号：
+                </td>
+                <td>
+                    <asp:Button ID="btnProductPriceRecover" runat="server" msg="确定要处理数据吗？" Text="执行" CssClass="an1 btn" OnClick="btnProductPriceRecover_Click" />
+                </td>
+            </tr>
         </tbody>
     </table>
     </form>

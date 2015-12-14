@@ -54,7 +54,7 @@ namespace Chebao.BackAdmin.global
 
                 Cars.Instance.UpdateProduct(p);
             }
-            Cars.Instance.ReloadCabmodelListCache();
+            Cars.Instance.ReloadProductListCache();
 
             StringBuilder sb = new StringBuilder();
             sb.Append("<span class=\"dalv\">执行完成！</span><br />");
@@ -320,6 +320,31 @@ namespace Chebao.BackAdmin.global
         protected void btnSyncProduct_Click(object sender, EventArgs e)
         {
             Cars.Instance.RefreshProductStock(true);
+        }
+
+        #endregion
+
+        #region 产品价格去符号
+
+        protected void btnProductPriceRecover_Click(object sender, EventArgs e)
+        {
+            Regex r = new Regex(@"^\d.*$");
+            List<ProductInfo> productlist = Cars.Instance.GetProductList(true);
+
+            foreach (ProductInfo p in productlist)
+            {
+                if (!r.IsMatch(p.Price) && p.Price.Length > 0)
+                {
+                    p.Price = p.Price.Substring(1);   
+                }
+
+                Cars.Instance.UpdateProduct(p);
+            }
+            Cars.Instance.ReloadProductListCache();
+
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<span class=\"dalv\">执行完成！</span><br />");
+            WriteMessage("~/message/showmessage.aspx", "执行完成！", sb.ToString(), "", string.IsNullOrEmpty(FromUrl) ? "~/global/dealdata.aspx" : FromUrl);
         }
 
         #endregion

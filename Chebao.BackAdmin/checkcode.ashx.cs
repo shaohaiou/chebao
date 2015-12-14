@@ -25,12 +25,12 @@ namespace Chebao.BackAdmin
             Font font = new Font(FontFamily.GenericSerif, 48, FontStyle.Bold, GraphicsUnit.Pixel);
             Random r = new Random();
             //string letters = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkstuvwxyz";
-            string letters = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkstuvwxyz";
+            string letters = "1234567890";
             string letter;
             StringBuilder s = new StringBuilder();
 
             //添加随机的五个字母
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < 4; x++)
             {
                 letter = letters.Substring(r.Next(0, letters.Length - 1), 1);
                 s.Append(letter);

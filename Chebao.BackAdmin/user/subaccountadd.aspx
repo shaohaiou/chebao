@@ -63,6 +63,8 @@
                     <div class="usermg-add-title">
                         <span>用户信息</span></div>
                     <ul class="usermg-add-ul">
+                        <li><span class="tl">最后登录时间：</span>
+                            <asp:Label runat="server" ID="lblLastLoginTime"></asp:Label></li>
                         <li><span class="tl">用户名：</span>
                             <asp:TextBox ID="txtUserName" runat="server" ReadOnly="true"></asp:TextBox></li>
                         <li><span class="tl">密码：</span>

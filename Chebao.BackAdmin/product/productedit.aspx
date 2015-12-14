@@ -301,7 +301,7 @@
                     产品价格：
                 </td>
                 <td>
-                    <asp:TextBox runat="server" ID="txtPrice" CssClass="srk1 w160"></asp:TextBox>
+                    <asp:TextBox runat="server" ID="txtPrice" CssClass="srk1 w160" onkeyup="value=value.replace(/[^\0-9\.]/g,'')" onpaste="value=value.replace(/[^\0-9\.]/g,'')" oncontextmenu = "value=value.replace(/[^\0-9\.]/g,'')"></asp:TextBox>
                 </td>
             </tr>
             <tr>

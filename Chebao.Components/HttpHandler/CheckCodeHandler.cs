@@ -22,7 +22,7 @@ namespace Chebao.Components
             Font font = new Font(FontFamily.GenericSerif, 48, FontStyle.Bold, GraphicsUnit.Pixel);
             Random r = new Random();
             //string letters = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkstuvwxyz";
-            string letters = "ABCDEFGHJKLMNPQRSTUWXZabcdefghjkstuwxz";
+            string letters = "0123456789";
             string letter;
             StringBuilder s = new StringBuilder();
 

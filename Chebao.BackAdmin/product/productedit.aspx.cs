@@ -137,7 +137,7 @@ namespace Chebao.BackAdmin.product
         private void FillData(ProductInfo entity)
         {
             entity.Name = txtProductName.Text;
-            entity.Price = txtPrice.Text;
+            entity.Price = string.IsNullOrEmpty(txtPrice.Text) ? "0" : txtPrice.Text;
             entity.Replacement = txtReplacement.Text;
             entity.ModelNumber = txtModelNumber.Text;
             entity.OEModelNumber = txtOEModelNumber.Text;
