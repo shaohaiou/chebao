@@ -150,10 +150,10 @@ namespace Chebao.BackAdmin.product
                     txtAmount.Value = "1";
                     ProductMixInfo entity = ((ProductMixInfo)e.Item.DataItem);
                     int stock = entity.Stock;
-                    if (OrderAll.Exists(o => o.OrderStatus == OrderStatus.未收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                    if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
                     {
                         int amount = 0;
-                        List<OrderInfo> orderlist = OrderAll.FindAll(o => o.OrderStatus == OrderStatus.未收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
+                        List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
                         orderlist.ForEach(delegate(OrderInfo o)
                         {
                             amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
@@ -203,6 +203,8 @@ namespace Chebao.BackAdmin.product
                 price = price_s * validAdmin.DiscountH / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
                 price = price_s * validAdmin.DiscountXSP / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("mt"))
+                price = price_s * validAdmin.DiscountMT / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
                 price = price_s * validAdmin.DiscountS / 10;
             else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))

@@ -143,7 +143,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="750" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
+        <table width="1100" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
             <tr>
                 <td class="w40 bold">
                     查询：
@@ -177,14 +177,14 @@
                 </td>
             </tr>
         </table>
-        <table width="750" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblCabmodel">
+        <table width="1100" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblCabmodel">
             <asp:Repeater ID="rptCabmodel" runat="server" OnItemDataBound="rptCabmodel_ItemDataBound">
                 <HeaderTemplate>
                     <tr class="bgbt">
                         <td>
                             品牌
                         </td>
-                        <td class="w120">
+                        <td class="w500">
                             车型
                         </td>
                         <td class="w80">
@@ -209,7 +209,7 @@
                             </asp:DropDownList>
                         </td>
                         <td>
-                            <input type="text" runat="server" id="txtCabmodelName" class="srk1 w120" value='<%#Eval("CabmodelName") %>' />
+                            <input type="text" runat="server" id="txtCabmodelName" class="srk1 w500" value='<%#Eval("CabmodelName") %>' />
                         </td>
                         <td>
                             <input type="text" runat="server" id="txtPailiang" class="pailiang required srk1 w80"

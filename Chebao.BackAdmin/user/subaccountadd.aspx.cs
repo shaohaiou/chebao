@@ -117,6 +117,8 @@ namespace Chebao.BackAdmin.user
             txtPostCode.Value = admin.PostCode;
             txtSubDiscountt.Text = admin.SubDiscount.ToString();
             cbxSizeView.Checked = admin.SizeView > 0;
+            cbxIsShowCabmodel.Checked = admin.IsShowCabmodel > 0;
+            cbxIsShowPrice.Checked = admin.IsShowPrice > 0;
         }
 
 
@@ -150,6 +152,8 @@ namespace Chebao.BackAdmin.user
                 admin.District = ddlDistrict.SelectedItem.Text;
             admin.SubDiscount = DataConvert.SafeDecimal(txtSubDiscountt.Text);
             admin.SizeView = cbxSizeView.Checked ? 1 : 0;
+            admin.IsShowCabmodel = cbxIsShowCabmodel.Checked ? 1 : 0;
+            admin.IsShowPrice = cbxIsShowPrice.Checked ? 1 : 0;
         }
 
         /// <summary>

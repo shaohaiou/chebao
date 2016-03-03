@@ -73,13 +73,19 @@ namespace Chebao.BackAdmin.product
             }
         }
 
+        private bool? isshowcabmodel;
         public bool IsShowCabmodel
         {
             get
             {
-                if (Admin.ParentAccountID > 0)
-                    return ParentAdmin.IsShowCabmodel > 0;
-                return Admin.IsShowCabmodel > 0;
+                //if (Admin.ParentAccountID > 0)
+                //    return ParentAdmin.IsShowCabmodel > 0;
+                //return Admin.IsShowCabmodel > 0;
+                if (!isshowcabmodel.HasValue)
+                {
+                    isshowcabmodel = Admin.IsShowCabmodel > 0 && (ParentAdmin == null || ParentAdmin.IsShowCabmodel > 0);
+                }
+                return isshowcabmodel.Value;
             }
         }
 
@@ -88,12 +94,17 @@ namespace Chebao.BackAdmin.product
         {
             get
             {
+                //if (!isshowprice.HasValue)
+                //{
+                //    if (Admin.ParentAccountID > 0)
+                //        isshowprice = ParentAdmin.IsShowPrice > 0;
+                //    else
+                //        isshowprice = Admin.IsShowPrice > 0;
+                //}
+                //return isshowprice.Value;
                 if (!isshowprice.HasValue)
                 {
-                    if (Admin.ParentAccountID > 0)
-                        isshowprice = ParentAdmin.IsShowPrice > 0;
-                    else
-                        isshowprice = Admin.IsShowPrice > 0;
+                    isshowprice = Admin.IsShowPrice > 0 && (ParentAdmin == null || ParentAdmin.IsShowPrice > 0);
                 }
                 return isshowprice.Value;
             }

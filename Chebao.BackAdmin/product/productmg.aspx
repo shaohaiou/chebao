@@ -69,7 +69,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="940" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
+        <table width="1040" border="0" cellspacing="0" cellpadding="0" class="biaoge4" style="background-color: #f4f8fc;">
             <tr>
                 <td class="w40 bold">
                     查询：
@@ -110,7 +110,7 @@
                 </td>
             </tr>
         </table>
-        <table width="940" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
+        <table width="1040" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
             <asp:Repeater ID="rptProduct" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
@@ -136,6 +136,9 @@
                         </td>
                         <td class="w120">
                             OE型号
+                        </td>
+                        <td class="w100">
+                            库存
                         </td>
                         <td class="w120">
                             操作
@@ -168,6 +171,10 @@
                         </td>
                         <td>
                             <%# Eval("OEModelNumber")%>
+                        </td>
+                        <td>
+                            <%# GetStock(Eval("ProductMixStr"))%><br />
+                            <%#Eval("StockLastUpdateTime")%>
                         </td>
                         <td class="lan5x">
                             <a href="?action=copy&pid=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="btncopy">复制</a>

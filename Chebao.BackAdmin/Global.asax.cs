@@ -71,6 +71,7 @@ namespace Chebao.BackAdmin
                 Cars.Instance.ReloadProvince();
                 Cars.Instance.ReloadCity();
                 Cars.Instance.ReloadDistrict();
+                Cars.Instance.ReloadDiscountStencilListCache();
                 Sitesettings.Instance.ReloadSitesetting();
             }
             catch { }

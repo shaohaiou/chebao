@@ -71,7 +71,7 @@
                         <td class="w120">
                             操作时间
                         </td>
-                        <td class="w60">
+                        <td class="w80">
                             操作
                         </td>
                     </tr>
@@ -97,7 +97,8 @@
                             <%#Eval("AddTime")%>
                         </td>
                         <td>
-                            <a href="?action=sync&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" onclick="return confirm('确定要同步吗？')">同步</a>
+                            <a href="?action=sync&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" onclick="return confirm('确定要同步吗？')">同步</a>&nbsp;
+                            <a href="?action=del&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="red" onclick="return confirm('确定要删除吗？')">删除</a>
                         </td>
                     </tr>
                 </ItemTemplate>

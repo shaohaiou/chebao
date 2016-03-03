@@ -66,12 +66,14 @@
     <Compile Include="Entity\BrandInfo.cs" />
     <Compile Include="Entity\CabmodelInfo.cs" />
     <Compile Include="Entity\CityInfo.cs" />
+    <Compile Include="Entity\DiscountStencilInfo.cs" />
     <Compile Include="Entity\DistrictInfo.cs" />
     <Compile Include="Entity\EventLogEntry.cs" />
     <Compile Include="Entity\Job.cs" />
     <Compile Include="Entity\MessageBoardInfo.cs" />
     <Compile Include="Entity\OrderInfo.cs" />
     <Compile Include="Entity\OrderProductInfo.cs" />
+    <Compile Include="Entity\OrderUpdateQueueInfo.cs" />
     <Compile Include="Entity\ProductInfo.cs" />
     <Compile Include="Entity\ProductMixInfo.cs" />
     <Compile Include="Entity\ProvinceInfo.cs" />

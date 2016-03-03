@@ -86,6 +86,7 @@ namespace Chebao.BackAdmin.user
             txtAdditemF.Text = admin.AdditemF.ToString();
             txtDiscountLS.Text = admin.DiscountLS.ToString();
             txtDiscountXSP.Text = admin.DiscountXSP.ToString();
+            txtDiscountMT.Text = admin.DiscountMT.ToString();
             txtDiscountB.Text = admin.DiscountB.ToString();
             txtDiscountS.Text = admin.DiscountS.ToString();
             txtDiscountK.Text = admin.DiscountK.ToString();
@@ -129,6 +130,7 @@ namespace Chebao.BackAdmin.user
             admin.AdditemF = DataConvert.SafeDecimal(txtAdditemF.Text);
             admin.DiscountLS = DataConvert.SafeDecimal(txtDiscountLS.Text);
             admin.DiscountXSP = DataConvert.SafeDecimal(txtDiscountXSP.Text);
+            admin.DiscountMT = DataConvert.SafeDecimal(txtDiscountMT.Text);
             admin.DiscountB = DataConvert.SafeDecimal(txtDiscountB.Text);
             admin.DiscountS = DataConvert.SafeDecimal(txtDiscountS.Text);
             admin.DiscountK = DataConvert.SafeDecimal(txtDiscountK.Text);

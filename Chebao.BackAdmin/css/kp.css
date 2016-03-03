@@ -381,6 +381,7 @@ a.add_favor_2:hover{background:#fff;}
 .manu span{margin-right:10px;}
 .manu a,.current,.sure_btn{padding:6px 10px;border:1px #d7d7d7 solid;margin-right:4px;-moz-border-radius: 2px;-webkit-border-radius: 2px;border-radius:2px;font-family: Simsun;}
 .disabled{background:#f0f0f0;font-family:'宋体';}
+.dis{background-color:#ccc!important;font-family:'宋体';}
 .manu input{margin: 0px 2px;width: 35px;height:22px;
 border: 1px #d7d7d7 solid;line-height:22px;text-align: center;}
 .manu .current{background:#b10000;color:#fff;margin-right:4px;}
@@ -1172,7 +1173,7 @@ fieldset, img {border: 0;}
 .usermg-add-title{width: 460px;background: #eee;padding: 10px 20px;font-weight: bold;}
 .usermg-add-title span{line-height: 26px;border-bottom: 1px solid #aaa;width: 100%;display: block;}
 .usermg-add-ul{width:500px;}
-.usermg-add-ul li{float:left;width:400px;padding-left:100px;position:relative;height:28px;line-height:28px;background: #eee;}
+.usermg-add-ul li{width:400px;padding-left:100px;position:relative;height:28px;line-height:28px;background: #eee;}
 .usermg-add-ul .tl{position:absolute;left:0;width:100px;text-align:right;}
 
 

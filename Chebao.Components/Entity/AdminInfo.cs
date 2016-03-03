@@ -225,6 +225,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 折扣mt
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountMT
+        {
+            get { return GetDecimal("DiscountMT", 10); }
+            set { SetExtendedAttribute("DiscountMT", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣b
         /// </summary>
         [JsonIgnore]

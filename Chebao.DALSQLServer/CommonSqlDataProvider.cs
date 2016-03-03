@@ -850,6 +850,55 @@ namespace Chebao.DALSQLServer
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter("@Src", src));
         }
 
+        public override void UpdateOrderSyncStatus(int id, int status)
+        {
+            string sql = "UPDATE Chebao_Order SET [SyncStatus] = @SyncStatus WHERE [ID] = @ID";
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter[] { new OleDbParameter("@SyncStatus", status), new OleDbParameter("@ID", id) });
+        }
+
+        public override void AddOrderUpdateQueue(OrderUpdateQueueInfo entity)
+        {
+            string sql = @"
+                INSERT INTO Chebao_OrderUpdateQueue(
+                    [OrderID]
+                    ,[OrderStatus]
+                    ,[DeelStatus]
+                )VALUES(
+                    @OrderID
+                    ,@OrderStatus
+                    ,@DeelStatus
+                )";
+
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@OrderID",entity.OrderID),
+                new OleDbParameter("@OrderStatus",entity.OrderStatus),
+                new OleDbParameter("@DeelStatus",entity.DeelStatus)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override void UpdateOrderUpdateQueueStatus(int id, int status)
+        {
+            string sql = "UPDATE Chebao_OrderUpdateQueue SET [DeelStatus] = @DeelStatus WHERE [ID] = @ID";
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter[] { new OleDbParameter("@DeelStatus", status), new OleDbParameter("@ID", id) });
+        }
+
+        public override List<OrderUpdateQueueInfo> GetOrderUpdateQueue()
+        {
+            List<OrderUpdateQueueInfo> list = new List<OrderUpdateQueueInfo>();
+            string sql = "SELECT * FROM Chebao_OrderUpdateQueue WHERE [DeelStatus] = 0";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateOrderUpdateQueue(reader));
+                }
+            }
+
+            return list;
+        }
+
         #endregion
 
         #region 同步失败记录
@@ -888,7 +937,7 @@ namespace Chebao.DALSQLServer
         public override List<SyncfailedInfo> GetSyncfailedList()
         {
             List<SyncfailedInfo> list = new List<SyncfailedInfo>();
-            string sql = "SELECT * FROM Chebao_Syncfailed WHERE [Status] = 0";
+            string sql = "SELECT * FROM Chebao_Syncfailed WHERE [Status] = 0 ORDER BY [ID] DESC";
             using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
             {
                 while (reader.Read())
@@ -1092,6 +1141,95 @@ namespace Chebao.DALSQLServer
                 }
             }
             return setting;
+        }
+
+        #endregion
+
+        #region 折扣模版
+
+        public override List<DiscountStencilInfo> GetDiscountStencilList()
+        {
+
+            List<DiscountStencilInfo> list = new List<DiscountStencilInfo>();
+            string sql = "SELECT * FROM Chebao_DiscountStencil";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateDiscountStencil(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override void DeleteDiscountStencils(string ids)
+        {
+            string sql = string.Format("DELETE FROM Chebao_DiscountStencil WHERE [ID] IN ({0})", ids);
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql);
+        }
+
+        public override int AddDiscountStencil(DiscountStencilInfo entity)
+        {
+            int result = 0;
+            string sql = @"SELECT COUNT(0) FROM Chebao_DiscountStencil WHERE [Name] = @Name";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@Name",entity.Name)
+            };
+            if (DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, p)) == 0)
+            {
+                SerializerData data = entity.GetSerializerData();
+                sql = @"
+                INSERT INTO Chebao_DiscountStencil(
+                    [Name]
+                    ,[PropertyNames]
+                    ,[PropertyValues]
+                )VALUES(
+                    @Name
+                    ,@PropertyNames
+                    ,@PropertyValues
+                )";
+
+                p = new OleDbParameter[]
+                { 
+                    new OleDbParameter("@Name",entity.Name),
+                    new OleDbParameter("@PropertyNames",data.Keys),
+                    new OleDbParameter("@PropertyValues",data.Values)
+                };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+                sql = "SELECT MAX([ID]) FROM Chebao_DiscountStencil";
+                result = DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
+            }
+            return result;
+        }
+
+        public override void UpdateDiscountStencil(DiscountStencilInfo entity)
+        {
+            string sql = "SELECT COUNT(0) FROM Chebao_DiscountStencil WHERE [Name] = @Name AND [ID] <> @ID";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@Name",entity.Name),
+                new OleDbParameter("@ID",entity.ID)
+            };
+            if (DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql, p)) == 0)
+            {
+                SerializerData data = entity.GetSerializerData();
+                sql = @"
+                UPDATE Chebao_DiscountStencil SET
+                    [Name] = @Name
+                    ,[PropertyNames] = @PropertyNames
+                    ,[PropertyValues] = @PropertyValues
+                WHERE [ID] = @ID";
+                p = new OleDbParameter[]
+                { 
+                    new OleDbParameter("@Name",entity.Name),
+                    new OleDbParameter("@PropertyNames",data.Keys),
+                    new OleDbParameter("@PropertyValues",data.Values),
+                    new OleDbParameter("@ID",entity.ID)
+                };
+                SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            }
         }
 
         #endregion

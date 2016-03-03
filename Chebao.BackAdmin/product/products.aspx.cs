@@ -47,24 +47,35 @@ namespace Chebao.BackAdmin.product
         {
             get
             {
+                //if (!isshowprice.HasValue)
+                //{
+                //    if (Admin.ParentAccountID > 0)
+                //        isshowprice = ParentAdmin.IsShowPrice > 0;
+                //    else
+                //        isshowprice = Admin.IsShowPrice > 0;
+                //}
                 if (!isshowprice.HasValue)
                 {
-                    if (Admin.ParentAccountID > 0)
-                        isshowprice = ParentAdmin.IsShowPrice > 0;
-                    else
-                        isshowprice = Admin.IsShowPrice > 0;
+                    isshowprice = Admin.IsShowPrice > 0 && (ParentAdmin == null || ParentAdmin.IsShowPrice > 0);
                 }
                 return isshowprice.Value;
             }
         }
 
+        private bool? isshowcabmodel;
         public bool IsShowCabmodel
         {
             get
             {
-                if (Admin.ParentAccountID > 0)
-                    return ParentAdmin.IsShowCabmodel > 0;
-                return Admin.IsShowCabmodel > 0;
+                if (!isshowcabmodel.HasValue)
+                {
+                    isshowcabmodel = Admin.IsShowCabmodel > 0 && (ParentAdmin == null || ParentAdmin.IsShowCabmodel > 0);
+                }
+                return isshowcabmodel.Value;
+
+                //if (Admin.ParentAccountID > 0)
+                //    return ParentAdmin.IsShowCabmodel > 0;
+                //return Admin.IsShowCabmodel > 0;
             }
         }
 

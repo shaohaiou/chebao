@@ -179,7 +179,8 @@
                          M：<asp:TextBox ID="txtDiscountM" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          Y：<asp:TextBox ID="txtDiscountY" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          H：<asp:TextBox ID="txtDiscountH" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
-                         XSP：<asp:TextBox ID="txtDiscountXSP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折<br />
+                         XSP：<asp:TextBox ID="txtDiscountXSP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         MT：<asp:TextBox ID="txtDiscountMT" runat="server" CssClass="srk4 mr10"></asp:TextBox>折<br />
                          C产品分类：
                          S：<asp:TextBox ID="txtDiscountS" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          K：<asp:TextBox ID="txtDiscountK" runat="server" CssClass="srk4 mr10"></asp:TextBox>折

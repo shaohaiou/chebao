@@ -224,9 +224,11 @@ namespace Chebao.Components
 
                 if (!string.IsNullOrEmpty(ProductMixStr))
                 {
+                    List<ProductInfo> plist = Cars.Instance.GetProductList(true);
                     foreach (string pmstr in ProductMixStr.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
+                        if (plist.Exists(p => pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0].StartsWith(p.ModelNumber)))
+                            result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
                     }
                 }
 

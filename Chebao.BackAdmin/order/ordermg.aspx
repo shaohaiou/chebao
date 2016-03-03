@@ -9,6 +9,7 @@
     <script src="../js/jquery-1.3.2.min.js" type="text/javascript"></script>
     <script src="../js/WdatePicker.js" type="text/javascript"></script>
     <script type="text/javascript">
+        var copyorderid = 0;
         $(function () {
             $("#cbxAll").click(function () {
                 $(".cbxSub").attr("checked", $(this).attr("checked"));
@@ -23,7 +24,7 @@
             $(".btnconsignment,.btncancel").click(function () {
                 if (confirm($(this).attr("msg"))) {
                     $(".overlay").css({ 'display': 'block', 'opacity': '0.8' });
-                    $(".showbox").stop(true).animate({ 'margin-top': '200px', 'opacity': '1' }, 200);
+                    $("#AjaxLoading").stop(true).animate({ 'margin-top': '200px', 'opacity': '1' }, 200);
                     $("#hdnAction").val($(this).attr("action"));
                     $("#hdnId").val($(this).attr("vid"));
                     form1.submit();
@@ -70,6 +71,22 @@
                 }
                 return true;
             });
+
+            $(".btncopy").click(function () {
+                copyorderid = $(this).attr("data-id");
+                $("#txtUserNameCopy").val($(this).attr("data-uname"));
+                $(".overlay").css({ 'display': 'block', 'opacity': '0.8' });
+                $("#copyflay").stop(true).animate({ 'margin-top': '200px', 'opacity': '1' }, 200);
+            });
+            $(".btncopyclose").click(function () {
+                $(".overlay").css({ 'display': 'none', 'opacity': '0.8' });
+                $("#copyflay").stop(true).animate({ 'margin-top': '0px', 'opacity': '0' }, 200);
+            });
+            $("#btnSubmitCopy").click(function () {
+                window.open("copyorder.aspx?id=" + copyorderid + "&uname=" + $("#txtUserNameCopy").val());
+                $(".overlay").css({ 'display': 'none', 'opacity': '0.8' });
+                $("#copyflay").stop(true).animate({ 'margin-top': '0px', 'opacity': '0' }, 200);
+            });
         });
 
         function setSeldata() {
@@ -92,7 +109,6 @@
             return true;
         }
     </script>
-    
     <style type="text/css">
         a, img
         {
@@ -240,10 +256,10 @@
                     </tr>
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <tr>
+                    <tr class="<%#Eval("OrderStatus").ToString() == "已取消" ? GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus")) : ""%>">
                         <td style="line-height: 18px;">
                             <input type="checkbox" class="fll cbxSub" value="<%#Eval("ID") %>" /><a href="orderview.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
-                                style="text-decoration: underline;"><%#Eval("OrderNumber")%></a>
+                                style="text-decoration: underline;" class="<%#Eval("OrderStatus").ToString() == "已取消" ? GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus")) : ""%>"><%#Eval("OrderNumber")%></a>
                         </td>
                         <td>
                             <%#Eval("AddTime") %>
@@ -264,8 +280,8 @@
                             邮编：<%#Eval("PostCode")%>
                         </td>
                         <td>
-                            <div style="max-height:230px;overflow:hidden;">
-                            <%# GetOrderProductsStr(Eval("OrderProducts"))%>
+                            <div style="max-height: 230px; overflow: hidden;">
+                                <%# GetOrderProductsStr(Eval("OrderProducts"))%>
                             </div>
                         </td>
                         <td>
@@ -276,13 +292,13 @@
                                 <%# Eval("OrderStatus").ToString()%></span>
                         </td>
                         <td>
-                            <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
-                                class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
+                            <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
                                 收款</a><a href="javascript:void(0);" action="consignment" vid="<%#Eval("ID") %>" msg="确定该订单已发货吗？"
                                     class="btnconsignment green pt5 <%#Eval("OrderStatus").ToString() == "已收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
                                     发货</a><a href="javascript:void(0);" action="cancel" vid="<%#Eval("ID") %>" msg="确定要取消该订单吗？"
                                         class="btncancel red pt5 <%#Eval("OrderStatus").ToString() == "已取消" ? "hide" : "block" %>">
-                                        取消</a>
+                                        取消</a><a href="javascript:void(0);" target="_blank" class="green btncopy" data-id="<%#Eval("ID") %>"
+                                data-uname="<%#Eval("UserName") %>">复制</a>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -308,6 +324,18 @@
     <div id="AjaxLoading" class="showbox">
         <div class="loadingWord">
             <img src="/images/waiting.gif">正在处理，请稍候...</div>
+    </div>
+    <div id="copyflay" class="showbox" style="background: wheat;padding:3px;">
+        <div style="line-height:24px;font-weight:bold;padding:0 3px;background: #aaa;">
+            订单复制<a style="float:right;text-decoration:none;" class="btncopyclose" href="javascript:void(0)">[关闭]</a>
+        </div>
+        <div style="width:160px;">
+            <ul>
+                <li class="fll">用户名：</li>
+                <li><input type="text" class="srk6 w60" id="txtUserNameCopy" /></li>
+            </ul>
+            <input type="button" value="确定" id="btnSubmitCopy" />
+        </div>
     </div>
 </body>
 </html>

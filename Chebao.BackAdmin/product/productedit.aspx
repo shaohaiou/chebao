@@ -371,13 +371,13 @@
                                 <asp:Button runat="server" ID="btnSearch" Text="搜索" CssClass="an2" OnClick="btnSearch_Click" />
                             </div>
                             <div class="mt10">
-                                <asp:ListBox runat="server" ID="lbxCabmodels" SelectionMode="Multiple" Width="260"
+                                <asp:ListBox runat="server" ID="lbxCabmodels" SelectionMode="Multiple" Width="360"
                                     Rows="10"></asp:ListBox>
                                 <asp:Button runat="server" ID="btnCabmodelsDel" Text="<<" CssClass="vt" Style="margin-top: 75px;"
                                     OnClick="btnCabmodelsDel_Click" />
                                 <asp:Button runat="server" ID="btnCabmodelsAdd" Text=">>" CssClass="vt" Style="margin-top: 75px;"
                                     OnClick="btnCabmodelsAdd_Click" />
-                                <asp:ListBox runat="server" ID="lbxCabmodelsSel" SelectionMode="Multiple" Width="260"
+                                <asp:ListBox runat="server" ID="lbxCabmodelsSel" SelectionMode="Multiple" Width="360"
                                     Rows="10"></asp:ListBox>
                             </div>
                         </ContentTemplate>

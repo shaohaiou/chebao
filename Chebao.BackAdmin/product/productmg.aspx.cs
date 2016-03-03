@@ -401,5 +401,22 @@ namespace Chebao.BackAdmin.product
         {
             Response.Redirect("productmg.aspx?pt=" + ddlProductTypeFilter.SelectedValue + "&name=" + txtNameFilter.Text + "&mn=" + txtModelNumberFilter.Text);
         }
+
+        protected string GetStock(object pmstrs)
+        {
+            List<KeyValuePair<string, int>> result = new List<KeyValuePair<string, int>>();
+
+            if (!string.IsNullOrEmpty(pmstrs.ToString()))
+            {
+                List<ProductInfo> plist = Cars.Instance.GetProductList(true);
+                foreach (string pmstr in pmstrs.ToString().Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (plist.Exists(p => pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0].StartsWith(p.ModelNumber)))
+                        result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
+                }
+            }
+
+            return string.Join("<br />",result.Select(s => s.Key + ":" + s.Value).ToList());
+        }
     }
 }

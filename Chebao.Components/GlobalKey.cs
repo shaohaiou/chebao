@@ -20,6 +20,7 @@ namespace Chebao.Components
         public static readonly string BRAND_LIST = "cache-brand";   //品牌缓存键值
         public static readonly string CABMODEL_LIST = "cache-cabmodel";   //车型缓存键值
         public static readonly string PRODUCT_LIST = "cache-product";   //产品缓存键值
+        public static readonly string DISCOUNTSTENCIL_LIST = "cache-discountstencil";   //折扣模版缓存键值
 
         public static readonly string SHOPPINGTROLLEY_LIST = "cache-shoppingtrolley";   //购物车缓存键值
         public static readonly string SHOPPINGTROLLEYADD_KEY = "cache-shoppingtrolleyadd";   //添加到购物车缓存键值

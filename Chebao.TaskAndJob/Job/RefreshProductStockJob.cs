@@ -18,6 +18,7 @@ namespace Chebao.TaskAndJob.Job
                 {
                     isRunning = true;
                     Cars.Instance.RefreshProductStock();
+                    Cars.Instance.ReloadProductListCache();
                     isRunning = false;
                 }
             }

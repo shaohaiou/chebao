@@ -184,68 +184,79 @@ namespace Chebao.Components
             GetProductList(true);
         }
 
+        public static object locker_refreshproductstock = new object();
+
         /// <summary>
         /// 更新产品库存
         /// </summary>
-        public void RefreshProductStock(bool isall =false)
+        public void RefreshProductStock(bool isall = false)
         {
-            List<ProductInfo> plist = GetProductList(true);
-            string url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg";
-            if (!isall && plist.Exists(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)))
+            lock (locker_refreshproductstock)
             {
-                DateTime lastupdatetime = plist.FindAll(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)).Max(p => DataConvert.SafeDate(p.StockLastUpdateTime));
-                url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg&t=" + lastupdatetime.ToString("yyyy-MM-dd HH:mm:ss");
-            }
-            string strRemoteProducts = Http.GetPage(url, true, "gb2312");
-            if (!string.IsNullOrEmpty(strRemoteProducts) && strRemoteProducts.ToLower() != "no")
-            {
-                try
+                List<ProductInfo> plist = GetProductList(true);
+                string url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg";
+                //if (!isall && plist.Exists(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)))
+                //{
+                //    DateTime lastupdatetime = plist.FindAll(p => !string.IsNullOrEmpty(p.ProductMixStr) && !string.IsNullOrEmpty(p.StockLastUpdateTime)).Max(p => DataConvert.SafeDate(p.StockLastUpdateTime));
+                //    url = "http://yd.lamda.us/admin/k1.asp?id=fdskjgbdsfjbg56514zfhg&t=" + lastupdatetime.ToString("yyyy-MM-dd HH:mm:ss");
+                //}
+                string strRemoteProducts = Http.GetPage(url, true, "gb2312");
+                if (!string.IsNullOrEmpty(strRemoteProducts) && strRemoteProducts.ToLower() != "no")
                 {
-                    List<RemoteProductInfo> rplist = new List<RemoteProductInfo>();
-                    foreach (string strp in strRemoteProducts.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries))
+                    try
                     {
-                        string[] ps = strp.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                        try
+                        List<RemoteProductInfo> rplist = new List<RemoteProductInfo>();
+                        foreach (string strp in strRemoteProducts.Split(new string[] { "||" }, StringSplitOptions.RemoveEmptyEntries))
                         {
-                            rplist.Add(new RemoteProductInfo()
+                            string[] ps = strp.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                            try
                             {
-                                ModelNumber = ps[0],
-                                Stock = DataConvert.SafeInt(ps[1])
-                            });
-                        }
-                        catch { }
-                    }
-
-                    List<string> deelModelNumber = new List<string>();
-                    foreach (RemoteProductInfo rp in rplist)
-                    {
-                        if (deelModelNumber.Contains(rp.ModelNumber)) continue;
-                        if (plist.Exists(p => rp.ModelNumber.StartsWith(p.ModelNumber)))
-                        {
-                            ProductInfo pinfo = plist.Find(p => rp.ModelNumber.StartsWith(p.ModelNumber));
-                            deelModelNumber.AddRange(rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber));
-                            if (string.IsNullOrEmpty(pinfo.ProductMixStr))
-                                pinfo.ProductMixStr = string.Join("|", rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber + "," + p.Stock));
-                            else
-                            {
-                                List<KeyValuePair<string, int>> pm = new List<KeyValuePair<string, int>>();
-                                pm.AddRange(pinfo.ProductMix);
-                                foreach (RemoteProductInfo rpi in rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)))
+                                rplist.Add(new RemoteProductInfo()
                                 {
-                                    if (pm.Exists(p => p.Key == rpi.ModelNumber))
-                                        pm[pm.FindIndex(p => p.Key == rpi.ModelNumber)] = new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock);
-                                    else
-                                        pm.Add(new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock));
-                                }
-
-                                pinfo.ProductMixStr = string.Join("|", pm.Select(p => p.Key + "," + p.Value));
+                                    ModelNumber = ps[0],
+                                    Stock = DataConvert.SafeInt(ps[1])
+                                });
                             }
-                            pinfo.StockLastUpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                            UpdateProduct(pinfo);
+                            catch { }
                         }
+
+                        List<string> deelModelNumber = new List<string>();
+                        foreach (RemoteProductInfo rp in rplist)
+                        {
+                            if (deelModelNumber.Contains(rp.ModelNumber)) continue;
+                            if (plist.Exists(p => rp.ModelNumber.StartsWith(p.ModelNumber)))
+                            {
+                                ProductInfo pinfo = plist.Find(p => rp.ModelNumber.StartsWith(p.ModelNumber));
+                                if (string.IsNullOrEmpty(pinfo.ModelNumber.Trim())) continue;
+                                deelModelNumber.AddRange(rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber));
+                                //if (string.IsNullOrEmpty(pinfo.ProductMixStr))
+                                pinfo.ProductMixStr = string.Join("|", rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)).Select(p => p.ModelNumber + "," + p.Stock));
+                                //else
+                                //{
+                                //    List<KeyValuePair<string, int>> pm = new List<KeyValuePair<string, int>>();
+                                //    pm.AddRange(pinfo.ProductMix);
+                                //    foreach (RemoteProductInfo rpi in rplist.FindAll(p => p.ModelNumber.StartsWith(pinfo.ModelNumber)))
+                                //    {
+                                //        if (pm.Exists(p => p.Key == rpi.ModelNumber))
+                                //            pm[pm.FindIndex(p => p.Key == rpi.ModelNumber)] = new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock);
+                                //        else
+                                //            pm.Add(new KeyValuePair<string, int>(rpi.ModelNumber, rpi.Stock));
+                                //    }
+
+                                //    pinfo.ProductMixStr = string.Join("|", pm.Select(p => p.Key + "," + p.Value));
+                                //}
+                                pinfo.StockLastUpdateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                UpdateProduct(pinfo);
+                            }
+                        }
+
+                        ReloadProductListCache();
+                    }
+                    catch (Exception ex)
+                    {
+                        ExpLog.Write(ex);
                     }
                 }
-                catch { }
             }
         }
 
@@ -358,11 +369,57 @@ namespace Chebao.Components
             OrderInfo order = GetOrder(DataConvert.SafeInt(ids), true);
             if (order != null)
             {
-                string url = "http://yd.lamda.us/admin/ck.asp";
                 if (status == OrderStatus.已发货 || (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货))
                 {
+                    AddOrderUpdateQueue(new OrderUpdateQueueInfo()
+                    {
+                        OrderID = order.ID,
+                        OrderStatus = status,
+                        DeelStatus = 0
+                    });
+                }
+            }
+            CommonDataProvider.Instance().UpdateOrderStatus(ids, status);
+            return strResult.ToString();
+        }
+
+        public void UpdateOrderSyncStatus(int id, int status)
+        {
+            CommonDataProvider.Instance().UpdateOrderSyncStatus(id, status);
+        }
+
+        public void UpdateOrderPic(int id, string src, string action)
+        {
+            CommonDataProvider.Instance().UpdateOrderPic(id, src, action);
+        }
+
+        public void AddOrderUpdateQueue(OrderUpdateQueueInfo entity)
+        {
+            CommonDataProvider.Instance().AddOrderUpdateQueue(entity);
+        }
+
+        public void UpdateOrderUpdateQueueStatus(int id, int status)
+        {
+            CommonDataProvider.Instance().UpdateOrderUpdateQueueStatus(id, status);
+        }
+
+        public List<OrderUpdateQueueInfo> GetOrderUpdateQueue()
+        {
+            return CommonDataProvider.Instance().GetOrderUpdateQueue();
+        }
+
+        public void DeelOrderUpdateQueue()
+        {
+            List<OrderUpdateQueueInfo> list = GetOrderUpdateQueue();
+            string url = "http://yd.lamda.us/admin/ck.asp";
+            foreach (OrderUpdateQueueInfo entity in list)
+            {
+                int deelstatus = 1;
+                OrderInfo order = GetOrder(DataConvert.SafeInt(entity.OrderID), true);
+                if (order != null)
+                {
                     string t = "c";
-                    if (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货)
+                    if (entity.OrderStatus == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货)
                         t = "r";
                     foreach (OrderProductInfo p in order.OrderProducts)
                     {
@@ -374,12 +431,9 @@ namespace Chebao.Components
                             query.Add("kf=" + order.UserName);
                             query.Add("t=" + t);
                             query.Add("id=fdskjgbdsfjbg56514zfhg");
-                            string syncresult = Http.GetPage(url + "?" + string.Join("&",query),0);
+                            string syncresult = Http.GetPage(url + "?" + string.Join("&", query), 0);
                             if (syncresult != "ok")
                             {
-                                if (string.IsNullOrEmpty(strResult.ToString())) strResult.AppendLine("产品");
-                                strResult.AppendLine(pm.Name);
-
                                 SyncfailedInfo finfo = new SyncfailedInfo()
                                 {
                                     Name = pm.Name,
@@ -394,17 +448,23 @@ namespace Chebao.Components
                             }
                         }
                     }
-                    if(!string.IsNullOrEmpty(strResult.ToString()))
-                        strResult.AppendLine("库存同步失败，请手动同步库存。");
                 }
+                else
+                    deelstatus = 2;
+                UpdateOrderUpdateQueueStatus(entity.ID, deelstatus);
             }
-            CommonDataProvider.Instance().UpdateOrderStatus(ids, status);
-            return strResult.ToString();
-        }
-
-        public void UpdateOrderPic(int id, string src,string action)
-        {
-            CommonDataProvider.Instance().UpdateOrderPic(id, src, action);
+            if (list != null && list.Count > 0)
+            {
+                RefreshProductStock();
+                ReloadProductListCache();
+                ReloadOrder();
+            }
+            foreach (OrderUpdateQueueInfo entity in list)
+            {
+                OrderInfo order = GetOrder(DataConvert.SafeInt(entity.OrderID), true);
+                if (order != null)
+                    UpdateOrderSyncStatus(order.ID, 1);
+            }
         }
 
         #endregion
@@ -422,6 +482,11 @@ namespace Chebao.Components
         }
 
         public void UpdateSyncfailedStatus(string ids)
+        {
+            CommonDataProvider.Instance().UpdateSyncfailedStatus(ids);
+        }
+
+        public void DeleteSyncfailed(string ids)
         {
             CommonDataProvider.Instance().UpdateSyncfailedStatus(ids);
         }
@@ -546,6 +611,58 @@ namespace Chebao.Components
         public void ExecuteSql(string sql)
         {
             CommonDataProvider.Instance().ExecuteSql(sql);
+        }
+
+        #endregion
+
+        #region 折扣模版
+
+        public List<DiscountStencilInfo> GetDiscountStencilList(bool fromCache = false)
+        {
+            if (!fromCache)
+                return CommonDataProvider.Instance().GetDiscountStencilList();
+
+            string key = GlobalKey.DISCOUNTSTENCIL_LIST;
+            List<DiscountStencilInfo> list = MangaCache.Get(key) as List<DiscountStencilInfo>;
+            if (list == null)
+            {
+                list = CommonDataProvider.Instance().GetDiscountStencilList();
+                MangaCache.Max(key, list);
+            }
+            return list;
+        }
+
+        /// <summary>
+        /// 删除品牌
+        /// </summary>
+        /// <param name="ids"></param>
+        public void DeleteDiscountStencils(string ids)
+        {
+            CommonDataProvider.Instance().DeleteDiscountStencils(ids);
+        }
+
+        public int AddDiscountStencil(DiscountStencilInfo entity)
+        {
+            return CommonDataProvider.Instance().AddDiscountStencil(entity);
+        }
+
+        public DiscountStencilInfo GetDiscountStencil(int id, bool fromCache = false)
+        {
+            List<DiscountStencilInfo> list = GetDiscountStencilList(fromCache);
+            return list.Find(b => b.ID == id);
+        }
+
+        public void UpdateDiscountStencil(DiscountStencilInfo entity)
+        {
+            CommonDataProvider.Instance().UpdateDiscountStencil(entity);
+        }
+
+        public void ReloadDiscountStencilListCache()
+        {
+            string key = GlobalKey.DISCOUNTSTENCIL_LIST;
+            MangaCache.Remove(key);
+
+            GetDiscountStencilList(true);
         }
 
         #endregion

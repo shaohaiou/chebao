@@ -336,6 +336,8 @@ namespace Chebao.Components
 
         public abstract void UpdateOrderPic(int id, string src, string action);
 
+        public abstract void UpdateOrderSyncStatus(int id, int status);
+
         protected OrderInfo PopulateOrder(IDataReader reader)
         {
             OrderInfo entity = new OrderInfo
@@ -368,6 +370,7 @@ namespace Chebao.Components
                 PicInvoice = reader["PicInvoice"] as string,
                 PicListItem = reader["PicListItem"] as string,
                 PicBookingnote = reader["PicBookingnote"] as string,
+                SyncStatus = DataConvert.SafeInt(reader["SyncStatus"]),
             };
             if (string.IsNullOrEmpty(entity.OrderProductJson))
                 entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(
@@ -382,6 +385,23 @@ namespace Chebao.Components
                 entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);
 
             return entity;
+        }
+
+        public abstract void AddOrderUpdateQueue(OrderUpdateQueueInfo entity);
+
+        public abstract void UpdateOrderUpdateQueueStatus(int id,int status);
+
+        public abstract List<OrderUpdateQueueInfo> GetOrderUpdateQueue();
+
+        protected OrderUpdateQueueInfo PopulateOrderUpdateQueue(IDataReader reader)
+        {
+            return new OrderUpdateQueueInfo() 
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                OrderID = DataConvert.SafeInt(reader["OrderID"]),
+                OrderStatus = (OrderStatus)(int)reader["OrderStatus"],
+                DeelStatus = DataConvert.SafeInt(reader["DeelStatus"])
+            };
         }
 
         #endregion
@@ -507,6 +527,34 @@ namespace Chebao.Components
                 Notice = reader["Notice"] as string,
                 CorpIntroduce = reader["CorpIntroduce"] as string,
                 Contact = reader["Contact"] as string
+            };
+
+            SerializerData data = new SerializerData();
+            data.Keys = reader["PropertyNames"] as string;
+            data.Values = reader["PropertyValues"] as string;
+            entity.SetSerializerData(data);
+
+            return entity;
+        }
+
+        #endregion
+
+        #region 折扣模版
+
+        public abstract List<DiscountStencilInfo> GetDiscountStencilList();
+
+        public abstract void DeleteDiscountStencils(string ids);
+
+        public abstract int AddDiscountStencil(DiscountStencilInfo entity);
+
+        public abstract void UpdateDiscountStencil(DiscountStencilInfo entity);
+
+        protected DiscountStencilInfo PopulateDiscountStencil(IDataReader reader)
+        {
+            DiscountStencilInfo entity = new DiscountStencilInfo
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                Name = reader["Name"] as string,
             };
 
             SerializerData data = new SerializerData();

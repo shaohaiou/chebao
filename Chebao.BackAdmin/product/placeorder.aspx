@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="placeorder.aspx.cs" Inherits="Chebao.BackAdmin.product.placeorder" %>
-<%@ Register src="../uc/header.ascx" tagname="header" tagprefix="uc1" %>
+
+<%@ Register Src="../uc/header.ascx" TagName="header" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -25,6 +26,7 @@
             });
 
             $("#J_Go").click(function () {
+                if ($(this).attr("disabled")) return;
                 if ($.trim($("#txtAddress").val()) == "") {
                     $("#txtAddress").focus();
                     alert("请输入详细地址");
@@ -46,6 +48,7 @@
                     return;
                 }
                 form1.submit();
+                $(this).attr("disabled", "true").addClass("dis");
             });
 
             setLinkInfo();

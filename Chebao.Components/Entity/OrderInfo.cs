@@ -111,5 +111,11 @@ namespace Chebao.Components
         /// 托运单
         /// </summary>
         public string PicBookingnote { get; set; }
+
+        /// <summary>
+        /// 同步状态
+        /// <para>0：未处理；1：已处理</para>
+        /// </summary>
+        public int SyncStatus { get; set; }
     }
 }

@@ -35,6 +35,13 @@ namespace Chebao.BackAdmin.order
                 ResponseRedirect(FromUrl);
                 Response.End();
             }
+            else if (GetString("action") == "del")
+            {
+                Cars.Instance.DeleteSyncfailed(GetString("ids"));
+
+                ResponseRedirect(FromUrl);
+                Response.End();
+            }
             if (!IsPostBack)
             {
                 LoadData();
@@ -66,7 +73,7 @@ namespace Chebao.BackAdmin.order
         protected void btnSyncfailed_Click(object sender, EventArgs e)
         {
             Cars.Instance.Resync(hdnIds.Value);
-            ResponseRedirect(FromUrl);
+            ResponseRedirect(CurrentUrl);
         }
     }
 }
