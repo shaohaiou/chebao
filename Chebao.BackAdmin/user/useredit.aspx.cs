@@ -13,6 +13,7 @@ namespace Chebao.BackAdmin.user
     public partial class useredit : AdminBase
     {
         private AdminInfo admin = null;
+        protected int discountstencilid = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -53,6 +54,12 @@ namespace Chebao.BackAdmin.user
 
             ddlCity.Items.Insert(0, new ListItem("-城市-", "-1"));
             ddlDistrict.Items.Insert(0, new ListItem("-县区-", "-1"));
+
+            ddlDiscountStencilID.DataSource = Cars.Instance.GetDiscountStencilList(true).FindAll(d=>d.IsCosts == 0);
+            ddlDiscountStencilID.DataTextField = "Name";
+            ddlDiscountStencilID.DataValueField = "ID";
+            ddlDiscountStencilID.DataBind();
+            ddlDiscountStencilID.Items.Insert(0,new ListItem("-请选择-","0"));
         }
 
         /// <summary>
@@ -95,6 +102,8 @@ namespace Chebao.BackAdmin.user
             cbxIsAddAccount.Checked = admin.IsAddAccount > 0;
             cbxIsShowCabmodel.Checked = admin.IsShowCabmodel > 0;
             cbxIsShowPrice.Checked = admin.IsShowPrice > 0;
+            SetSelectedByValue(ddlDiscountStencilID, admin.DiscountStencilID.ToString());
+            discountstencilid = admin.DiscountStencilID;
         }
 
         /// <summary>
@@ -139,6 +148,7 @@ namespace Chebao.BackAdmin.user
             admin.IsAddAccount = cbxIsAddAccount.Checked ? 1 : 0;
             admin.IsShowCabmodel = cbxIsShowCabmodel.Checked ? 1 : 0;
             admin.IsShowPrice = cbxIsShowPrice.Checked ? 1 : 0;
+            admin.DiscountStencilID = DataConvert.SafeInt(ddlDiscountStencilID.SelectedValue);
         }
 
         /// <summary>

@@ -80,6 +80,7 @@ namespace Chebao.BackAdmin.product
                 product = Cars.Instance.GetProduct(id, true);
                 txtProductName.Text = product.Name;
                 txtPrice.Text = product.Price;
+                txtXSPPrice.Text = product.XSPPrice;
                 txtReplacement.Text = product.Replacement;
                 txtModelNumber.Text = product.ModelNumber;
                 txtOEModelNumber.Text = product.OEModelNumber;
@@ -138,6 +139,7 @@ namespace Chebao.BackAdmin.product
         {
             entity.Name = txtProductName.Text;
             entity.Price = string.IsNullOrEmpty(txtPrice.Text) ? "0" : txtPrice.Text;
+            entity.XSPPrice = string.IsNullOrEmpty(txtXSPPrice.Text) ? "0" : txtXSPPrice.Text;
             entity.Replacement = txtReplacement.Text;
             entity.ModelNumber = txtModelNumber.Text;
             entity.OEModelNumber = txtOEModelNumber.Text;

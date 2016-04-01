@@ -353,6 +353,26 @@ namespace Chebao.Components
             set { SetExtendedAttribute("IsShowPrice", value.ToString()); }
         }
 
+        /// <summary>
+        /// 折扣模版ID
+        /// </summary>
+        [JsonIgnore]
+        public int DiscountStencilID
+        {
+            get { return GetInt("DiscountStencilID", 0); }
+            set { SetExtendedAttribute("DiscountStencilID", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 品牌权限
+        /// </summary>
+        [JsonIgnore]
+        public string BrandPowerSetting
+        {
+            get { return GetString("BrandPowerSetting", ""); }
+            set { SetExtendedAttribute("BrandPowerSetting", value); }
+        }
+
         #endregion Model
     }
 }

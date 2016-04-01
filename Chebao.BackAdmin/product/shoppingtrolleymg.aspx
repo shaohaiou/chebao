@@ -324,6 +324,8 @@
                                                                                 <ItemTemplate>
                                                                                     <input type="hidden" runat="server" id="hdnPMName" value='<%#Eval("Name") %>' />
                                                                                     <input type="hidden" runat="server" id="hdnPMPrice" value='<%#Eval("Price") %>' />
+                                                                                    <input type="hidden" runat="server" id="hdnPMCosts" value='<%#Eval("Costs") %>' />
+                                                                                    <input type="hidden" runat="server" id="hdnPMUnitPrice" value='<%#Eval("UnitPrice") %>' />
                                                                                     <ul>
                                                                                         <li class="th" style="width: 304px;">
                                                                                             <div class="cartmix-checkbox cart-checkbox<%# SetPMSelected(Eval("SID").ToString(),Eval("Name").ToString()) %>">

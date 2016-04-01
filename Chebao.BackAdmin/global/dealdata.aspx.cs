@@ -337,6 +337,10 @@ namespace Chebao.BackAdmin.global
                 {
                     p.Price = p.Price.Substring(1);   
                 }
+                if (!r.IsMatch(p.XSPPrice) && p.XSPPrice.Length > 0)
+                {
+                    p.XSPPrice = p.XSPPrice.Substring(1);   
+                }
 
                 Cars.Instance.UpdateProduct(p);
             }

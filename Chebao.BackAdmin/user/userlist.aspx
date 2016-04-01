@@ -107,7 +107,9 @@
                         <td class="lan5x">
                             <a class="btndel" href="userlist.aspx?id=<%#Eval("ID") %>&action=del&from=<%=UrlEncode(CurrentUrl) %>">
                                 删除</a><a href="useredit.aspx?id=<%#Eval("ID") %>&action=update&from=<%=UrlEncode(CurrentUrl) %>">编辑</a>
-                            <%# GetSubAccount(Eval("ID")) %>
+                            <%# GetSubAccount(Eval("ID")) %><br />
+                            <a href="userpowersetting.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>">
+                                品牌权限</a>
                         </td>
                     </tr>
                 </ItemTemplate>

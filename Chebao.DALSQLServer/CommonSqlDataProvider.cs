@@ -164,6 +164,23 @@ namespace Chebao.DALSQLServer
             return false;
         }
 
+        public override void UpdateBrandPowerSetting(AdminInfo entity)
+        {
+            SerializerData data = entity.GetSerializerData();
+            string sql = @"
+                UPDATE Chebao_AdminUser SET
+                    [PropertyNames] = @PropertyNames
+                    ,[PropertyValues] = @PropertyValues 
+                WHERE [ID] = @ID";
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@PropertyNames",data.Keys),
+                new OleDbParameter("@PropertyValues",data.Values),
+                new OleDbParameter("@ID",entity.ID)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
         /// <summary>
         /// 删除管理员
         /// </summary>
@@ -805,6 +822,35 @@ namespace Chebao.DALSQLServer
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
         }
 
+        public override void UpdateOrderProducts(OrderInfo entity)
+        {
+            string sql = @"
+                UPDATE Chebao_Order SET 
+                    [TotalFee] = @TotalFee
+                    ,[OrderProductJson1] = @OrderProductJson1
+                    ,[OrderProductJson2] = @OrderProductJson2
+                    ,[OrderProductJson3] = @OrderProductJson3
+                    ,[OrderProductJson4] = @OrderProductJson4
+                    ,[OrderProductJson5] = @OrderProductJson5
+                    ,[OrderProductJson6] = @OrderProductJson6
+                    ,[OrderProductJson7] = @OrderProductJson7
+                WHERE [ID] = @ID
+            ";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@TotalFee",entity.TotalFee),
+                new OleDbParameter("@OrderProductJson1",entity.OrderProductJson1),
+                new OleDbParameter("@OrderProductJson2",entity.OrderProductJson2),
+                new OleDbParameter("@OrderProductJson3",entity.OrderProductJson3),
+                new OleDbParameter("@OrderProductJson4",entity.OrderProductJson4),
+                new OleDbParameter("@OrderProductJson5",entity.OrderProductJson5),
+                new OleDbParameter("@OrderProductJson6",entity.OrderProductJson6),
+                new OleDbParameter("@OrderProductJson7",entity.OrderProductJson7),
+                new OleDbParameter("@ID",entity.ID),
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
         public override List<OrderInfo> GetOrderList()
         {
             List<OrderInfo> list = new List<OrderInfo>();
@@ -1183,10 +1229,12 @@ namespace Chebao.DALSQLServer
                 sql = @"
                 INSERT INTO Chebao_DiscountStencil(
                     [Name]
+                    ,[IsCosts]
                     ,[PropertyNames]
                     ,[PropertyValues]
                 )VALUES(
                     @Name
+                    ,@IsCosts
                     ,@PropertyNames
                     ,@PropertyValues
                 )";
@@ -1194,6 +1242,7 @@ namespace Chebao.DALSQLServer
                 p = new OleDbParameter[]
                 { 
                     new OleDbParameter("@Name",entity.Name),
+                    new OleDbParameter("@IsCosts",entity.IsCosts),
                     new OleDbParameter("@PropertyNames",data.Keys),
                     new OleDbParameter("@PropertyValues",data.Values)
                 };

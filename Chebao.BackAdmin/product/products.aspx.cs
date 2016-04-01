@@ -102,6 +102,11 @@ namespace Chebao.BackAdmin.product
         private void BindControler()
         {
             List<BrandInfo> brandlist = Cars.Instance.GetBrandList(true);
+            if (!string.IsNullOrEmpty(Admin.BrandPowerSetting))
+            {
+                string[] brands = Admin.BrandPowerSetting.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                brandlist = brandlist.FindAll(b => brands.Contains(b.ID.ToString()));
+            }
             brandlist = brandlist.OrderBy(l => l.NameIndex).ToList();
             ddlBrand.DataSource = brandlist;
             ddlBrand.DataTextField = "BrandNameBind";

@@ -30,6 +30,14 @@
                     }
                 }
             });
+
+            $("#ddlDiscountStencilID").change(function () {
+                if ($("#ddlDiscountStencilID option:selected").val() != "0") {
+                    $(".trdiscount").hide();
+                } else {
+                    $(".trdiscount").show();
+                }
+            });
         });
         function ValidationName(source, arguments) {
             var v = false;
@@ -38,7 +46,7 @@
                 return;
             }
             $.ajax({
-                url: 'checkadmin.ashx?d=' + new Date(),
+                url: '/checkadmin.ashx?d=' + new Date(),
                 async: false,
                 dataType: "json",
                 data: { name: $("#txtUserName").val() },
@@ -173,6 +181,14 @@
                 </tr>
                 <tr>
                     <td class="bg1">
+                        折扣模版：
+                    </td>
+                    <td class="bg2">
+                        <asp:DropDownList runat="server" ID="ddlDiscountStencilID"></asp:DropDownList>
+                    </td>
+                </tr>
+                <tr class="trdiscount" <%if (discountstencilid > 0){%>style="display:none;"<%} %>>
+                    <td class="bg1">
                         折扣设置：
                     </td>
                     <td class="bg2">A产品分类：
@@ -183,14 +199,14 @@
                          MT：<asp:TextBox ID="txtDiscountMT" runat="server" CssClass="srk4 mr10"></asp:TextBox>折<br />
                          C产品分类：
                          S：<asp:TextBox ID="txtDiscountS" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
-                         K：<asp:TextBox ID="txtDiscountK" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
+                         K：<asp:TextBox ID="txtDiscountK" runat="server" CssClass="srk4 mr10"></asp:TextBox>折 
                          P：<asp:TextBox ID="txtDiscountP" runat="server" CssClass="srk4 mr10"></asp:TextBox>折<br />
                          其他产品：
                          LS：<asp:TextBox ID="txtDiscountLS" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                          B：<asp:TextBox ID="txtDiscountB" runat="server" CssClass="srk4 mr10"></asp:TextBox>折
                     </td>
                 </tr>
-                <tr>
+                <tr class="trdiscount" <%if (discountstencilid > 0){%>style="display:none;"<%} %>>
                     <td class="bg1">
                         附加项设置：
                     </td>

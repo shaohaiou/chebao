@@ -53,6 +53,8 @@
                     query[query.length] = "timeb=" + $.trim($("#txtDateB").val());
                 if ($.trim($("#txtDateE").val()) != "")
                     query[query.length] = "timee=" + $.trim($("#txtDateE").val());
+                if ($.trim($("#txtOrderProduct").val()) != "")
+                    query[query.length] = "orderproduct=" + $.trim($("#txtOrderProduct").val());
                 location = "?" + (query.length > 0 ? $(query).map(function () {
                     return this;
                 }).get().join("&") : "");
@@ -200,13 +202,15 @@
                 <td>
                     订单号：<asp:TextBox runat="server" ID="txtOrderNumber" CssClass="srk6"></asp:TextBox>
                     下单时间：<asp:TextBox runat="server" ID="txtDateB" CssClass="srk6 txtDate"></asp:TextBox>
-                    -
-                    <asp:TextBox runat="server" ID="txtDateE" CssClass="srk6 txtDate"></asp:TextBox>
+                    -<asp:TextBox runat="server" ID="txtDateE" CssClass="srk6 txtDate"></asp:TextBox>
                     <div class="pt5">
                         用户名：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6 w60"></asp:TextBox>
                         联系人姓名：<asp:TextBox runat="server" ID="txtLinkName" CssClass="srk6 w60"></asp:TextBox>
                         订单状态：<asp:DropDownList runat="server" ID="ddlOrderStatus">
                         </asp:DropDownList>
+                    </div>
+                    <div class="pt5">
+                        订单产品：<asp:TextBox runat="server" ID="txtOrderProduct" CssClass="srk6"></asp:TextBox>
                     </div>
                 </td>
             </tr>

@@ -24,6 +24,7 @@ namespace Chebao.Components
                 Name = Name,
                 NameIndex = NameIndex,
                 Price = Price,
+                XSPPrice = XSPPrice,
                 ModelNumber = ModelNumber,
                 OEModelNumber = OEModelNumber,
                 Area = Area,
@@ -134,6 +135,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 消声片价格
+        /// </summary>
+        [JsonIgnore]
+        public string XSPPrice
+        {
+            get { return GetString("XSPPrice", "50"); }
+            set { SetExtendedAttribute("XSPPrice", value); }
+        }
+
+        /// <summary>
         /// Lamda型号
         /// </summary>
         [JsonIgnore]
@@ -227,7 +238,8 @@ namespace Chebao.Components
                     List<ProductInfo> plist = Cars.Instance.GetProductList(true);
                     foreach (string pmstr in ProductMixStr.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
                     {
-                        if (plist.Exists(p => pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0].StartsWith(p.ModelNumber)))
+                        string name = pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0];
+                        if (plist.Exists(p => name.StartsWith(p.ModelNumber) && name.ToLower().IndexOf("xsp") < 0))
                             result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
                     }
                 }

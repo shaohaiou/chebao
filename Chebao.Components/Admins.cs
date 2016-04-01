@@ -67,6 +67,11 @@ namespace Chebao.Components
             return CommonDataProvider.Instance().UpdateAdmin(model);
         }
 
+        public void UpdateBrandPowerSetting(AdminInfo entity)
+        {
+            CommonDataProvider.Instance().UpdateBrandPowerSetting(entity);
+        }
+
         /// <summary>
         /// 删除管理员
         /// </summary>

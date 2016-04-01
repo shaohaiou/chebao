@@ -166,6 +166,7 @@ namespace Chebao.BackAdmin.product
                             }
                             
                             p.Price = price;
+                            //p.XSPPrice = price;
                             p.Area = area;
                             p.Material = material;
                             p.Replacement = replacement;

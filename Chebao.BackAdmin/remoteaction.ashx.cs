@@ -137,7 +137,8 @@ namespace Chebao.BackAdmin
                         Standard = pinfo.Standard,
                         ProductPic = pinfo.Pic,
                         Introduce = string.Format("Lamda型号：{0} 规格：{1}", pinfo.ModelNumber, pinfo.Standard),
-                        Price = DataConvert.SafeDecimal(pinfo.Price.StartsWith("¥") ? pinfo.Price.Substring(1) : pinfo.Price),
+                        Price = DataConvert.SafeDecimal(pinfo.Name.IndexOf("xsp") > 0 ? (pinfo.XSPPrice.StartsWith("¥") ? pinfo.XSPPrice.Substring(1) : pinfo.XSPPrice) : (pinfo.Price.StartsWith("¥") ? pinfo.Price.Substring(1) : pinfo.Price)),
+                        //Price = DataConvert.SafeDecimal(pinfo.Price.StartsWith("¥") ? pinfo.Price.Substring(1) : pinfo.Price),
                         Amount = amount,
                         Remark = string.Empty
                     };

@@ -147,7 +147,12 @@ namespace Chebao.BackAdmin.order
             DateTime timee = DateTime.Now;
             if (!string.IsNullOrEmpty(GetString("timee")) && DateTime.TryParse(GetString("timee"), out timee))
             {
-                list = list.FindAll(l => DateTime.Parse(l.AddTime) <= timee);
+                list = list.FindAll(l => DateTime.Parse(l.AddTime) < timee.AddDays(1));
+            }
+            if (!string.IsNullOrEmpty(GetString("orderproduct")))
+            {
+                string orderproduct = GetString("orderproduct").ToLower();
+                list = list.FindAll(l => l.OrderProducts != null && l.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(m => m.Name.ToLower() == orderproduct)));
             }
 
             list = list.OrderByDescending(l => l.ID).ThenByDescending(l => l.OrderStatus).ToList();
@@ -184,6 +189,10 @@ namespace Chebao.BackAdmin.order
             if (!string.IsNullOrEmpty(GetString("timee")))
             {
                 txtDateE.Text = GetString("timee");
+            }
+            if (!string.IsNullOrEmpty(GetString("orderproduct")))
+            {
+                txtOrderProduct.Text = GetString("orderproduct");
             }
 
             hdnFrom.Value = UrlEncode(CurrentUrl);

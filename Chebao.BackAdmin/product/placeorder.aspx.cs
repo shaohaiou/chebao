@@ -256,6 +256,9 @@ namespace Chebao.BackAdmin.product
                         Admin.PostCode = txtPostCode.Value;
 
                         Admins.Instance.UpdateAdmin(Admin);
+
+                        MangaCache.Remove(key);
+
                         Response.Redirect("placeordersuccess.aspx");
                         Response.End();
                     }

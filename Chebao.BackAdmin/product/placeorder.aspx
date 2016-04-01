@@ -1,13 +1,17 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="placeorder.aspx.cs" Inherits="Chebao.BackAdmin.product.placeorder" %>
+<%@ OutputCache Location="None" %>
 
 <%@ Register Src="../uc/header.ascx" TagName="header" TagPrefix="uc1" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>耐磨达产品查询系统-提交订单</title>
-    <link href="../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+    <meta http-equiv="Expires" CONTENT="0"> 
+    <meta http-equiv="Cache-Control" CONTENT="no-cache"> 
+    <meta http-equiv="Pragma" CONTENT="no-cache"> 
+    <link href=../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>
         rel="stylesheet" type="text/css" />
-    <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
+    <link href=../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>
         rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
@@ -47,8 +51,8 @@
                     alert("手机号码与电话号码至少填一项");
                     return;
                 }
-                form1.submit();
                 $(this).attr("disabled", "true").addClass("dis");
+                form1.submit();
             });
 
             setLinkInfo();

@@ -17,6 +17,12 @@ namespace Chebao.Components
         public string Name { get; set; }
 
         /// <summary>
+        /// 是否成本折扣
+        /// </summary>
+        [JsonProperty("iscosts")]
+        public int IsCosts { get; set; }
+
+        /// <summary>
         /// 折扣m
         /// </summary>
         [JsonIgnore]

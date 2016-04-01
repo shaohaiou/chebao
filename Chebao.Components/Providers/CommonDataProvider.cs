@@ -103,6 +103,8 @@ namespace Chebao.Components
         /// <returns>修改是否成功</returns>
         public abstract bool UpdateAdmin(AdminInfo model);
 
+        public abstract void UpdateBrandPowerSetting(AdminInfo entity);
+
         /// <summary>
         /// 删除管理员
         /// </summary>
@@ -330,6 +332,8 @@ namespace Chebao.Components
 
         public abstract void AddOrder(OrderInfo entity);
 
+        public abstract void UpdateOrderProducts(OrderInfo entity);
+
         public abstract List<OrderInfo> GetOrderList();
 
         public abstract void UpdateOrderStatus(string ids, OrderStatus status);
@@ -555,6 +559,7 @@ namespace Chebao.Components
             {
                 ID = DataConvert.SafeInt(reader["ID"]),
                 Name = reader["Name"] as string,
+                IsCosts = DataConvert.SafeInt(reader["IsCosts"])
             };
 
             SerializerData data = new SerializerData();

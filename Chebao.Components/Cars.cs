@@ -335,6 +335,12 @@ namespace Chebao.Components
             }
         }
 
+        public string UpdateOrderProducts(OrderInfo entity)
+        {
+            CommonDataProvider.Instance().UpdateOrderProducts(entity);
+            return string.Empty;
+        }
+
         public OrderInfo GetOrder(int id, bool fromCache = false)
         {
             List<OrderInfo> list = GetOrderList(fromCache);
@@ -455,15 +461,15 @@ namespace Chebao.Components
             }
             if (list != null && list.Count > 0)
             {
+                foreach (OrderUpdateQueueInfo entity in list)
+                {
+                    OrderInfo order = GetOrder(DataConvert.SafeInt(entity.OrderID), true);
+                    if (order != null)
+                        UpdateOrderSyncStatus(order.ID, 1);
+                }
                 RefreshProductStock();
                 ReloadProductListCache();
                 ReloadOrder();
-            }
-            foreach (OrderUpdateQueueInfo entity in list)
-            {
-                OrderInfo order = GetOrder(DataConvert.SafeInt(entity.OrderID), true);
-                if (order != null)
-                    UpdateOrderSyncStatus(order.ID, 1);
             }
         }
 
@@ -650,6 +656,12 @@ namespace Chebao.Components
         {
             List<DiscountStencilInfo> list = GetDiscountStencilList(fromCache);
             return list.Find(b => b.ID == id);
+        }
+
+        public DiscountStencilInfo GetCostsDiscount(bool fromCache = false)
+        {
+            List<DiscountStencilInfo> list = GetDiscountStencilList(fromCache);
+            return list.Find(b => b.IsCosts == 1);
         }
 
         public void UpdateDiscountStencil(DiscountStencilInfo entity)

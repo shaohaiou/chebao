@@ -56,6 +56,19 @@ namespace Chebao.BackAdmin.product
             }
         }
 
+        private List<OrderInfo> orderall = null;
+        public List<OrderInfo> OrderAll
+        {
+            get
+            {
+                if (orderall == null)
+                {
+                    orderall = Cars.Instance.GetOrderList(true);
+                }
+                return orderall;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -370,7 +383,8 @@ namespace Chebao.BackAdmin.product
                 HSSFRow row = (HSSFRow)sheet1.CreateRow(i + 1);
                 row.CreateCell(0).SetCellValue(productlist[i].Name);
                 row.CreateCell(1).SetCellValue(productlist[i].ProductType.ToString());
-                row.CreateCell(2).SetCellValue("￥" + productlist[i].Price);
+                row.CreateCell(2).SetCellValue("￥" + (productlist[i].Name.IndexOf("xsp") > 0 ? productlist[i].XSPPrice : productlist[i].Price));
+                //row.CreateCell(2).SetCellValue("￥" + productlist[i].Price);
                 row.CreateCell(3).SetCellValue(productlist[i].ModelNumber);
                 row.CreateCell(4).SetCellValue(productlist[i].OEModelNumber);
 
@@ -404,7 +418,7 @@ namespace Chebao.BackAdmin.product
 
         protected string GetStock(object pmstrs)
         {
-            List<KeyValuePair<string, int>> result = new List<KeyValuePair<string, int>>();
+            List<KeyValuePair<string, string>> result = new List<KeyValuePair<string, string>>();
 
             if (!string.IsNullOrEmpty(pmstrs.ToString()))
             {
@@ -412,7 +426,26 @@ namespace Chebao.BackAdmin.product
                 foreach (string pmstr in pmstrs.ToString().Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (plist.Exists(p => pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0].StartsWith(p.ModelNumber)))
-                        result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
+                    {
+                        string name = pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0];
+                        int stock = DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1]);
+                        int stockleave = stock;
+
+                        if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name))))
+                        {
+                            int amount = 0;
+                            List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name)));
+                            orderlist.ForEach(delegate(OrderInfo o)
+                            {
+                                amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == name).Sum(pm => pm.Amount));
+                            });
+                            stockleave -= amount;
+                        }
+                        if (stockleave < 0)
+                            stockleave = 0;
+
+                        result.Add(new KeyValuePair<string, string>(name, stock + "(" + stockleave + ")"));
+                    }
                 }
             }
 

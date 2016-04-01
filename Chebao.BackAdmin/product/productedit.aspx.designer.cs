@@ -49,6 +49,15 @@ namespace Chebao.BackAdmin.product {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
+        /// txtXSPPrice 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtXSPPrice;
+        
+        /// <summary>
         /// txtModelNumber 控件。
         /// </summary>
         /// <remarks>

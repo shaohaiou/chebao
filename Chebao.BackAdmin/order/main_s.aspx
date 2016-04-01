@@ -15,7 +15,8 @@
 </head>
 <body style="background:url(../images/xdd.gif) repeat-x;">
 <div class="right_nav">
-     <a href="ordermg.aspx" target="ztk" id="productmg" runat="server" class="current">订单列表</a>
+     <a href="ordermg.aspx" target="ztk" id="ordermg" runat="server" class="current">订单列表</a>
+     <a href="profitsmg.aspx" target="ztk" id="profitsmg" runat="server">利润查询</a>
      <a href="syncfailedmg.aspx" target="ztk" id="syncfailedmg" runat="server">同步失败记录</a>
 </div>
 

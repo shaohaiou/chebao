@@ -12,7 +12,9 @@ namespace Chebao.Components
         public string Name { get; set; }
         public int Stock { get; set; }
         public int SID { get; set; }
+        public string UnitPrice { get; set; }
         public string Price { get; set; }
+        public string Costs { get; set; }
         public int Amount { get; set; }
         public string Sum
         {
@@ -20,6 +22,13 @@ namespace Chebao.Components
             {
                 return Math.Round(Amount * DataConvert.SafeDecimal(Price),2).ToString();
             }
+        }
+        public string CostsSum
+        {
+            get
+            {
+                return Math.Round(Amount * DataConvert.SafeDecimal(Costs), 2).ToString();
+            }  
         }
     }
 }

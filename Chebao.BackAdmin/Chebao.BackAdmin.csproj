@@ -124,13 +124,6 @@
     <Compile Include="global\corpintroduce.aspx.designer.cs">
       <DependentUpon>corpintroduce.aspx</DependentUpon>
     </Compile>
-    <Compile Include="global\costsdiscount.aspx.cs">
-      <DependentUpon>costsdiscount.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="global\costsdiscount.aspx.designer.cs">
-      <DependentUpon>costsdiscount.aspx</DependentUpon>
-    </Compile>
     <Compile Include="global\dealdata.aspx.cs">
       <DependentUpon>dealdata.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -138,18 +131,25 @@
     <Compile Include="global\dealdata.aspx.designer.cs">
       <DependentUpon>dealdata.aspx</DependentUpon>
     </Compile>
-    <Compile Include="global\discountstenciledit.aspx.cs">
+    <Compile Include="order\profitsmg.aspx.cs">
+      <DependentUpon>profitsmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="order\profitsmg.aspx.designer.cs">
+      <DependentUpon>profitsmg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="user\discountstenciledit.aspx.cs">
       <DependentUpon>discountstenciledit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="global\discountstenciledit.aspx.designer.cs">
+    <Compile Include="user\discountstenciledit.aspx.designer.cs">
       <DependentUpon>discountstenciledit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="global\discountstencilmg.aspx.cs">
+    <Compile Include="user\discountstencilmg.aspx.cs">
       <DependentUpon>discountstencilmg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="global\discountstencilmg.aspx.designer.cs">
+    <Compile Include="user\discountstencilmg.aspx.designer.cs">
       <DependentUpon>discountstencilmg.aspx</DependentUpon>
     </Compile>
     <Compile Include="global\notice.aspx.cs">
@@ -549,6 +549,13 @@
     <Compile Include="user\userlist.aspx.designer.cs">
       <DependentUpon>userlist.aspx</DependentUpon>
     </Compile>
+    <Compile Include="user\userpowersetting.aspx.cs">
+      <DependentUpon>userpowersetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\userpowersetting.aspx.designer.cs">
+      <DependentUpon>userpowersetting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="webservice\UploadServices.asmx.cs">
       <DependentUpon>UploadServices.asmx</DependentUpon>
       <SubType>Component</SubType>
@@ -600,10 +607,10 @@
     <Content Include="favicon.ico" />
     <Content Include="global\contact.aspx" />
     <Content Include="global\corpintroduce.aspx" />
-    <Content Include="global\costsdiscount.aspx" />
     <Content Include="global\dealdata.aspx" />
-    <Content Include="global\discountstenciledit.aspx" />
-    <Content Include="global\discountstencilmg.aspx" />
+    <Content Include="order\profitsmg.aspx" />
+    <Content Include="user\discountstenciledit.aspx" />
+    <Content Include="user\discountstencilmg.aspx" />
     <Content Include="global\notice.aspx" />
     <Content Include="global\sitesetting.aspx" />
     <Content Include="global\sqlexecute.aspx" />
@@ -888,6 +895,7 @@
     <Content Include="user\subaccountlist.aspx" />
     <Content Include="user\subaccountmg.aspx" />
     <Content Include="user\userchangepw.aspx" />
+    <Content Include="user\userpowersetting.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -129,7 +129,7 @@
                             图片
                         </td>
                         <td class="w60">
-                            价格
+                            价格/xsp
                         </td>
                         <td class="w120">
                             Lamda型号
@@ -164,7 +164,9 @@
                         </td>
                         <td>
                             <span style="font-size: 14px; font-weight: bold; padding-right: 4px;">¥</span><span
-                                style="color: Red;"><%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%></span>
+                                style="color: Red;"><%# Eval("Price").ToString().StartsWith("¥") ? Eval("Price").ToString().Substring(1) : Eval("Price").ToString()%></span><br />
+                            <span style="font-size: 14px; font-weight: bold; padding-right: 4px;">¥</span><span
+                                style="color: Red;"><%# Eval("XSPPrice").ToString().StartsWith("¥") ? Eval("XSPPrice").ToString().Substring(1) : Eval("XSPPrice").ToString()%></span>
                         </td>
                         <td>
                             <%# Eval("ModelNumber")%>
