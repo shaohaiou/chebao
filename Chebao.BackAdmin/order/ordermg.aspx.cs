@@ -15,6 +15,7 @@ using System.IO;
 using NPOI.XSSF.UserModel;
 using System.Drawing;
 using NPOI.HSSF.Util;
+using System.Data;
 
 namespace Chebao.BackAdmin.order
 {
@@ -27,7 +28,7 @@ namespace Chebao.BackAdmin.order
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("订单列表"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");
@@ -59,10 +60,11 @@ namespace Chebao.BackAdmin.order
                             status = OrderStatus.未收款;
                             break;
                     }
-                    string syncResult = Cars.Instance.UpdateOrderStatus(GetString("ids"), status);
-                    Cars.Instance.ReloadOrder();
-                    if (!string.IsNullOrEmpty(syncResult))
-                        Session["syncResult"] = syncResult;
+                    string[] ids = GetString("ids").Split(new char[]{','},StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string id in ids)
+                    {
+                        Cars.Instance.UpdateOrderStatus(id, status,AdminName);
+                    }
                     Response.Redirect(FromUrl);
                     Response.End();
                 }
@@ -89,8 +91,7 @@ namespace Chebao.BackAdmin.order
                             status = OrderStatus.未收款;
                             break;
                     }
-                    string syncResult = Cars.Instance.UpdateOrderStatus(hdnId.Value, status);
-                    Cars.Instance.ReloadOrder();
+                    string syncResult = Cars.Instance.UpdateOrderStatus(hdnId.Value, status,AdminName);
                     if (!string.IsNullOrEmpty(syncResult))
                         Session["syncResult"] = syncResult;
                     Response.Redirect(UrlDecode(hdnFrom.Value));
@@ -101,7 +102,19 @@ namespace Chebao.BackAdmin.order
 
         private void BindControler()
         {
-            ddlOrderStatus.DataSource = EnumExtensions.ToTable<OrderStatus>();
+            DataTable dtOrderStatus = EnumExtensions.ToTable<OrderStatus>();
+            List<string> sel = new List<string>();
+            if(!CheckModulePower("未收款"))
+                sel.Add("Name <> '未收款'");
+            if (!CheckModulePower("已收款"))
+                sel.Add("Name <> '已收款'");
+            if (!CheckModulePower("已发货"))
+                sel.Add("Name <> '已发货'");
+            if (!CheckModulePower("已取消"))
+                sel.Add("Name <> '已取消'");
+            if (sel.Count > 0)
+                dtOrderStatus.DefaultView.RowFilter = string.Join(" and ", sel);
+            ddlOrderStatus.DataSource = dtOrderStatus.DefaultView;
             ddlOrderStatus.DataTextField = "Name";
             ddlOrderStatus.DataValueField = "Value";
             ddlOrderStatus.DataBind();
@@ -119,6 +132,14 @@ namespace Chebao.BackAdmin.order
             int total = 0;
 
             List<OrderInfo> list = Cars.Instance.GetOrderList(true);
+            if (!CheckModulePower("未收款"))
+                list = list.FindAll(l=>l.OrderStatus != OrderStatus.未收款);
+            if (!CheckModulePower("已收款"))
+                list = list.FindAll(l=>l.OrderStatus != OrderStatus.已收款);
+            if (!CheckModulePower("已发货"))
+                list = list.FindAll(l=>l.OrderStatus != OrderStatus.已发货);
+            if (!CheckModulePower("已取消"))
+                list = list.FindAll(l => l.OrderStatus != OrderStatus.已取消);
             if (!string.IsNullOrEmpty(GetString("ordernumber")))
             {
                 string ordernumber = GetString("ordernumber");
@@ -291,12 +312,13 @@ namespace Chebao.BackAdmin.order
                 sheet.GetRow(2).Cells[4].SetCellValue(order.LinkName);
                 sheet.GetRow(2).Cells[6].SetCellValue(order.LinkMobile);
                 sheet.GetRow(2).Cells[10].SetCellValue(order.LinkTel);
-                sheet.GetRow(3).Cells[1].SetCellValue(order.TotalFee);
+                if (CheckModulePower("金额可见"))
+                    sheet.GetRow(3).Cells[1].SetCellValue(order.TotalFee);
                 sheet.GetRow(3).Cells[4].SetCellValue(order.Province + order.City + order.District + order.Address);
 
                 int index = 6;
                 Regex r = new Regex(@"([mhywf]+)");
-                List<OrderProductInfo> plist = order.OrderProducts.OrderBy(p => p.ProductName).ToList();
+                List<OrderProductInfo> plist = order.OrderProducts.OrderBy(p => p.ModelNumber).ToList();
                 foreach (OrderProductInfo p in plist)
                 {
                     try
@@ -346,9 +368,11 @@ namespace Chebao.BackAdmin.order
                             }
                             catch { }
                             row.CreateCell(11).SetCellValue(!r.IsMatch(pi.Name.ToLower()) ? string.Empty : r.Match(pi.Name.ToLower()).Groups[1].Value.ToUpper());
-                            row.CreateCell(12).SetCellValue(pi.Price);
+                            if (CheckModulePower("金额可见"))
+                                row.CreateCell(12).SetCellValue(pi.Price);
                             row.CreateCell(13).SetCellValue(pi.Amount);
-                            row.CreateCell(14).SetCellValue(pi.Sum);
+                            if (CheckModulePower("金额可见"))
+                                row.CreateCell(14).SetCellValue(pi.Sum);
                             row.CreateCell(15).SetCellValue(string.Empty);
                             ICellStyle cellStyle = workbook.CreateCellStyle();
                             IFont font = workbook.CreateFont();

@@ -18,7 +18,7 @@ namespace Chebao.BackAdmin.order
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("利润查询"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");
@@ -65,6 +65,10 @@ namespace Chebao.BackAdmin.order
                     list = list.FindAll(l => DateTime.Parse(l.DeelTime) < timee.AddDays(1));
                 }
             }
+            if (!string.IsNullOrEmpty(GetString("username")))
+            {
+                list = list.FindAll(l => l.UserName == GetString("username"));
+            }
 
             foreach (OrderInfo order in list)
             {
@@ -99,6 +103,10 @@ namespace Chebao.BackAdmin.order
             if (!string.IsNullOrEmpty(GetString("timee")))
             {
                 txtDateE.Text = GetString("timee");
+            }
+            if (!string.IsNullOrEmpty(GetString("username")))
+            {
+                txtUserName.Text = GetString("username");
             }
         }
 

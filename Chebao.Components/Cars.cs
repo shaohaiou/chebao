@@ -323,8 +323,9 @@ namespace Chebao.Components
         {
             lock (sync_order)
             {
-                CommonDataProvider.Instance().AddOrder(entity);
-                ReloadOrder();
+                int id = CommonDataProvider.Instance().AddOrder(entity);
+                entity.ID = id;
+                RefreshOrder(entity);
                 if (entity.OrderProducts.Exists(p => p.SID > 0))
                 {
                     DeleteShoppingTrolley(string.Join(",", entity.OrderProducts.FindAll(p => p.SID > 0).ToList().Select(p => p.SID.ToString()).ToList()), entity.UserID);
@@ -338,13 +339,22 @@ namespace Chebao.Components
         public string UpdateOrderProducts(OrderInfo entity)
         {
             CommonDataProvider.Instance().UpdateOrderProducts(entity);
+            entity = GetOrder(entity.ID);
+            RefreshOrder(entity);
             return string.Empty;
         }
 
         public OrderInfo GetOrder(int id, bool fromCache = false)
         {
-            List<OrderInfo> list = GetOrderList(fromCache);
-            return list.Find(l => l.ID == id);
+            if (fromCache)
+            {
+                List<OrderInfo> list = GetOrderList(fromCache);
+                return list.Find(l => l.ID == id);
+            }
+            else
+            {
+                return CommonDataProvider.Instance().GetOrderInfo(id);
+            }
         }
 
         public List<OrderInfo> GetOrderList(bool fromCache = false)
@@ -369,10 +379,29 @@ namespace Chebao.Components
             GetOrderList(true);
         }
 
-        public string UpdateOrderStatus(string ids, OrderStatus status)
+        public void RefreshOrder(OrderInfo order)
+        {
+            string key = GlobalKey.ORDER_LIST;
+            List<OrderInfo> list = MangaCache.Get(key) as List<OrderInfo>;
+            if (list == null)
+                list = GetOrderList(true);
+            if (list == null)
+                list = new List<OrderInfo>();
+            if (list.Exists(l => l.ID == order.ID))
+                list[list.FindIndex(l => l.ID == order.ID)] = order;
+            else
+                list.Add(order);
+            MangaCache.Max(key, list);
+        }
+
+        public string UpdateOrderStatus(string ids, OrderStatus status,string username = "系统作业")
         {
             StringBuilder strResult = new StringBuilder();
             OrderInfo order = GetOrder(DataConvert.SafeInt(ids), true);
+            if (order.OrderStatus != OrderStatus.未收款 && status == OrderStatus.已收款)
+                return string.Empty;
+            if (order.OrderStatus != OrderStatus.已收款 && status == OrderStatus.已发货)
+                return string.Empty;
             if (order != null)
             {
                 if (status == OrderStatus.已发货 || (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货))
@@ -385,7 +414,9 @@ namespace Chebao.Components
                     });
                 }
             }
-            CommonDataProvider.Instance().UpdateOrderStatus(ids, status);
+            CommonDataProvider.Instance().UpdateOrderStatus(ids, status, username);
+            order = GetOrder(DataConvert.SafeInt(ids));
+            RefreshOrder(order);
             return strResult.ToString();
         }
 
@@ -397,6 +428,8 @@ namespace Chebao.Components
         public void UpdateOrderPic(int id, string src, string action)
         {
             CommonDataProvider.Instance().UpdateOrderPic(id, src, action);
+            OrderInfo order = GetOrder(id);
+            RefreshOrder(order);
         }
 
         public void AddOrderUpdateQueue(OrderUpdateQueueInfo entity)
@@ -465,11 +498,14 @@ namespace Chebao.Components
                 {
                     OrderInfo order = GetOrder(DataConvert.SafeInt(entity.OrderID), true);
                     if (order != null)
+                    {
                         UpdateOrderSyncStatus(order.ID, 1);
+                        order = GetOrder(DataConvert.SafeInt(entity.OrderID));
+                        RefreshOrder(order);
+                    }
                 }
                 RefreshProductStock();
                 ReloadProductListCache();
-                ReloadOrder();
             }
         }
 

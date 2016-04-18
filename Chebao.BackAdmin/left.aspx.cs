@@ -12,21 +12,7 @@ namespace Chebao.BackAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            AdminInfo admin = ChebaoContext.Current.AdminUser;
-            if (!admin.Administrator)
-            {
-                index_page.Visible = false;
-                user_main.Visible = false;
-                car_main.Visible = false;
-                car_main1.Visible = false;
-                global_main.Visible = false;
-                messageboard_main.Visible = false;
-                if (Admin.UserRole == Components.UserRoleType.管理员)
-                {
-                    user_main.Visible = true;
-                    messageboard_main.Visible = true;
-                }
-            }
+
         }
 
         protected override void Check()
@@ -34,6 +20,13 @@ namespace Chebao.BackAdmin
             if (!ChebaoContext.Current.AdminCheck)
             {
                 Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            {
+                Response.Clear();
+                Response.Write("您没有权限操作！");
+                Response.End();
                 return;
             }
         }

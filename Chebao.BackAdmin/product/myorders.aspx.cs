@@ -31,8 +31,7 @@ namespace Chebao.BackAdmin.product
                     List<OrderInfo> orderlist = Cars.Instance.GetOrderList(true);
                     if (orderlist.Exists(o => o.ID == id && o.UserID == AdminID))
                     {
-                        Cars.Instance.UpdateOrderStatus(id.ToString(), OrderStatus.已取消);
-                        Cars.Instance.ReloadOrder();
+                        Cars.Instance.UpdateOrderStatus(id.ToString(), OrderStatus.已取消,AdminName);
                         Response.Redirect("~/product/myorders.aspx");
                         Response.End();
                     }

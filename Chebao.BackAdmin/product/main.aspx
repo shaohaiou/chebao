@@ -8,7 +8,22 @@
 </head>
 <frameset rows="58,*" frameborder="no" border="0" framespacing="0">
   <frame src="main_s.aspx" name="sk" scrolling="No" noresize="noresize" id="sk" title="sk" />
+  <%if (CheckModulePower("产品列表"))
+    { %>
   <frame src="productmg.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("新增产品"))
+    {%>
+  <frame src="productedit.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("数据导入"))
+    {%>
+  <frame src="import.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("用户界面"))
+    {%>
+  <frame src="products.aspx" name="ztk" id="ztk" title="ztk" />
+  <%} %>
 </frameset>
 <noframes>
     <body>

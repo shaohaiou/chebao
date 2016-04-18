@@ -163,12 +163,26 @@ namespace Chebao.BackAdmin.user
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            int id = GetInt("id");
+            if (id != 1)
             {
-                Response.Clear();
-                Response.Write("您没有权限操作！");
-                Response.End();
-                return;
+                if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("折扣模版"))
+                {
+                    Response.Clear();
+                    Response.Write("您没有权限操作！");
+                    Response.End();
+                    return;
+                }
+            }
+            else
+            {
+                if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("成本折扣"))
+                {
+                    Response.Clear();
+                    Response.Write("您没有权限操作！");
+                    Response.End();
+                    return;
+                }
             }
         }
     }

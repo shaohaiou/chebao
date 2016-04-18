@@ -15,14 +15,33 @@
 
 <body style="background:url(../images/xdd.gif) repeat-x;">
 <div class="right_nav">
-     <a href="productmg.aspx" target="ztk" id="productmg" runat="server" class="current">产品列表</a>
-     <a href="productedit.aspx" target="ztk" id="productadd" runat="server">新增产品</a>
-     <a href="import.aspx" target="ztk" id="import" runat="server">数据导入</a>
-     <a href="products.aspx" target="_blank" id="products" runat="server" class="nohover">用户界面</a>
+    <%if (CheckModulePower("产品列表"))
+          {%>
+        <a href="productmg.aspx" target="ztk" id="productmg" <%if(CheckModulePower("产品列表")){ %>class="current"<%} %>>产品列表</a>
+        <%} %>
+    <%if (CheckModulePower("新增产品"))
+          {%>
+        <a href="productedit.aspx" target="ztk" id="productadd" <%if(!CheckModulePower("产品列表") && CheckModulePower("新增产品")){ %>class="current"<%} %>>新增产品</a>
+        <%} %>
+    <%if (CheckModulePower("数据导入"))
+          {%>
+        <a href="import.aspx" target="ztk" id="import" <%if(!CheckModulePower("产品列表") && !CheckModulePower("新增产品") && CheckModulePower("数据导入")){ %>class="current"<%} %>>数据导入</a>
+        <%} %>
+    <%if (CheckModulePower("用户界面"))
+          {%>
+        <a href="products.aspx" target="ztk" id="products" <%if(!CheckModulePower("产品列表") && !CheckModulePower("新增产品") && !CheckModulePower("数据导入") && CheckModulePower("用户界面")){ %>class="current"<%} %>>用户界面</a>
+        <%} %>
 </div>
 
 <div class="r_sy" id="daohan">
-	当前位置：系统设置 &gt;&gt; <span id="daohan_sp">产品管理 </span>
+	当前位置：系统设置 &gt;&gt; <span id="daohan_sp"><%if (CheckModulePower("产品列表"))
+              { %>产品列表<%}
+                                           else if (CheckModulePower("新增产品"))
+              { %>新增产品<%}
+                                           else if (CheckModulePower("数据导入"))
+              { %>数据导入<%}
+                                           else if (CheckModulePower("用户界面"))
+              {%>用户界面<%} %></span>
 </div>
 </body>
 <script language="javascript" type="text/javascript">

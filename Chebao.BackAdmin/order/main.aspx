@@ -8,7 +8,18 @@
 </head>
 <frameset rows="58,*" frameborder="no" border="0" framespacing="0">
   <frame src="main_s.aspx" name="sk" scrolling="No" noresize="noresize" id="sk" title="sk" />
+  <%if (CheckModulePower("订单列表"))
+    { %>
   <frame src="ordermg.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("利润查询"))
+    {%>
+  <frame src="profitsmg.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("同步失败记录"))
+    {%>
+  <frame src="syncfailedmg.aspx" name="ztk" id="ztk" title="ztk" />
+  <%} %>
 </frameset>
 <noframes>
     <body>

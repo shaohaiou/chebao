@@ -50,7 +50,8 @@
                                         <%# Eval("SizeView").ToString() == "0" ? "否" : "是"%></span> 
                                         <span class="w120"><%# Eval("LastLoginTime") == null ? "&nbsp;" : Eval("LastLoginTime","{0:yyyy-MM-dd HH:mm}")%></span><span class="usermg-item w60">
                                             <a href="subaccountadd.aspx?id=<%#Eval("ID") %>">编辑</a> <a href="?action=del&id=<%#Eval("ID") %>"
-                                                class="red pl10 hide" onclick="javascript:return confirm('确定要删除该用户吗？');">删除</a> </span>
+                                                class="red pl10 hide" onclick="javascript:return confirm('确定要删除该用户吗？');">删除</a> <br />
+                                                <a href="subaccountpowersetting.aspx?id=<%#Eval("ID") %>">品牌权限</a></span>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>

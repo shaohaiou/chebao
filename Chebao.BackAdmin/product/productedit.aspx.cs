@@ -33,12 +33,26 @@ namespace Chebao.BackAdmin.product
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            int id = GetInt("id");
+            if (id > 0)
             {
-                Response.Clear();
-                Response.Write("您没有权限操作！");
-                Response.End();
-                return;
+                if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("产品列表"))
+                {
+                    Response.Clear();
+                    Response.Write("您没有权限操作！");
+                    Response.End();
+                    return;
+                }
+            }
+            else
+            {
+                if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("新增产品"))
+                {
+                    Response.Clear();
+                    Response.Write("您没有权限操作！");
+                    Response.End();
+                    return;
+                }
             }
         }
 

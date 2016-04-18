@@ -174,7 +174,6 @@ namespace Chebao.BackAdmin
             if (id > 0 && !string.IsNullOrEmpty(src) && !string.IsNullOrEmpty(col))
             {
                 Cars.Instance.UpdateOrderPic(id, src, col);
-                Cars.Instance.ReloadOrder();
                 result = string.Format(result, "success", "");
             }
             else

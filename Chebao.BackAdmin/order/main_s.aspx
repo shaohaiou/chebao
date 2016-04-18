@@ -15,13 +15,27 @@
 </head>
 <body style="background:url(../images/xdd.gif) repeat-x;">
 <div class="right_nav">
-     <a href="ordermg.aspx" target="ztk" id="ordermg" runat="server" class="current">订单列表</a>
-     <a href="profitsmg.aspx" target="ztk" id="profitsmg" runat="server">利润查询</a>
-     <a href="syncfailedmg.aspx" target="ztk" id="syncfailedmg" runat="server">同步失败记录</a>
+    <%if (CheckModulePower("订单列表"))
+          {%>
+        <a href="ordermg.aspx" target="ztk" id="ordermg" <%if(CheckModulePower("订单列表")){ %>class="current"<%} %>>订单列表</a>
+        <%} %>
+    <%if (CheckModulePower("利润查询"))
+          {%>
+        <a href="profitsmg.aspx" target="ztk" id="profitsmg" <%if(!CheckModulePower("订单列表") && CheckModulePower("利润查询")){ %>class="current"<%} %>>利润查询</a>
+        <%} %>
+    <%if (CheckModulePower("同步失败记录"))
+          {%>
+        <a href="syncfailedmg.aspx" target="ztk" id="syncfailedmg" <%if(!CheckModulePower("订单列表") && !CheckModulePower("利润查询") && CheckModulePower("同步失败记录")){ %>class="current"<%} %>>同步失败记录</a>
+        <%} %>
 </div>
 
 <div class="r_sy" id="daohan">
-	当前位置：订单管理 &gt;&gt; <span id="daohan_sp">订单列表 </span>
+	当前位置：订单管理 &gt;&gt; <span id="daohan_sp"><%if (CheckModulePower("订单列表"))
+              { %>订单列表<%}
+                                           else if (CheckModulePower("利润查询"))
+              { %>利润查询<%}
+                                           else if (CheckModulePower("同步失败记录"))
+              { %>同步失败记录<%} %></span>
 </div>
 </body>
 <script language="javascript" type="text/javascript">

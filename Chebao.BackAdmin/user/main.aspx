@@ -8,7 +8,22 @@
 </head>
 <frameset rows="58,*" frameborder="no" border="0" framespacing="0">
   <frame src="main_s.aspx" name="sk" scrolling="No" noresize="noresize" id="sk" title="sk" />
+  <%if (CheckModulePower("用户管理"))
+    { %>
   <frame src="userlist.aspx" name="ztk" id="ztk" title="ztk"/>
+  <%}
+    else if (CheckModulePower("管理员管理"))
+    {%>
+  <frame src="adminlist.aspx" name="ztk" id="ztk" title="ztk"/>
+  <%}
+    else if (CheckModulePower("折扣模版"))
+    {%>
+  <frame src="discountstencilmg.aspx" name="ztk" id="ztk" title="ztk"/>
+  <%}
+    else if (CheckModulePower("成本折扣"))
+    {%>
+  <frame src="discountstenciledit.aspx?costs=1" name="ztk" id="ztk" title="ztk"/>
+  <%} %>
 </frameset>
 <noframes>
     <body>

@@ -12,11 +12,7 @@ namespace Chebao.BackAdmin.user
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Admin.Administrator)
-            {
-                adminlist.Visible = false;
-                userlist.Attributes["class"] = "current";
-            }
+
         }
 
         protected override void Check()
@@ -26,7 +22,7 @@ namespace Chebao.BackAdmin.user
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("用户管理,管理员管理,折扣模版,成本折扣"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");

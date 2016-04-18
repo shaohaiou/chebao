@@ -8,7 +8,18 @@
 </head>
 <frameset rows="58,*" frameborder="no" border="0" framespacing="0">
   <frame src="main_s.aspx" name="sk" scrolling="No" noresize="noresize" id="sk" title="sk" />
+  <%if (CheckModulePower("站点设置"))
+    { %>
   <frame src="sitesetting.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("执行sql"))
+    {%>
+  <frame src="sqlexecute.aspx" name="ztk" id="ztk" title="ztk" />
+  <%}
+    else if (CheckModulePower("数据处理"))
+    {%>
+  <frame src="dealdata.aspx" name="ztk" id="ztk" title="ztk" />
+  <%} %>
 </frameset>
 <noframes>
     <body>

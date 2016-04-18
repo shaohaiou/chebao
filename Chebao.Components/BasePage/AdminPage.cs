@@ -110,5 +110,20 @@ namespace Chebao.Components
                 return string.Empty;
             }
         }
+
+        protected bool CheckModulePower(string modulenames)
+        {
+            bool result = false;
+
+            if (Admin.Administrator) return true;
+            if (!string.IsNullOrEmpty(Admin.ModulePowerSetting))
+            {
+                List<string> mlist = modulenames.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                string[] powers = Admin.ModulePowerSetting.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                return mlist.Exists(m=>powers.Contains(m));
+            }
+
+            return result;
+        }
     }
 }

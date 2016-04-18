@@ -21,7 +21,7 @@ namespace Chebao.BackAdmin.product
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("产品列表"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");
@@ -431,10 +431,10 @@ namespace Chebao.BackAdmin.product
                         int stock = DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1]);
                         int stockleave = stock;
 
-                        if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name))))
+                        if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name))))
                         {
                             int amount = 0;
-                            List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已收款 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name)));
+                            List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name)));
                             orderlist.ForEach(delegate(OrderInfo o)
                             {
                                 amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == name).Sum(pm => pm.Amount));

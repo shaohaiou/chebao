@@ -15,6 +15,21 @@ namespace Chebao.BackAdmin.global
 {
     public partial class dealdata : AdminBase
     {
+        protected override void Check()
+        {
+            if (!ChebaoContext.Current.AdminCheck)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("数据处理"))
+            {
+                Response.Clear();
+                Response.Write("您没有权限操作！");
+                Response.End();
+                return;
+            }
+        }
         private string brandindex = "a,b,c,d,f,g,h,j,k,l,m,n,o,p,q,r,s,t,w,x,y,z"; 
 
         protected void Page_Load(object sender, EventArgs e)

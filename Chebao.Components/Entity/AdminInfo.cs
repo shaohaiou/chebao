@@ -373,6 +373,16 @@ namespace Chebao.Components
             set { SetExtendedAttribute("BrandPowerSetting", value); }
         }
 
+        /// <summary>
+        /// 模块权限
+        /// </summary>
+        [JsonIgnore]
+        public string ModulePowerSetting
+        {
+            get { return GetString("ModulePowerSetting", ""); }
+            set { SetExtendedAttribute("ModulePowerSetting", value); }
+        }
+
         #endregion Model
     }
 }

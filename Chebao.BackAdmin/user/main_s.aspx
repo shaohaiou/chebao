@@ -15,17 +15,33 @@
 </head>
 <body style="background: url(../images/xdd.gif) repeat-x;">
     <div class="right_nav">
-        <a href="userlist.aspx" target="ztk" id="userlist" runat="server" class="current">用户管理</a>
-        <a href="adminlist.aspx" target="ztk" id="adminlist" runat="server">管理员管理</a>
-        <a href="discountstencilmg.aspx" target="ztk" id="discountstencilmg" runat="server">折扣模版</a>
-        <a href="discountstenciledit.aspx?costs=1" target="ztk" id="costsdiscount" runat="server">成本折扣</a>
+        <%if (CheckModulePower("用户管理"))
+          {%>
+        <a href="userlist.aspx" target="ztk" id="userlist" <%if(CheckModulePower("用户管理")){ %>class="current"<%} %>>用户管理</a>
+        <%} %>
+        <%if (CheckModulePower("管理员管理"))
+          {%>
+        <a href="adminlist.aspx" target="ztk" id="adminlist" <%if(!CheckModulePower("用户管理") && CheckModulePower("管理员管理")){ %>class="current"<%} %>>管理员管理</a>
+        <%} %>
+        <%if (CheckModulePower("折扣模版"))
+          {%>
+        <a href="discountstencilmg.aspx" target="ztk" id="discountstencilmg" <%if(!CheckModulePower("用户管理") && !CheckModulePower("管理员管理") && CheckModulePower("折扣模版")){ %>class="current"<%} %>>折扣模版</a>
+        <%} %>
+        <%if (CheckModulePower("成本折扣"))
+          {%>
+        <a href="discountstenciledit.aspx?costs=1" target="ztk" id="costsdiscount" <%if(!CheckModulePower("用户管理") && !CheckModulePower("管理员管理") && !CheckModulePower("折扣模版") && CheckModulePower("成本折扣")){ %>class="current"<%} %>>成本折扣</a>
+        <%} %>
     </div>
     <div class="r_sy" id="daohan">
         当前位置：用户管理 &gt;&gt; <span id="daohan_sp">
-            <%if (Admin.Administrator)
+            <%if (CheckModulePower("用户管理"))
+              { %>用户管理<%}
+              else if (CheckModulePower("管理员管理"))
               { %>管理员管理<%}
-              else
-              { %>用户管理<%} %></span>
+              else if (CheckModulePower("折扣模版"))
+              { %>折扣模版<%}
+              else if (CheckModulePower("成本折扣"))
+              {%>成本折扣<%} %></span>
     </div>
 </body>
 <script language="javascript" type="text/javascript">

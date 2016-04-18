@@ -32,8 +32,17 @@
         <div class="bt2">
             快捷访问</div>
         <div class="bt2x lan5 J_Quick">
-            <a href="/product/main.aspx">产品管理</a> <a href="/order/main.aspx">订单管理</a> <a href="/product/products.aspx"
+            <%if (CheckModulePower("产品列表,新增产品,数据导入,用户界面"))
+              { %>
+            <a href="/product/main.aspx">产品管理</a> <%} %>
+            <%if(CheckModulePower("订单列表,利润查询,同步失败记录")){ %>
+            <a href="/order/main.aspx">订单管理</a> 
+            <%} %>
+            <%if (CheckModulePower("用户界面"))
+              { %>
+            <a href="/product/products.aspx"
                 target="_blank">用户界面</a>
+                <%} %>
         </div>
     </div>
 </body>

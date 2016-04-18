@@ -74,6 +74,16 @@
                 return true;
             });
 
+            $("#btnMulSK").click(function () {
+                if (CheckForm())
+                    location.href = "?action=gather&ids=" + $("#hdnIds").val() + "&from=<%=UrlEncode(CurrentUrl) %>";
+            });
+
+            $("#btnMulFH").click(function () {
+                if (CheckForm())
+                    location.href = "?action=consignment&ids=" + $("#hdnIds").val() + "&from=<%=UrlEncode(CurrentUrl) %>";
+            });
+
             $(".btncopy").click(function () {
                 copyorderid = $(this).attr("data-id");
                 $("#txtUserNameCopy").val($(this).attr("data-uname"));
@@ -201,8 +211,8 @@
                 </td>
                 <td>
                     订单号：<asp:TextBox runat="server" ID="txtOrderNumber" CssClass="srk6"></asp:TextBox>
-                    下单时间：<asp:TextBox runat="server" ID="txtDateB" CssClass="srk6 txtDate"></asp:TextBox>
-                    -<asp:TextBox runat="server" ID="txtDateE" CssClass="srk6 txtDate"></asp:TextBox>
+                    下单时间：<asp:TextBox runat="server" ID="txtDateB" CssClass="srk5 txtDate"></asp:TextBox>
+                    - <asp:TextBox runat="server" ID="txtDateE" CssClass="srk5 txtDate"></asp:TextBox>
                     <div class="pt5">
                         用户名：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6 w60"></asp:TextBox>
                         联系人姓名：<asp:TextBox runat="server" ID="txtLinkName" CssClass="srk6 w60"></asp:TextBox>
@@ -221,6 +231,9 @@
                     <asp:Button runat="server" ID="btnExportExcel" CssClass="an1 fll mr10" Text=" 导出Excel "
                         OnClick="btnExportExcel_Click" />
                     <input type="submit" id="btnFilter" class="an1 mr10" value=" 查询 " />
+                    <input type="button" id="btnMulSK" class="an1 mr10 btnmulsk" value="一键收款" />
+                    <input type="button" id="btnMulFH" class="an1 mr10 btnmulfh" value="一键发货" />
+                    <span id="spMsg" class="red"></span>
                 </td>
             </tr>
         </table>
@@ -242,7 +255,7 @@
                         <td class="w120">
                             联系方式
                         </td>
-                        <td class="w200">
+                        <td class="w160">
                             收货地址
                         </td>
                         <td class="w220">
@@ -251,8 +264,8 @@
                         <td class="w100">
                             订单总额
                         </td>
-                        <td class="w60">
-                            订单状态
+                        <td class="w100">
+                            状态/操作人
                         </td>
                         <td>
                             操作
@@ -289,11 +302,12 @@
                             </div>
                         </td>
                         <td>
-                            <%# Chebao.Tools.StrHelper.FormatMoney(Eval("TotalFee").ToString())%>
+                            <%# CheckModulePower("金额可见") ? Chebao.Tools.StrHelper.FormatMoney(Eval("TotalFee").ToString()) : string.Empty%>
                         </td>
                         <td>
                             <span class="<%#GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus"))%>">
-                                <%# Eval("OrderStatus").ToString()%></span>
+                                <%# Eval("OrderStatus").ToString()%></span><br />
+                                <%#Eval("StatusUpdateUser")%>
                         </td>
                         <td>
                             <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
@@ -319,7 +333,6 @@
             <input id="hdnAction" runat="server" type="hidden" />
             <input id="hdnId" runat="server" type="hidden" />
             <input id="hdnFrom" runat="server" type="hidden" />
-            <span id="spMsg" class="red"></span>
         </div>
     </div>
     </form>

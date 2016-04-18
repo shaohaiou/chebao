@@ -117,5 +117,10 @@ namespace Chebao.Components
         /// <para>0：未处理；1：已处理</para>
         /// </summary>
         public int SyncStatus { get; set; }
+
+        /// <summary>
+        /// 订单最后处理人
+        /// </summary>
+        public string StatusUpdateUser { get; set; }
     }
 }

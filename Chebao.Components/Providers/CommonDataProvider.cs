@@ -330,13 +330,15 @@ namespace Chebao.Components
 
         #region 订单管理
 
-        public abstract void AddOrder(OrderInfo entity);
+        public abstract int AddOrder(OrderInfo entity);
 
         public abstract void UpdateOrderProducts(OrderInfo entity);
 
         public abstract List<OrderInfo> GetOrderList();
 
-        public abstract void UpdateOrderStatus(string ids, OrderStatus status);
+        public abstract OrderInfo GetOrderInfo(int id);
+
+        public abstract void UpdateOrderStatus(string ids, OrderStatus status, string username);
 
         public abstract void UpdateOrderPic(int id, string src, string action);
 
@@ -375,6 +377,7 @@ namespace Chebao.Components
                 PicListItem = reader["PicListItem"] as string,
                 PicBookingnote = reader["PicBookingnote"] as string,
                 SyncStatus = DataConvert.SafeInt(reader["SyncStatus"]),
+                StatusUpdateUser = reader["StatusUpdateUser"] as string
             };
             if (string.IsNullOrEmpty(entity.OrderProductJson))
                 entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(

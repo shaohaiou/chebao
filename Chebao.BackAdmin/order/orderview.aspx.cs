@@ -20,7 +20,7 @@ namespace Chebao.BackAdmin.order
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("订单列表"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");
@@ -66,7 +66,7 @@ namespace Chebao.BackAdmin.order
         {
             if (CurrentOrder != null)
             {
-                rptData.DataSource = CurrentOrder.OrderProducts;
+                rptData.DataSource = CurrentOrder.OrderProducts.OrderBy(p => p.ModelNumber).ToList();
                 rptData.DataBind();
             }
         }
@@ -97,10 +97,13 @@ namespace Chebao.BackAdmin.order
                 txtAmount.Attributes["data-price"] = p.Price;
                 txtAmount.Attributes["data-costs"] = p.Costs;
                 txtAmount.Attributes["data-source"] = p.Amount.ToString();
-                if (string.IsNullOrEmpty(p.UnitPrice))
-                    spOriginalPrice.Text = Math.Round(CurrentProductInfo.Price, 2).ToString();
-                else
-                    spOriginalPrice.Text = p.UnitPrice;
+                if (CheckModulePower("金额可见"))
+                {
+                    if (string.IsNullOrEmpty(p.UnitPrice))
+                        spOriginalPrice.Text = Math.Round(CurrentProductInfo.Price, 2).ToString();
+                    else
+                        spOriginalPrice.Text = p.UnitPrice;
+                }
                 CostsTotal += DataConvert.SafeDecimal(p.CostsSum);
             }
         }
@@ -171,7 +174,6 @@ namespace Chebao.BackAdmin.order
                 CurrentOrder.OrderProductJson7 = CurrentOrder.OrderProductJson.Length > 65500 * 6 ? CurrentOrder.OrderProductJson.Substring(65500 * 6) : string.Empty;
 
             string result = Cars.Instance.UpdateOrderProducts(CurrentOrder);
-            Cars.Instance.ReloadOrder();
             if (!string.IsNullOrEmpty(result))
             {
                 StringBuilder sb = new StringBuilder();

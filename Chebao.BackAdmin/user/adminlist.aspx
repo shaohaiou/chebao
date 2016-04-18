@@ -57,6 +57,7 @@
                         <td class="lan5x">
                             <a class="btndel" href="adminlist.aspx?id=<%#Eval("ID") %>&action=del&from=<%=UrlEncode(CurrentUrl) %>">
                                 删除</a><a href="admins.aspx?id=<%#Eval("ID") %>&action=update&from=<%=UrlEncode(CurrentUrl) %>">编辑</a>
+                            <a href="adminpowersetting.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>">权限设置</a>
                         </td>
                     </tr>
                 </ItemTemplate>

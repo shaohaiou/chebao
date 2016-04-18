@@ -11,6 +11,21 @@ namespace Chebao.BackAdmin.global
 {
     public partial class sqlexecute : AdminBase
     {
+        protected override void Check()
+        {
+            if (!ChebaoContext.Current.AdminCheck)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("执行sql"))
+            {
+                Response.Clear();
+                Response.Write("您没有权限操作！");
+                Response.End();
+                return;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
 

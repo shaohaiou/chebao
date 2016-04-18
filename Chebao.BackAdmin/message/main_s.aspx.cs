@@ -17,7 +17,7 @@ namespace Chebao.BackAdmin.message
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("反馈有奖"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");

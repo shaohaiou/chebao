@@ -138,6 +138,13 @@
     <Compile Include="order\profitsmg.aspx.designer.cs">
       <DependentUpon>profitsmg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="user\adminpowersetting.aspx.cs">
+      <DependentUpon>adminpowersetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\adminpowersetting.aspx.designer.cs">
+      <DependentUpon>adminpowersetting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user\discountstenciledit.aspx.cs">
       <DependentUpon>discountstenciledit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -528,6 +535,13 @@
     <Compile Include="user\subaccountmg.aspx.designer.cs">
       <DependentUpon>subaccountmg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="user\subaccountpowersetting.aspx.cs">
+      <DependentUpon>subaccountpowersetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="user\subaccountpowersetting.aspx.designer.cs">
+      <DependentUpon>subaccountpowersetting.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user\userchangepw.aspx.cs">
       <DependentUpon>userchangepw.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -609,6 +623,7 @@
     <Content Include="global\corpintroduce.aspx" />
     <Content Include="global\dealdata.aspx" />
     <Content Include="order\profitsmg.aspx" />
+    <Content Include="user\adminpowersetting.aspx" />
     <Content Include="user\discountstenciledit.aspx" />
     <Content Include="user\discountstencilmg.aspx" />
     <Content Include="global\notice.aspx" />
@@ -894,6 +909,7 @@
     <Content Include="user\subaccountadd.aspx" />
     <Content Include="user\subaccountlist.aspx" />
     <Content Include="user\subaccountmg.aspx" />
+    <Content Include="user\subaccountpowersetting.aspx" />
     <Content Include="user\userchangepw.aspx" />
     <Content Include="user\userpowersetting.aspx" />
     <Content Include="Web.config">

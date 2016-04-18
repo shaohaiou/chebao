@@ -17,7 +17,7 @@ namespace Chebao.BackAdmin.product
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员)
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("产品列表,新增产品,数据导入,用户界面"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");

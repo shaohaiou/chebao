@@ -731,7 +731,7 @@ namespace Chebao.DALSQLServer
 
         #region 订单管理
 
-        public override void AddOrder(OrderInfo entity)
+        public override int AddOrder(OrderInfo entity)
         {
             string sql = @"
                 INSERT INTO Chebao_Order(
@@ -820,6 +820,8 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@PicBookingnote",entity.PicBookingnote)
             };
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+            sql = "SELECT MAX([ID]) FROM Chebao_Order";
+            return DataConvert.SafeInt(SqlHelper.ExecuteScalar(_con, CommandType.Text, sql));
         }
 
         public override void UpdateOrderProducts(OrderInfo entity)
@@ -866,10 +868,28 @@ namespace Chebao.DALSQLServer
             return list;
         }
 
-        public override void UpdateOrderStatus(string ids, OrderStatus status)
+        public override OrderInfo GetOrderInfo(int id)
         {
-            string sql = "UPDATE Chebao_Order SET [OrderStatus] = @OrderStatus,[DeelTime]=@DeelTime WHERE ID IN(" + ids + ")";
-            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter[] { new OleDbParameter("@OrderStatus", (int)status), new OleDbParameter("@DeelTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")) });
+            OrderInfo entity = new OrderInfo();
+            string sql = "SELECT * FROM Chebao_Order WHERE [ID] = @ID";
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@ID",id)
+            };
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql,p))
+            {
+                if (reader.Read())
+                {
+                    entity = PopulateOrder(reader);
+                }
+            }
+            return entity;
+        }
+
+        public override void UpdateOrderStatus(string ids, OrderStatus status,string username)
+        {
+            string sql = "UPDATE Chebao_Order SET [OrderStatus] = @OrderStatus,[DeelTime]=@DeelTime,[StatusUpdateUser]=@StatusUpdateUser WHERE ID IN(" + ids + ")";
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, new OleDbParameter[] { new OleDbParameter("@OrderStatus", (int)status), new OleDbParameter("@DeelTime", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")), new OleDbParameter("@StatusUpdateUser",username) });
         }
 
         public override void UpdateOrderPic(int id, string src,string action)

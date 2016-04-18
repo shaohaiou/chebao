@@ -17,6 +17,8 @@
 
             $("#btnFilter").click(function () {
                 var query = new Array();
+                if ($.trim($("#txtUserName").val()) != "")
+                    query[query.length] = "username=" + $.trim($("#txtUserName").val());
                 if ($.trim($("#txtDateB").val()) != "")
                     query[query.length] = "timeb=" + $.trim($("#txtDateB").val());
                 if ($.trim($("#txtDateE").val()) != "")
@@ -43,7 +45,12 @@
             </tr>
             <tr>
                 <td>
-                    利润合计：<%=TotalFee - CostsTotal%>
+                    用户名：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    利润合计：<%=  Chebao.Tools.StrHelper.FormatMoney((TotalFee - CostsTotal).ToString())%>
                 </td>
             </tr>
             <tr>

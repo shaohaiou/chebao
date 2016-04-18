@@ -18,10 +18,27 @@
      <a href="sitesetting.aspx" target="ztk" id="sitesetting" runat="server" class="current">站点设置</a>
      <a href="sqlexecute.aspx" target="ztk" id="sqlexecute" runat="server">执行sql</a>
      <a href="dealdata.aspx" target="ztk" id="dealdata" runat="server">数据处理</a>
+    <%if (CheckModulePower("站点设置"))
+          {%>
+        <a href="sitesetting.aspx" target="ztk" id="sitesetting" <%if(CheckModulePower("站点设置")){ %>class="current"<%} %>>站点设置</a>
+        <%} %>
+    <%if (CheckModulePower("执行sql"))
+          {%>
+        <a href="sqlexecute.aspx" target="ztk" id="sqlexecute" <%if(!CheckModulePower("站点设置") && CheckModulePower("执行sql")){ %>class="current"<%} %>>执行sql</a>
+        <%} %>
+    <%if (CheckModulePower("数据处理"))
+          {%>
+        <a href="dealdata.aspx" target="ztk" id="dealdata" <%if(!CheckModulePower("站点设置") && !CheckModulePower("执行sql") && CheckModulePower("数据处理")){ %>class="current"<%} %>>数据处理</a>
+        <%} %>
 </div>
 
 <div class="r_sy" id="daohan">
-	当前位置：系统设置 &gt;&gt; <span id="daohan_sp">站点设置 </span>
+	当前位置：系统设置 &gt;&gt; <span id="daohan_sp"><%if (CheckModulePower("站点设置"))
+              { %>站点设置<%}
+                                           else if (CheckModulePower("执行sql"))
+              { %>执行sql<%}
+                                           else if (CheckModulePower("数据处理"))
+              { %>数据处理<%} %> </span>
 </div>
 </body>
 <script language="javascript" type="text/javascript">

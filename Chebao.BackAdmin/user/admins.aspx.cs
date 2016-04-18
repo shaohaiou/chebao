@@ -12,6 +12,22 @@ namespace Chebao.BackAdmin.user
 {
     public partial class admins : AdminBase
     {
+        protected override void Check()
+        {
+            if (!ChebaoContext.Current.AdminCheck)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("管理员管理"))
+            {
+                Response.Clear();
+                Response.Write("您没有权限操作！");
+                Response.End();
+                return;
+            }
+        }
+
         private AdminInfo admin = null;
         protected void Page_Load(object sender, EventArgs e)
         {
