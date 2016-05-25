@@ -15,9 +15,6 @@
 
 <body style="background:url(../images/xdd.gif) repeat-x;">
 <div class="right_nav">
-     <a href="sitesetting.aspx" target="ztk" id="sitesetting" runat="server" class="current">站点设置</a>
-     <a href="sqlexecute.aspx" target="ztk" id="sqlexecute" runat="server">执行sql</a>
-     <a href="dealdata.aspx" target="ztk" id="dealdata" runat="server">数据处理</a>
     <%if (CheckModulePower("站点设置"))
           {%>
         <a href="sitesetting.aspx" target="ztk" id="sitesetting" <%if(CheckModulePower("站点设置")){ %>class="current"<%} %>>站点设置</a>

@@ -29,7 +29,7 @@
         <%} %>
     <%if (CheckModulePower("用户界面"))
           {%>
-        <a href="products.aspx" target="ztk" id="products" <%if(!CheckModulePower("产品列表") && !CheckModulePower("新增产品") && !CheckModulePower("数据导入") && CheckModulePower("用户界面")){ %>class="current"<%} %>>用户界面</a>
+        <a href="products.aspx" target="_blank" id="products" <%if(!CheckModulePower("产品列表") && !CheckModulePower("新增产品") && !CheckModulePower("数据导入") && CheckModulePower("用户界面")){ %>class="current"<%} %>>用户界面</a>
         <%} %>
 </div>
 

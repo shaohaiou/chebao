@@ -101,6 +101,7 @@ namespace Chebao.BackAdmin.user
             cbxSizeView.Checked = admin.SizeView > 0;
             cbxIsAddAccount.Checked = admin.IsAddAccount > 0;
             cbxIsShowCabmodel.Checked = admin.IsShowCabmodel > 0;
+            cbxIsShowIntroduce.Checked = admin.IsShowIntroduce > 0;
             cbxIsShowPrice.Checked = admin.IsShowPrice > 0;
             SetSelectedByValue(ddlDiscountStencilID, admin.DiscountStencilID.ToString());
             discountstencilid = admin.DiscountStencilID;
@@ -147,6 +148,7 @@ namespace Chebao.BackAdmin.user
             admin.SizeView = cbxSizeView.Checked ? 1 : 0;
             admin.IsAddAccount = cbxIsAddAccount.Checked ? 1 : 0;
             admin.IsShowCabmodel = cbxIsShowCabmodel.Checked ? 1 : 0;
+            admin.IsShowIntroduce = cbxIsShowIntroduce.Checked ? 1 : 0;
             admin.IsShowPrice = cbxIsShowPrice.Checked ? 1 : 0;
             admin.DiscountStencilID = DataConvert.SafeInt(ddlDiscountStencilID.SelectedValue);
         }

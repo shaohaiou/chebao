@@ -188,7 +188,7 @@
                                                         <asp:TextBox type="text" ID="txtAmount" runat="server" class="txtAmount" onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,$(this).attr('data-source'))}else{this.value=$(this).attr('data-source')}" style="width: 20px;height: 12px;line-height: 12px;border: 1px #FF9800 solid;"></asp:TextBox></span><asp:Label
                                                             ID="spOriginalPrice" runat="server" CssClass="w60" Style="display: table-cell;"></asp:Label>
                                                 <span class="w100" style="display: table-cell;">
-                                                    <%# CheckModulePower("金额可见") ? Eval("Price").ToString() : string.Empty%></span><span class="w60" style="display: table-cell;"><%# CheckModulePower("金额可见") ? Eval("Costs").ToString() : string.Empty%></span>
+                                                    <%# CheckModulePower("金额可见") ? Eval("Price").ToString() : string.Empty%></span><span class="w60" style="display: table-cell;"><%# CheckModulePower("金额可见") ? Eval("Costs") as string : string.Empty%></span>
                                             </div>
                                         </ItemTemplate>
                                     </asp:Repeater>

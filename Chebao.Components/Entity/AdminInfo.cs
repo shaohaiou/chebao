@@ -337,6 +337,16 @@ namespace Chebao.Components
         /// 是否显示适用车型
         /// </summary>
         [JsonIgnore]
+        public int IsShowIntroduce
+        {
+            get { return GetInt("IsShowIntroduce", 0); }
+            set { SetExtendedAttribute("IsShowIntroduce", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 是否显示适用车型
+        /// </summary>
+        [JsonIgnore]
         public int IsShowCabmodel
         {
             get { return GetInt("IsShowCabmodel", 0); }

@@ -192,7 +192,39 @@ namespace Chebao.BackAdmin.product
                 }
             }
 
+            Cars.Instance.ReloadProductListCache();
             Cars.Instance.ReloadCabmodelListCache();
+            WriteSuccessMessage("操作完成", "导入数据成功！", "~/product/import.aspx");
+        }
+
+        protected void btnSubmitIntroduce_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(fileImportIntroduce.Value))
+            {
+                lblMsg.Text = "请选择文件";
+                return;
+            }
+            DataTable t = ImportDataTableFromExcel(fileImportIntroduce.PostedFile.InputStream, 0, 0, 0);
+            lock (syncHelper)
+            {
+                List<ProductInfo> productlist = Cars.Instance.GetProductList(true);
+                foreach (DataRow row in t.Rows)
+                {
+                    string modelnumber = row[0].ToString();
+                    string introduce = row[2].ToString();
+
+                    if (!string.IsNullOrEmpty(modelnumber.Trim()) && productlist.Exists(p => p.ModelNumber == modelnumber.Trim()))
+                    {
+                        foreach (ProductInfo p in productlist.FindAll(p => p.ModelNumber == modelnumber.Trim()))
+                        {
+                            p.Introduce += introduce;
+                            Cars.Instance.UpdateProduct(p);
+                        }
+                    }
+                }
+            }
+
+            Cars.Instance.ReloadProductListCache();
             WriteSuccessMessage("操作完成", "导入数据成功！", "~/product/import.aspx");
         }
 

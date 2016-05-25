@@ -226,6 +226,14 @@
                 </tr>
                 <tr>
                     <td class="bg1">
+                        显示产品介绍：
+                    </td>
+                    <td class="bg2">
+                        <asp:CheckBox runat="server" ID="cbxIsShowIntroduce" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
                         显示适用车型：
                     </td>
                     <td class="bg2">

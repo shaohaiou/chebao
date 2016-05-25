@@ -374,9 +374,11 @@
             <!--商品详情内容-->
             <div class="g_detail" id="comment">
                 <ul class="tab clearfix1">
-                    <li onclick="tabs('#comment',0)" class="curr">产品描述<strong></strong><span></span></li>
+                    <%if (IsShowIntroduce){ %><li onclick="tabs('#comment',0)" class="curr">产品描述<strong></strong><span></span></li><%} %>
                     <%if (IsShowCabmodel){ %><li onclick="tabs('#comment',1)">适用车型<span></span></li><%} %>
                 </ul>
+                <%if (IsShowIntroduce || IsShowCabmodel)
+                  { %>
                 <div class="mc tabcon hide" style="display: block;">
                     <div class="norecode">
                         <div id="con_one_1" class="hover" style="display: block;">
@@ -384,7 +386,7 @@
                             </div>
                             <p>
                             </p>
-                            <%=Product.Introduce %>
+                            <%=Product.Introduce%>
                             <!---->
                         </div>
                     </div>
@@ -405,6 +407,7 @@
                             &nbsp;</p>
                     </div>
                 </div>
+                <%} %>
             </div>
         </div>
     </div>

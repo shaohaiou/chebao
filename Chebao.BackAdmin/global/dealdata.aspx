@@ -155,6 +155,14 @@
                     <asp:Button ID="btnProductPriceRecover" runat="server" msg="确定要处理数据吗？" Text="执行" CssClass="an1 btn" OnClick="btnProductPriceRecover_Click" />
                 </td>
             </tr>
+            <tr>
+                <td class="bg1">
+                    产品介绍导入：
+                </td>
+                <td>
+                    <asp:Button ID="btnImportProductIntroduce" runat="server" msg="确定要导入产品介绍数据吗？" Text="执行" CssClass="an1 btn" OnClick="btnImportProductIntroduce_Click" />
+                </td>
+            </tr>
         </tbody>
     </table>
     </form>

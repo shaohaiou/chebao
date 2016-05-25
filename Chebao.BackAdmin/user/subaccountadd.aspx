@@ -110,6 +110,8 @@
                         <li><span class="tl">溢价比例：</span><asp:TextBox runat="server" ID="txtSubDiscountt" Text="90"
                             CssClass="srk4 mr10"></asp:TextBox>
                             %<span class="gray pl10">子用户的购买价格 = 主用户购买价格 × （1 + 溢价比例）</span></li>
+                        <li class="<%= Admin.IsShowIntroduce > 0 ? string.Empty : "hide" %>"><span class="tl">显示产品介绍：</span>
+                            <asp:CheckBox runat="server" ID="cbxIsShowIntroduce" /></li>
                         <li class="<%= Admin.IsShowCabmodel > 0 ? string.Empty : "hide" %>"><span class="tl">显示适用车型：</span>
                             <asp:CheckBox runat="server" ID="cbxIsShowCabmodel" /></li>
                         <li class="<%= Admin.IsShowPrice > 0 ? string.Empty : "hide" %>"><span class="tl">显示价格：</span>
