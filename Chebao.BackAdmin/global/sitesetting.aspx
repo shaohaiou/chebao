@@ -18,10 +18,18 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <table width="100%" border="0" cellspaci    ng="0" cellpadding="0" class="biaoge3">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="biaoge3">
         <caption class="bt2">
             反馈详情</caption>
         <tbody>
+            <tr>
+                <td class="bg1">
+                    订单过期设置：
+                </td>
+                <td>
+                    <asp:TextBox runat="server" ID="txtHourNumber" CssClass="srk4"></asp:TextBox>小时未付款则过期<span class="gray">（0表示不限制）</span>
+                </td>
+            </tr>
             <tr>
                 <td class="bg1">
                     公告标题：

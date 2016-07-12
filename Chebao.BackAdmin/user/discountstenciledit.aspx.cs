@@ -57,18 +57,30 @@ namespace Chebao.BackAdmin.user
         {
             hdid.Value = discountstencil.ID.ToString();               //ID
             txtName.Text = discountstencil.Name;
+            txtDiscountMAdd.Text = discountstencil.DiscountMAdd.ToString();
             txtDiscountM.Text = discountstencil.DiscountM.ToString();
+            txtDiscountYAdd.Text = discountstencil.DiscountYAdd.ToString();
             txtDiscountY.Text = discountstencil.DiscountY.ToString();
+            txtDiscountHAdd.Text = discountstencil.DiscountHAdd.ToString();
             txtDiscountH.Text = discountstencil.DiscountH.ToString();
+            txtDiscountLSAdd.Text = discountstencil.DiscountLSAdd.ToString();
+            txtDiscountLS.Text = discountstencil.DiscountLS.ToString();
+            txtDiscountXSPAdd.Text = discountstencil.DiscountXSPAdd.ToString();
+            txtDiscountXSP.Text = discountstencil.DiscountXSP.ToString();
+            txtDiscountMTAdd.Text = discountstencil.DiscountMTAdd.ToString();
+            txtDiscountMT.Text = discountstencil.DiscountMT.ToString();
+            txtDiscountBAdd.Text = discountstencil.DiscountBAdd.ToString();
+            txtDiscountB.Text = discountstencil.DiscountB.ToString();
+            txtDiscountSAdd.Text = discountstencil.DiscountSAdd.ToString();
+            txtDiscountS.Text = discountstencil.DiscountS.ToString();
+            txtDiscountKAdd.Text = discountstencil.DiscountKAdd.ToString();
+            txtDiscountK.Text = discountstencil.DiscountK.ToString();
+            txtDiscountPAdd.Text = discountstencil.DiscountPAdd.ToString();
+            txtDiscountP.Text = discountstencil.DiscountP.ToString();
+            txtDiscountPYAdd.Text = discountstencil.DiscountPYAdd.ToString();
+            txtDiscountPY.Text = discountstencil.DiscountPY.ToString();
             txtAdditemW.Text = discountstencil.AdditemW.ToString();
             txtAdditemF.Text = discountstencil.AdditemF.ToString();
-            txtDiscountLS.Text = discountstencil.DiscountLS.ToString();
-            txtDiscountXSP.Text = discountstencil.DiscountXSP.ToString();
-            txtDiscountMT.Text = discountstencil.DiscountMT.ToString();
-            txtDiscountB.Text = discountstencil.DiscountB.ToString();
-            txtDiscountS.Text = discountstencil.DiscountS.ToString();
-            txtDiscountK.Text = discountstencil.DiscountK.ToString();
-            txtDiscountP.Text = discountstencil.DiscountP.ToString();
         }
 
         /// <summary>
@@ -80,18 +92,30 @@ namespace Chebao.BackAdmin.user
         {
             discountstencil.ID = DataConvert.SafeInt(hdid.Value);     //ID
             discountstencil.Name = txtName.Text;
+            discountstencil.DiscountMAdd = DataConvert.SafeDecimal(txtDiscountMAdd.Text);
             discountstencil.DiscountM = DataConvert.SafeDecimal(txtDiscountM.Text);
+            discountstencil.DiscountYAdd = DataConvert.SafeDecimal(txtDiscountYAdd.Text);
             discountstencil.DiscountY = DataConvert.SafeDecimal(txtDiscountY.Text);
+            discountstencil.DiscountHAdd = DataConvert.SafeDecimal(txtDiscountHAdd.Text);
             discountstencil.DiscountH = DataConvert.SafeDecimal(txtDiscountH.Text);
+            discountstencil.DiscountLSAdd = DataConvert.SafeDecimal(txtDiscountLSAdd.Text);
+            discountstencil.DiscountLS = DataConvert.SafeDecimal(txtDiscountLS.Text);
+            discountstencil.DiscountXSPAdd = DataConvert.SafeDecimal(txtDiscountXSPAdd.Text);
+            discountstencil.DiscountXSP = DataConvert.SafeDecimal(txtDiscountXSP.Text);
+            discountstencil.DiscountMTAdd = DataConvert.SafeDecimal(txtDiscountMTAdd.Text);
+            discountstencil.DiscountMT = DataConvert.SafeDecimal(txtDiscountMT.Text);
+            discountstencil.DiscountBAdd = DataConvert.SafeDecimal(txtDiscountBAdd.Text);
+            discountstencil.DiscountB = DataConvert.SafeDecimal(txtDiscountB.Text);
+            discountstencil.DiscountSAdd = DataConvert.SafeDecimal(txtDiscountSAdd.Text);
+            discountstencil.DiscountS = DataConvert.SafeDecimal(txtDiscountS.Text);
+            discountstencil.DiscountKAdd = DataConvert.SafeDecimal(txtDiscountKAdd.Text);
+            discountstencil.DiscountK = DataConvert.SafeDecimal(txtDiscountK.Text);
+            discountstencil.DiscountPAdd = DataConvert.SafeDecimal(txtDiscountPAdd.Text);
+            discountstencil.DiscountP = DataConvert.SafeDecimal(txtDiscountP.Text);
+            discountstencil.DiscountPYAdd = DataConvert.SafeDecimal(txtDiscountPYAdd.Text);
+            discountstencil.DiscountPY = DataConvert.SafeDecimal(txtDiscountPY.Text);
             discountstencil.AdditemW = DataConvert.SafeDecimal(txtAdditemW.Text);
             discountstencil.AdditemF = DataConvert.SafeDecimal(txtAdditemF.Text);
-            discountstencil.DiscountLS = DataConvert.SafeDecimal(txtDiscountLS.Text);
-            discountstencil.DiscountXSP = DataConvert.SafeDecimal(txtDiscountXSP.Text);
-            discountstencil.DiscountMT = DataConvert.SafeDecimal(txtDiscountMT.Text);
-            discountstencil.DiscountB = DataConvert.SafeDecimal(txtDiscountB.Text);
-            discountstencil.DiscountS = DataConvert.SafeDecimal(txtDiscountS.Text);
-            discountstencil.DiscountK = DataConvert.SafeDecimal(txtDiscountK.Text);
-            discountstencil.DiscountP = DataConvert.SafeDecimal(txtDiscountP.Text);
         }
 
         /// <summary>
@@ -150,7 +174,7 @@ namespace Chebao.BackAdmin.user
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<span class=\"dalv\">操作成功！</span><br />");
-                WriteMessage("~/message/showmessage.aspx", "数据保存成功！", sb.ToString(), "", FromUrl);
+                WriteMessage("~/message/showmessage.aspx", "数据保存成功！", sb.ToString(), "", string.IsNullOrEmpty(FromUrl) ? CurrentUrl : FromUrl);
             }
 
             return;

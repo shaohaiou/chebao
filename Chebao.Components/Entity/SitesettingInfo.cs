@@ -25,5 +25,15 @@ namespace Chebao.Components
             get { return GetString("NoticeDetail", ""); }
             set { SetExtendedAttribute("NoticeDetail", value); }
         }
+
+        /// <summary>
+        /// 订单过期设置
+        /// </summary>
+        [JsonIgnore]
+        public int HourNumber
+        {
+            get { return GetInt("HourNumber", 0); }
+            set { SetExtendedAttribute("HourNumber", value.ToString()); }
+        }
     }
 }

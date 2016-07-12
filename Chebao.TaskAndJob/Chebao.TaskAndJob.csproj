@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Job\DeelOrderUpdateQueueJob.cs" />
     <Compile Include="Job\RefreshProductStockJob.cs" />
+    <Compile Include="Job\OrderPastDueJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

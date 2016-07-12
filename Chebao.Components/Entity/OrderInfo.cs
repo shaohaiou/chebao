@@ -16,6 +16,8 @@ namespace Chebao.Components
 
         public int UserID { get; set; }
 
+        public int ParentID { get; set; }
+
         public string Address { get; set; }
 
         public string Province { get; set; }

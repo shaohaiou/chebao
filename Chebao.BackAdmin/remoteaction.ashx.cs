@@ -6,6 +6,7 @@ using System.Web;
 using Chebao.Components;
 using Chebao.Tools;
 using System.Web.SessionState;
+using System.Threading;
 
 namespace Chebao.BackAdmin
 {
@@ -60,6 +61,9 @@ namespace Chebao.BackAdmin
                     break;
                 case "updateorderpic":
                     UpdateOrderPic();
+                    break;
+                case "reloaduserproductcache":
+                    ReloadUserProductListCache();
                     break;
                 default:
                     result = string.Format(result, "fail", "非法操作");
@@ -174,6 +178,32 @@ namespace Chebao.BackAdmin
             if (id > 0 && !string.IsNullOrEmpty(src) && !string.IsNullOrEmpty(col))
             {
                 Cars.Instance.UpdateOrderPic(id, src, col);
+                result = string.Format(result, "success", "");
+            }
+            else
+            {
+                result = string.Format(result, "fail", "参数错误");
+            }
+        }
+
+        private void ReloadUserProductListCache()
+        {
+            if (ChebaoContext.Current.AdminUser == null)
+            {
+                result = string.Format(result, "fail", "非法用户");
+                return;
+            }
+            string ids = WebHelper.GetString("userid");
+            if (!string.IsNullOrEmpty(ids))
+            {
+                foreach (string id in ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    AdminInfo user = Admins.Instance.GetAdmin(DataConvert.SafeInt(id));
+                    if (user.ParentAccountID == 0)
+                        Cars.Instance.ReloadUserProductListCache(user.ID);
+                    else
+                        Cars.Instance.ReloadUserProductListCache(user.ParentAccountID);
+                }
                 result = string.Format(result, "success", "");
             }
             else

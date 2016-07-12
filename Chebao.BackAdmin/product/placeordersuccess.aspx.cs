@@ -21,7 +21,14 @@ namespace Chebao.BackAdmin.product
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (Session["ParentID"] != null)
+                {
+                    hdnParentID.Value = Session["ParentID"].ToString();
+                    Session["ParentID"] = null;
+                }
+            }
         }
     }
 }

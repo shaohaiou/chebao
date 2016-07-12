@@ -738,6 +738,7 @@ namespace Chebao.DALSQLServer
                     [OrderNumber]
                     ,[UserName]
                     ,[UserID]
+                    ,[ParentID]
                     ,[Province]
                     ,[City]
                     ,[District]
@@ -765,6 +766,7 @@ namespace Chebao.DALSQLServer
                     @OrderNumber
                     ,@UserName
                     ,@UserID
+                    ,@ParentID
                     ,@Province
                     ,@City
                     ,@District
@@ -795,6 +797,7 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@OrderNumber",entity.OrderNumber),
                 new OleDbParameter("@UserName",entity.UserName),
                 new OleDbParameter("@UserID",entity.UserID),
+                new OleDbParameter("@ParentID",entity.ParentID),
                 new OleDbParameter("@Province",entity.Province),
                 new OleDbParameter("@City",entity.City),
                 new OleDbParameter("@District",entity.District),

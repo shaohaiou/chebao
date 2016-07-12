@@ -56,6 +56,8 @@
             <tr>
                 <td>
                     <input type="submit" id="btnFilter" class="an1 mr10" value=" 查询 " />
+                    <asp:Button runat="server" ID="btnExportExcel" CssClass="an1 fll mr10" Text=" 导出Excel "
+                        OnClick="btnExportExcel_Click" />
                 </td>
             </tr>
         </table>
@@ -82,7 +84,8 @@
                 <ItemTemplate>
                     <tr>
                         <td style="line-height: 18px;">
-                            <%#Eval("OrderNumber")%>
+                            <a href="orderview.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" style="text-decoration: underline;">
+                                <%#Eval("OrderNumber")%></a>
                         </td>
                         <td>
                             <%#Eval("DeelTime") %>

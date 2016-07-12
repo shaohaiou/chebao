@@ -81,6 +81,7 @@
     <Compile Include="Entity\ShowUrl.cs" />
     <Compile Include="Entity\SitesettingInfo.cs" />
     <Compile Include="Entity\SyncFailedInfo.cs" />
+    <Compile Include="Entity\UserProductInfo.cs" />
     <Compile Include="Enumerations\ApplicationType.cs" />
     <Compile Include="Enumerations\OrderStatus.cs" />
     <Compile Include="Enumerations\ProductType.cs" />

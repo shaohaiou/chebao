@@ -352,6 +352,7 @@ namespace Chebao.Components
                 OrderNumber = reader["OrderNumber"] as string,
                 UserName = reader["UserName"] as string,
                 UserID = DataConvert.SafeInt(reader["UserID"]),
+                ParentID = DataConvert.SafeInt(reader["ParentID"]),
                 Address = reader["Address"] as string,
                 Province = reader["Province"] as string,
                 City = reader["City"] as string,

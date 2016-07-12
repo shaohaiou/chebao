@@ -102,7 +102,11 @@ namespace Chebao.BackAdmin.product
         private void LoadData()
         {
             List<ShoppingTrolleyInfo> listShoppingTrolley = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
-            List<ProductInfo> listAllProduct = Cars.Instance.GetProductList(true);
+            List<ProductInfo> listAllProduct;
+            if (Admin.ParentAccountID == 0)
+                listAllProduct = Cars.Instance.GetProductList(true);
+            else
+                listAllProduct = Cars.Instance.GetProductListByUser(Admin.ParentAccountID);
             listShoppingTrolley = listShoppingTrolley.FindAll(l => listAllProduct.Exists(p => p.ID == l.ProductID));
             if (listShoppingTrolley.Count > 0)
             {
@@ -131,8 +135,10 @@ namespace Chebao.BackAdmin.product
                 Repeater rptProductMix = (Repeater)e.Item.FindControl("rptProductMix");
                 ShoppingTrolleyInfo st = CurrentShoppingTrolleyList.Find(s => s.ID == entity.SID);
 
-                rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
-                //rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = entity.Price.StartsWith("¥") ? entity.Price.Substring(1) : entity.Price, Price = GetProductMixPrice(entity.Price, p.Key), Costs = GetProductMixCosts(entity.Price, p.Key) }).ToList();
+                //if (Admin.ParentAccountID == 0)
+                    rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                //else
+                //    rptProductMix.DataSource = entity.UserProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Costs = GetUserProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
                 rptProductMix.DataBind();
             }
         }
@@ -161,6 +167,19 @@ namespace Chebao.BackAdmin.product
                         });
                         stock -= amount;
                     }
+                    //if (Admin.ParentAccountID == 0)
+                    //{
+                    //    if (OrderAll.Exists(o => o.ParentID == 0 && o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                    //    {
+                    //        int amount = 0;
+                    //        List<OrderInfo> orderlist = OrderAll.FindAll(o => o.ParentID == 0 && o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
+                    //        orderlist.ForEach(delegate(OrderInfo o)
+                    //        {
+                    //            amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
+                    //        });
+                    //        stock -= amount;
+                    //    }
+                    //}
                     if (stock < 0)
                         stock = 0;
                     entity.Stock = stock;
@@ -198,82 +217,29 @@ namespace Chebao.BackAdmin.product
                 return price.StartsWith("¥") ? price.Substring(1) : price;
         }
 
-        private string GetProductMixPrice(string pricestr,string xsppricestr, string mn)
-        {
-            decimal price = 0;
-            AdminInfo validAdmin = ParentAdmin == null ? Admin : ParentAdmin;
-            DiscountStencilInfo discountinfo = null;
-            if (validAdmin.DiscountStencilID > 0)
-                discountinfo = Cars.Instance.GetDiscountStencil(validAdmin.DiscountStencilID, true);
-            if (discountinfo == null)
-            {
-                discountinfo = new DiscountStencilInfo()
-                {
-                    DiscountM = validAdmin.DiscountM,
-                    DiscountY = validAdmin.DiscountY,
-                    DiscountH = validAdmin.DiscountH,
-                    DiscountXSP = validAdmin.DiscountXSP,
-                    DiscountMT = validAdmin.DiscountMT,
-                    DiscountS = validAdmin.DiscountS,
-                    DiscountK = validAdmin.DiscountK,
-                    DiscountP = validAdmin.DiscountP,
-                    DiscountLS = validAdmin.DiscountLS,
-                    DiscountB = validAdmin.DiscountB,
-                    AdditemW = validAdmin.AdditemW,
-                    AdditemF = validAdmin.AdditemF
-                };
-            }
-            price = GetDiscountPrice(pricestr, xsppricestr, mn, discountinfo);
-
-            if (Admin.ParentAccountID > 0)
-                price = price + price * Admin.SubDiscount / 100;
-            return Math.Round(price, 2).ToString();
-        }
-
-        private string GetProductMixCosts(string pricestr,string xsppricestr, string mn)
+        private string GetProductMixCosts(string pricestr, string xsppricestr, string mn)
         {
             decimal price = 0;
             DiscountStencilInfo discountinfo = Cars.Instance.GetCostsDiscount(true);
             if (discountinfo != null)
             {
-                price = GetDiscountPrice(pricestr,xsppricestr, mn, discountinfo);
+                price = Cars.Instance.GetDiscountPrice(pricestr, xsppricestr, mn, discountinfo);
             }
             return Math.Round(price, 2).ToString();
         }
 
-        private decimal GetDiscountPrice(string pricestr,string xsppricestr, string mn, DiscountStencilInfo discountinfo)
+        private string GetUserProductMixCosts(string pricestr, string xsppricestr, string mn)
         {
             decimal price = 0;
-            decimal price_s = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
-            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
-                price_s = DataConvert.SafeDecimal(xsppricestr.StartsWith("¥") ? xsppricestr.Substring(1) : xsppricestr);
-            price = price_s;
-            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("m"))
-                price = price_s * discountinfo.DiscountM / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("y"))
-                price = price_s * discountinfo.DiscountY / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("h"))
-                price = price_s * discountinfo.DiscountH / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
-                price = price_s * discountinfo.DiscountXSP / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("mt"))
-                price = price_s * discountinfo.DiscountMT / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
-                price = price_s * discountinfo.DiscountS / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))
-                price = price_s * discountinfo.DiscountK / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("p"))
-                price = price_s * discountinfo.DiscountP / 10;
-            else if (mn.ToLower().StartsWith("ls"))
-                price = price_s * discountinfo.DiscountLS / 10;
-            else if (mn.ToLower().StartsWith("b"))
-                price = price_s * discountinfo.DiscountB / 10;
-            if (mn.ToLower().IndexOf("w") >= 0)
-                price = price + price_s * discountinfo.AdditemW / 10;
-            if (mn.ToLower().IndexOf("f") >= 0)
-                price = price + price_s * discountinfo.AdditemF / 10;
-
-            return price;
+            DiscountStencilInfo discountinfo = null;
+            if (ParentAdmin.DiscountStencilID > 0)
+                discountinfo = Cars.Instance.GetDiscountStencil(ParentAdmin.DiscountStencilID, true);
+            if (discountinfo == null)
+            {
+                discountinfo = new DiscountStencilInfo(ParentAdmin);
+            }
+            price = Cars.Instance.GetDiscountPrice(pricestr, xsppricestr, mn, discountinfo);
+            return Math.Round(price, 2).ToString();
         }
 
         private void Account()

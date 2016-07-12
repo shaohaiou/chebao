@@ -18,12 +18,11 @@
     </div>
     <div class="header_nav">
         <ul>
-            <li<%= CurrentTag == "公告" ? " class=\"navcurrent\"" : string.Empty %>><a href="/global/notice.aspx">公告</a></li>
-            <li<%= CurrentTag == "产品查询" ? " class=\"navcurrent\"" : string.Empty %>><a href="/product/products.aspx">产品查询</a></li>
-            <li<%= CurrentTag == "公司简介" ? " class=\"navcurrent\"" : string.Empty %>><a href="/global/corpintroduce.aspx">公司简介</a></li>
-            <li<%= CurrentTag == "联系我们" ? " class=\"navcurrent\"" : string.Empty %>><a href="/global/contact.aspx">联系我们</a></li>
-            <li<%= CurrentTag == "纠错反馈有奖" ? " class=\"navcurrent\"" : string.Empty %>><a href="/message/messageboard.aspx">纠错反馈有奖</a>
-            </li>
+            <li <%= CurrentTag == "公告" ? "class=\"navcurrent\"" : string.Empty %>><a href="/global/notice.aspx">公告</a></li>
+            <li <%= CurrentTag == "产品查询" ? "class=\"navcurrent\"" : string.Empty %>><a href="/product/products.aspx">产品查询</a></li>
+            <li <%= CurrentTag == "公司简介" ? "class=\"navcurrent\"" : string.Empty %>><a href="/global/corpintroduce.aspx">公司简介</a></li>
+            <li <%= CurrentTag == "联系我们" ? "class=\"navcurrent\"" : string.Empty %>><a href="/global/contact.aspx">联系我们</a></li>
+            <li <%= CurrentTag == "纠错反馈有奖" ? "class=\"navcurrent\"" : string.Empty %>><a href="/message/messageboard.aspx">纠错反馈有奖</a></li>
         </ul>
         <div class="header_navinfo">
             <span class="navinfo_user">
@@ -32,7 +31,9 @@
                         class="ml10">我的订单</a><%if (Admin.SizeView > 0 && (ParentAdmin == null || ParentAdmin.SizeView > 0))
                                                { %><a href="http://yd.lamda.us/admin/MJ.asp?id=fdskjgbdsfjbg56514zfhg" class="cccx">尺寸查询</a><%} %>
                     <%if (Admin.ParentAccountID == 0 && Admin.IsAddAccount > 0)
-                      { %><a class="zyhgl" href="/user/subaccountlist.aspx">管理子用户</a><%} %></span>
+                      { %><a class="zyhgl" href="/user/subaccountlist.aspx">用户管理</a><%} %>
+                    <%if (Admin.ParentAccountID == 0 && false)
+                      { %><a class="htgl" href="/useradmin/main.aspx">库存管理</a><%} %></span>
         </div>
     </div>
     <div id="notice" style="color: White; width: 1000px; margin: 0 auto; height: 30px;

@@ -73,7 +73,7 @@
             });
             $(".img").click(function(){
                 if($(this).attr("src") != "../images/nopic.png"){
-                    $("#flay img").attr("src",$(this).attr("src"));
+                    $("#flay img").attr("src",$(this).attr("src")).css({"max-height": ($(window).height() - 100) + "px","max-width":($(window).width() - 100) + "px"});;
                     $("#flay").fadeIn();
                     $("#flay img").css("margin-top",parseInt(($(window).height() - $("#flay img").height()) / 2) + "px");
                 }
@@ -82,39 +82,53 @@
                 $("#flay").fadeOut();
             });
             $("#flay").width($(document).width()).height($(window).height());
+            if ($("#hdnSyncresult").val() != "") {
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "reloaduserproductcache", userid: $("#hdnSyncresult").val(), d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        
+                    }
+                });
+            }
         })
 
         function GetMore() { 
             if(pageindex >= pagecount){
-            alert("没有更多评论了");
-            return;
-        }
-        else{
-            $("#dvLoading").show();
-            pageindex++;
-            $.ajax({
-                url: "myordermore.aspx",
-                data: { pageindex:pageindex, d: new Date() },
-                type: 'GET',
-                dataType: "text",
-                error: function (msg) {
-                    $("#dvLoading").hide();
-                    alert("发生错误");
-                },
-                success: function (data) {
-                    if(data == ""){
-                        alert("数据获取失败");
-                    }else{
-                        var order = $(data);
-                        order.hide();
-                        $("#J_More").prepend(order);
-                        order.fadeIn();
-                    }
+                alert("没有更多订单了");
+                return;
+            }
+            else{
+                $("#dvLoading").show();
+                pageindex++;
+                $.ajax({
+                    url: "myordermore.aspx",
+                    data: { pageindex:pageindex, d: new Date() },
+                    type: 'GET',
+                    dataType: "text",
+                    error: function (msg) {
+                        $("#dvLoading").hide();
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if(data == ""){
+                            alert("数据获取失败");
+                        }else{
+                            var order = $(data);
+                            order.hide();
+                            $("#J_More").prepend(order);
+                            order.fadeIn();
+                        }
 
-                    $("#dvLoading").hide();
-                }
-            });
-        }
+                        $("#dvLoading").hide();
+                    }
+                });
+            }
         }
     </script>
 </head>
@@ -216,6 +230,7 @@
                 <%} %>
             </div>
         </div>
+        <input id="hdnSyncresult" runat="server" type="hidden" />
     </div>
     <div class="footer">
         <div class="footmain">
@@ -223,7 +238,7 @@
         </div>
     </div>
 </body>
-    <div id="flay" style="display:none;position:fixed;top:0;left:0;z-index:999;text-align:center;">
+    <div id="flay" style="display:none;position:fixed;top:0;left:0;z-index:999;text-align:center;background:rgba(50, 50, 50, 0.65);">
         <img src=""/>
     </div>
 </html>

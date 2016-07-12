@@ -155,6 +155,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 附加m
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountMAdd
+        {
+            get { return GetDecimal("DiscountMAdd", 0); }
+            set { SetExtendedAttribute("DiscountMAdd", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣m
         /// </summary>
         [JsonIgnore]
@@ -165,6 +175,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 附加y
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountYAdd
+        {
+            get { return GetDecimal("DiscountYAdd", 0); }
+            set { SetExtendedAttribute("DiscountYAdd", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣y
         /// </summary>
         [JsonIgnore]
@@ -172,6 +192,16 @@ namespace Chebao.Components
         {
             get { return GetDecimal("DiscountY", 10); }
             set { SetExtendedAttribute("DiscountY", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加h
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountHAdd
+        {
+            get { return GetDecimal("DiscountHAdd", 0); }
+            set { SetExtendedAttribute("DiscountHAdd", value.ToString()); }
         }
 
         /// <summary>
@@ -205,6 +235,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 附加ls
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountLSAdd
+        {
+            get { return GetDecimal("DiscountLSAdd", 0); }
+            set { SetExtendedAttribute("DiscountLSAdd", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣ls
         /// </summary>
         [JsonIgnore]
@@ -212,6 +252,16 @@ namespace Chebao.Components
         {
             get { return GetDecimal("DiscountLS", 10); }
             set { SetExtendedAttribute("DiscountLS", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加xsp
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountXSPAdd
+        {
+            get { return GetDecimal("DiscountXSPAdd", 0); }
+            set { SetExtendedAttribute("DiscountXSPAdd", value.ToString()); }
         }
 
         /// <summary>
@@ -225,6 +275,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 附加mt
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountMTAdd
+        {
+            get { return GetDecimal("DiscountMTAdd", 0); }
+            set { SetExtendedAttribute("DiscountMTAdd", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣mt
         /// </summary>
         [JsonIgnore]
@@ -232,6 +292,16 @@ namespace Chebao.Components
         {
             get { return GetDecimal("DiscountMT", 10); }
             set { SetExtendedAttribute("DiscountMT", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加b
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountBAdd
+        {
+            get { return GetDecimal("DiscountBAdd", 0); }
+            set { SetExtendedAttribute("DiscountBAdd", value.ToString()); }
         }
 
         /// <summary>
@@ -245,6 +315,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 附加s
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountSAdd
+        {
+            get { return GetDecimal("DiscountSAdd", 0); }
+            set { SetExtendedAttribute("DiscountSAdd", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣s
         /// </summary>
         [JsonIgnore]
@@ -252,6 +332,16 @@ namespace Chebao.Components
         {
             get { return GetDecimal("DiscountS", 10); }
             set { SetExtendedAttribute("DiscountS", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加k
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountKAdd
+        {
+            get { return GetDecimal("DiscountKAdd", 0); }
+            set { SetExtendedAttribute("DiscountKAdd", value.ToString()); }
         }
 
         /// <summary>
@@ -265,6 +355,16 @@ namespace Chebao.Components
         }
 
         /// <summary>
+        /// 附加p
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountPAdd
+        {
+            get { return GetDecimal("DiscountPAdd", 0); }
+            set { SetExtendedAttribute("DiscountPAdd", value.ToString()); }
+        }
+
+        /// <summary>
         /// 折扣p
         /// </summary>
         [JsonIgnore]
@@ -272,6 +372,26 @@ namespace Chebao.Components
         {
             get { return GetDecimal("DiscountP", 10); }
             set { SetExtendedAttribute("DiscountP", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 附加py
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountPYAdd
+        {
+            get { return GetDecimal("DiscountPYAdd", 0); }
+            set { SetExtendedAttribute("DiscountPAdd", value.ToString()); }
+        }
+
+        /// <summary>
+        /// 折扣py
+        /// </summary>
+        [JsonIgnore]
+        public decimal DiscountPY
+        {
+            get { return GetDecimal("DiscountPY", 10); }
+            set { SetExtendedAttribute("DiscountPY", value.ToString()); }
         }
 
         /// <summary>

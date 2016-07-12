@@ -188,6 +188,7 @@ namespace Chebao.BackAdmin.product
                         Province = ddlProvince.SelectedItem.Text,
                         City = ddlCity.SelectedItem.Text,
                         District = ddlDistrict.SelectedItem.Text,
+                        ParentID = Admin.ParentAccountID,
                         UserID = AdminID,
                         UserName = AdminName,
                         Address = txtAddress.Text,
@@ -239,6 +240,8 @@ namespace Chebao.BackAdmin.product
 
 
                     string addresult = Cars.Instance.AddOrder(entity);
+                    if (entity.ParentID > 0)
+                        Session["ParentID"] = entity.ParentID;
                     if (!string.IsNullOrEmpty(addresult))
                     {
                         ClientScript.RegisterStartupScript(typeof(string), "aa", "alert(\"抱歉!" + addresult + "\");location.href=\"shoppingtrolleymg.aspx\"", true);

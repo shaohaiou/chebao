@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Chebao.Components;
+using Chebao.Tools;
 
 namespace Chebao.BackAdmin.global
 {
@@ -42,6 +43,7 @@ namespace Chebao.BackAdmin.global
                 txtContact.Text = setting.Contact;
                 txtCorpIntroduce.Text = setting.CorpIntroduce;
                 txtNoticeDetail.Text = setting.NoticeDetail;
+                txtHourNumber.Text = setting.HourNumber.ToString();
             }
         }
 
@@ -51,6 +53,7 @@ namespace Chebao.BackAdmin.global
             setting.Contact = txtContact.Text;
             setting.CorpIntroduce = txtCorpIntroduce.Text;
             setting.NoticeDetail = txtNoticeDetail.Text;
+            setting.HourNumber = DataConvert.SafeInt(txtHourNumber.Text);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

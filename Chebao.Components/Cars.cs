@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Chebao.Tools;
 using System.Collections.Specialized;
+using System.Threading;
 
 namespace Chebao.Components
 {
@@ -184,7 +185,7 @@ namespace Chebao.Components
             GetProductList(true);
         }
 
-        public static object locker_refreshproductstock = new object();
+        private static object locker_refreshproductstock = new object();
 
         /// <summary>
         /// 更新产品库存
@@ -266,6 +267,129 @@ namespace Chebao.Components
 
             public int Stock { get; set; }
         }
+
+        #region 根据当前用户获取产品分类的价格
+
+        public string GetProductMixPrice(string pricestr, string xsppricestr, string mn, AdminInfo validAdmin)
+        {
+            decimal price = 0;
+            DiscountStencilInfo discountinfo = null;
+            if (validAdmin.DiscountStencilID > 0)
+                discountinfo = Cars.Instance.GetDiscountStencil(validAdmin.DiscountStencilID, true);
+            else if (validAdmin.ParentAccountID > 0)
+            {
+                AdminInfo parentadmin = Admins.Instance.GetAdmin(validAdmin.ParentAccountID);
+                if (parentadmin.DiscountStencilID > 0)
+                    discountinfo = Cars.Instance.GetDiscountStencil(parentadmin.DiscountStencilID, true);
+                else
+                    validAdmin = parentadmin;
+            }
+            if (discountinfo == null)
+            {
+                discountinfo = new DiscountStencilInfo(validAdmin);
+            }
+            price = GetDiscountPrice(pricestr, xsppricestr, mn, discountinfo);
+
+            if (ChebaoContext.Current.AdminUser.ParentAccountID > 0)
+                price = price + price * ChebaoContext.Current.AdminUser.SubDiscount / 100;
+            return Math.Round(price, 2).ToString();
+        }
+
+        public decimal GetDiscountPrice(string pricestr, string xsppricestr, string mn, DiscountStencilInfo discountinfo)
+        {
+            decimal price = 0;
+            decimal price_s = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
+            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
+                price_s = DataConvert.SafeDecimal(xsppricestr.StartsWith("¥") ? xsppricestr.Substring(1) : xsppricestr);
+            price = price_s;
+            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("m"))
+                price = (price_s + discountinfo.DiscountMAdd) * discountinfo.DiscountM / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("py"))
+                price = (price_s + discountinfo.DiscountPYAdd) * discountinfo.DiscountPY / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("y"))
+                price = (price_s + discountinfo.DiscountYAdd) * discountinfo.DiscountY / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("h"))
+                price = (price_s + discountinfo.DiscountHAdd) * discountinfo.DiscountH / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
+                price = (price_s + discountinfo.DiscountXSPAdd) * discountinfo.DiscountXSP / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("mt"))
+                price = (price_s + discountinfo.DiscountMTAdd) * discountinfo.DiscountMT / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
+                price = (price_s + discountinfo.DiscountSAdd) * discountinfo.DiscountS / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))
+                price = (price_s + discountinfo.DiscountKAdd) * discountinfo.DiscountK / 10;
+            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("p"))
+                price = (price_s + discountinfo.DiscountPAdd) * discountinfo.DiscountP / 10;
+            else if (mn.ToLower().StartsWith("ls"))
+                price = (price_s + discountinfo.DiscountLSAdd) * discountinfo.DiscountLS / 10;
+            else if (mn.ToLower().StartsWith("b"))
+                price = (price_s + discountinfo.DiscountBAdd) * discountinfo.DiscountB / 10;
+            if (mn.ToLower().IndexOf("w") >= 0)
+                price = price + price_s * discountinfo.AdditemW / 10;
+            if (mn.ToLower().IndexOf("f") >= 0)
+                price = price + price_s * discountinfo.AdditemF / 10;
+
+            return price;
+        }
+
+        #endregion
+
+        #region 分销管理
+
+        private static object sync_fxhelper = new object();
+
+        /// <summary>
+        /// 获取指定用户的产品及库存数据
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public List<ProductInfo> GetProductListByUser(int userid)
+        {
+            string key = GlobalKey.USERPRODUCT_LIST + "_" + userid;
+            List<ProductInfo> myproductlist = MangaCache.Get(key) as List<ProductInfo>;
+            if (myproductlist == null)
+            {
+                lock (sync_fxhelper)
+                {
+                    myproductlist = MangaCache.Get(key) as List<ProductInfo>;
+                    if (myproductlist == null)
+                    {
+                        DateTime timestart = DateTime.Parse("2016-6-1");
+                        List<ProductInfo> productall = Cars.Instance.GetProductList(true);
+                        List<OrderInfo> orderall = Cars.Instance.GetOrderList(true);
+                        List<OrderInfo> myorderlist = orderall.FindAll(l => l.UserID == userid && l.OrderStatus == OrderStatus.已发货);
+                        List<OrderInfo> myorderlisteffect = myorderlist.FindAll(l => DateTime.Parse(l.AddTime) > timestart);
+                        List<OrderInfo> suborderlist = orderall.FindAll(l => l.OrderStatus != OrderStatus.已取消 && l.ParentID == userid);
+
+                        myproductlist = productall.FindAll(p => myorderlist.Exists(m => m.OrderProducts.Exists(n => n.ProductID == p.ID)));
+                        for (int i = 0; i < myproductlist.Count; i++)
+                        {
+                            List<KeyValuePair<string, int>> productmix = new List<KeyValuePair<string, int>>();
+                            for (int j = 0; j < myproductlist[i].ProductMix.Count; j++)
+                            {
+                                int amountcount = myorderlisteffect.Sum(l => l.OrderProducts.Sum(p => p.ProductMixList.FindAll(m => m.Name == myproductlist[i].ProductMix[j].Key).Sum(m => m.Amount)));
+                                int subamountcount = suborderlist.Sum(l => l.OrderProducts.Sum(p => p.ProductMixList.FindAll(m => m.Name == myproductlist[i].ProductMix[j].Key).Sum(m => m.Amount)));
+
+                                productmix.Add(new KeyValuePair<string, int>(myproductlist[i].ProductMix[j].Key, amountcount - subamountcount));
+                            }
+                            myproductlist[i].UserProductMix = productmix;
+                        }
+                        MangaCache.Max(key, myproductlist);
+                    }
+                }
+            }            
+
+            return myproductlist;
+        }
+
+        public void ReloadUserProductListCache(int userid)
+        {
+            string key = GlobalKey.USERPRODUCT_LIST + "_" + userid;
+            MangaCache.Remove(key);
+            GetProductListByUser(userid);
+        }
+
+        #endregion
 
         #endregion
 
@@ -394,7 +518,7 @@ namespace Chebao.Components
             MangaCache.Max(key, list);
         }
 
-        public string UpdateOrderStatus(string ids, OrderStatus status,string username = "系统作业")
+        public string UpdateOrderStatus(string ids, OrderStatus status, string username = "系统作业")
         {
             StringBuilder strResult = new StringBuilder();
             OrderInfo order = GetOrder(DataConvert.SafeInt(ids), true);
@@ -406,12 +530,16 @@ namespace Chebao.Components
             {
                 if (status == OrderStatus.已发货 || (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货))
                 {
-                    AddOrderUpdateQueue(new OrderUpdateQueueInfo()
-                    {
-                        OrderID = order.ID,
-                        OrderStatus = status,
-                        DeelStatus = 0
-                    });
+                    //if (order.ParentID == 0)
+                    //{
+                        AddOrderUpdateQueue(new OrderUpdateQueueInfo()
+                        {
+                            OrderID = order.ID,
+                            OrderStatus = status,
+                            DeelStatus = 0
+                        });
+                    //}
+                    strResult.Append(order.UserID.ToString());
                 }
             }
             CommonDataProvider.Instance().UpdateOrderStatus(ids, status, username);
@@ -507,6 +635,25 @@ namespace Chebao.Components
                 RefreshProductStock();
                 ReloadProductListCache();
             }
+        }
+
+        /// <summary>
+        /// 订单过期处理
+        /// </summary>
+        public void OrderPastDue()
+        {
+            try
+            {
+                SitesettingInfo setting = Sitesettings.Instance.GetSitesetting(true);
+                if (setting.HourNumber == 0) return;
+                List<OrderInfo> orderlist = GetOrderList(true);
+                orderlist = orderlist.FindAll(o => o.OrderStatus == OrderStatus.未收款 && DateTime.Parse(o.AddTime).AddHours(setting.HourNumber) < DateTime.Now);
+                foreach (OrderInfo entity in orderlist)
+                {
+                    UpdateOrderStatus(entity.ID.ToString(), OrderStatus.已取消, "付款超时");
+                }
+            }
+            catch { }
         }
 
         #endregion

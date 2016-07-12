@@ -30,6 +30,14 @@ function prompts(t, msg) {
     });
 }
 
+//iframe自适应高度
+function iFrameHeight(ifm) {
+    var subWeb = document.frames ? document.frames[$(ifm).attr("id")].document : ifm.contentDocument;
+    if (ifm != null && subWeb != null) {
+        ifm.height = subWeb.body.offsetHeight;
+    }
+}   
+
 
 function showLoading(msg) {
     if ($(".overlay").length == 0) {

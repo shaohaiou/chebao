@@ -138,6 +138,34 @@
     <Compile Include="order\profitsmg.aspx.designer.cs">
       <DependentUpon>profitsmg.aspx</DependentUpon>
     </Compile>
+    <Compile Include="useradmin\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useradmin\orders.aspx.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\orders.aspx.designer.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useradmin\orderview.aspx.cs">
+      <DependentUpon>orderview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\orderview.aspx.designer.cs">
+      <DependentUpon>orderview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useradmin\stocks.aspx.cs">
+      <DependentUpon>stocks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\stocks.aspx.designer.cs">
+      <DependentUpon>stocks.aspx</DependentUpon>
+    </Compile>
     <Compile Include="user\adminpowersetting.aspx.cs">
       <DependentUpon>adminpowersetting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -623,6 +651,10 @@
     <Content Include="global\corpintroduce.aspx" />
     <Content Include="global\dealdata.aspx" />
     <Content Include="order\profitsmg.aspx" />
+    <Content Include="useradmin\main.aspx" />
+    <Content Include="useradmin\orders.aspx" />
+    <Content Include="useradmin\orderview.aspx" />
+    <Content Include="useradmin\stocks.aspx" />
     <Content Include="user\adminpowersetting.aspx" />
     <Content Include="user\discountstenciledit.aspx" />
     <Content Include="user\discountstencilmg.aspx" />

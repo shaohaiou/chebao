@@ -12,6 +12,24 @@
         rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ($("#hdnParentID").val() != "") {
+                $.ajax({
+                    url: "/remoteaction.ashx",
+                    data: { action: "reloaduserproductcache", userid: $("#hdnParentID").val(), d: new Date() },
+                    type: 'GET',
+                    dataType: "json",
+                    error: function (msg) {
+                        
+                    },
+                    success: function (data) {
+
+                    }
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <uc1:header ID="header1" runat="server" />
@@ -23,6 +41,7 @@
             <a href="shoppingtrolleymg.aspx" style="text-decoration: underline;">去购物车</a> <a
                 href="myorders.aspx" style="text-decoration: underline; padding-left: 20px;">我的订单</a>
         </div>
+        <input type="hidden" runat="server" id="hdnParentID" />
     </div>
     <div class="footer">
         <div class="footmain">

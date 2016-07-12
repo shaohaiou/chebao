@@ -346,9 +346,8 @@ namespace Chebao.Tools
             bool result = true;
             try
             {
-                WebClient wc = new WebClient();
-                wc.UploadValues(url, "POST", postVars);
-                wc.Dispose();
+                HttpClient wc = new HttpClient();
+                wc.UploadValuesAsync(new Uri(url),"POST", postVars);
             }
             catch
             {

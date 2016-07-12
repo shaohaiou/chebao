@@ -31,7 +31,8 @@ namespace Chebao.Components
                 Material = Material,
                 Replacement = Replacement,
                 Standard = Standard,
-                ProductMixStr = ProductMixStr
+                ProductMixStr = ProductMixStr,
+                UserProductMix = UserProductMix
             };
             return entity;
         }
@@ -247,5 +248,16 @@ namespace Chebao.Components
                 return result;
             }
         }
+
+        /// <summary>
+        /// 产品组合
+        /// </summary>
+        public List<KeyValuePair<string, int>> UserProductMix
+        {
+            get;
+            set;
+        }
+
+
     }
 }

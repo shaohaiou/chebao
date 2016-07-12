@@ -31,7 +31,9 @@ namespace Chebao.BackAdmin.product
                     List<OrderInfo> orderlist = Cars.Instance.GetOrderList(true);
                     if (orderlist.Exists(o => o.ID == id && o.UserID == AdminID))
                     {
-                        Cars.Instance.UpdateOrderStatus(id.ToString(), OrderStatus.已取消,AdminName);
+                        string syncResult = Cars.Instance.UpdateOrderStatus(id.ToString(), OrderStatus.已取消, AdminName);
+                        if (!string.IsNullOrEmpty(syncResult))
+                            Session["syncResult"] = syncResult;
                         Response.Redirect("~/product/myorders.aspx");
                         Response.End();
                     }
@@ -51,6 +53,12 @@ namespace Chebao.BackAdmin.product
             
             rptData.DataSource = list;
             rptData.DataBind();
+
+            if (Session["syncResult"] != null && !string.IsNullOrEmpty(Session["syncResult"].ToString()))
+            {
+                hdnSyncresult.Value = Session["syncResult"].ToString();
+                Session.Remove("syncResult");
+            }
         }
 
         protected void rptData_ItemDataBound(object sender, RepeaterItemEventArgs e)

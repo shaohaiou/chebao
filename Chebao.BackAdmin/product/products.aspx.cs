@@ -135,7 +135,11 @@ namespace Chebao.BackAdmin.product
             int pagesize = search_fy.PageSize;
             int total = 0;
 
-            List<ProductInfo> productlist = Cars.Instance.GetProductList(true);
+            List<ProductInfo> productlist;
+            //if (Admin.ParentAccountID == 0)
+                productlist = Cars.Instance.GetProductList(true);
+            //else
+            //    productlist = Cars.Instance.GetProductListByUser(Admin.ParentAccountID);
             string number = GetString("n");
             int t = GetInt("t", -1);
             int id = GetInt("id");

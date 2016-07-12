@@ -60,11 +60,14 @@ namespace Chebao.BackAdmin.order
                             status = OrderStatus.未收款;
                             break;
                     }
-                    string[] ids = GetString("ids").Split(new char[]{','},StringSplitOptions.RemoveEmptyEntries);
+                    List<string> syncResultlist = new List<string>();
+                    string[] ids = GetString("ids").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string id in ids)
                     {
-                        Cars.Instance.UpdateOrderStatus(id, status,AdminName);
+                        syncResultlist.Add(Cars.Instance.UpdateOrderStatus(id, status, AdminName));
                     }
+                    if (syncResultlist.Count > 0)
+                        Session["syncResult"] = string.Join(",", syncResultlist.Distinct());
                     Response.Redirect(FromUrl);
                     Response.End();
                 }
@@ -132,6 +135,7 @@ namespace Chebao.BackAdmin.order
             int total = 0;
 
             List<OrderInfo> list = Cars.Instance.GetOrderList(true);
+            //list = list.FindAll(l=>l.ParentID == 0);
             if (!CheckModulePower("未收款"))
                 list = list.FindAll(l=>l.OrderStatus != OrderStatus.未收款);
             if (!CheckModulePower("已收款"))

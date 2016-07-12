@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncHelp.cs" />
     <Compile Include="CustomIdentity.cs" />
     <Compile Include="DataConvert.cs" />
     <Compile Include="DynamicWebServices.cs" />
@@ -70,6 +71,9 @@
     <Compile Include="UserPrincipal.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Web\Http.cs" />
+    <Compile Include="Web\HttpClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Web\ManageCookies.cs" />
     <Compile Include="Web\WebHelper.cs" />
   </ItemGroup>

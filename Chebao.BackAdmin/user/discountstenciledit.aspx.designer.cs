@@ -40,6 +40,15 @@ namespace Chebao.BackAdmin.user {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// txtDiscountMAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountMAdd;
+        
+        /// <summary>
         /// txtDiscountM 控件。
         /// </summary>
         /// <remarks>
@@ -47,6 +56,15 @@ namespace Chebao.BackAdmin.user {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscountM;
+        
+        /// <summary>
+        /// txtDiscountYAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountYAdd;
         
         /// <summary>
         /// txtDiscountY 控件。
@@ -58,6 +76,15 @@ namespace Chebao.BackAdmin.user {
         protected global::System.Web.UI.WebControls.TextBox txtDiscountY;
         
         /// <summary>
+        /// txtDiscountHAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountHAdd;
+        
+        /// <summary>
         /// txtDiscountH 控件。
         /// </summary>
         /// <remarks>
@@ -65,6 +92,15 @@ namespace Chebao.BackAdmin.user {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscountH;
+        
+        /// <summary>
+        /// txtDiscountXSPAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountXSPAdd;
         
         /// <summary>
         /// txtDiscountXSP 控件。
@@ -76,6 +112,15 @@ namespace Chebao.BackAdmin.user {
         protected global::System.Web.UI.WebControls.TextBox txtDiscountXSP;
         
         /// <summary>
+        /// txtDiscountMTAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountMTAdd;
+        
+        /// <summary>
         /// txtDiscountMT 控件。
         /// </summary>
         /// <remarks>
@@ -83,6 +128,15 @@ namespace Chebao.BackAdmin.user {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscountMT;
+        
+        /// <summary>
+        /// txtDiscountSAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountSAdd;
         
         /// <summary>
         /// txtDiscountS 控件。
@@ -94,6 +148,15 @@ namespace Chebao.BackAdmin.user {
         protected global::System.Web.UI.WebControls.TextBox txtDiscountS;
         
         /// <summary>
+        /// txtDiscountKAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountKAdd;
+        
+        /// <summary>
         /// txtDiscountK 控件。
         /// </summary>
         /// <remarks>
@@ -101,6 +164,15 @@ namespace Chebao.BackAdmin.user {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscountK;
+        
+        /// <summary>
+        /// txtDiscountPAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountPAdd;
         
         /// <summary>
         /// txtDiscountP 控件。
@@ -112,6 +184,33 @@ namespace Chebao.BackAdmin.user {
         protected global::System.Web.UI.WebControls.TextBox txtDiscountP;
         
         /// <summary>
+        /// txtDiscountPYAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountPYAdd;
+        
+        /// <summary>
+        /// txtDiscountPY 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountPY;
+        
+        /// <summary>
+        /// txtDiscountLSAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountLSAdd;
+        
+        /// <summary>
         /// txtDiscountLS 控件。
         /// </summary>
         /// <remarks>
@@ -119,6 +218,15 @@ namespace Chebao.BackAdmin.user {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDiscountLS;
+        
+        /// <summary>
+        /// txtDiscountBAdd 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountBAdd;
         
         /// <summary>
         /// txtDiscountB 控件。
