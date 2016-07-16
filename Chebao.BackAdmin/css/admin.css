@@ -111,7 +111,7 @@ a:hover{text-decoration:underline;}a:focus {outline:0;}
 .bttj{padding:10px;}
 
 .biaoge1{}.biaoge1 td{padding:3px;}
-.biaoge2{}.biaoge2 tr:hover{background:#CEE4FA;}.biaoge2 td{padding:1px 3px; text-align:left; border-bottom:1px dashed #60ACE2;}.biaoge2 td img{vertical-align:middle;}
+.biaoge2{}.biaoge2 tr:hover{background:#CEE4FA!important;}.biaoge2 td{padding:1px 3px; text-align:left; border-bottom:1px dashed #60ACE2;}.biaoge2 td img{vertical-align:middle;}
 	.bgbt{font-weight:700; line-height:20px;background-color: rgb(242, 249, 255);}
 	.bgbt a{color:Blue;}
 	.bgbt a:hover{color:Blue;text-decoration:none;}
@@ -120,6 +120,8 @@ a:hover{text-decoration:underline;}a:focus {outline:0;}
 	.biaoge3 img{border:1px solid #d7d7d7; padding:2px; width:120px; height:160px; margin-bottom:5px;}
 .biaoge4{}.biaoge4 td{border-bottom:1px dashed #deeffb; padding:5px 3px;}
 .biaoge5{}.biaoge5 td{border-bottom:1px dashed #deeffb; padding:0px;}
+.biaoge6{}.biaoge6 td{border-bottom:1px dashed #deeffb; padding:5px 3px;}
+	.biaoge6 img{border:1px solid #d7d7d7; padding:2px; max-width:240px;  margin-bottom:5px;}
 
 	.bg1{width:100px; text-align:right;}
 	.bg2{width:330px; text-align:left;}

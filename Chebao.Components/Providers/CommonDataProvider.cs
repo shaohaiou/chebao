@@ -448,6 +448,8 @@ namespace Chebao.Components
 
         public abstract MessageBoardInfo GetMessageBoard(int id);
 
+        public abstract void ReplyMessageBoard(MessageBoardInfo entity);
+
         protected MessageBoardInfo PopulateMessageBoard(IDataReader reader)
         {
             MessageBoardInfo entity = new MessageBoardInfo
@@ -457,7 +459,13 @@ namespace Chebao.Components
                 UserID = DataConvert.SafeInt(reader["UserID"]),
                 AddTime = reader["AddTime"] as string,
                 Title = reader["Title"] as string,
-                Content = reader["Content"] as string
+                Content = reader["Content"] as string,
+                Status = DataConvert.SafeInt(reader["Status"]),
+                Reply = reader["Reply"] as string,
+                ReplyTime = reader["ReplyTime"] as string,
+                ReplyAdminID = DataConvert.SafeInt(reader["ReplyAdminID"]),
+                ReplyAdmin = reader["ReplyAdmin"] as string,
+                ReplyAdminName = reader["ReplyAdminName"] as string
             };
 
             return entity;

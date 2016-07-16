@@ -172,6 +172,19 @@
                             <li class="blockinline">
                                 <label class="blockinline" style="line-height: 18px;">
                                     <input type="checkbox" class="cbxModulepower fll" value="同步失败记录" <%=SetModulepower("同步失败记录") %> />同步失败记录</label></li>
+                            <br />
+                            <li class="blockinline">
+                                <label class="blockinline" style="line-height: 18px;">
+                                    <input type="checkbox" class="cbxModulepower fll" value="取消订单" <%=SetModulepower("取消订单") %> />取消订单</label></li>
+                            <li class="blockinline">
+                                <label class="blockinline" style="line-height: 18px;">
+                                    <input type="checkbox" class="cbxModulepower fll" value="复制订单" <%=SetModulepower("复制订单") %> />复制订单</label></li>
+                            <li class="blockinline">
+                                <label class="blockinline" style="line-height: 18px;">
+                                    <input type="checkbox" class="cbxModulepower fll" value="一键收款" <%=SetModulepower("一键收款") %> />一键收款</label></li>
+                            <li class="blockinline">
+                                <label class="blockinline" style="line-height: 18px;">
+                                    <input type="checkbox" class="cbxModulepower fll" value="一键发货" <%=SetModulepower("一键发货") %> />一键发货</label></li>
                         </ul>
                     </td>
                 </tr>

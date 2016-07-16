@@ -28,8 +28,10 @@
     <div id="main" style="background:#eee;">
         <div class="lmenu">
             <ul>
-                <li class="lmenucurrent"><a target="ibody" href="stocks.aspx">产品库存</a></li>
+                <li class="lmenucurrent"><a target="ibody" href="stocks.aspx">我的库存</a></li>
                 <li><a target="ibody" href="orders.aspx">用户订单</a></li>
+                <li><a target="ibody" href="orders.aspx">盘库申请</a></li>
+                <li><a target="ibody" href="myfeedback.aspx">我的反馈</a></li>
             </ul>
         </div>
         <div class="rbody">

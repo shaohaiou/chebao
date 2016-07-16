@@ -1085,6 +1085,31 @@ namespace Chebao.DALSQLServer
             return entity;
         }
 
+        public override void ReplyMessageBoard(MessageBoardInfo entity)
+        {
+            string sql = @"
+            UPDATE Chebao_MessageBoard SET
+                [Status] = @Status
+                ,[Reply] = @Reply
+                ,[ReplyTime] = @ReplyTime
+                ,[ReplyAdminID] = @ReplyAdminID
+                ,[ReplyAdmin] = @ReplyAdmin
+                ,[ReplyAdminName] = @ReplyAdminName
+            WHERE [ID] = @ID
+            ";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@Status",entity.Status),
+                new OleDbParameter("@Reply",entity.Reply),
+                new OleDbParameter("@ReplyTime",entity.ReplyTime),
+                new OleDbParameter("@ReplyAdminID",entity.ReplyAdminID),
+                new OleDbParameter("@ReplyAdmin",entity.ReplyAdmin),
+                new OleDbParameter("@ReplyAdminName",entity.ReplyAdminName),
+                new OleDbParameter("@ID",entity.ID)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
         #endregion
 
         #region 地区管理

@@ -723,6 +723,11 @@ namespace Chebao.Components
             return CommonDataProvider.Instance().GetMessageBoard(id);
         }
 
+        public void ReplyMessageBoard(MessageBoardInfo entity)
+        {
+            CommonDataProvider.Instance().ReplyMessageBoard(entity);
+        }
+
         #endregion
 
         #region 地区管理

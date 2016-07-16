@@ -69,6 +69,7 @@ namespace Chebao.BackAdmin.user
         protected void BindData(AdminInfo admin)
         {
             hdid.Value = admin.ID.ToString();               //管理员ID
+            lblPassword.Text = admin.PasswordText;
             txtUserName.Text = admin.UserName;//账户名
             txtMobile.Text = admin.Mobile;
             txtTelPhone.Text = admin.TelPhone;
@@ -129,7 +130,10 @@ namespace Chebao.BackAdmin.user
             admin.ID = DataConvert.SafeInt(hdid.Value);     //管理员ID
             admin.Administrator = false;        //是否是超级管理员
             if (txtPassword.Text.Trim().Length != 0)
+            {
+                admin.PasswordText = txtPassword.Text;
                 admin.Password = EncryptString.MD5(txtPassword.Text);              //管理员密码
+            }
             admin.UserName = txtUserName.Text;//账户名
             admin.LastLoginIP = string.Empty;
             admin.Mobile = txtMobile.Text;

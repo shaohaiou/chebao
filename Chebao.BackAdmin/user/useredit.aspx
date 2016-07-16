@@ -91,7 +91,7 @@
                         密码：
                     </td>
                     <td>
-                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><asp:RequiredFieldValidator
+                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox><span class="gray">（原密码：<asp:Label ID="lblPassword" runat="server"></asp:Label>）</span><asp:RequiredFieldValidator
                             ID="rePassword" runat="server" ErrorMessage="密码必须填写" CssClass="red" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>
                     </td>
                 </tr>

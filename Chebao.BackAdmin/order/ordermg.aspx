@@ -41,7 +41,7 @@
                         alert("发生错误");
                     },
                     success: function (data) {
-                        
+
                     }
                 });
             }
@@ -82,6 +82,7 @@
                     alert("只能选择一条记录导出");
                     return false;
                 }
+                $(".cbxSub").attr("checked","");
                 return true;
             });
 
@@ -198,8 +199,8 @@
                     <asp:Button runat="server" ID="btnExportExcel" CssClass="an1 fll mr10" Text=" 导出Excel "
                         OnClick="btnExportExcel_Click" />
                     <input type="submit" id="btnFilter" class="an1 mr10" value=" 查询 " />
-                    <input type="button" id="btnMulSK" class="an1 mr10 btnmulsk" value="一键收款" />
-                    <input type="button" id="btnMulFH" class="an1 mr10 btnmulfh" value="一键发货" />
+                    <input type="button" id="btnMulSK" class="an1 mr10 btnmulsk <%= !CheckModulePower("一键收款") ? "hide" : ""%>" value="一键收款" />
+                    <input type="button" id="btnMulFH" class="an1 mr10 btnmulfh <%= !CheckModulePower("一键发货") ? "hide" : ""%>" value="一键发货" />
                     <span id="spMsg" class="red"></span>
                 </td>
             </tr>
@@ -228,11 +229,11 @@
                         <td class="w220">
                             订单产品
                         </td>
-                        <td class="w100">
+                        <td class="w80">
                             订单总额
                         </td>
-                        <td class="w100">
-                            状态/操作人
+                        <td class="w80">
+                            状态/备注
                         </td>
                         <td>
                             操作
@@ -277,16 +278,64 @@
                                 <%#Eval("StatusUpdateUser")%>
                         </td>
                         <td>
-                            <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
+                            <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "" : "hide" %>">
                                 收款</a><a href="javascript:void(0);" action="consignment" vid="<%#Eval("ID") %>" msg="确定该订单已发货吗？"
-                                    class="btnconsignment green pt5 <%#Eval("OrderStatus").ToString() == "已收款" || Eval("OrderStatus").ToString() == "未处理" ? "block" : "hide" %>">
+                                    class="btnconsignment green  pl10 <%#Eval("OrderStatus").ToString() == "已收款" || Eval("OrderStatus").ToString() == "未处理" ? "" : "hide" %>">
                                     发货</a><a href="javascript:void(0);" action="cancel" vid="<%#Eval("ID") %>" msg="确定要取消该订单吗？"
-                                        class="btncancel red pt5 <%#Eval("OrderStatus").ToString() == "已取消" ? "hide" : "block" %>">
-                                        取消</a><a href="javascript:void(0);" target="_blank" class="green btncopy" data-id="<%#Eval("ID") %>"
+                                        class="btncancel red  pl10 <%#Eval("OrderStatus").ToString() == "已取消" || !CheckModulePower("取消订单") ? "hide" : "" %>">
+                                        取消</a><a href="javascript:void(0);" target="_blank" class="green pl10 btncopy <%= !CheckModulePower("复制订单") ? "hide" : ""%>" data-id="<%#Eval("ID") %>"
                                 data-uname="<%#Eval("UserName") %>">复制</a>
                         </td>
                     </tr>
                 </ItemTemplate>
+                <AlternatingItemTemplate>
+                    <tr style="background:#F9F4C7;" class="<%#Eval("OrderStatus").ToString() == "已取消" ? GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus")) : ""%>">
+                        <td style="line-height: 18px;">
+                            <input type="checkbox" class="fll cbxSub" value="<%#Eval("ID") %>" /><a href="orderview.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>"
+                                style="text-decoration: underline;" class="<%#Eval("OrderStatus").ToString() == "已取消" ? GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus")) : ""%>"><%#Eval("OrderNumber")%></a>
+                        </td>
+                        <td>
+                            <%#Eval("AddTime") %>
+                        </td>
+                        <td>
+                            <%#Eval("UserName")%>
+                        </td>
+                        <td>
+                            联系人：<%#Eval("LinkName")%><br />
+                            手机：<%#Eval("LinkMobile")%><br />
+                            电话：<%#Eval("LinkTel")%>
+                        </td>
+                        <td>
+                            <%#Eval("Province")%>
+                            <%#Eval("City")%>
+                            <%#Eval("District")%><br />
+                            <%#Eval("Address")%><br />
+                            邮编：<%#Eval("PostCode")%>
+                        </td>
+                        <td>
+                            <div style="max-height: 230px; overflow: hidden;">
+                                <%# GetOrderProductsStr(Eval("OrderProducts"))%>
+                            </div>
+                        </td>
+                        <td>
+                            <%# CheckModulePower("金额可见") ? Chebao.Tools.StrHelper.FormatMoney(Eval("TotalFee").ToString()) : string.Empty%>
+                        </td>
+                        <td>
+                            <span class="<%#GetOrderStatusColor((Chebao.Components.OrderStatus)(int)Eval("OrderStatus"))%>">
+                                <%# Eval("OrderStatus").ToString()%></span><br />
+                                <%#Eval("StatusUpdateUser")%>
+                        </td>
+                        <td>
+                            <a href="?action=gather&ids=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>" class="btngather orange <%#Eval("OrderStatus").ToString() == "未收款" || Eval("OrderStatus").ToString() == "未处理" ? "" : "hide" %>">
+                                收款</a><a href="javascript:void(0);" action="consignment" vid="<%#Eval("ID") %>" msg="确定该订单已发货吗？"
+                                    class="btnconsignment green  pl10 <%#Eval("OrderStatus").ToString() == "已收款" || Eval("OrderStatus").ToString() == "未处理" ? "" : "hide" %>">
+                                    发货</a><a href="javascript:void(0);" action="cancel" vid="<%#Eval("ID") %>" msg="确定要取消该订单吗？"
+                                        class="btncancel red  pl10 <%#Eval("OrderStatus").ToString() == "已取消" || !CheckModulePower("取消订单") ? "hide" : "" %>">
+                                        取消</a><a href="javascript:void(0);" target="_blank" class="green pl10 btncopy <%= !CheckModulePower("复制订单") ? "hide" : ""%>" data-id="<%#Eval("ID") %>"
+                                data-uname="<%#Eval("UserName") %>">复制</a>
+                        </td>
+                    </tr>
+                </AlternatingItemTemplate>
             </asp:Repeater>
         </table>
         <webdiyer:AspNetPager ID="search_fy" UrlPaging="true" NextPageText="下一页" PrevPageText="上一页"

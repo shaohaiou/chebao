@@ -6,13 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>耐磨达产品查询系统</title>
-    <link href="../css/kp.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
-        rel="stylesheet" type="text/css" />
-    <link href="../css/headfoot2.css?t=<%= Chebao.Components.ChebaoContext.Current.Jsversion %>"
-        rel="stylesheet" type="text/css" />
+    <link href="../css/kp.css" rel="stylesheet" type="text/css" />
+    <link href="../css/headfoot2.css" rel="stylesheet" type="text/css" />
+    <link href="../css/msdropdown/dd.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
     <script src="../js/head3.js" type="text/javascript"></script>
+    <script src="../js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             $("#txtsearch").focus(function () {
@@ -27,6 +27,10 @@
                 }
             });
             $("#btnsearch").click(function () {
+                location.href = "?n=" + ($.trim($("#txtsearch").val()) == "请输入lamda型号" ? "" : escape($.trim($("#txtsearch").val())));
+                return false;
+            });
+            $("#form1").submit(function () {
                 location.href = "?n=" + ($.trim($("#txtsearch").val()) == "请输入lamda型号" ? "" : escape($.trim($("#txtsearch").val())));
                 return false;
             });
@@ -115,7 +119,7 @@
             var layertop = ($(window).height() - $(".brandLayer").height()) / 2;
             var layerleft = ($(window).width() - $(".brandLayer").width()) / 2;
             $(".brandLayer").css({ "left": layerleft + "px", "top": layertop + "px" });
-            
+
             $("#btnlayerclose").click(function () {
                 $("#ddlBrand").show();
 
@@ -133,6 +137,7 @@
                 $("#divflay").css({ "visibility": "hidden" });
                 $(".brandLayer").css({ "visibility": "hidden" });
             });
+            MSDropDown();
         });
         document.onkeydown = function () {
             if (event.ctrlKey && event.keyCode == 67) {
@@ -191,6 +196,9 @@
             $("#divflay").css({ "visibility": "visible" });
             $(".brandLayer").css({ "visibility": "visible" });
         }
+        function MSDropDown() {
+            $("body select").msDropDown();
+        }
     </script>
 </head>
 <body>
@@ -212,7 +220,7 @@
                                     <dt>请选择车型：</dt>
                                     <dd>
                                         <span id="carbrands">
-                                            <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true" 
+                                            <asp:DropDownList runat="server" ID="ddlBrand" CssClass="rideselect" AutoPostBack="true"
                                                 Style="width: 213px!important;" OnSelectedIndexChanged="ddlBrand_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </span>
@@ -339,7 +347,31 @@
                   { %>
                 <div class="pros_item">
                     <div class="ooss">
-                        <p class="sold_out">
+                    <%if (SearchCabmodel != null && !string.IsNullOrEmpty(SearchCabmodel.Imgpath))
+                      { %>
+                    <ul style="float: left;">
+                    <li class="" style="padding: 0 10px; height: 308px; border: 1px #d7d7d7 solid;">
+                        <div class="carstatus2">
+                            <span id="carstatus2" class="customGal">
+                                <h5>
+                                    产品适用于：</h5>
+                                <img id="imgpic" src="<%= SearchCabmodel.Imgpath %>" alt="车型图片" /><span class="car_name">
+                                    <%= SearchCabmodel.CabmodelNameBind%></span></span>
+                            <p class="g_picc" style="text-align: center; display: none;">
+                                <img src="../images/picc.png" style="height: 30px; width: 77px;" /><br />
+                                <b>PICC</b>产品承保</p>
+                            <div class="fwbz" style="margin: 50px 0 0 0;">
+                                <span>安全<br>
+                                    保障</span>
+                                <label>
+                                    本公司每一款刹车片均受<b><img src="../images/picc.png" style="height: 14px; width: 30px; float: right;
+                                        margin: 2px 0 0 0;" /></b>承保保险</label>
+                            </div>
+                        </div>
+                    </li>
+                    </ul>
+                    <%} %>
+                        <p class="sold_out" style="width: 100%;text-align: center;">
                             对不起，您要的产品未找到！</p>
                         <div class="sold_out_info">
                             <span>找不到产品？</span>
@@ -398,7 +430,7 @@
                                         最新加入的宝贝</div>
                                     <a href="shoppingtrolleymg.aspx" target="_blank">查看全部</a></div>
                                 <div class="mini-cart-list-bd">
-                                    <ul class="mini-cart-items-list" style="height: 212px;overflow-y:auto;">
+                                    <ul class="mini-cart-items-list" style="height: 212px; overflow-y: auto;">
                                         <asp:Repeater runat="server" ID="rptShoppingTrolley">
                                             <ItemTemplate>
                                                 <li>
@@ -452,7 +484,7 @@
         visibility: hidden; display: block; top: 0px; left: 0px; width: 100%; height: 100%;
         background-color: rgb(0, 0, 0);">
     </div>--%>
-   <%-- <iframe id="framflay" style="border: 0px; opacity: 0; position: absolute; visibility: hidden;
+    <%-- <iframe id="framflay" style="border: 0px; opacity: 0; position: absolute; visibility: hidden;
         display: block; z-index: 1108; top: 0px; left: 0px; width: 100%; height: 100%;
         background-color: rgb(255, 255, 255);"></iframe>
     <div class="brandLayer" style="border: 0px; z-index: 1111; position: absolute; visibility: hidden;

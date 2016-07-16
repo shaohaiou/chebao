@@ -27,6 +27,8 @@ namespace Chebao.BackAdmin.user
                     lerrorMes.Text = "原密码错误";
                     return;
                 }
+                Admin.PasswordText = TxtNewUserPassword.Text;
+                Admins.Instance.UpdateBrandPowerSetting(Admin);
 
                 StringBuilder sb = new StringBuilder();
                 sb.Append("<span class=\"dalv\">密码修改成功,请使用新密码登录！</span><br />");

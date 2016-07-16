@@ -12,7 +12,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="500" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
+        <table width="660" border="0" cellspacing="0" cellpadding="0" class="biaoge2">
             <asp:Repeater ID="rptData" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
@@ -27,6 +27,12 @@
                         </td>
                         <td class="w80">
                             添加时间
+                        </td>
+                        <td class="w80">
+                            回复状态
+                        </td>
+                        <td class="w80">
+                            回复人
                         </td>
                         <td>
                             操作
@@ -46,6 +52,13 @@
                         </td>
                         <td>
                             <%#Eval("AddTime")%>
+                        </td>
+                        <td>
+                            <%#Eval("Status").ToString() == "0" ? "<span class=\"red\">未回复</span>" : "<span class=\"green\">已回复</span>"%>
+                        </td>
+                        <td>
+                            <%#Eval("ReplyAdmin")%><br />
+                            <%#Eval("ReplyAdminName")%>
                         </td>
                         <td>
                             <a href="messageboardview.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>">

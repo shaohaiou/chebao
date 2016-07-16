@@ -34,6 +34,8 @@ namespace Chebao.BackAdmin.useradmin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Write("功能正在研发中，敬请期待！");
+            Response.End();
             if (!IsPostBack)
             {
                 if (!string.IsNullOrEmpty(GetString("action")))

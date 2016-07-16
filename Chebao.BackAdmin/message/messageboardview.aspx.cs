@@ -49,7 +49,27 @@ namespace Chebao.BackAdmin.message
                     Response.End();
                     return;
                 }
+
+                txtReply.Text = CurrentMessage.Reply;
             }
+        }
+
+        private void FillData(MessageBoardInfo entity)
+        {
+            entity.Reply = txtReply.Text;
+            entity.ReplyAdmin = AdminName;
+            entity.ReplyAdminID = AdminID;
+            entity.ReplyTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            entity.Status = 1;
+        }
+
+        protected void btnReply_Click(object sender, EventArgs e)
+        {
+            FillData(CurrentMessage);
+
+            Cars.Instance.ReplyMessageBoard(CurrentMessage);
+
+            WriteSuccessMessage("操作完成！", "回复成功", string.IsNullOrEmpty(FromUrl) ? "~/message/messageboardmg.aspx" : FromUrl);
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

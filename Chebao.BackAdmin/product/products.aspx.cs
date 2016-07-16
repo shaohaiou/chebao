@@ -97,6 +97,20 @@ namespace Chebao.BackAdmin.product
                 BindControler();
                 LoadData();
             }
+
+            //品牌图片
+            List<BrandInfo> brandlist = Cars.Instance.GetBrandList(true);
+            foreach (ListItem item in ddlBrand.Items)
+            {
+                if (item.Value != "-1")
+                {
+                    string imgpath = brandlist.Find(b => b.ID.ToString() == item.Value).Imgpath;
+                    if (!string.IsNullOrEmpty(imgpath))
+                    {
+                        item.Attributes.Add("data-image", imgpath);
+                    }
+                }
+            }
         }
 
         private void BindControler()
@@ -265,6 +279,7 @@ namespace Chebao.BackAdmin.product
                     ddlCabmodel.Enabled = true;
                 }
             }
+            ScriptManager.RegisterStartupScript(upnCabmodels, upnCabmodels.GetType(), "dd", "MSDropDown();", true);
         }
 
         protected void ddlCabmodel_SelectedIndexChanged(object sender, EventArgs e)
@@ -297,6 +312,7 @@ namespace Chebao.BackAdmin.product
                     ddlPailiang.Enabled = true;
                 }
             }
+            ScriptManager.RegisterStartupScript(upnCabmodels, upnCabmodels.GetType(), "dd", "MSDropDown();", true);
         }
 
         protected void ddlPailiang_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,6 +341,7 @@ namespace Chebao.BackAdmin.product
                     ddlNianfen.Enabled = true;
                 }
             }
+            ScriptManager.RegisterStartupScript(upnCabmodels, upnCabmodels.GetType(), "dd", "MSDropDown();", true);
         }
 
         protected void ddlNianfen_SelectedIndexChanged(object sender, EventArgs e)

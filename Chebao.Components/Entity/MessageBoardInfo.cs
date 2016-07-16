@@ -20,5 +20,37 @@ namespace Chebao.Components
         public string Content { get; set; }
 
         public string AddTime { get; set; }
+
+        /// <summary>
+        /// 回复状态
+        /// <para>0：未回复</para>
+        /// <para>1：已回复</para>
+        /// </summary>
+        public int Status { get; set; }
+
+        /// <summary>
+        /// 回复内容
+        /// </summary>
+        public string Reply { get; set; }
+
+        /// <summary>
+        /// 回复时间
+        /// </summary>
+        public string ReplyTime { get; set; }
+
+        /// <summary>
+        /// 回复人ID
+        /// </summary>
+        public int ReplyAdminID { get; set; }
+
+        /// <summary>
+        /// 回复人用户名
+        /// </summary>
+        public string ReplyAdmin { get; set; }
+
+        /// <summary>
+        /// 回复人姓名
+        /// </summary>
+        public string ReplyAdminName { get; set; }
     }
 }

@@ -117,9 +117,9 @@ namespace Chebao.BackAdmin.user
         {
             List<AdminInfo> adminlist = Admins.Instance.GetUsers();
             if (!string.IsNullOrEmpty(GetString("username")))
-                adminlist = adminlist.FindAll(l => l.UserName.IndexOf(GetString("username")) >= 0);
+                adminlist = adminlist.FindAll(l => l.UserName.ToLower().IndexOf(GetString("username").ToLower()) >= 0);
             if (!string.IsNullOrEmpty(GetString("linkname")))
-                adminlist = adminlist.FindAll(l => l.LinkName.IndexOf(GetString("linkname")) >= 0);
+                adminlist = adminlist.FindAll(l => l.LinkName.ToLower().IndexOf(GetString("linkname").ToLower()) >= 0);
             InitializeWorkbook();
             HSSFSheet sheet1 = (HSSFSheet)hssfworkbook.CreateSheet("Sheet1");
             HSSFRow rowHeader = (HSSFRow)sheet1.CreateRow(0);

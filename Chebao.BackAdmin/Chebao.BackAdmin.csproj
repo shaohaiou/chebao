@@ -145,6 +145,20 @@
     <Compile Include="useradmin\main.aspx.designer.cs">
       <DependentUpon>main.aspx</DependentUpon>
     </Compile>
+    <Compile Include="useradmin\myfeedback.aspx.cs">
+      <DependentUpon>myfeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\myfeedback.aspx.designer.cs">
+      <DependentUpon>myfeedback.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useradmin\myfeedbackview.aspx.cs">
+      <DependentUpon>myfeedbackview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\myfeedbackview.aspx.designer.cs">
+      <DependentUpon>myfeedbackview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="useradmin\orders.aspx.cs">
       <DependentUpon>orders.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -646,12 +660,43 @@
     <Content Include="css\font_1404888168_2057645.svg" />
     <Content Include="css\font_1418875995_7687602.svg" />
     <Content Include="css\font_1421302883_443168.svg" />
+    <Content Include="css\msdropdown\dd.css" />
+    <Content Include="css\msdropdown\dd_arrow.gif" />
+    <Content Include="css\msdropdown\icons\1273404841_tick_16.png" />
+    <Content Include="css\msdropdown\icons\button-large.gif" />
+    <Content Include="css\msdropdown\icons\demoaction.jpg" />
+    <Content Include="css\msdropdown\icons\enabled.gif" />
+    <Content Include="css\msdropdown\icons\giftlelo_dot_com.jpg" />
+    <Content Include="css\msdropdown\icons\icon_calendar.gif" />
+    <Content Include="css\msdropdown\icons\icon_cart.gif" />
+    <Content Include="css\msdropdown\icons\icon_cd.gif" />
+    <Content Include="css\msdropdown\icons\icon_email.gif" />
+    <Content Include="css\msdropdown\icons\icon_faq.gif" />
+    <Content Include="css\msdropdown\icons\icon_games.gif" />
+    <Content Include="css\msdropdown\icons\icon_lockopen.gif" />
+    <Content Include="css\msdropdown\icons\icon_music.gif" />
+    <Content Include="css\msdropdown\icons\icon_phone.gif" />
+    <Content Include="css\msdropdown\icons\icon_sales.gif" />
+    <Content Include="css\msdropdown\icons\icon_secure.gif" />
+    <Content Include="css\msdropdown\icons\icon_video.gif" />
+    <Content Include="css\msdropdown\icons\jquery-msdropdown.gif" />
+    <Content Include="css\msdropdown\icons\msDropDown.gif" />
+    <Content Include="css\msdropdown\icons\preview.gif" />
+    <Content Include="css\msdropdown\icons\sprite.gif" />
+    <Content Include="css\msdropdown\icons\sprite.jpg" />
+    <Content Include="css\msdropdown\icons\tick.gif" />
+    <Content Include="css\msdropdown\images\icon-arrow.gif" />
+    <Content Include="css\msdropdown\images\icon-ok.gif" />
+    <Content Include="css\msdropdown\images\msDropDown.gif" />
     <Content Include="favicon.ico" />
     <Content Include="global\contact.aspx" />
     <Content Include="global\corpintroduce.aspx" />
     <Content Include="global\dealdata.aspx" />
+    <Content Include="js\jquery.dd.js" />
     <Content Include="order\profitsmg.aspx" />
     <Content Include="useradmin\main.aspx" />
+    <Content Include="useradmin\myfeedback.aspx" />
+    <Content Include="useradmin\myfeedbackview.aspx" />
     <Content Include="useradmin\orders.aspx" />
     <Content Include="useradmin\orderview.aspx" />
     <Content Include="useradmin\stocks.aspx" />
@@ -1046,6 +1091,9 @@
     <None Include="css\font_1421302883_443168.eot" />
     <None Include="css\font_1421302883_443168.ttf" />
     <None Include="css\font_1421302883_443168.woff" />
+    <None Include="css\msdropdown\msdropdown.info" />
+    <None Include="css\msdropdown\msdropdown.install" />
+    <None Include="css\msdropdown\msdropdown.module" />
     <None Include="js\ckeditor\plugins\scayt\LICENSE.md" />
     <None Include="js\ckeditor\plugins\scayt\README.md" />
     <None Include="js\ckeditor\plugins\wsc\LICENSE.md" />

@@ -146,18 +146,18 @@ namespace Chebao.BackAdmin.order
                 list = list.FindAll(l => l.OrderStatus != OrderStatus.已取消);
             if (!string.IsNullOrEmpty(GetString("ordernumber")))
             {
-                string ordernumber = GetString("ordernumber");
-                list = list.FindAll(l => l.OrderNumber.IndexOf(ordernumber) >= 0);
+                string ordernumber = GetString("ordernumber").ToLower();
+                list = list.FindAll(l => l.OrderNumber.ToLower().Contains(ordernumber));
             }
             if (!string.IsNullOrEmpty(GetString("username")))
             {
                 string username = GetString("username").ToLower();
-                list = list.FindAll(l => l.UserName.ToLower().IndexOf(username) >= 0);
+                list = list.FindAll(l => l.UserName.ToLower().Contains(username));
             }
             if (!string.IsNullOrEmpty(GetString("linkname")))
             {
                 string linkname = GetString("linkname").ToLower();
-                list = list.FindAll(l => l.LinkName.ToLower().IndexOf(linkname) >= 0);
+                list = list.FindAll(l => l.LinkName.ToLower().Contains(linkname));
             }
             if (GetInt("orderstatus", -1) >= 0)
             {
@@ -380,7 +380,7 @@ namespace Chebao.BackAdmin.order
                             row.CreateCell(15).SetCellValue(string.Empty);
                             ICellStyle cellStyle = workbook.CreateCellStyle();
                             IFont font = workbook.CreateFont();
-                            font.Color = pi.Amount == 0 ? HSSFColor.Red.Index : HSSFColor.Black.Index;
+                            font.Color = HSSFColor.Black.Index;
                             cellStyle.SetFont(font);
                             cellStyle.BorderTop = NPOI.SS.UserModel.BorderStyle.Thin;
                             cellStyle.BorderRight = NPOI.SS.UserModel.BorderStyle.Thin;
@@ -390,6 +390,11 @@ namespace Chebao.BackAdmin.order
                             cellStyle.RightBorderColor = HSSFColor.Black.Index;
                             cellStyle.BottomBorderColor = HSSFColor.Black.Index;
                             cellStyle.LeftBorderColor = HSSFColor.Black.Index;
+                            if (pi.Amount == 0)
+                            {
+                                cellStyle.FillForegroundColor = HSSFColor.Red.Index;
+                                cellStyle.FillPattern = FillPattern.SolidForeground;
+                            }
                             for (int i = 0; i <= 14; i++)
                             {
                                 sheet.GetRow(index).Cells[i].CellStyle = cellStyle;
@@ -436,6 +441,8 @@ namespace Chebao.BackAdmin.order
                     workbook = null;
                 }
             }
+
+            hdnIds.Value = string.Empty;
 
             #region 已删除
 

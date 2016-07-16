@@ -72,7 +72,7 @@ namespace Chebao.BackAdmin.order
             }
             if (!string.IsNullOrEmpty(GetString("username")))
             {
-                list = list.FindAll(l => l.UserName == GetString("username"));
+                list = list.FindAll(l => l.UserName.ToLower().Contains(GetString("username").ToLower()));
             }
 
             foreach (OrderInfo order in list)
@@ -175,7 +175,7 @@ namespace Chebao.BackAdmin.order
             }
             if (!string.IsNullOrEmpty(GetString("username")))
             {
-                list = list.FindAll(l => l.UserName == GetString("username"));
+                list = list.FindAll(l => l.UserName.ToLower().Contains(GetString("username").ToLower()));
             }
             foreach (OrderInfo order in list)
             {

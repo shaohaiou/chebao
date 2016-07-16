@@ -428,12 +428,13 @@ border: 1px #d7d7d7 solid;line-height:22px;text-align: center;}
 .FilterNavForm{border:1px #d7d7d7 solid;border-bottom:0;margin-bottom:15px;}
 .FilterNavForm h5 em{color:#0971b2;font-style:normal;}
 .FilterNavForm h5 span{padding:0 8px;}
-.filter_car  dl{position:relative;padding-left:92px;overflow:hidden;line-height:28px;_width:884px;}
+.filter_car  dl{position:relative;padding-left:92px;_width:884px;}
 .FilterNavForm select{width:120px;padding:4px 0;}
-#carbrands .rideselect,#carmodels .rideselect,#caroutputs .rideselect,#caryears .rideselect,#carnews .rideselect{height:28px;}
+/*#carbrands .rideselect,#carmodels .rideselect,#caroutputs .rideselect,#caryears .rideselect,#carnews .rideselect{height:28px;}*/
 .filter_car{position:relative;border-bottom:1px #d7d7d7 solid;padding-bottom:10px;width:984px;z-index:200;height:26px;padding-top:10px;background:#0971B2;}
 .filter_car dt{position:absolute;left:0;top:0;width:90px;text-align:right;font-weight:bold;line-height:20px;color:#fff;line-height:28px;height:28px;}
 .filter_car dd{float:left;margin-right:12px;}
+.filter_car img{width:16px;height:16px;}
 .f_c_btn{position:absolute;display:block;height:28px;line-height:28px;width:98px;text-align:center;right:12px;top:9px;background:#f0f0f0;font-family:"宋体";border:0px;}
 .f_c_search{border: 0px;padding-left: 4px;position: absolute;display: block;height: 26px;line-height: 24px;width: 120px;text-align: left;right: 120px;top: 9px;background: #f0f0f0;font-family: "宋体";}
 .subcate .cur_goods_sort{background:#b10000;color:#fff;}
@@ -463,8 +464,8 @@ display:block;color:#202020;text-align:center;padding-right:10px;cursor:pointer;
 .filter_choosemore{float:right;position:relative;display: block;    height:22px;line-height:22px;width:50px;overflow:hidden;background:#f0f0f0;border:1px #d7d7d7 solid;padding-left:10px;}
 .filter_choosemore i,.filter_showmore i{position:absolute;display:block;background:url(../images_3/goods_ico.png) 0 -115px no-repeat;width:8px;height:8px;right:6px;top:7px;}
 
-.pros_item .ooss{border:1px #ddd solid;padding-top:40px;height:160px;}
-.sold_out{font-size:30px;font-family:'微软雅黑','黑体';display:block;height:30px;line-height:30px;padding-left:230px;;}
+.pros_item .ooss{border:1px #ddd solid;padding-top:40px;min-height:360px;}
+.sold_out{font-size:30px;font-family:'微软雅黑','黑体';display:block;height:30px;line-height:30px;}
 .sold_out_info{margin-top:40px;}
 .sold_out_info span{float:left;height:36px;line-height:36px;color:#999;margin-left:340px;}
 .sold_out_info a{display:block;height:32px;line-height:32px;text-align:center;width:140px;float:left;background:#f17f00;color:#fff;margin-left: 12px;background:#b10000;}
@@ -1100,7 +1101,7 @@ fieldset, img {border: 0;}
 .buy-th-line .buy-th-price {width: 147px;}
 .buy-th-line .buy-th-quantity {width: 117px;}
 .buy-th-line .buy-th-promo {width: 190px;}
-.buy-th-line .buy-th-total {width: 138px;}
+.buy-th-line .buy-th-total {width: 134px;}
 .orderInfo {height: 30px;line-height: 30px;margin-top: 25px;}
 .blue-line {background-image: url(../images/T1Ll1iXfNXXXXXXXXX-950-1.png);background-repeat: repeat-x;background-position: 0 bottom;}
 .order .item .item-title {text-align: left;padding-left: 70px;height: 70px;}
@@ -1200,6 +1201,8 @@ fieldset, img {border: 0;}
 .brandLayer .bottomLine td { height: 4px; }
 .subLayer { border:1px solid #ff7b00; background-color: #feffef; }
 .brandLayer .bgGray { background-color: #f6f6f6; }
+
+.orderbody{border: 2px #9A9A9A solid;padding: 5px;margin: 10px 0px;border-radius: 10px;box-shadow: 2px 2px 2px #999;}
 
 @font-face{font-family:tb-toolbar-iconfont;src:url(../css/font_1418875995_7687602.eot);src:url(../css/font_1418875995_7687602.eot?#iefix) format('embedded-opentype'),url(../css/font_1418875995_7687602.woff) format('woff'),url(../css/font_1418875995_7687602.ttf) format('truetype'),url(../css/font_1418875995_7687602.svg#iconfont) format('svg')}
 @font-face{font-family:global-iconfont;src:url(../css/font_1404888168_2057645.eot);src:url(../css/font_1404888168_2057645.eot?#iefix) format("embedded-opentype"),url(../css/font_1404888168_2057645.woff) format("woff"),url(../css/font_1404888168_2057645.ttf) format("truetype"),url(../css/font_1404888168_2057645.svg#uxiconfont) format("svg")}
