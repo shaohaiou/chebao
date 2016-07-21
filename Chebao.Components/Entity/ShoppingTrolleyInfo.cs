@@ -16,5 +16,7 @@ namespace Chebao.Components
         public int Amount { get; set; }
 
         public string CabmodelStr { get; set; }
+
+        public string ProductMix { get; set; }
     }
 }

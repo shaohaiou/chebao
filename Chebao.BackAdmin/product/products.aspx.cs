@@ -157,6 +157,10 @@ namespace Chebao.BackAdmin.product
             string number = GetString("n");
             int t = GetInt("t", -1);
             int id = GetInt("id");
+            string b = GetString("b");
+            string c = GetString("c");
+            string pl = GetString("p");
+            string nf = GetString("nf");
             if (id > 0)
             {
                 CabmodelInfo cab = CabmodelList.Find(l => l.ID == id);
@@ -193,7 +197,52 @@ namespace Chebao.BackAdmin.product
                 Session[GlobalKey.SEARCHCABMODELID] = id;
             }
             else
+            {
                 Session[GlobalKey.SEARCHCABMODELID] = null;
+
+                if (!string.IsNullOrEmpty(b))
+                {
+                    SetSelectedByValue(ddlBrand, b);
+                    ddlCabmodel.DataSource = CabmodelList.FindAll(l => l.BrandID.ToString() == b).Select(l => l.CabmodelName).Distinct().Select(s => new KeyValuePair<string, string>(s, s)).ToList();
+                    ddlCabmodel.DataTextField = "Key";
+                    ddlCabmodel.DataValueField = "Value";
+                    ddlCabmodel.DataBind();
+                    ddlCabmodel.Items.Insert(0, new ListItem("请选择型号", "-1"));
+                    ddlCabmodel.Enabled = true;
+                    if (!string.IsNullOrEmpty(c))
+                    {
+                        SetSelectedByValue(ddlCabmodel, c);
+                        ddlPailiang.DataSource = CabmodelList.FindAll(l => l.BrandID.ToString() == b && l.CabmodelName == c).Select(l => l.Pailiang).Distinct().Select(s => new KeyValuePair<string, string>(s, s)).ToList();
+                        ddlPailiang.DataTextField = "Key";
+                        ddlPailiang.DataValueField = "Value";
+                        ddlPailiang.DataBind();
+                        ddlPailiang.Items.Insert(0, new ListItem("请选择排量", "-1"));
+                        ddlPailiang.Enabled = true;
+                        if (!string.IsNullOrEmpty(pl))
+                        {
+                            SetSelectedByValue(ddlPailiang, pl);
+                            ddlNianfen.DataSource = CabmodelList.FindAll(l => l.BrandID.ToString() == b && l.CabmodelName == c && l.Pailiang == pl).Select(l => l.Nianfen.ToString()).Distinct().OrderBy(l => l).Select(s => new KeyValuePair<string, string>(s, s)).ToList();
+                            ddlNianfen.DataTextField = "Key";
+                            ddlNianfen.DataValueField = "Value";
+                            ddlNianfen.DataBind();
+                            ddlNianfen.Items.Insert(0, new ListItem("请选择出厂年份", "-1"));
+                            ddlNianfen.Enabled = true;
+                            if (!string.IsNullOrEmpty(nf))
+                                SetSelectedByValue(ddlNianfen, nf);
+                            else
+                            {
+                                List<CabmodelInfo> list = CabmodelList.FindAll(l => l.BrandID.ToString() == b && l.CabmodelName == c && l.Pailiang == pl).ToList();
+                                productlist = productlist.FindAll(p => list.Exists(l => p.Cabmodels.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Contains(l.ID.ToString())));
+                            }
+                        }
+                        else
+                        {
+                            List<CabmodelInfo> list = CabmodelList.FindAll(l => l.BrandID.ToString() == b && l.CabmodelName == c).ToList();
+                            productlist = productlist.FindAll(p => list.Exists(l=>p.Cabmodels.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries).Contains(l.ID.ToString())));
+                        }
+                    }
+                }
+            }
 
             if (t >= 0)
             {
@@ -208,9 +257,9 @@ namespace Chebao.BackAdmin.product
 
             HasProduct = productlist != null && productlist.Count > 0;
             productlist = productlist.OrderBy(p => (int)p.ProductType).ToList();
-            productlist = productlist.Count > 8 ? productlist.GetRange(0, 8) : productlist;
+            productlist = productlist.Count > 100 ? productlist.GetRange(0, 8) : productlist;
             total = productlist.Count();
-            productlist = productlist.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList<ProductInfo>();
+            //productlist = productlist.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList<ProductInfo>();
             rptProduct.DataSource = productlist;
             rptProduct.DataBind();
 

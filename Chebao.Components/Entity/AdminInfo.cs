@@ -43,6 +43,12 @@ namespace Chebao.Components
         public string LastLoginIP { get; set; }
 
         /// <summary>
+        /// 最后登录位置
+        /// </summary>
+        [JsonProperty("LastLoginPosition")]
+        public string LastLoginPosition { get; set; }
+
+        /// <summary>
         /// 最后登录时间
         /// </summary>
         [JsonProperty("LastLoginTime")]

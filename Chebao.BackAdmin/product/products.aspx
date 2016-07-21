@@ -13,25 +13,54 @@
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
     <script src="../js/head3.js" type="text/javascript"></script>
     <script src="../js/msdropdown/jquery.dd.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-ui-1.7.3.custom.min.js" type="text/javascript"></script>
+    <link href="../css/newstart/jquery-ui-1.7.3.custom.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript">
+        var currentpid = 0;
+        var diagbuynumber;
         $(function () {
-            $("#txtsearch").focus(function () {
-                if ($(this).val() == "请输入lamda型号") {
-                    $(this).val("");
-                    $(this).css("color", "Black");
-                }
-            }).blur(function () {
-                if ($(this).val() == "") {
-                    $(this).val("请输入lamda型号");
-                    $(this).css("color", "Gray");
-                }
+            var diagbuynumber = $("#buynumber"); //弹出区域显示框
+            diagbuynumber.dialog({
+                width: 440,
+                modal: true,
+                resizable: false,
+                autoOpen: false,
+                title: '设置购买数量'
             });
             $("#btnsearch").click(function () {
-                location.href = "?n=" + ($.trim($("#txtsearch").val()) == "请输入lamda型号" ? "" : escape($.trim($("#txtsearch").val())));
+                var query = new Array();
+                if ($.trim($("#txtsearch").val()) != "")
+                    query[query.length] = "n=" + escape($.trim($("#txtsearch").val()));
+                if ($.trim($("#ddlBrand").val()) != "-1")
+                    query[query.length] = "b=" + $.trim($("#ddlBrand").val());
+                if ($.trim($("#ddlCabmodel").val()) != "-1")
+                    query[query.length] = "c=" + $.trim($("#ddlCabmodel").val());
+                if ($.trim($("#ddlPailiang").val()) != "-1")
+                    query[query.length] = "p=" + $.trim($("#ddlPailiang").val());
+                if ($.trim($("#ddlNianfen").val()) != "-1")
+                    query[query.length] = "nf=" + $.trim($("#ddlNianfen").val());
+                location = "?" + (query.length > 0 ? $(query).map(function () {
+                    return this;
+                }).get().join("&") : "");
+
                 return false;
             });
             $("#form1").submit(function () {
-                location.href = "?n=" + ($.trim($("#txtsearch").val()) == "请输入lamda型号" ? "" : escape($.trim($("#txtsearch").val())));
+                var query = new Array();
+                if ($.trim($("#txtsearch").val()) != "")
+                    query[query.length] = "n=" + escape($.trim($("#txtsearch").val()));
+                if ($.trim($("#ddlBrand").val()) != "-1")
+                    query[query.length] = "b=" + $.trim($("#ddlBrand").val());
+                if ($.trim($("#ddlCabmodel").val()) != "-1")
+                    query[query.length] = "c=" + $.trim($("#ddlCabmodel").val());
+                if ($.trim($("#ddlPailiang").val()) != "-1")
+                    query[query.length] = "p=" + $.trim($("#ddlPailiang").val());
+                if ($.trim($("#ddlNianfen").val()) != "-1")
+                    query[query.length] = "nf=" + $.trim($("#ddlNianfen").val());
+                location = "?" + (query.length > 0 ? $(query).map(function () {
+                    return this;
+                }).get().join("&") : "");
+
                 return false;
             });
             $("#imgpic").click(function () {
@@ -44,11 +73,38 @@
                 $(".tb-toolbar-item-tip", $(this)).hide();
             });
             $(".J_LinkAdd").click(function () {
-                var productid = $(this).attr("pid");
-                var amount = 1;
+                currentpid = $(this).attr("pid");
+                $.ajax({
+                    url: "productstock.aspx",
+                    data: { pid: $(this).attr("pid"), d: new Date() },
+                    type: 'GET',
+                    dataType: "text",
+                    error: function (msg) {
+                        alert("发生错误");
+                    },
+                    success: function (data) {
+                        if (data == "") {
+                            alert("数据获取失败");
+                        } else {
+                            $("#buybody").html(data);
+                            BindBuynumberEvent();
+                            diagbuynumber.dialog("open");
+                        }
+                    }
+                });
+            });
+            $("#btnBuysubmit").click(function () {
+                if ($(".J_ItemAmount").length == 0) {
+                    alert("很抱歉，没有可购买的商品！");
+                    return;
+                }
+
+                var productmix = $(".J_ItemAmount").map(function(){
+                    return $(this).attr("data-name") + "," + $(this).val();
+                }).get().join("|");
                 $.ajax({
                     url: "/remoteaction.ashx",
-                    data: { action: "addshoppingtrolley", pid: productid, amount: amount, d: new Date() },
+                    data: { action: "addshoppingtrolley", pid: currentpid, amount: 1, productmix: productmix, d: new Date() },
                     type: 'GET',
                     dataType: "json",
                     error: function (msg) {
@@ -56,7 +112,6 @@
                     },
                     success: function (data) {
                         if (data.Value == "success") {
-                            //                            alert("已成功加入购物车！");
                             location.href = location.href.replace("#", "");
                         }
                         else {
@@ -199,6 +254,93 @@
         function MSDropDown() {
             $("body select").msDropDown();
         }
+        function BindBuynumberEvent() {
+            $(".J_Plus").click(function () {
+                var amount = parseInt($(this).prev().val());
+                $(this).prev().val(amount + 1);
+                CheckAmount($(this).prev());
+            });
+            $(".J_Minus").click(function () {
+                var amount = parseInt($(this).next().val());
+                $(this).next().val(amount - 1);
+                CheckAmount($(this).next());
+            });
+            $(".J_ItemAmount").change(function () {
+                CheckAmount(this);
+            });
+            $(".J_ItemAmount").keyup(function () {
+                CheckAmount(this);
+            });
+
+            $(".J_ItemAmount").each(function () {
+                CheckAmount(this);
+            });
+        }
+        function CheckAmount(b) {
+            var amount = parseInt($(b).val());
+            var stock = parseInt($(b).attr("data-max"));
+            if (amount < 0 || !amount || stock == 0) {
+                $(b).val(0);
+            }
+            else if (stock < amount && stock > 0) {
+                $(b).val(stock);
+                $(b).parent().next().html("<em class=\"error-msg\">最多只可购买" + stock + "件</em>");
+                setTimeout(function () {
+                    $(b).parent().next().html("");
+                }, 1000);
+            }
+            else {
+                $(b).val(amount);
+            }
+            //            if (stock == 0)
+            //                $(b).val(0);
+            if (parseInt($(b).val()) <= 1) {
+                if (!$(b).prev().hasClass("no-minus")) {
+                    $(b).prev().addClass("no-minus");
+                }
+                if ($(b).prev().hasClass("minus")) {
+                    $(b).prev().removeClass("minus");
+                }
+                $(b).prev().unbind("click");
+            }
+            if (parseInt($(b).val()) == stock) {
+                if (!$(b).next().hasClass("no-plus")) {
+                    $(b).next().addClass("no-plus");
+                }
+                if ($(b).next().hasClass("plus")) {
+                    $(b).next().removeClass("plus");
+                }
+                $(b).next().unbind("click");
+            }
+            if (parseInt($(b).val()) > 1) {
+                $(b).prev().unbind("click");
+                $(b).prev().click(function () {
+                    var amount = parseInt($(b).val());
+                    $(b).val(amount - 1);
+                    CheckAmount(b);
+                });
+                if ($(b).prev().hasClass("no-minus")) {
+                    $(b).prev().removeClass("no-minus");
+                }
+                if (!$(b).prev().hasClass("minus")) {
+                    $(b).prev().addClass("minus");
+                }
+            }
+            if (parseInt($(b).val()) < stock) {
+                $(b).next().unbind("click");
+                $(b).next().click(function () {
+                    var amount = parseInt($(b).val());
+                    $(b).val(amount + 1);
+                    CheckAmount(b);
+                });
+                if ($(b).next().hasClass("no-plus")) {
+                    $(b).next().removeClass("no-plus");
+                }
+                if (!$(b).next().hasClass("plus")) {
+                    $(b).next().addClass("plus");
+                }
+            }
+        }
     </script>
 </head>
 <body>
@@ -249,7 +391,7 @@
                                 </dl>
                             </ContentTemplate>
                         </asp:UpdatePanel>
-                        <input type="text" runat="server" value="请输入lamda型号" class="f_c_search" style="color: Gray;"
+                        <input type="text" runat="server" placeholder="请输入lamda型号" class="f_c_search" style="color: Gray;"
                             id="txtsearch" />
                         <input type="submit" class="f_c_btn" id="btnsearch" value="搜索" />
                         </form>
@@ -480,6 +622,15 @@
         </ul>
     </div>
     <%} %>
+    
+    <div id="buynumber" style="display: none;">
+        <div id="buybody">
+            
+        </div>
+        <div id="buysubmit" style="padding:10px;">
+            <input type="button" id="btnBuysubmit" value="确定" class="an1" />
+        </div>
+    </div>
     <%--<div id="divflay" style="border: 0px; z-index: 1109; opacity: 0.7; position: absolute;
         visibility: hidden; display: block; top: 0px; left: 0px; width: 100%; height: 100%;
         background-color: rgb(0, 0, 0);">

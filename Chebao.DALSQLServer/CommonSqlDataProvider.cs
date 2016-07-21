@@ -98,6 +98,7 @@ namespace Chebao.DALSQLServer
                 ,[Administrator]
                 ,[LastLoginIP]
                 ,[LastLoginTime]
+                ,[LastLoginPosition]
                 ,[PropertyNames]
                 ,[PropertyValues]
                 ,[UserRole]
@@ -107,6 +108,7 @@ namespace Chebao.DALSQLServer
                 ,@Administrator
                 ,@LastLoginIP
                 ,@LastLoginTime
+                ,@LastLoginPosition
                 ,@PropertyNames
                 ,@PropertyValues
                 ,@UserRole)";
@@ -118,6 +120,7 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@Administrator",model.Administrator),
                 new OleDbParameter("@LastLoginIP",model.LastLoginIP),
                 new OleDbParameter("@LastLoginTime",model.LastLoginTime.HasValue ? model.LastLoginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : null),
+                new OleDbParameter("@LastLoginPosition",model.LastLoginPosition),
                 new OleDbParameter("@PropertyNames",data.Keys),
                 new OleDbParameter("@PropertyValues",data.Values),
                 new OleDbParameter("@UserRole",(int)model.UserRole)
@@ -142,6 +145,7 @@ namespace Chebao.DALSQLServer
                 ,[Administrator] = @Administrator
                 ,[LastLoginIP] = @LastLoginIP
                 ,[LastLoginTime] = @LastLoginTime
+                ,[LastLoginPosition] = @LastLoginPosition
                 ,[PropertyNames] = @PropertyNames
                 ,[PropertyValues] = @PropertyValues 
                 WHERE [ID] = @ID";
@@ -152,6 +156,7 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@Administrator",model.Administrator),
                 new OleDbParameter("@LastLoginIP",model.LastLoginIP),
                 new OleDbParameter("@LastLoginTime",model.LastLoginTime.HasValue ? model.LastLoginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : null),
+                new OleDbParameter("@LastLoginPosition",model.LastLoginPosition),
                 new OleDbParameter("@PropertyNames",data.Keys),
                 new OleDbParameter("@PropertyValues",data.Values),
                 new OleDbParameter("@ID",model.ID)
@@ -298,6 +303,49 @@ namespace Chebao.DALSQLServer
             if (result < 1)
                 return false;
             return true;
+        }
+
+        public override void AddLoginRecord(LoginRecordInfo entity)
+        {
+            string sql = @"
+            INSERT INTO Chebao_LoginRecord(
+                [AdminID]
+                ,[AdminName]
+                ,[LoginTime]
+                ,[LoginIP]
+                ,[LoginPosition]
+            )VALUES(
+                @AdminID
+                ,@AdminName
+                ,@LoginTime
+                ,@LoginIP
+                ,@LoginPosition
+            )";
+            OleDbParameter[] p = 
+            { 
+                new OleDbParameter("@AdminID",entity.AdminID),
+                new OleDbParameter("@AdminName",entity.AdminName),
+                new OleDbParameter("@LoginTime",entity.LoginTime.ToString("yyyy-MM-dd HH:mm:ss")),
+                new OleDbParameter("@LoginIP",entity.LoginIP),
+                new OleDbParameter("@LoginPosition",entity.LoginPosition)
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override List<LoginRecordInfo> GetLoginRecords(int userid)
+        {
+            string sql = "SELECT * FROM Chebao_LoginRecord WHERE [AdminID]=@AdminID";
+
+            List<LoginRecordInfo> list = new List<LoginRecordInfo>();
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql, new OleDbParameter("@AdminID", userid)))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateLoginRecord(reader));
+                }
+            }
+            return list;
+
         }
 
         #endregion
@@ -685,11 +733,13 @@ namespace Chebao.DALSQLServer
                     ,[UserID]
                     ,[Amount]
                     ,[CabmodelStr]
+                    ,[ProductMix]
                 )VALUES(
                     @ProductID
                     ,@UserID
                     ,@Amount
                     ,@CabmodelStr
+                    ,@ProductMix
                 )";
 
             OleDbParameter[] p = 
@@ -697,7 +747,8 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@ProductID",entity.ProductID),
                 new OleDbParameter("@UserID",entity.UserID),
                 new OleDbParameter("@Amount",entity.Amount),
-                new OleDbParameter("@CabmodelStr",entity.CabmodelStr)
+                new OleDbParameter("@CabmodelStr",entity.CabmodelStr),
+                new OleDbParameter("@ProductMix",entity.ProductMix)
             };
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
             sql = "SELECT MAX([ID]) FROM Chebao_ShoppingTrolley";
@@ -710,11 +761,13 @@ namespace Chebao.DALSQLServer
             string sql = @"
                 UPDATE Chebao_ShoppingTrolley SET
                     [Amount]=@Amount
+                    ,[ProductMix]=@ProductMix
                 WHERE [ID]=@ID";
 
             OleDbParameter[] p = 
             { 
                 new OleDbParameter("@Amount",entity.Amount),
+                new OleDbParameter("@ProductMix",entity.ProductMix),
                 new OleDbParameter("@ID",entity.ID)
             };
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);

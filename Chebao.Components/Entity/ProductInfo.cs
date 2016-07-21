@@ -70,6 +70,11 @@ namespace Chebao.Components
         public int SID { get; set; }
 
         /// <summary>
+        /// 产品分类数量
+        /// </summary>
+        public string ProductMixSetting { get; set; }
+
+        /// <summary>
         /// 搜索信息
         /// </summary>
         public string CabmodelStr { get; set; }

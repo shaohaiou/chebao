@@ -103,22 +103,25 @@ namespace Chebao.BackAdmin.product
         {
             List<ShoppingTrolleyInfo> listShoppingTrolley = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
             List<ProductInfo> listAllProduct;
-            if (Admin.ParentAccountID == 0)
+            //if (Admin.ParentAccountID == 0)
                 listAllProduct = Cars.Instance.GetProductList(true);
-            else
-                listAllProduct = Cars.Instance.GetProductListByUser(Admin.ParentAccountID);
+            //else
+            //    listAllProduct = Cars.Instance.GetProductListByUser(Admin.ParentAccountID);
             listShoppingTrolley = listShoppingTrolley.FindAll(l => listAllProduct.Exists(p => p.ID == l.ProductID));
             if (listShoppingTrolley.Count > 0)
             {
                 string[] pids = listShoppingTrolley.OrderByDescending(s => s.ID).Select(s => s.ProductID + "|" + s.ID).ToArray();
+                List<KeyValuePair<int,string>> productmixlist = listShoppingTrolley.OrderByDescending(s => s.ID).Select(s => new KeyValuePair<int,string>(s.ProductID,s.ProductMix)).ToList();
                 List<ProductInfo> listProdcutInShoppingTrolley = new List<ProductInfo>();
                 for (int i = 0; i < pids.Length; i++)
                 {
                     int pid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[0]);
                     int sid = DataConvert.SafeInt(pids[i].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries)[1]);
+                    string productmixsetting = productmixlist.Find(l=>l.Key == pid).Value;
                     ProductInfo entity = listAllProduct.Find(p => p.ID == pid).Clone();
                     entity.SID = sid;
                     entity.CabmodelStr = listShoppingTrolley.FindAll(s => s.ID == sid).Select(s => string.IsNullOrEmpty(s.CabmodelStr) ? string.Empty : (" - " + s.CabmodelStr)).First();
+                    entity.ProductMixSetting = productmixsetting;
                     listProdcutInShoppingTrolley.Add(entity);
                 }
                 ItemCount = listProdcutInShoppingTrolley.Count;
@@ -134,11 +137,17 @@ namespace Chebao.BackAdmin.product
                 ProductInfo entity = e.Item.DataItem as ProductInfo;
                 Repeater rptProductMix = (Repeater)e.Item.FindControl("rptProductMix");
                 ShoppingTrolleyInfo st = CurrentShoppingTrolleyList.Find(s => s.ID == entity.SID);
+                List<KeyValuePair<string, int>> productmixsettinglist = new List<KeyValuePair<string, int>>();
+                if (!string.IsNullOrEmpty(entity.ProductMixSetting))
+                {
+                    string[] productmixsettings = entity.ProductMixSetting.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                    productmixsettinglist = productmixsettings.Select(p => new KeyValuePair<string, int>(p.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(p.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1]))).ToList();
+                }
 
                 //if (Admin.ParentAccountID == 0)
-                    rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Amount = (productmixsettinglist.Count > 0 ? productmixsettinglist.Find(l=>l.Key == p.Key).Value : 1), Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
                 //else
-                //    rptProductMix.DataSource = entity.UserProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Costs = GetUserProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                //    rptProductMix.DataSource = entity.UserProductMix.Select(p => new ProductMixInfo { Name = p.Key, Amount = (productmixsettinglist.Count > 0 ? productmixsettinglist.Find(l=>l.Key == p.Key).Value : 1), Stock = p.Value, SID = entity.SID, UnitPrice = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Costs = GetUserProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
                 rptProductMix.DataBind();
             }
         }
@@ -154,7 +163,7 @@ namespace Chebao.BackAdmin.product
                 if (txtAmount != null)
                 {
                     txtAmount.Attributes["data-id"] = ((ProductMixInfo)e.Item.DataItem).SID.ToString() + "_" + e.Item.ItemIndex;
-                    txtAmount.Value = "1";
+                    txtAmount.Value = pminfo.Amount.ToString();
                     ProductMixInfo entity = ((ProductMixInfo)e.Item.DataItem);
                     int stock = entity.Stock;
                     if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))

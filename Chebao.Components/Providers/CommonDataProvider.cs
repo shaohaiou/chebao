@@ -155,6 +155,10 @@ namespace Chebao.Components
         /// <returns></returns>
         public abstract string GetAdminKey(int userID);
 
+        public abstract void AddLoginRecord(LoginRecordInfo entity);
+
+        public abstract List<LoginRecordInfo> GetLoginRecords(int userid);
+
         /// <summary>
         /// 填充后台用户实体类
         /// </summary>
@@ -166,6 +170,7 @@ namespace Chebao.Components
             admin.ID = (int)reader["ID"];
             admin.Administrator = DataConvert.SafeBool(reader["Administrator"]);
             admin.LastLoginIP = reader["LastLoginIP"] as string;
+            admin.LastLoginPosition = reader["LastLoginPosition"] as string;
             admin.LastLoginTime = reader["LastLoginTime"] as DateTime?;
             admin.Password = reader["Password"] as string;
             admin.UserName = reader["UserName"] as string;
@@ -177,6 +182,18 @@ namespace Chebao.Components
             admin.SetSerializerData(data);
 
             return admin;
+        }
+        protected LoginRecordInfo PopulateLoginRecord(IDataReader reader)
+        {
+            LoginRecordInfo entity = new LoginRecordInfo();
+            entity.ID = (int)reader["ID"];
+            entity.AdminID = (int)reader["AdminID"];
+            entity.AdminName = reader["AdminName"] as string;
+            entity.LoginTime = DataConvert.SafeDate(reader["LoginTime"]);
+            entity.LoginIP = reader["LoginIP"] as string;
+            entity.LoginPosition = reader["LoginPosition"] as string;
+
+            return entity;
         }
 
         #endregion
@@ -320,7 +337,8 @@ namespace Chebao.Components
                 ProductID = DataConvert.SafeInt(reader["ProductID"]),
                 UserID = DataConvert.SafeInt(reader["UserID"]),
                 Amount = DataConvert.SafeInt(reader["Amount"]),
-                CabmodelStr = reader["CabmodelStr"] as string
+                CabmodelStr = reader["CabmodelStr"] as string,
+                ProductMix = reader["ProductMix"] as string
             };
 
             return entity;

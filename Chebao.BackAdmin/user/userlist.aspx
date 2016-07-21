@@ -99,6 +99,7 @@
                         <td>
                             时间：<%#Eval("LastLoginTime", "{0:yyyy-MM-dd HH:mm}")%><br />
                             IP:<%#Eval("LastLoginIP")%><br />
+                            地区:<%#Eval("LastLoginPosition")%><br />
                             次数：<%#Eval("LoginTimes") %>
                         </td>
                         <td>
@@ -110,6 +111,7 @@
                             <%# GetSubAccount(Eval("ID")) %><br />
                             <a href="userpowersetting.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>">
                                 品牌权限</a>
+                            <a href="userloginrecords.aspx?id=<%#Eval("ID") %>&from=<%=UrlEncode(CurrentUrl) %>">登录记录</a>
                         </td>
                     </tr>
                 </ItemTemplate>

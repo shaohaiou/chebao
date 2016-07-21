@@ -70,6 +70,7 @@
     <Compile Include="Entity\DistrictInfo.cs" />
     <Compile Include="Entity\EventLogEntry.cs" />
     <Compile Include="Entity\Job.cs" />
+    <Compile Include="Entity\LoginRecordInfo.cs" />
     <Compile Include="Entity\MessageBoardInfo.cs" />
     <Compile Include="Entity\OrderInfo.cs" />
     <Compile Include="Entity\OrderProductInfo.cs" />

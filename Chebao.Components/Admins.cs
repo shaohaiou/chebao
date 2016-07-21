@@ -143,6 +143,16 @@ namespace Chebao.Components
             return CommonDataProvider.Instance().GetAdminKey(userid);
         }
 
+        public void AddLoginRecord(LoginRecordInfo entity)
+        {
+            CommonDataProvider.Instance().AddLoginRecord(entity);
+        }
+
+        public List<LoginRecordInfo> GetLoginRecords(int userid)
+        {
+            return CommonDataProvider.Instance().GetLoginRecords(userid);
+        }
+
         #endregion
     }
 }

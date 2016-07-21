@@ -96,12 +96,14 @@ namespace Chebao.BackAdmin
             }
             int pid = WebHelper.GetInt("pid");
             int amount = WebHelper.GetInt("amount");
+            string productmix = WebHelper.GetString("productmix");
             ShoppingTrolleyInfo entity = new ShoppingTrolleyInfo()
             {
                 Amount = amount,
                 ProductID = pid,
                 UserID = ChebaoContext.Current.AdminUserID,
-                CabmodelStr = SearchCabmodel == null ? string.Empty : SearchCabmodel.CabmodelNameBind
+                CabmodelStr = SearchCabmodel == null ? string.Empty : SearchCabmodel.CabmodelNameBind,
+                ProductMix = productmix
             };
             if (Cars.Instance.AddShoppingTrolley(entity) > 0)
             {

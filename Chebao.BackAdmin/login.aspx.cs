@@ -57,8 +57,18 @@ namespace Chebao.BackAdmin
                             {
                                 admin.LastLoginIP = WebHelper.GetClientsIP();
                                 admin.LastLoginTime = DateTime.Now;
+                                admin.LastLoginPosition = WebHelper.GetClientsPosition();
                                 admin.LoginTimes++;
                                 Admins.Instance.UpdateAdmin(admin);
+                                LoginRecordInfo lrinfo = new LoginRecordInfo() 
+                                {
+                                    AdminID = admin.ID,
+                                    AdminName = admin.UserName,
+                                    LoginIP = admin.LastLoginIP,
+                                    LoginPosition = admin.LastLoginPosition,
+                                    LoginTime = admin.LastLoginTime.Value
+                                };
+                                Admins.Instance.AddLoginRecord(lrinfo);
                                 Session[GlobalKey.SESSION_ADMIN] = admin;
                                 ManageCookies.CreateCookie(GlobalKey.SESSION_ADMIN, id.ToString(), true, DateTime.Today.AddDays(1), ChebaoContext.Current.CookieDomain);
                                 if (admin.UserRole == Components.UserRoleType.普通用户)

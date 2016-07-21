@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Diagnostics;
 using System.Web.UI.WebControls;
 using System.Collections.Specialized;
+using System.Text.RegularExpressions;
 
 namespace Chebao.Tools
 {
@@ -167,6 +168,40 @@ namespace Chebao.Tools
             }
             return new string[0];
         }
+
+        public static string GetClientsPosition()
+        {
+            string result = string.Empty;
+            try
+            {
+                string ip = GetClientsIP();
+                string url = "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js&ip=" + ip;
+                Regex rCountry = new Regex("\"country\":\"([\\s\\S]*?)\"");
+                Regex rProvince = new Regex("\"province\":\"([\\s\\S]*?)\"");
+                Regex rCity = new Regex("\"city\":\"([\\s\\S]*?)\"");
+                string html = Http.GetPage(url);
+                string country = string.Empty;
+                string province = string.Empty;
+                string city = string.Empty;
+
+                if (rCountry.IsMatch(html))
+                    country = StrHelper.Uncode(rCountry.Match(html).Groups[1].Value);
+                if (rProvince.IsMatch(html))
+                    province = StrHelper.Uncode(rProvince.Match(html).Groups[1].Value);
+                if (rCity.IsMatch(html))
+                    city = StrHelper.Uncode(rCity.Match(html).Groups[1].Value);
+
+                result = string.Format("{0}{1}{2}",
+                    string.IsNullOrEmpty(country) ? string.Empty : country
+                    , string.IsNullOrEmpty(province) ? string.Empty : (" " + province)
+                    , string.IsNullOrEmpty(city) ? string.Empty : (" " + city));
+
+            }
+            catch { }
+
+            return result;
+        }
+
         #endregion
 
         #region 其他相关

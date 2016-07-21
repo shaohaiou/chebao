@@ -67,7 +67,7 @@ namespace Chebao.BackAdmin.product
 
         private void BindControler()
         {
-            ddlBrand.DataSource = Cars.Instance.GetBrandList(true);
+            ddlBrand.DataSource = Cars.Instance.GetBrandList(true).OrderBy(l => l.NameIndex).ToList();
             ddlBrand.DataTextField = "BrandNameBind";
             ddlBrand.DataValueField = "ID";
             ddlBrand.DataBind();

@@ -204,7 +204,6 @@
                     $(b).next().addClass("plus");
                 }
             }
-            Account();
         }
 
         function Account() {

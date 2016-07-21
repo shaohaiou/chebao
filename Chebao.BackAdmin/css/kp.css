@@ -3,7 +3,8 @@
 h3 {border-bottom: 2px solid #f1f1f1;margin-bottom: 20px;}
 h3 a{font-size:12px;color:#249BE4!important;}
 .hide{display:none;}
-
+.bold{font-weight:bold;}
+.tc{text-align:center;}
 /*车型特卖*/
 .hover_b{border:1px #b10000 solid;}
 
@@ -434,7 +435,7 @@ border: 1px #d7d7d7 solid;line-height:22px;text-align: center;}
 .filter_car{position:relative;border-bottom:1px #d7d7d7 solid;padding-bottom:10px;width:984px;z-index:200;height:26px;padding-top:10px;background:#0971B2;}
 .filter_car dt{position:absolute;left:0;top:0;width:90px;text-align:right;font-weight:bold;line-height:20px;color:#fff;line-height:28px;height:28px;}
 .filter_car dd{float:left;margin-right:12px;}
-.filter_car img{width:16px;height:16px;}
+.filter_car img{height:18px!important;width:auto!important;}
 .f_c_btn{position:absolute;display:block;height:28px;line-height:28px;width:98px;text-align:center;right:12px;top:9px;background:#f0f0f0;font-family:"宋体";border:0px;}
 .f_c_search{border: 0px;padding-left: 4px;position: absolute;display: block;height: 26px;line-height: 24px;width: 120px;text-align: left;right: 120px;top: 9px;background: #f0f0f0;font-family: "宋体";}
 .subcate .cur_goods_sort{background:#b10000;color:#fff;}
