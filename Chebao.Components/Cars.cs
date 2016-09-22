@@ -172,6 +172,12 @@ namespace Chebao.Components
             return list.Find(b => b.ID == id);
         }
 
+        public ProductInfo GetProduct(string modelnumber, bool fromCache = false)
+        {
+            List<ProductInfo> list = GetProductList(fromCache);
+            return list.Find(b => b.ModelNumber.ToLower() == modelnumber.ToLower());
+        }
+
         public void UpdateProduct(ProductInfo entity)
         {
             CommonDataProvider.Instance().UpdateProduct(entity);
@@ -299,26 +305,27 @@ namespace Chebao.Components
         {
             decimal price = 0;
             decimal price_s = DataConvert.SafeDecimal(pricestr.StartsWith("¥") ? pricestr.Substring(1) : pricestr);
-            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
+            string mnzk = mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty);
+            if (mnzk.Contains("xsp"))
                 price_s = DataConvert.SafeDecimal(xsppricestr.StartsWith("¥") ? xsppricestr.Substring(1) : xsppricestr);
             price = price_s;
-            if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("m"))
-                price = (price_s + discountinfo.DiscountMAdd) * discountinfo.DiscountM / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("py"))
-                price = (price_s + discountinfo.DiscountPYAdd) * discountinfo.DiscountPY / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("y"))
-                price = (price_s + discountinfo.DiscountYAdd) * discountinfo.DiscountY / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("h"))
-                price = (price_s + discountinfo.DiscountHAdd) * discountinfo.DiscountH / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("xsp"))
-                price = (price_s + discountinfo.DiscountXSPAdd) * discountinfo.DiscountXSP / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("mt"))
+            if (mnzk.Contains("mt"))
                 price = (price_s + discountinfo.DiscountMTAdd) * discountinfo.DiscountMT / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("s"))
+            else if (mnzk.Contains("m"))
+                price = (price_s + discountinfo.DiscountMAdd) * discountinfo.DiscountM / 10;
+            else if (mnzk.Contains("py"))
+                price = (price_s + discountinfo.DiscountPYAdd) * discountinfo.DiscountPY / 10;
+            else if (mnzk.Contains("y"))
+                price = (price_s + discountinfo.DiscountYAdd) * discountinfo.DiscountY / 10;
+            else if (mnzk.Contains("h"))
+                price = (price_s + discountinfo.DiscountHAdd) * discountinfo.DiscountH / 10;
+            else if (mnzk.Contains("xsp"))
+                price = (price_s + discountinfo.DiscountXSPAdd) * discountinfo.DiscountXSP / 10;
+            else if (mnzk.Contains("s") && !mn.ToLower().StartsWith("ls"))
                 price = (price_s + discountinfo.DiscountSAdd) * discountinfo.DiscountS / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("k"))
+            else if (mnzk.Contains("k"))
                 price = (price_s + discountinfo.DiscountKAdd) * discountinfo.DiscountK / 10;
-            else if (mn.ToLower().Replace("w", string.Empty).Replace("f", string.Empty).EndsWith("p"))
+            else if (mnzk.Contains("p"))
                 price = (price_s + discountinfo.DiscountPAdd) * discountinfo.DiscountP / 10;
             else if (mn.ToLower().StartsWith("ls"))
                 price = (price_s + discountinfo.DiscountLSAdd) * discountinfo.DiscountLS / 10;
@@ -331,6 +338,8 @@ namespace Chebao.Components
 
             return price;
         }
+
+        #endregion
 
         #endregion
 
@@ -389,7 +398,42 @@ namespace Chebao.Components
             GetProductListByUser(userid);
         }
 
-        #endregion
+        public void AddUserStockChange(UserStockChangeInfo entity)
+        {
+            CommonDataProvider.Instance().AddUserStockChange(entity);
+        }
+
+        /// <summary>
+        /// 获取指定用户的盘库申请
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
+        public List<UserStockChangeInfo> GetUserStockChangeList(int userid)
+        { 
+            string key = GlobalKey.USERSTOCKCHANGE_LIST + "_" + userid;
+
+            List<UserStockChangeInfo> list = MangaCache.Get(key) as List<UserStockChangeInfo>;
+            if (list == null)
+            {
+                list = CommonDataProvider.Instance().GetUserStockChangeList(userid);
+                MangaCache.Max(key, list);
+            }
+
+            return list;
+        }
+
+        public List<UserStockChangeInfo> GetUserStockChangeList(int pageindex, int pagesize, UserStockChangeQuery query, out int total)
+        {
+            return CommonDataProvider.Instance().GetUserStockChangeList(pageindex, pagesize, query, out total);
+        }
+
+        public void ReloadUserStockChangeCache(int userid)
+        {
+            string key = GlobalKey.USERSTOCKCHANGE_LIST + "_" + userid;
+            MangaCache.Remove(key);
+
+            GetUserStockChangeList(userid);
+        }
 
         #endregion
 

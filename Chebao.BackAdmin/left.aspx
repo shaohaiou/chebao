@@ -54,6 +54,10 @@ body{background:url(images/ldi.gif) repeat-y;}
     { %>
 	<a href="order/main.aspx" target="mainFrame" runat="server" id="order_main">订单管理</a>
     <%} %>
+  <%if (CheckModulePower("盘库审核,库存查询,出入库记录"))
+    { %>
+	<a href="userstock/main.aspx" target="mainFrame" runat="server" id="userstock_main">用户库存</a>
+    <%} %>
   <%if (CheckModulePower("站点设置,执行sql,数据处理"))
     { %>
 	<a href="global/main.aspx" target="mainFrame" runat="server" id="global_main">系统设置</a>

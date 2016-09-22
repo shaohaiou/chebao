@@ -707,6 +707,95 @@ namespace Chebao.DALSQLServer
 
         #endregion
 
+        #region 分销管理
+
+        public override void AddUserStockChange(UserStockChangeInfo entity)
+        {
+            string sql = @"
+            INSERT INTO Chebao_UserStockChange(
+                [UserID]
+                ,[UserName]
+                ,[ParentUserID]
+                ,[Action]
+                ,[CheckStatus]
+                ,[AddTime]
+                ,[Remark]
+                ,[SysRemark]
+                ,[OrderProductJson]
+            )VALUES(
+                @UserID
+                ,@ParentUserID
+                ,@Action
+                ,@CheckStatus
+                ,@AddTime
+                ,@Remark
+                ,@SysRemark
+                ,@OrderProductJson
+            )
+            ";
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@UserID",entity.UserID),
+                new OleDbParameter("@UserName",entity.UserName),
+                new OleDbParameter("@ParentUserID",entity.ParentUserID),
+                new OleDbParameter("@Action",entity.Action),
+                new OleDbParameter("@CheckStatus",entity.CheckStatus),
+                new OleDbParameter("@AddTime",entity.AddTime),
+                new OleDbParameter("@Remark",entity.Remark),
+                new OleDbParameter("@SysRemark",entity.SysRemark),
+                new OleDbParameter("@OrderProductJson",entity.OrderProductJson),
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override List<UserStockChangeInfo> GetUserStockChangeList(int userid)
+        {
+            List<UserStockChangeInfo> list = new List<UserStockChangeInfo>();
+            string sql = "SELECT * FROM Chebao_UserStockChange WHERE [UserID] = @UserID";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql, new OleDbParameter("@UserID",userid)))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateUserStockChange(reader));
+                }
+            }
+
+            return list;
+
+        }
+
+        public override List<UserStockChangeInfo> GetUserStockChangeList(int pageindex, int pagesize, UserStockChangeQuery query, out int total)
+        {
+            List<UserStockChangeInfo> list = new List<UserStockChangeInfo>();
+            OleDbParameter p;
+            if (pageindex != -1)
+            {
+                using (IDataReader reader = CommonPageSql.GetDataReaderByPager(_con, pageindex, pagesize, query, out p))
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(PopulateUserStockChange(reader));
+                    }
+                }
+                total = int.Parse(p.Value.ToString());
+            }
+
+            else
+            {
+                using (IDataReader reader = CommonSelectSql.SelectGetReader(_con, pagesize, query))
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(PopulateUserStockChange(reader));
+                    }
+                }
+                total = list.Count();
+            }
+            return list;
+        }
+
+        #endregion
+
         #region 购物车
 
         public override List<ShoppingTrolleyInfo> GetShoppingTrolleyByUserID(int userid)

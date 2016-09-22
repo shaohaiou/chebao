@@ -1,8 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="myordermore.aspx.cs" Inherits="Chebao.BackAdmin.product.myordermore" %>
 
-<asp:repeater runat="server" id="rptData" onitemdatabound="rptData_ItemDataBound">
+<asp:Repeater runat="server" ID="rptData" OnItemDataBound="rptData_ItemDataBound">
     <ItemTemplate>
-     <div class="orderbody">
+    <div class="orderbody" style="<%#Eval("OrderStatus").ToString() == "已发货" ? "border-color:green;" : (Eval("OrderStatus").ToString() == "未收款" ? "border-color:red;" : "")%>">
         <div style="padding-left: 10px; color: #3d3d3d; margin-top: 10px;">
             <span style="font-weight: bold;">
                 <%#Eval("AddTime") %></span>&nbsp; 订单号：<%#Eval("OrderNumber") %>&nbsp; 订单状态：<%#Eval("OrderStatus").ToString() == "未收款" ? "未付款" : Eval("OrderStatus").ToString()%><a
@@ -85,4 +85,4 @@
         </div>
     </div>
     </ItemTemplate>
-</asp:repeater>
+</asp:Repeater>

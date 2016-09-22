@@ -19,10 +19,9 @@
         var currentpid = 0;
         var diagbuynumber;
         $(function () {
-            var diagbuynumber = $("#buynumber"); //弹出区域显示框
+            diagbuynumber = $("#buynumber"); //弹出区域显示框
             diagbuynumber.dialog({
                 width: 440,
-                modal: true,
                 resizable: false,
                 autoOpen: false,
                 title: '设置购买数量'
@@ -74,6 +73,10 @@
             });
             $(".J_LinkAdd").click(function () {
                 currentpid = $(this).attr("pid");
+
+                var left = $(this).offset().left - $("body").scrollLeft();
+                if (($(this).offset().left + 440) > $("body").width()) left = left - 440;
+                var top = $(this).offset().top - $("body").scrollTop() - 50;
                 $.ajax({
                     url: "productstock.aspx",
                     data: { pid: $(this).attr("pid"), d: new Date() },
@@ -88,6 +91,7 @@
                         } else {
                             $("#buybody").html(data);
                             BindBuynumberEvent();
+                            diagbuynumber.dialog('option', 'position', [left, top]);
                             diagbuynumber.dialog("open");
                         }
                     }
@@ -99,7 +103,7 @@
                     return;
                 }
 
-                var productmix = $(".J_ItemAmount").map(function(){
+                var productmix = $(".J_ItemAmount").map(function () {
                     return $(this).attr("data-name") + "," + $(this).val();
                 }).get().join("|");
                 $.ajax({

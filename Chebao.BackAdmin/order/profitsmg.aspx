@@ -51,6 +51,8 @@
             <tr>
                 <td>
                     利润合计：<%=  Chebao.Tools.StrHelper.FormatMoney((TotalFee - CostsTotal).ToString())%>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    订单合计：<%=  Chebao.Tools.StrHelper.FormatMoney(TotalFee.ToString())%>
                 </td>
             </tr>
             <tr>

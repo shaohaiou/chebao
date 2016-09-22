@@ -120,9 +120,7 @@
                             alert("数据获取失败");
                         }else{
                             var order = $(data);
-                            order.hide();
-                            $("#J_More").prepend(order);
-                            order.fadeIn();
+                            $("#J_More").before(order);
                         }
 
                         $("#dvLoading").hide();
@@ -227,7 +225,7 @@
                 </asp:Repeater>
                 <%if (PageCount > 1)
                   {%>
-                <div style="padding-top: 10px; padding-left: 10px;" id="J_More">
+                <div style="padding-top: 10px;text-align: right;font-weight: bold;font-size: 16px;" id="J_More">
                     <a href="javascript:void(0);" id="btnMore">更多>></a></div>
                 <%} %>
             </div>

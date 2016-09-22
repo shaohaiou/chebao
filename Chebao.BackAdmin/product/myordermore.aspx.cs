@@ -30,10 +30,11 @@ namespace Chebao.BackAdmin.product
         private void LoadData()
         {
             int pageindex = GetInt("pageindex");
+            int pagesize = 10;
             List<OrderInfo> list = Cars.Instance.GetOrderList(true);
             list = list.FindAll(l => l.UserID == AdminID);
 
-            list = list.OrderByDescending(l => l.ID).Skip(10 * (pageindex - 1)).Take(10).ToList();
+            list = list.OrderByDescending(l => l.ID).Skip(pagesize * (pageindex - 1)).Take(pagesize).ToList();
 
             rptData.DataSource = list;
             rptData.DataBind();

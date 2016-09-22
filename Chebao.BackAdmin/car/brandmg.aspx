@@ -76,7 +76,7 @@
 <body>
     <form id="form1" runat="server">
     <div class="ht_main">
-        <table width="320" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblBrand">
+        <table width="440" border="0" cellspacing="0" cellpadding="0" class="biaoge2" id="tblBrand">
             <asp:Repeater ID="rptBrand" runat="server">
                 <HeaderTemplate>
                     <tr class="bgbt">
@@ -86,7 +86,7 @@
                         <td class="w40">
                             首字母
                         </td>
-                        <td class="w80">
+                        <td class="w200">
                             图片
                         </td>
                         <td>
@@ -104,9 +104,9 @@
                             <input type="text" runat="server" id="txtNameIndex" class="srk1 w40" value='<%#Eval("NameIndex") %>' />
                         </td>
                         <td class="lan5x">
-                            <a href="javascript:void(0);" class="uploadbtpics">上传</a><br />
+                            <a href="javascript:void(0);" class="uploadbtpics">上传</a>
                             <img src="<%# string.IsNullOrEmpty(Eval("Imgpath") as string) ? "../images/fm.jpg" : Eval("Imgpath").ToString() %>"
-                                alt="品牌图片" class="imgpics" style="width: 22px; height: 22px;" />
+                                alt="品牌图片" class="imgpics" style="height: 22px;" />
                             <input type="hidden" value='<%# Eval("Imgpath") %>' runat="server" id="hdnImgpath"
                                 class="hdnImgpath" />
                         </td>

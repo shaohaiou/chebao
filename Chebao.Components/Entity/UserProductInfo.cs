@@ -16,7 +16,7 @@ namespace Chebao.Components
         public int UserID { get; set; }
 
         /// <summary>
-        /// 产品组合承载字符串
+        /// 产品组合及库存承载字符串
         /// </summary>
         public string ProductMixStr { get; set; }
 

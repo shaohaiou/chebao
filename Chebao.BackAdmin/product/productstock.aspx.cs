@@ -44,6 +44,7 @@ namespace Chebao.BackAdmin.product
         private void LoadData()
         {
             int pid = GetInt("pid");
+            string mnumber = GetString("mnumber");
             if (pid > 0)
             {
                 ProductInfo entity = Cars.Instance.GetProduct(pid,true);
@@ -52,6 +53,21 @@ namespace Chebao.BackAdmin.product
                 //else
                 //    rptProductMix.DataSource = entity.UserProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Costs = GetUserProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
                 rptProductMix.DataBind();
+            }
+            else if (!string.IsNullOrEmpty(mnumber))
+            {
+                List<ProductInfo> plist = Cars.Instance.GetProductList(true);
+                if (plist.Exists(p => p.ModelNumber.ToLower() == mnumber.ToLower()))
+                {
+                    ProductInfo entity = plist.Find(p => p.ModelNumber.ToLower() == mnumber.ToLower());
+                    rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                    rptProductMix.DataBind();
+                }
+                else
+                {
+                    Response.Clear();
+                    Response.End();
+                }
             }
             else
             {

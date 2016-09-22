@@ -180,12 +180,68 @@
     <Compile Include="useradmin\orderview.aspx.designer.cs">
       <DependentUpon>orderview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="useradmin\productmix.aspx.cs">
+      <DependentUpon>productmix.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\productmix.aspx.designer.cs">
+      <DependentUpon>productmix.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useradmin\stockchange.aspx.cs">
+      <DependentUpon>stockchange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\stockchange.aspx.designer.cs">
+      <DependentUpon>stockchange.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="useradmin\stockmg.aspx.cs">
+      <DependentUpon>stockmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="useradmin\stockmg.aspx.designer.cs">
+      <DependentUpon>stockmg.aspx</DependentUpon>
+    </Compile>
     <Compile Include="useradmin\stocks.aspx.cs">
       <DependentUpon>stocks.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="useradmin\stocks.aspx.designer.cs">
       <DependentUpon>stocks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userstock\main.aspx.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userstock\main.aspx.designer.cs">
+      <DependentUpon>main.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userstock\main_s.aspx.cs">
+      <DependentUpon>main_s.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userstock\main_s.aspx.designer.cs">
+      <DependentUpon>main_s.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userstock\userstockcheck.aspx.cs">
+      <DependentUpon>userstockcheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userstock\userstockcheck.aspx.designer.cs">
+      <DependentUpon>userstockcheck.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userstock\userstockmg.aspx.cs">
+      <DependentUpon>userstockmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userstock\userstockmg.aspx.designer.cs">
+      <DependentUpon>userstockmg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userstock\userstockrecordmg.aspx.cs">
+      <DependentUpon>userstockrecordmg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userstock\userstockrecordmg.aspx.designer.cs">
+      <DependentUpon>userstockrecordmg.aspx</DependentUpon>
     </Compile>
     <Compile Include="user\adminpowersetting.aspx.cs">
       <DependentUpon>adminpowersetting.aspx</DependentUpon>
@@ -733,7 +789,15 @@
     <Content Include="useradmin\myfeedbackview.aspx" />
     <Content Include="useradmin\orders.aspx" />
     <Content Include="useradmin\orderview.aspx" />
+    <Content Include="useradmin\productmix.aspx" />
+    <Content Include="useradmin\stockchange.aspx" />
+    <Content Include="useradmin\stockmg.aspx" />
     <Content Include="useradmin\stocks.aspx" />
+    <Content Include="userstock\main.aspx" />
+    <Content Include="userstock\main_s.aspx" />
+    <Content Include="userstock\userstockcheck.aspx" />
+    <Content Include="userstock\userstockmg.aspx" />
+    <Content Include="userstock\userstockrecordmg.aspx" />
     <Content Include="user\adminpowersetting.aspx" />
     <Content Include="user\discountstenciledit.aspx" />
     <Content Include="user\discountstencilmg.aspx" />

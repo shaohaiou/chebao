@@ -319,6 +319,36 @@ namespace Chebao.Components
 
         #endregion
 
+        #region 分销管理
+
+        public abstract void AddUserStockChange(UserStockChangeInfo entity);
+
+        public abstract List<UserStockChangeInfo> GetUserStockChangeList(int userid);
+
+        public abstract List<UserStockChangeInfo> GetUserStockChangeList(int pageindex, int pagesize, UserStockChangeQuery query, out int total);
+
+        protected UserStockChangeInfo PopulateUserStockChange(IDataReader reader)
+        {
+            UserStockChangeInfo entity = new UserStockChangeInfo() 
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                UserID = DataConvert.SafeInt(reader["UserID"]),
+                UserName = reader["UserName"] as string,
+                Action = DataConvert.SafeInt(reader["Action"]),
+                CheckStatus = DataConvert.SafeInt(reader["CheckStatus"]),
+                AddTime = reader["AddTime"] as string,
+                CheckUser = reader["CheckUser"] as string,
+                CheckTime = reader["CheckTime"] as string,
+                Remark = reader["Remark"] as string,
+                OrderProductJson = reader["OrderProductJson"] as string
+            };
+            entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);
+
+            return entity;
+        }
+
+        #endregion
+
         #region 购物车
 
         public abstract List<ShoppingTrolleyInfo> GetShoppingTrolleyByUserID(int userid);

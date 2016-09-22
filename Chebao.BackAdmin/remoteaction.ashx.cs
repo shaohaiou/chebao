@@ -56,6 +56,9 @@ namespace Chebao.BackAdmin
                 case "addshoppingtrolley":
                     AddShoppingTrolley();
                     break;
+                case "adduserstockchange":
+                    AddUserStockChange();
+                    break;
                 case "buyproduct":
                     BuyProduct();
                     break;
@@ -115,6 +118,32 @@ namespace Chebao.BackAdmin
             else
             {
                 result = string.Format(result, "fail", "执行失败，请刷新页面重新提交");
+            }
+        }
+
+        private void AddUserStockChange()
+        {
+            if (ChebaoContext.Current.AdminUser == null)
+            {
+                result = string.Format(result, "fail", "非法用户");
+                return;
+            }
+            string mnumber = WebHelper.GetString("mnumber");
+            string productmix = WebHelper.GetString("productmix");
+            int t = WebHelper.GetInt("t");
+            string key = GlobalKey.USERSTOCKCHANGEADD_KEY + "_" + t + "_" + ChebaoContext.Current.AdminUserID;
+            List<KeyValuePair<string, string>> userstockchangelist = MangaCache.Get(key) as List<KeyValuePair<string, string>>;
+            if (userstockchangelist == null) 
+                userstockchangelist = new List<KeyValuePair<string, string>>();
+            if (userstockchangelist.Exists(p => p.Key.ToLower() == mnumber.ToLower()))
+                result = string.Format(result, "fail", "已添加了该产品，请勿重复添加");
+            else if (userstockchangelist.Count >= 20)
+                result = string.Format(result, "fail", "一次最多只能入库20个产品");
+            else
+            {
+                userstockchangelist.Add(new KeyValuePair<string,string>(mnumber, productmix));
+                MangaCache.Max(key, userstockchangelist);
+                result = string.Format(result, "success", "");
             }
         }
 
@@ -195,22 +224,32 @@ namespace Chebao.BackAdmin
                 result = string.Format(result, "fail", "非法用户");
                 return;
             }
-            string ids = WebHelper.GetString("userid");
-            if (!string.IsNullOrEmpty(ids))
+            result = string.Format(result, "success", "");
+            return;
+            try
             {
-                foreach (string id in ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                string ids = WebHelper.GetString("userid");
+                if (!string.IsNullOrEmpty(ids))
                 {
-                    AdminInfo user = Admins.Instance.GetAdmin(DataConvert.SafeInt(id));
-                    if (user.ParentAccountID == 0)
-                        Cars.Instance.ReloadUserProductListCache(user.ID);
-                    else
-                        Cars.Instance.ReloadUserProductListCache(user.ParentAccountID);
+                    foreach (string id in ids.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        AdminInfo user = Admins.Instance.GetAdmin(DataConvert.SafeInt(id));
+                        if (user.ParentAccountID == 0)
+                            Cars.Instance.ReloadUserProductListCache(user.ID);
+                        else
+                            Cars.Instance.ReloadUserProductListCache(user.ParentAccountID);
+                    }
+                    result = string.Format(result, "success", "");
                 }
-                result = string.Format(result, "success", "");
+                else
+                {
+                    result = string.Format(result, "fail", "参数错误");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                result = string.Format(result, "fail", "参数错误");
+                ExpLog.Write(ex);
+                result = string.Format(result, "fail", ex.Message);
             }
         }
     }

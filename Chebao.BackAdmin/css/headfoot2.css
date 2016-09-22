@@ -83,6 +83,12 @@ img{border:0;}
 .tbbody{padding: 0px 1px;}
 .tbbody .biaoge2{width:100%;border:1px solid #2196F3;}
 .filter .txt{border-width: 0 0 1px 0;padding: 2px 0 1px 10px;line-height: 20px;}
+
+.nav_stockmg ul{margin: 5px 0 0 5px;}
+.nav_stockmg ul li{display:inline-block;font-size: 14px;padding: 5px 10px;border-bottom: 1px solid #2196F3;}
+.nav_stockmg ul li a{text-decoration:none;}
+.current_stockmg{border-left: 1px solid #2196F3;border-right: 1px solid #2196F3;border-top: 1px solid #2196F3;border-bottom: 1px solid #fff!important;}
+.current_stockmg a{color:#2196F3!important;}
 /*面包屑*/
 .n_nav,.n_nav_2{margin:0 auto; padding:12px 0;font-family:"宋体",arial;}
 .n_nav{width:984px;}
