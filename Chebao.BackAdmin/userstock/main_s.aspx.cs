@@ -17,7 +17,7 @@ namespace Chebao.BackAdmin.userstock
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("盘库审核,库存查询,出入库记录"))
+            if (ChebaoContext.Current.AdminUser.UserRole != Components.UserRoleType.管理员 || !CheckModulePower("库存查询,出入库记录"))
             {
                 Response.Clear();
                 Response.Write("您没有权限操作！");

@@ -235,9 +235,9 @@ namespace Chebao.BackAdmin
                     {
                         AdminInfo user = Admins.Instance.GetAdmin(DataConvert.SafeInt(id));
                         if (user.ParentAccountID == 0)
-                            Cars.Instance.ReloadUserProductListCache(user.ID);
+                            Cars.Instance.ReloadProductListUserCache(user.ID);
                         else
-                            Cars.Instance.ReloadUserProductListCache(user.ParentAccountID);
+                            Cars.Instance.ReloadProductListUserCache(user.ParentAccountID);
                     }
                     result = string.Format(result, "success", "");
                 }

@@ -20,7 +20,7 @@
     <form id="form1" runat="server">
     <div class="nav_stockmg">
         <ul>
-            <li class="current_stockmg"><a href="stockmg.aspx">我的申请</a></li><!--
+            <li class="current_stockmg"><a href="stockmg.aspx">出入库记录</a></li><!--
             --><li><a href="stockchange.aspx?t=0">出库</a></li><!--
             --><li><a href="stockchange.aspx?t=1">入库</a></li>
         </ul>
@@ -34,10 +34,7 @@
                             出/入库
                         </td>
                         <td class="w120">
-                            申请时间
-                        </td>
-                        <td class="w80">
-                            审核状态
+                            提交时间
                         </td>
                         <td class="w200">
                             备注
@@ -56,9 +53,7 @@
                             <%# Eval("AddTime") %>
                         </td>
                         <td>
-                            <%# Eval("CheckStatus").ToString() == "0" ? "<span class=\"gray\">未审核</span>" : (Eval("CheckStatus").ToString() == "1" ? "<span class=\"green\">审核通过</span>" : "<span class=\"red\">审核不通过</span>")%>
-                        </td>
-                        <td>
+                            <%# Eval("SysRemark")%><br />
                             <%#Eval("Remark") %>
                         </td>
                         <td>

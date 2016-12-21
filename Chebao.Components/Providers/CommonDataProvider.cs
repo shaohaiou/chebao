@@ -321,6 +321,10 @@ namespace Chebao.Components
 
         #region 分销管理
 
+        public abstract void AddUserProductInfo(UserProductInfo entity);
+
+        public abstract List<UserProductInfo> GetUserProductInfoList(int userid);
+
         public abstract void AddUserStockChange(UserStockChangeInfo entity);
 
         public abstract List<UserStockChangeInfo> GetUserStockChangeList(int userid);
@@ -346,6 +350,20 @@ namespace Chebao.Components
 
             return entity;
         }
+
+        protected UserProductInfo PopulateUserProductInfo(IDataReader reader)
+        {
+            UserProductInfo entity = new UserProductInfo() 
+            {
+                ID = DataConvert.SafeInt(reader["ID"]),
+                ProductID = DataConvert.SafeInt(reader["ProductID"]),
+                UserID = DataConvert.SafeInt(reader["UserID"]),
+                ProductMixStr = reader["ProductMixStr"] as string,
+            };
+            return entity;
+        }
+
+        public abstract bool IsUserProductStockInit();
 
         #endregion
 

@@ -65,6 +65,7 @@ namespace Chebao.BackAdmin
         {
             try
             {
+                //Cars.Instance.InitUserProductStock();
                 Cars.Instance.ReloadBrandListCache();
                 Cars.Instance.ReloadCabmodelListCache();
                 Cars.Instance.ReloadProductListCache();

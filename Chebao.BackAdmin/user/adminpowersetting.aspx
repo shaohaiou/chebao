@@ -198,9 +198,6 @@
                         <ul>
                             <li class="blockinline">
                                 <label class="blockinline" style="line-height: 18px;">
-                                    <input type="checkbox" class="cbxModulepower fll" value="盘库审核" <%=SetModulepower("盘库审核") %> />盘库审核</label></li>
-                            <li class="blockinline">
-                                <label class="blockinline" style="line-height: 18px;">
                                     <input type="checkbox" class="cbxModulepower fll" value="库存查询" <%=SetModulepower("库存查询") %> />库存查询</label></li>
                             <li class="blockinline">
                                 <label class="blockinline" style="line-height: 18px;">

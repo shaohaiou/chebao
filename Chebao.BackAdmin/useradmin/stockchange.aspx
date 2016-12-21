@@ -121,7 +121,7 @@
             }
             else if (stock < amount && stock > 0) {
                 $(b).val(stock);
-                $(b).parent().next().html("<em class=\"error-msg\">最多只可购买" + stock + "件</em>");
+                $(b).parent().next().html("<em class=\"error-msg\">最多只可输入" + stock + "件</em>");
                 setTimeout(function () {
                     $(b).parent().next().html("");
                 }, 1000);
@@ -250,7 +250,7 @@
                     &nbsp;
                 </td>
                 <td>
-                    <asp:Button runat="server" ID="btnSubmit" CssClass="an1" Text="提交申请" OnClick="btnSubmit_Click" />
+                    <asp:Button runat="server" ID="btnSubmit" CssClass="an1" Text="提交" OnClick="btnSubmit_Click" />
                 </td>
             </tr>
         </tbody>

@@ -25,8 +25,23 @@ namespace Chebao.Components
         /// </summary>
         public List<KeyValuePair<string, int>> ProductMix
         {
-            get;
-            set;
+            get
+            {
+                List<KeyValuePair<string, int>> result = new List<KeyValuePair<string, int>>();
+
+                if (!string.IsNullOrEmpty(ProductMixStr))
+                {
+                    List<ProductInfo> plist = Cars.Instance.GetProductList(true);
+                    foreach (string pmstr in ProductMixStr.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        string name = pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0];
+                        if (plist.Exists(p => name.StartsWith(p.ModelNumber) && name.ToLower().IndexOf("xsp") < 0))
+                            result.Add(new KeyValuePair<string, int>(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(pmstr.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1])));
+                    }
+                }
+
+                return result;
+            }
         }
     }
 }

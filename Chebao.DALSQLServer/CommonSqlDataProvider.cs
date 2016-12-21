@@ -794,6 +794,58 @@ namespace Chebao.DALSQLServer
             return list;
         }
 
+        public override void AddUserProductInfo(UserProductInfo entity)
+        {
+            string sql = @"
+            IF EXISTS(SELECT * FROM Chebao_UserProduct WHERE [ProductID] = @ProductID AND [UserID] = @UserID)
+            BEGIN
+                UPDATE Chebao_UserProduct SET
+                    [ProductMixStr] = @ProductMixStr
+                WHERE [ProductID] = @ProductID AND [UserID] = @UserID
+            END
+            ELSE
+            BEGIN
+                INSERT INTO Chebao_UserProduct(
+                    [ProductID]
+                    ,[UserID]
+                    ,[ProductMixStr]
+                )VALUES(
+                    @ProductID
+                    ,@UserID
+                    ,@ProductMixStr
+                )
+            END
+            ";
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@ProductID",entity.ProductID),
+                new OleDbParameter("@UserID",entity.UserID),
+                new OleDbParameter("@ProductMixStr",entity.ProductMixStr),
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override List<UserProductInfo> GetUserProductInfoList(int userid)
+        {
+            List<UserProductInfo> list = new List<UserProductInfo>();
+            string sql = "SELECT * FROM Chebao_UserProduct WHERE [UserID] = @UserID";
+            using (IDataReader reader = SqlHelper.ExecuteReader(_con, CommandType.Text, sql, new OleDbParameter("@UserID", userid)))
+            {
+                while (reader.Read())
+                {
+                    list.Add(PopulateUserProductInfo(reader));
+                }
+            }
+
+            return list;
+        }
+
+        public override bool IsUserProductStockInit()
+        {
+            string sql = "SELECT COUNT(0) FROM Chebao_UserProduct";
+            return SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql) > 0;
+        }
+
         #endregion
 
         #region 购物车

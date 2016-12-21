@@ -354,7 +354,7 @@ namespace Chebao.Components
         /// <returns></returns>
         public List<ProductInfo> GetProductListByUser(int userid)
         {
-            string key = GlobalKey.USERPRODUCT_LIST + "_" + userid;
+            string key = GlobalKey.PRODUCT_LIST_USER + "_" + userid;
             List<ProductInfo> myproductlist = MangaCache.Get(key) as List<ProductInfo>;
             if (myproductlist == null)
             {
@@ -391,9 +391,9 @@ namespace Chebao.Components
             return myproductlist;
         }
 
-        public void ReloadUserProductListCache(int userid)
+        public void ReloadProductListUserCache(int userid)
         {
-            string key = GlobalKey.USERPRODUCT_LIST + "_" + userid;
+            string key = GlobalKey.PRODUCT_LIST_USER + "_" + userid;
             MangaCache.Remove(key);
             GetProductListByUser(userid);
         }
@@ -401,10 +401,84 @@ namespace Chebao.Components
         public void AddUserStockChange(UserStockChangeInfo entity)
         {
             CommonDataProvider.Instance().AddUserStockChange(entity);
+
+            #region 用户产品库存更新
+            
+            foreach (OrderProductInfo opinfo in entity.OrderProducts)
+            {
+                UserProductInfo upinfo = GetUserProductInfo(entity.UserID,opinfo.ProductID,true);
+                if (upinfo == null)
+                {
+                    upinfo = new UserProductInfo()
+                    {
+                        ProductID = opinfo.ProductID,
+                        UserID = entity.UserID,
+                        ProductMixStr = string.Join("|", opinfo.ProductMixList.Select(p => p.Name + "," + p.Amount))
+                    };
+                }
+                else 
+                {
+                    List<KeyValuePair<string, int>> productmix = upinfo.ProductMix;
+                    List<KeyValuePair<string, int>> pmlist = new List<KeyValuePair<string, int>>();
+                    foreach (ProductMixInfo pm in opinfo.ProductMixList)
+                    {
+                        if (productmix.Exists(m => m.Key == pm.Name))
+                        {
+                            int amount = productmix.Find(m => m.Key == pm.Name).Value;
+                            pmlist.Add(new KeyValuePair<string, int>(pm.Name, entity.Action == 0 ? (amount - pm.Amount) : (amount + pm.Amount)));
+                        }
+                        else
+                        {
+                            pmlist.Add(new KeyValuePair<string, int>(pm.Name, pm.Amount));
+                        }
+                    }
+                    foreach (KeyValuePair<string, int> kvp in productmix)
+                    {
+                        if (!opinfo.ProductMixList.Exists(pm => pm.Name == kvp.Key))
+                        {
+                            pmlist.Add(new KeyValuePair<string, int>(kvp.Key, kvp.Value));
+                        }
+                    }
+                    upinfo.ProductMixStr = string.Join("|", pmlist.Select(p => p.Key + "," + p.Value));
+                }
+                CommonDataProvider.Instance().AddUserProductInfo(upinfo);
+            }
+
+            ReloadUserProductListCache(entity.UserID);
+
+            #endregion
+        }
+
+        public List<UserProductInfo> GetUserProductInfoList(int userid,bool fromCache = false)
+        {
+            if (!fromCache)
+                return CommonDataProvider.Instance().GetUserProductInfoList(userid);
+
+            string key = GlobalKey.USERPRODUCT_LIST;
+            List<UserProductInfo> list = MangaCache.Get(key) as List<UserProductInfo>;
+            if (list == null)
+            {
+                list = CommonDataProvider.Instance().GetUserProductInfoList(userid);
+                MangaCache.Max(key, list);
+            }
+            return list;
+        }
+
+        public void ReloadUserProductListCache(int userid)
+        {
+            string key = GlobalKey.USERPRODUCT_LIST + "_" + userid;
+            MangaCache.Remove(key);
+            GetUserProductInfoList(userid);
+        }
+
+        public UserProductInfo GetUserProductInfo(int userid, int productid, bool fromCache = false)
+        {
+            List<UserProductInfo> list = GetUserProductInfoList(userid,fromCache);
+            return list.Find(l=>l.ProductID == productid);
         }
 
         /// <summary>
-        /// 获取指定用户的盘库申请
+        /// 获取指定用户的盘库记录
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
@@ -433,6 +507,16 @@ namespace Chebao.Components
             MangaCache.Remove(key);
 
             GetUserStockChangeList(userid);
+        }
+
+        /// <summary>
+        /// 初始化用户库存
+        /// </summary>
+        public void InitUserProductStock()
+        {
+            if (CommonDataProvider.Instance().IsUserProductStockInit())
+                return;
+
         }
 
         #endregion
@@ -645,6 +729,7 @@ namespace Chebao.Components
                             string syncresult = Http.GetPage(url + "?" + string.Join("&", query), 0);
                             if (syncresult != "ok")
                             {
+                                ExpLog.Write(new Exception(syncresult));
                                 SyncfailedInfo finfo = new SyncfailedInfo()
                                 {
                                     Name = pm.Name,

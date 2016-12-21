@@ -10,7 +10,23 @@
     <script src="../js/jquery-1.3.2.min.js" type="text/javascript"></script>
     <script src="../js/comm.js" type="text/javascript"></script>
     <script type="text/javascript">
-    
+        $(function () {
+            $(".btngather").click(function () {
+                return confirm("确定该订单已收款吗？");
+            });
+            $("#btnFilter").click(function () {
+                var query = new Array();
+                if ($.trim($("#ddlCheckStatus").val()) != "")
+                    query[query.length] = "s=" + $.trim($("#ddlCheckStatus").val());
+                if ($.trim($("#txtUserName").val()) != "")
+                    query[query.length] = "n=" + $.trim($("#txtUserName").val());
+                location = "?" + (query.length > 0 ? $(query).map(function () {
+                    return this;
+                }).get().join("&") : "");
+
+                return false;
+            });
+        })
     </script>
 </head>
 <body>
@@ -95,6 +111,7 @@
                             审核时间：<%#Eval("CheckTime")%>
                         </td>
                         <td>
+                            <a href="?active=pass&id=<%#Eval("ID") %>">审核通过</a>
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -120,6 +137,7 @@
                             <%# Eval("CheckStatus").ToString() == "0" ? "<span class=\"gray\">未审核</span>" : (Eval("CheckStatus").ToString() == "1" ? "<span class=\"green\">审核通过</span>" : "<span class=\"red\">审核不通过</span>")%>
                         </td>
                         <td>
+                            
                         </td>
                     </tr>
                 </AlternatingItemTemplate>

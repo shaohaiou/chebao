@@ -20,18 +20,7 @@ namespace Chebao.BackAdmin.useradmin
             }
         }
 
-        private List<OrderInfo> orderall = null;
-        public List<OrderInfo> OrderAll
-        {
-            get
-            {
-                if (orderall == null)
-                {
-                    orderall = Cars.Instance.GetOrderList(true);
-                }
-                return orderall;
-            }
-        }
+        private int productid = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,7 +39,8 @@ namespace Chebao.BackAdmin.useradmin
                 if (plist.Exists(p => p.ModelNumber.ToLower() == mnumber.ToLower()))
                 {
                     ProductInfo entity = plist.Find(p => p.ModelNumber.ToLower() == mnumber.ToLower());
-                    rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                    productid = entity.ID;
+                    rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key }).ToList();
                     rptProductMix.DataBind();
                 }
                 else
@@ -78,20 +68,12 @@ namespace Chebao.BackAdmin.useradmin
                     if (GetInt("t") == 0)
                     {
                         ProductMixInfo entity = ((ProductMixInfo)e.Item.DataItem);
-                        int stock = entity.Stock;
-                        if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                        int  stock = 0;
+                        UserProductInfo upinfo = Cars.Instance.GetUserProductInfo(Admin.ID, productid,true);
+                        if (upinfo != null && upinfo.ProductMix.Exists(p=>p.Key == entity.Name))
                         {
-                            int amount = 0;
-                            List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
-                            orderlist.ForEach(delegate(OrderInfo o)
-                            {
-                                amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
-                            });
-                            stock -= amount;
+                            stock = upinfo.ProductMix.Find(p => p.Key == entity.Name).Value;
                         }
-                        if (stock < 0)
-                            stock = 0;
-                        entity.Stock = stock;
                         txtAmount.Attributes["data-max"] = stock.ToString();
                     }
                     else
@@ -100,25 +82,6 @@ namespace Chebao.BackAdmin.useradmin
                     }
                 }
             }
-        }
-
-        private string GetUnitPrice(string name, string price, string xspprice)
-        {
-            if (name.IndexOf("xsp") > 0)
-                return xspprice.StartsWith("¥") ? xspprice.Substring(1) : xspprice;
-            else
-                return price.StartsWith("¥") ? price.Substring(1) : price;
-        }
-
-        private string GetProductMixCosts(string pricestr, string xsppricestr, string mn)
-        {
-            decimal price = 0;
-            DiscountStencilInfo discountinfo = Cars.Instance.GetCostsDiscount(true);
-            if (discountinfo != null)
-            {
-                price = Cars.Instance.GetDiscountPrice(pricestr, xsppricestr, mn, discountinfo);
-            }
-            return Math.Round(price, 2).ToString();
         }
     }
 }

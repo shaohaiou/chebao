@@ -45,12 +45,13 @@ namespace Chebao.BackAdmin.userstock
             int pagesize = search_fy.PageSize;
             int total = 0;
             UserStockChangeQuery query = new UserStockChangeQuery();
-            if(!string.IsNullOrEmpty(txtUserName.Text))
-                query.UserName = txtUserName.Text;
-            if(ddlCheckStatus.SelectedIndex > 0)
-                query.CheckStatus = DataConvert.SafeInt(ddlCheckStatus.SelectedValue);
+            if(!string.IsNullOrEmpty(GetString("n")))
+                query.UserName = GetString("n");
+            if(!string.IsNullOrEmpty(GetString("s")))
+                query.CheckStatus = GetInt("s");
 
             List<UserStockChangeInfo> list = Cars.Instance.GetUserStockChangeList(pageindex, pagesize, query, out total);
+            list = list.OrderBy(l => l.CheckStatus).ThenByDescending(l => DataConvert.SafeDate(l.AddTime)).ToList();
 
             rptData.DataSource = list;
             rptData.DataBind();
@@ -58,6 +59,11 @@ namespace Chebao.BackAdmin.userstock
             search_fy.RecordCount = total;
             search_fy.PageSize = pagesize;
             search_fy.CustomInfoHTML = string.Format("<span style=\"line-height: 34px;\">总记录数：{0} 总页数：{1}</span>", total, search_fy.PageCount);
+
+            if (!string.IsNullOrEmpty(GetString("n")))
+                txtUserName.Text = GetString("n");
+            if (!string.IsNullOrEmpty(GetString("s")))
+                SetSelectedByValue(ddlCheckStatus, GetString("s"));
         }
 
         protected string GetOrderProductsStr(object orderproducts)

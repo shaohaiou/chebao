@@ -16,24 +16,18 @@
 
 <body style="background:url(../images/xdd.gif) repeat-x;">
 <div class="right_nav">
-    <%if (CheckModulePower("盘库审核"))
-          {%>
-        <a href="userstockcheck.aspx" target="ztk" id="userstockcheck" <%if(CheckModulePower("盘库审核")){ %>class="current"<%} %>>盘库审核</a>
-        <%} %>
     <%if (CheckModulePower("库存查询"))
           {%>
-        <a href="userstockmg.aspx" target="ztk" id="userstockmg" <%if(!CheckModulePower("盘库审核") && CheckModulePower("库存查询")){ %>class="current"<%} %>>库存查询</a>
+        <a href="userstockmg.aspx" target="ztk" id="userstockmg" <%if(CheckModulePower("库存查询")){ %>class="current"<%} %>>库存查询</a>
         <%} %>
     <%if (CheckModulePower("出入库记录"))
           {%>
-        <a href="userstockrecordmg.aspx" target="ztk" id="userstockrecordmg" <%if(!CheckModulePower("盘库审核") && !CheckModulePower("库存查询") && CheckModulePower("出入库记录")){ %>class="current"<%} %>>出入库记录</a>
+        <a href="userstockrecordmg.aspx" target="ztk" id="userstockrecordmg" <%if(!CheckModulePower("库存查询") && CheckModulePower("出入库记录")){ %>class="current"<%} %>>出入库记录</a>
         <%} %>
 </div>
 
 <div class="r_sy" id="daohan">
-	当前位置：系统设置 &gt;&gt; <span id="daohan_sp"><%if (CheckModulePower("盘库审核"))
-              { %>盘库审核<%}
-                                           else if (CheckModulePower("库存查询"))
+	当前位置：系统设置 &gt;&gt; <span id="daohan_sp"><%if (CheckModulePower("库存查询"))
               { %>库存查询<%}
                                            else if (CheckModulePower("出入库记录"))
               { %>出入库记录<%} %></span>
