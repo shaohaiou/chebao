@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-    <title>盘库审核</title>
+    <title>出入库记录</title>
     <link href="../css/admin.css" rel="stylesheet" type="text/css" />
     <script src="../js/jquery-1.3.2.min.js" type="text/javascript"></script>
     <script src="../js/comm.js" type="text/javascript"></script>
@@ -32,7 +32,7 @@
                     查询：
                 </td>
                 <td>
-                    申请人：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6 w60"></asp:TextBox>
+                    用户：<asp:TextBox runat="server" ID="txtUserName" CssClass="srk6 w60"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -49,7 +49,7 @@
                 <HeaderTemplate>
                     <tr class="bgbt">
                         <td class="w100">
-                            申请人
+                            用户
                         </td>
                         <td class="w120">
                             提交时间
@@ -77,8 +77,7 @@
                             <%#Eval("Action").ToString() == "0" ? "出库" : "入库"%>
                         </td>
                         <td>
-                            <%# Eval("SysRemark")%><br />
-                            <%#Eval("Remark") %>
+                            <span class="gray"><%# string.IsNullOrEmpty(Eval("SysRemark").ToString()) ? string.Empty : (Eval("SysRemark").ToString() + " - ")%></span><%#Eval("Remark") %>
                         </td>
                         <td>
                             <%# GetOrderProductsStr(Eval("OrderProducts"))%>
@@ -97,7 +96,7 @@
                             <%#Eval("Action").ToString() == "0" ? "出库" : "入库"%>
                         </td>
                         <td>
-                            <%#Eval("Remark") %>
+                            <span class="gray"><%# string.IsNullOrEmpty(Eval("SysRemark").ToString()) ? string.Empty : (Eval("SysRemark").ToString() + " - ")%></span><%#Eval("Remark") %>
                         </td>
                         <td>
                             <%# GetOrderProductsStr(Eval("OrderProducts"))%>

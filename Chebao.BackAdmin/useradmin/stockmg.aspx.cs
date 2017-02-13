@@ -45,6 +45,9 @@ namespace Chebao.BackAdmin.useradmin
             int total = 0;
 
             List<UserStockChangeInfo> list = Cars.Instance.GetUserStockChangeList(AdminID);
+            list = list.OrderByDescending(l => l.ID).ToList();
+            total = list.Count();
+            list = list.Skip((pageindex - 1) * pagesize).Take(pagesize).ToList();
 
             rptData.DataSource = list;
             rptData.DataBind();

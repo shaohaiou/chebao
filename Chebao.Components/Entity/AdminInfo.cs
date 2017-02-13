@@ -519,6 +519,16 @@ namespace Chebao.Components
             set { SetExtendedAttribute("ModulePowerSetting", value); }
         }
 
+        /// <summary>
+        /// 分销功能
+        /// </summary>
+        [JsonIgnore]
+        public int IsDistribution
+        {
+            get { return GetInt("IsDistribution", 0); }
+            set { SetExtendedAttribute("IsDistribution", value.ToString()); }
+        }
+
         #endregion Model
     }
 }

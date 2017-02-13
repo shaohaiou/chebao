@@ -53,8 +53,7 @@
                             <%# Eval("AddTime") %>
                         </td>
                         <td>
-                            <%# Eval("SysRemark")%><br />
-                            <%#Eval("Remark") %>
+                            <span class="gray"><%# string.IsNullOrEmpty(Eval("SysRemark").ToString()) ? string.Empty : (Eval("SysRemark").ToString() + " - ")%></span><%#Eval("Remark") %>
                         </td>
                         <td>
                             <%# GetOrderProductsStr(Eval("OrderProducts"))%>

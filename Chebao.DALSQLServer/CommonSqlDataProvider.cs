@@ -724,6 +724,7 @@ namespace Chebao.DALSQLServer
                 ,[OrderProductJson]
             )VALUES(
                 @UserID
+                ,@UserName
                 ,@ParentUserID
                 ,@Action
                 ,@CheckStatus
@@ -744,7 +745,7 @@ namespace Chebao.DALSQLServer
                 new OleDbParameter("@Remark",entity.Remark),
                 new OleDbParameter("@SysRemark",entity.SysRemark),
                 new OleDbParameter("@OrderProductJson",entity.OrderProductJson),
-            };
+            }; 
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
         }
 
@@ -797,14 +798,6 @@ namespace Chebao.DALSQLServer
         public override void AddUserProductInfo(UserProductInfo entity)
         {
             string sql = @"
-            IF EXISTS(SELECT * FROM Chebao_UserProduct WHERE [ProductID] = @ProductID AND [UserID] = @UserID)
-            BEGIN
-                UPDATE Chebao_UserProduct SET
-                    [ProductMixStr] = @ProductMixStr
-                WHERE [ProductID] = @ProductID AND [UserID] = @UserID
-            END
-            ELSE
-            BEGIN
                 INSERT INTO Chebao_UserProduct(
                     [ProductID]
                     ,[UserID]
@@ -814,13 +807,28 @@ namespace Chebao.DALSQLServer
                     ,@UserID
                     ,@ProductMixStr
                 )
-            END
             ";
             OleDbParameter[] p = 
             {
                 new OleDbParameter("@ProductID",entity.ProductID),
                 new OleDbParameter("@UserID",entity.UserID),
                 new OleDbParameter("@ProductMixStr",entity.ProductMixStr),
+            };
+            SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
+        }
+
+        public override void UpdateUserProductInfo(UserProductInfo entity)
+        {
+            string sql = @"
+                UPDATE Chebao_UserProduct SET
+                    [ProductMixStr] = @ProductMixStr
+                WHERE [ProductID] = @ProductID AND [UserID] = @UserID
+            ";
+            OleDbParameter[] p = 
+            {
+                new OleDbParameter("@ProductMixStr",entity.ProductMixStr),
+                new OleDbParameter("@ProductID",entity.ProductID),
+                new OleDbParameter("@UserID",entity.UserID),
             };
             SqlHelper.ExecuteNonQuery(_con, CommandType.Text, sql, p);
         }

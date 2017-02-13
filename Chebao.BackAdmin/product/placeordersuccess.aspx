@@ -13,22 +13,22 @@
     <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
     <script src="../js/jquery.marquee.js" type="text/javascript"></script>
     <script type="text/javascript">
-        $(function () {
-            if ($("#hdnParentID").val() != "") {
-                $.ajax({
-                    url: "/remoteaction.ashx",
-                    data: { action: "reloaduserproductcache", userid: $("#hdnParentID").val(), d: new Date() },
-                    type: 'GET',
-                    dataType: "json",
-                    error: function (msg) {
-                        
-                    },
-                    success: function (data) {
+//        $(function () {
+//            if ($("#hdnParentID").val() != "") {
+//                $.ajax({
+//                    url: "/remoteaction.ashx",
+//                    data: { action: "reloaduserproductcache", userid: $("#hdnParentID").val(), d: new Date() },
+//                    type: 'GET',
+//                    dataType: "json",
+//                    error: function (msg) {
+//                        
+//                    },
+//                    success: function (data) {
 
-                    }
-                });
-            }
-        });
+//                    }
+//                });
+//            }
+//        });
     </script>
 </head>
 <body>

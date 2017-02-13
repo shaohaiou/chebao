@@ -347,11 +347,54 @@ namespace Chebao.Components
 
         private static object sync_fxhelper = new object();
 
+        #region 已删除
+        
         /// <summary>
         /// 获取指定用户的产品及库存数据
         /// </summary>
         /// <param name="userid"></param>
         /// <returns></returns>
+        //public List<ProductInfo> GetProductListByUser(int userid)
+        //{
+        //    string key = GlobalKey.PRODUCT_LIST_USER + "_" + userid;
+        //    List<ProductInfo> myproductlist = MangaCache.Get(key) as List<ProductInfo>;
+        //    if (myproductlist == null)
+        //    {
+        //        lock (sync_fxhelper)
+        //        {
+        //            myproductlist = MangaCache.Get(key) as List<ProductInfo>;
+        //            if (myproductlist == null)
+        //            {
+        //                DateTime timestart = DateTime.Parse("2016-6-1");
+        //                List<ProductInfo> productall = Cars.Instance.GetProductList(true);
+        //                List<OrderInfo> orderall = Cars.Instance.GetOrderList(true);
+        //                List<OrderInfo> myorderlist = orderall.FindAll(l => l.UserID == userid && l.OrderStatus == OrderStatus.已发货);
+        //                List<OrderInfo> myorderlisteffect = myorderlist.FindAll(l => DateTime.Parse(l.AddTime) > timestart);
+        //                List<OrderInfo> suborderlist = orderall.FindAll(l => l.OrderStatus != OrderStatus.已取消 && l.ParentID == userid);
+
+        //                myproductlist = productall.FindAll(p => myorderlist.Exists(m => m.OrderProducts.Exists(n => n.ProductID == p.ID)));
+        //                for (int i = 0; i < myproductlist.Count; i++)
+        //                {
+        //                    List<KeyValuePair<string, int>> productmix = new List<KeyValuePair<string, int>>();
+        //                    for (int j = 0; j < myproductlist[i].ProductMix.Count; j++)
+        //                    {
+        //                        int amountcount = myorderlisteffect.Sum(l => l.OrderProducts.Sum(p => p.ProductMixList.FindAll(m => m.Name == myproductlist[i].ProductMix[j].Key).Sum(m => m.Amount)));
+        //                        int subamountcount = suborderlist.Sum(l => l.OrderProducts.Sum(p => p.ProductMixList.FindAll(m => m.Name == myproductlist[i].ProductMix[j].Key).Sum(m => m.Amount)));
+
+        //                        productmix.Add(new KeyValuePair<string, int>(myproductlist[i].ProductMix[j].Key, amountcount - subamountcount));
+        //                    }
+        //                    myproductlist[i].UserProductMix = productmix;
+        //                }
+        //                MangaCache.Max(key, myproductlist);
+        //            }
+        //        }
+        //    }            
+
+        //    return myproductlist;
+        //}
+
+        #endregion
+
         public List<ProductInfo> GetProductListByUser(int userid)
         {
             string key = GlobalKey.PRODUCT_LIST_USER + "_" + userid;
@@ -363,32 +406,26 @@ namespace Chebao.Components
                     myproductlist = MangaCache.Get(key) as List<ProductInfo>;
                     if (myproductlist == null)
                     {
-                        DateTime timestart = DateTime.Parse("2016-6-1");
+                        List<UserProductInfo> userproducts = GetUserProductInfoList(userid, true);
                         List<ProductInfo> productall = Cars.Instance.GetProductList(true);
-                        List<OrderInfo> orderall = Cars.Instance.GetOrderList(true);
-                        List<OrderInfo> myorderlist = orderall.FindAll(l => l.UserID == userid && l.OrderStatus == OrderStatus.已发货);
-                        List<OrderInfo> myorderlisteffect = myorderlist.FindAll(l => DateTime.Parse(l.AddTime) > timestart);
-                        List<OrderInfo> suborderlist = orderall.FindAll(l => l.OrderStatus != OrderStatus.已取消 && l.ParentID == userid);
 
-                        myproductlist = productall.FindAll(p => myorderlist.Exists(m => m.OrderProducts.Exists(n => n.ProductID == p.ID)));
+                        myproductlist = productall.FindAll(p => userproducts.Exists(m => m.ProductID == p.ID));
                         for (int i = 0; i < myproductlist.Count; i++)
                         {
-                            List<KeyValuePair<string, int>> productmix = new List<KeyValuePair<string, int>>();
-                            for (int j = 0; j < myproductlist[i].ProductMix.Count; j++)
-                            {
-                                int amountcount = myorderlisteffect.Sum(l => l.OrderProducts.Sum(p => p.ProductMixList.FindAll(m => m.Name == myproductlist[i].ProductMix[j].Key).Sum(m => m.Amount)));
-                                int subamountcount = suborderlist.Sum(l => l.OrderProducts.Sum(p => p.ProductMixList.FindAll(m => m.Name == myproductlist[i].ProductMix[j].Key).Sum(m => m.Amount)));
-
-                                productmix.Add(new KeyValuePair<string, int>(myproductlist[i].ProductMix[j].Key, amountcount - subamountcount));
-                            }
-                            myproductlist[i].UserProductMix = productmix;
+                            myproductlist[i].UserProductMix = userproducts.Find(m => m.ProductID == myproductlist[i].ID).ProductMix;
                         }
                         MangaCache.Max(key, myproductlist);
                     }
                 }
-            }            
+            }
 
             return myproductlist;
+        }
+
+        public ProductInfo GetProductByUser(int uid,int pid)
+        {
+            List<ProductInfo> list = GetProductListByUser(uid);
+            return list.Find(b => b.ID == pid);
         }
 
         public void ReloadProductListUserCache(int userid)
@@ -415,6 +452,7 @@ namespace Chebao.Components
                         UserID = entity.UserID,
                         ProductMixStr = string.Join("|", opinfo.ProductMixList.Select(p => p.Name + "," + p.Amount))
                     };
+                    CommonDataProvider.Instance().AddUserProductInfo(upinfo);
                 }
                 else 
                 {
@@ -440,8 +478,8 @@ namespace Chebao.Components
                         }
                     }
                     upinfo.ProductMixStr = string.Join("|", pmlist.Select(p => p.Key + "," + p.Value));
+                    CommonDataProvider.Instance().UpdateUserProductInfo(upinfo);
                 }
-                CommonDataProvider.Instance().AddUserProductInfo(upinfo);
             }
 
             ReloadUserProductListCache(entity.UserID);
@@ -454,7 +492,7 @@ namespace Chebao.Components
             if (!fromCache)
                 return CommonDataProvider.Instance().GetUserProductInfoList(userid);
 
-            string key = GlobalKey.USERPRODUCT_LIST;
+            string key = GlobalKey.USERPRODUCT_LIST + "_" + userid;
             List<UserProductInfo> list = MangaCache.Get(key) as List<UserProductInfo>;
             if (list == null)
             {
@@ -658,15 +696,56 @@ namespace Chebao.Components
             {
                 if (status == OrderStatus.已发货 || (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货))
                 {
-                    //if (order.ParentID == 0)
-                    //{
+                    if (order.ParentID == 0)
+                    {
                         AddOrderUpdateQueue(new OrderUpdateQueueInfo()
                         {
                             OrderID = order.ID,
                             OrderStatus = status,
                             DeelStatus = 0
                         });
-                    //}
+                    }
+                    else 
+                    {
+                        if (status == OrderStatus.已发货)
+                        {
+                            AdminInfo parent = Admins.Instance.GetAdmin(order.ParentID);
+                            UserStockChangeInfo uscinfo = new UserStockChangeInfo()
+                            {
+                                UserID = parent.ID,
+                                UserName = parent.UserName,
+                                ParentUserID = 0,
+                                Action = 0,
+                                CheckStatus = 0,
+                                AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                Remark = "出库",
+                                SysRemark = "出售订单成交<br />" + order.OrderNumber,
+                                OrderProductJson = json.Serialize(order.OrderProducts),
+                                OrderProducts = order.OrderProducts
+                            };
+                            AddUserStockChange(uscinfo);
+                            ReloadUserStockChangeCache(uscinfo.UserID);
+                        }
+                        else if (status == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货)
+                        {
+                            AdminInfo parent = Admins.Instance.GetAdmin(order.ParentID);
+                            UserStockChangeInfo uscinfo = new UserStockChangeInfo()
+                            {
+                                UserID = parent.ID,
+                                UserName = parent.UserName,
+                                ParentUserID = 0,
+                                Action = 1,
+                                CheckStatus = 0,
+                                AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                Remark = "入库",
+                                SysRemark = "出售订单取消<br />" + order.OrderNumber,
+                                OrderProductJson = json.Serialize(order.OrderProducts),
+                                OrderProducts = order.OrderProducts
+                            };
+                            AddUserStockChange(uscinfo);
+                            ReloadUserStockChangeCache(uscinfo.UserID);
+                        }
+                    }
                     strResult.Append(order.UserID.ToString());
                 }
             }
@@ -709,7 +788,9 @@ namespace Chebao.Components
             string url = "http://yd.lamda.us/admin/ck.asp";
             foreach (OrderUpdateQueueInfo entity in list)
             {
-                int deelstatus = 1;
+                int deelstatus = 1; 
+
+#if !DEBUG
                 OrderInfo order = GetOrder(DataConvert.SafeInt(entity.OrderID), true);
                 if (order != null)
                 {
@@ -747,6 +828,7 @@ namespace Chebao.Components
                 }
                 else
                     deelstatus = 2;
+#endif
                 UpdateOrderUpdateQueueStatus(entity.ID, deelstatus);
             }
             if (list != null && list.Count > 0)
@@ -759,9 +841,51 @@ namespace Chebao.Components
                         UpdateOrderSyncStatus(order.ID, 1);
                         order = GetOrder(DataConvert.SafeInt(entity.OrderID));
                         RefreshOrder(order);
+                        if (order.ParentID == 0)
+                        {
+                            //一级代理库存处理
+                            if (entity.OrderStatus == OrderStatus.已取消 && order.OrderStatus == OrderStatus.已发货)
+                            {
+                                UserStockChangeInfo uscinfo = new UserStockChangeInfo()
+                                {
+                                    UserID = order.UserID,
+                                    UserName = order.UserName,
+                                    ParentUserID = 0,
+                                    Action = 0,
+                                    CheckStatus = 0,
+                                    AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                    Remark = "出库",
+                                    SysRemark = "进货订单取消<br />" + order.OrderNumber,
+                                    OrderProductJson = json.Serialize(order.OrderProducts),
+                                    OrderProducts = order.OrderProducts
+                                };
+                                AddUserStockChange(uscinfo);
+                                ReloadUserStockChangeCache(uscinfo.UserID);
+                            }
+                            else
+                            {
+                                UserStockChangeInfo uscinfo = new UserStockChangeInfo()
+                                {
+                                    UserID = order.UserID,
+                                    UserName = order.UserName,
+                                    ParentUserID = 0,
+                                    Action = 1,
+                                    CheckStatus = 0,
+                                    AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                    Remark = "入库",
+                                    SysRemark = "进货订单成交<br />" + order.OrderNumber,
+                                    OrderProductJson = json.Serialize(order.OrderProducts),
+                                    OrderProducts = order.OrderProducts
+                                };
+                                AddUserStockChange(uscinfo);
+                                ReloadUserStockChangeCache(uscinfo.UserID);
+                            }
+                        }
                     }
                 }
+#if !DEBUG
                 RefreshProductStock();
+#endif
                 ReloadProductListCache();
             }
         }
@@ -776,7 +900,7 @@ namespace Chebao.Components
                 SitesettingInfo setting = Sitesettings.Instance.GetSitesetting(true);
                 if (setting.HourNumber == 0) return;
                 List<OrderInfo> orderlist = GetOrderList(true);
-                orderlist = orderlist.FindAll(o => o.OrderStatus == OrderStatus.未收款 && DateTime.Parse(o.AddTime).AddHours(setting.HourNumber) < DateTime.Now);
+                orderlist = orderlist.FindAll(o => o.ParentID == 0 && o.OrderStatus == OrderStatus.未收款 && DateTime.Parse(o.AddTime).AddHours(setting.HourNumber) < DateTime.Now);
                 foreach (OrderInfo entity in orderlist)
                 {
                     UpdateOrderStatus(entity.ID.ToString(), OrderStatus.已取消, "付款超时");

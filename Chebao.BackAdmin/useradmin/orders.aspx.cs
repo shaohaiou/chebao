@@ -34,8 +34,8 @@ namespace Chebao.BackAdmin.useradmin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Write("功能正在研发中，敬请期待！");
-            Response.End();
+            //Response.Write("功能正在研发中，敬请期待！");
+            //Response.End();
             if (!IsPostBack)
             {
                 if (!string.IsNullOrEmpty(GetString("action")))
@@ -57,14 +57,11 @@ namespace Chebao.BackAdmin.useradmin
                             status = OrderStatus.未收款;
                             break;
                     }
-                    List<string> syncResultlist = new List<string>();
                     string[] ids = GetString("ids").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                     foreach (string id in ids)
                     {
-                        syncResultlist.Add(Cars.Instance.UpdateOrderStatus(id, status, AdminName));
+                        Cars.Instance.UpdateOrderStatus(id, status, AdminName);
                     }
-                    if (syncResultlist.Count > 0 && status == OrderStatus.已取消)
-                        Session["syncResult"] = string.Join(",",syncResultlist.Distinct());
                     Response.Redirect(FromUrl);
                     Response.End();
                 }
@@ -91,9 +88,7 @@ namespace Chebao.BackAdmin.useradmin
                             status = OrderStatus.未收款;
                             break;
                     }
-                    string syncResult = Cars.Instance.UpdateOrderStatus(hdnId.Value, status, AdminName);
-                    if (!string.IsNullOrEmpty(syncResult) && status == OrderStatus.已取消)
-                        Session["syncResult"] = syncResult;
+                    Cars.Instance.UpdateOrderStatus(hdnId.Value, status, AdminName);
                     Response.Redirect(UrlDecode(hdnFrom.Value));
                     Response.End();
                 }

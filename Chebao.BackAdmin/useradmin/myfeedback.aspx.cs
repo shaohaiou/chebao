@@ -17,13 +17,6 @@ namespace Chebao.BackAdmin.useradmin
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-            if (Admin.ParentAccountID > 0)
-            {
-                Response.Clear();
-                Response.Write("您没有权限操作！");
-                Response.End();
-                return;
-            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

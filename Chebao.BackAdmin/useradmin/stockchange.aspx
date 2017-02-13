@@ -184,7 +184,7 @@
     <form id="form1" runat="server">
     <div class="nav_stockmg">
         <ul>
-            <li><a href="stockmg.aspx">我的申请</a></li><!--
+            <li><a href="stockmg.aspx">出入库记录</a></li><!--
             --><li<%=GetInt("t") == 0 ? " class=\"current_stockmg\"" : "" %>><a href="stockchange.aspx?t=0">出库</a></li><!--
             --><li<%=GetInt("t") == 1 ? " class=\"current_stockmg\"" : "" %>><a href="stockchange.aspx?t=1">入库</a></li>
         </ul>

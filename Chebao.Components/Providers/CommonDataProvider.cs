@@ -323,6 +323,8 @@ namespace Chebao.Components
 
         public abstract void AddUserProductInfo(UserProductInfo entity);
 
+        public abstract void UpdateUserProductInfo(UserProductInfo entity);
+
         public abstract List<UserProductInfo> GetUserProductInfoList(int userid);
 
         public abstract void AddUserStockChange(UserStockChangeInfo entity);
@@ -344,6 +346,7 @@ namespace Chebao.Components
                 CheckUser = reader["CheckUser"] as string,
                 CheckTime = reader["CheckTime"] as string,
                 Remark = reader["Remark"] as string,
+                SysRemark = reader["SysRemark"] as string,
                 OrderProductJson = reader["OrderProductJson"] as string
             };
             entity.OrderProducts = json.Deserialize<List<OrderProductInfo>>(entity.OrderProductJson);

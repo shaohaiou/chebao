@@ -108,6 +108,14 @@
                 </tr>
                 <tr>
                     <td class="bg1">
+                        开启分销：
+                    </td>
+                    <td class="bg2">
+                        <asp:CheckBox runat="server" ID="cbxIsDistribution" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg1">
                         子用户权限：
                     </td>
                     <td class="bg2">

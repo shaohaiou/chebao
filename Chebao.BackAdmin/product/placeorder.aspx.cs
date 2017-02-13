@@ -188,7 +188,7 @@ namespace Chebao.BackAdmin.product
                         Province = ddlProvince.SelectedItem.Text,
                         City = ddlCity.SelectedItem.Text,
                         District = ddlDistrict.SelectedItem.Text,
-                        ParentID = Admin.ParentAccountID,
+                        ParentID = (ParentAdmin == null || ParentAdmin.IsDistribution == 0) ? 0 : Admin.ParentAccountID,
                         UserID = AdminID,
                         UserName = AdminName,
                         Address = txtAddress.Text,

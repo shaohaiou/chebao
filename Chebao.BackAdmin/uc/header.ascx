@@ -32,8 +32,7 @@
                                                { %><a href="http://yd.lamda.us/admin/MJ.asp?id=fdskjgbdsfjbg56514zfhg" class="cccx">尺寸查询</a><%} %>
                     <%if (Admin.ParentAccountID == 0 && Admin.IsAddAccount > 0)
                       { %><a class="zyhgl" href="/user/subaccountlist.aspx">用户管理</a><%} %>
-                    <%if (Admin.ParentAccountID == 0)
-                      { %><a class="htgl" href="/useradmin/main.aspx">个人中心</a><%} %></span>
+                    <a class="htgl" href="/useradmin/main.aspx">个人中心</a></span>
         </div>
     </div>
     <div id="notice" style="color: White; width: 1000px; margin: 0 auto; height: 30px;

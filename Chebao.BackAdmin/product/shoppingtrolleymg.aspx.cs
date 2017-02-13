@@ -103,10 +103,10 @@ namespace Chebao.BackAdmin.product
         {
             List<ShoppingTrolleyInfo> listShoppingTrolley = Cars.Instance.GetShoppingTrolleyByUserID(AdminID);
             List<ProductInfo> listAllProduct;
-            //if (Admin.ParentAccountID == 0)
+            if (ParentAdmin == null || ParentAdmin.IsDistribution == 0)
                 listAllProduct = Cars.Instance.GetProductList(true);
-            //else
-            //    listAllProduct = Cars.Instance.GetProductListByUser(Admin.ParentAccountID);
+            else
+                listAllProduct = Cars.Instance.GetProductListByUser(Admin.ParentAccountID);
             listShoppingTrolley = listShoppingTrolley.FindAll(l => listAllProduct.Exists(p => p.ID == l.ProductID));
             if (listShoppingTrolley.Count > 0)
             {
@@ -144,10 +144,10 @@ namespace Chebao.BackAdmin.product
                     productmixsettinglist = productmixsettings.Select(p => new KeyValuePair<string, int>(p.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[0], DataConvert.SafeInt(p.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries)[1]))).ToList();
                 }
 
-                //if (Admin.ParentAccountID == 0)
-                rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Amount = (productmixsettinglist.Count > 0 ? productmixsettinglist.Find(l=>l.Key == p.Key).Value : 1), Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
-                //else
-                //    rptProductMix.DataSource = entity.UserProductMix.Select(p => new ProductMixInfo { Name = p.Key, Amount = (productmixsettinglist.Count > 0 ? productmixsettinglist.Find(l=>l.Key == p.Key).Value : 1), Stock = p.Value, SID = entity.SID, UnitPrice = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Costs = GetUserProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                if (ParentAdmin == null || ParentAdmin.IsDistribution == 0)
+                    rptProductMix.DataSource = entity.ProductMix.Select(p => new ProductMixInfo { Name = p.Key, Amount = (productmixsettinglist.Count > 0 ? productmixsettinglist.Find(l=>l.Key == p.Key).Value : 1), Stock = p.Value, SID = entity.SID, UnitPrice = GetUnitPrice(p.Key, entity.Price, entity.XSPPrice), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, Admin), Costs = GetProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
+                else
+                    rptProductMix.DataSource = entity.UserProductMix.Select(p => new ProductMixInfo { Name = p.Key, Amount = (productmixsettinglist.Count > 0 ? productmixsettinglist.Find(l => l.Key == p.Key).Value : 1), Stock = p.Value, SID = entity.SID, UnitPrice = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Price = Cars.Instance.GetProductMixPrice(entity.Price, entity.XSPPrice, p.Key, ParentAdmin), Costs = GetUserProductMixCosts(entity.Price, entity.XSPPrice, p.Key) }).ToList();
                 rptProductMix.DataBind();
             }
         }
@@ -166,29 +166,44 @@ namespace Chebao.BackAdmin.product
                     txtAmount.Value = pminfo.Amount.ToString();
                     ProductMixInfo entity = ((ProductMixInfo)e.Item.DataItem);
                     int stock = entity.Stock;
-                    if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
-                    {
-                        int amount = 0;
-                        List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
-                        orderlist.ForEach(delegate(OrderInfo o)
-                        {
-                            amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
-                        });
-                        stock -= amount;
-                    } 
-                    //if (Admin.ParentAccountID == 0)
+                    //if (OrderAll.Exists(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
                     //{
-                    //    if (OrderAll.Exists(o => o.ParentID == 0 && o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                    //    int amount = 0;
+                    //    List<OrderInfo> orderlist = OrderAll.FindAll(o => o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
+                    //    orderlist.ForEach(delegate(OrderInfo o)
                     //    {
-                    //        int amount = 0;
-                    //        List<OrderInfo> orderlist = OrderAll.FindAll(o => o.ParentID == 0 && o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
-                    //        orderlist.ForEach(delegate(OrderInfo o)
-                    //        {
-                    //            amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
-                    //        });
-                    //        stock -= amount;
-                    //    }
-                    //}
+                    //        amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
+                    //    });
+                    //    stock -= amount;
+                    //} 
+
+                    if (ParentAdmin == null || ParentAdmin.IsDistribution == 0) //代理商或未开启分销功能的子用户库存计算
+                    {
+                        if (OrderAll.Exists(o => o.ParentID == 0 && o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                        {
+                            int amount = 0;
+                            List<OrderInfo> orderlist = OrderAll.FindAll(o => o.ParentID == 0 && o.SyncStatus == 0 && o.OrderStatus != OrderStatus.已取消 && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
+                            orderlist.ForEach(delegate(OrderInfo o)
+                            {
+                                amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
+                            });
+                            stock -= amount;
+                        }
+                    }
+                    else //零售商库存计算
+                    {
+                        DateTime datevertionorder = DateTime.Parse(GlobalKey.VERSIONUPDATETIME_ORDER);
+                        if (OrderAll.Exists(o => o.ParentID == Admin.ParentAccountID && o.OrderStatus != OrderStatus.已取消 && o.OrderStatus != OrderStatus.已发货 && DateTime.Parse(o.AddTime) > datevertionorder && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name))))
+                        {
+                            int amount = 0;
+                            List<OrderInfo> orderlist = OrderAll.FindAll(o => o.ParentID == Admin.ParentAccountID && o.OrderStatus != OrderStatus.已取消 && o.OrderStatus != OrderStatus.已发货 && DateTime.Parse(o.AddTime) > datevertionorder && o.OrderProducts != null && o.OrderProducts.Exists(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)));
+                            orderlist.ForEach(delegate(OrderInfo o)
+                            {
+                                amount += o.OrderProducts.FindAll(p => p.ProductMixList != null && p.ProductMixList.Exists(pm => pm.Name == entity.Name)).Sum(p => p.ProductMixList.FindAll(pm => pm.Name == entity.Name).Sum(pm => pm.Amount));
+                            });
+                            stock -= amount;
+                        }
+                    }
                     if (stock < 0)
                         stock = 0;
                     entity.Stock = stock;

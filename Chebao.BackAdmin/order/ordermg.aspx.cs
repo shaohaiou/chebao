@@ -135,7 +135,7 @@ namespace Chebao.BackAdmin.order
             int total = 0;
 
             List<OrderInfo> list = Cars.Instance.GetOrderList(true);
-            //list = list.FindAll(l=>l.ParentID == 0);
+            list = list.FindAll(l => l.ParentID == 0);
             if (!CheckModulePower("未收款"))
                 list = list.FindAll(l=>l.OrderStatus != OrderStatus.未收款);
             if (!CheckModulePower("已收款"))
@@ -340,6 +340,7 @@ namespace Chebao.BackAdmin.order
                             row.CreateCell(1).SetCellValue(ptname);
                             row.CreateCell(2).SetCellValue(pi.Name);
                             row.CreateCell(3).SetCellValue(p.ModelNumber);
+                            row.CreateCell(4).SetCellValue(pi.Amount);
                             if (cabmodel.Length > 0)
                             {
                                 string brand = string.Empty;
@@ -352,29 +353,28 @@ namespace Chebao.BackAdmin.order
                                         brand = brand + cabmodel[i];
                                     }
                                 }
-                                row.CreateCell(4).SetCellValue(brand);
-                                row.CreateCell(5).SetCellValue(cabmodel[cabmodel.Length - 2]);
-                                row.CreateCell(6).SetCellValue(cabmodel[cabmodel.Length - 1]);
-                                row.CreateCell(7).SetCellValue(cabmodel[1]);
+                                row.CreateCell(5).SetCellValue(brand);
+                                row.CreateCell(6).SetCellValue(cabmodel[cabmodel.Length - 2]);
+                                row.CreateCell(7).SetCellValue(cabmodel[cabmodel.Length - 1]);
+                                row.CreateCell(8).SetCellValue(cabmodel[1]);
                             }
                             else
                             {
-                                row.CreateCell(4).SetCellValue(string.Empty);
                                 row.CreateCell(5).SetCellValue(string.Empty);
                                 row.CreateCell(6).SetCellValue(string.Empty);
                                 row.CreateCell(7).SetCellValue(string.Empty);
+                                row.CreateCell(8).SetCellValue(string.Empty);
                             }
-                            row.CreateCell(8).SetCellValue(order.UserName);
-                            row.CreateCell(9).SetCellValue(p.ProductType == ProductType.前刹车片 ? "前" : (p.ProductType == ProductType.后刹车片 ? "后" : string.Empty));
+                            row.CreateCell(9).SetCellValue(order.UserName);
+                            row.CreateCell(10).SetCellValue(p.ProductType == ProductType.前刹车片 ? "前" : (p.ProductType == ProductType.后刹车片 ? "后" : string.Empty));
                             try
                             {
-                                row.CreateCell(10).SetCellValue(DateTime.Parse(order.AddTime).ToString("yyyy-M-d"));
+                                row.CreateCell(11).SetCellValue(DateTime.Parse(order.AddTime).ToString("yyyy-M-d"));
                             }
                             catch { }
-                            row.CreateCell(11).SetCellValue(!r.IsMatch(pi.Name.ToLower()) ? string.Empty : r.Match(pi.Name.ToLower()).Groups[1].Value.ToUpper());
+                            row.CreateCell(12).SetCellValue(!r.IsMatch(pi.Name.ToLower()) ? string.Empty : r.Match(pi.Name.ToLower()).Groups[1].Value.ToUpper());
                             if (CheckModulePower("金额可见"))
-                                row.CreateCell(12).SetCellValue(pi.Price);
-                            row.CreateCell(13).SetCellValue(pi.Amount);
+                                row.CreateCell(13).SetCellValue(pi.Price);
                             if (CheckModulePower("金额可见"))
                                 row.CreateCell(14).SetCellValue(pi.Sum);
                             row.CreateCell(15).SetCellValue(string.Empty);

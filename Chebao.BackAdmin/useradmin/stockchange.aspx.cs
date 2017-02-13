@@ -98,14 +98,16 @@ namespace Chebao.BackAdmin.useradmin
                 CheckStatus = 0,
                 AddTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                 Remark = txtRemark.Value,
-                SysRemark = GetInt("t") == 0 ? "盘库-出库" : "盘库-入库",
-                OrderProductJson = json.Serialize(listOrderProduct)
+                SysRemark = GetInt("t") == 0 ? "盘库出库" : "盘库入库",
+                OrderProductJson = json.Serialize(listOrderProduct),
+                OrderProducts = listOrderProduct
             };
 
             Cars.Instance.AddUserStockChange(entity);
             Cars.Instance.ReloadUserStockChangeCache(entity.UserID);
+            MangaCache.Remove(key);
 
-            WriteSuccessMessage("操作成功", "成功提交", "stockmg.aspx");
+            WriteSuccessMessage("操作成功", "成功提交", "~/useradmin/stockmg.aspx");
         }
     }
 }

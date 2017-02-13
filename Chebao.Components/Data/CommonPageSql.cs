@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.OleDb;
+using Chebao.Tools;
 
 namespace Chebao.Components.Data
 {
@@ -29,7 +30,7 @@ namespace Chebao.Components.Data
             }
             else
             {
-                cmd = "SELECT TOP " + pagesize + " * FROM " + query.TableName + "WHERE " + (string.IsNullOrEmpty(where) ? string.Empty : (where + " AND ")) + "ID " + (query.OrderBy.ToLower().IndexOf("asc") > 0 ? ">" : "<") + @"
+                cmd = "SELECT TOP " + pagesize + " * FROM " + query.TableName + " WHERE " + (string.IsNullOrEmpty(where) ? string.Empty : (where + " AND ")) + "ID " + (query.OrderBy.ToLower().IndexOf("asc") > 0 ? ">" : "<") + @"
                     (SELECT MIN(ID) 
                     FROM (SELECT TOP " + pagesize * (pageindex - 1) + @" * FROM " + query.TableName + (string.IsNullOrEmpty(where) ? string.Empty : (" WHERE " + where)) + @" ORDER BY" + query.OrderBy + @") AS T1)
                     ORDER BY" + query.OrderBy;
@@ -37,7 +38,8 @@ namespace Chebao.Components.Data
             IDataReader reader = SqlHelper.ExecuteReader(con, CommandType.Text, cmd);
             p = new OleDbParameter("@RecordCount", 0);
             string sql = "SELECT COUNT(0) FROM " + query.TableName + (string.IsNullOrEmpty(where) ? string.Empty : (" WHERE " + where));
-            p.Value = SqlHelper.ExecuteNonQuery(con, CommandType.Text, sql);
+            int total = DataConvert.SafeInt(SqlHelper.ExecuteScalar(con, CommandType.Text, sql));
+            p.Value = total;
             //OleDbParameter[] para = SqlHelperParameterCache.GetSpParameterSet(con, cmd);
             //para[0].Value = query.Column;
             //para[1].Value = query.TableName;

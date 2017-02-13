@@ -24,20 +24,6 @@
                 } else
                     return false;
             });
-            if ($("#hdnSyncresult").val() != "") {
-                $.ajax({
-                    url: "/remoteaction.ashx",
-                    data: { action: "reloaduserproductcache", userid: $("#hdnSyncresult").val(), d: new Date() },
-                    type: 'GET',
-                    dataType: "json",
-                    error: function (msg) {
-                        alert("发生错误");
-                    },
-                    success: function (data) {
-
-                    }
-                });
-            }
             $("#btnFilter").click(function () {
                 var query = new Array();
                 if ($.trim($("#ddlOrderStatusFilter").val()) != "-1")
